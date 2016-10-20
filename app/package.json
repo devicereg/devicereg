@@ -1,7 +1,7 @@
 {
-  "name": "my-project",
-  "version": "1.0.0",
-  "description": "A Vue.js project",
+  "name": "devicereg",
+  "version": "0.0.1",
+  "description": "DeviceReg - A Vue.js Application",
   "author": "",
   "private": true,
   "scripts": {

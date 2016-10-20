@@ -2,7 +2,7 @@ FROM node:6.8
 
 RUN mkdir /src
 
-RUN npm install nodemon -g
+RUN npm install -g nodemon
 
 WORKDIR /src/app
 ADD app/package.json /src/package.json
