@@ -11,5 +11,3 @@ RUN npm install
 ADD app/nodemon.json /src/nodemon.json
 
 EXPOSE 8080
-
-CMD npm run dev

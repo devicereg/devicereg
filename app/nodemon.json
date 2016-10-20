@@ -1,6 +1,7 @@
 {
+  "legacyWatch": true,
   "env": {
     "NODE_ENV": "development"
   },
-  "ext": "js json hjs"
+  "ext": "vue js json hjs"
 }
