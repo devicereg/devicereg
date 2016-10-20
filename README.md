@@ -28,7 +28,7 @@ chmod +x /usr/local/bin/docker-compose
 
 ### Create a docker-machine
 
-You can [create a docker machine manually](https://docs.docker.com/machine/get-started/#/create-a-machine).
+You can [create a docker machine manually](https://docs.docker.com/machine/get-started/#/create-a-machine). (Don't forget to set the environment variables)
 
 Otherwise when you launch the Docker Quickstart Terminal a default docker-machine will be automatically created for you. If you already created a docker-machine or launched the Docker Quickstart Terminal you can go one step further.
 
