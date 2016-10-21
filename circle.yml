@@ -1,5 +1,13 @@
+machine:
+  services:
+    - docker
+    - docker-compose
+
 dependencies:
   override:
-    - pwd && ls -l
+    - docker info
     - docker-compose build
+    
+test:
+  override:
     - docker-compose up
