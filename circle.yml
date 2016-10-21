@@ -5,15 +5,15 @@ machine:
 dependencies:
   override:
     - docker info
-    - docker build --rm=false -t micken42/htw-berlin:devicereg .
+    - docker build --rm=false -t $DOCKER_USER/htw-berlin:devicereg .
 
 test:
   override:
-    - docker-compose up
+    - docker-compose build
 
 deployment:
   hub:
     branch: master
     commands:
-      - docker login -u micken42 -p $DOCKER_PASS
-      - docker push micken42/htw-berlin:devicereg
+      - docker login -u $DOCKER_USER -p $DOCKER_PASS
+      - docker push $DOCKER_USER/htw-berlin:devicereg
