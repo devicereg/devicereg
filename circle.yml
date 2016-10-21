@@ -15,5 +15,5 @@ deployment:
   hub:
     branch: master
     commands:
-      - docker login -u $DOCKER_USER -p $DOCKER_PASS
+      - docker login -e $DOCKER_MAIL -u $DOCKER_USER -p $DOCKER_PASS
       - docker push $DOCKER_USER/htw-berlin:devicereg
