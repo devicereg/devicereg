@@ -1,13 +1,19 @@
 machine:
   services:
     - docker
-    - docker-compose
 
 dependencies:
   override:
     - docker info
-    - docker-compose build
-    
+    - docker build --rm=false -t micken42/htw-berlin:devicereg .
+
 test:
   override:
     - docker-compose up
+
+deployment:
+  hub:
+    branch: master
+    commands:
+      - docker login -u micken42 -p $DOCKER_PASS
+      - docker push micken42/htw-berlin:devicereg
