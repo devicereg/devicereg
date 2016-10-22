@@ -1,6 +1,7 @@
 machine:
   services:
     - docker
+    - heroku
 
 dependencies:
   override:
@@ -12,9 +13,15 @@ test:
     - docker-compose up -d
     - curl --retry 10 --retry-delay 5 -v http://localhost:80
 
-deployment:
+deployment-docker-hub:
   hub:
     branch: master
     commands:
       - docker login -e $DOCKER_MAIL -u $DOCKER_USER -p $DOCKER_PASS
       - docker push $DOCKER_USER/htw-berlin:devicereg
+      
+deployment:
+  staging:
+    branch: master
+    heroku:
+      appname: device-r
