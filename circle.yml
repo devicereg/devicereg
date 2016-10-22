@@ -4,12 +4,12 @@ machine:
 
 dependencies:
   override:
-#    - docker info
+    - docker info
     - docker build --rm=false -t $DOCKER_USER/htw-berlin:devicereg .
 
 test:
   override:
-    - docker-compose up -d
+    - docker-compose up -d --no-cache
     - curl --retry 10 --retry-delay 5 -v http://localhost:80
 
 deployment:
@@ -18,9 +18,3 @@ deployment:
     commands:
       - docker login -e $DOCKER_MAIL -u $DOCKER_USER -p $DOCKER_PASS
       - docker push $DOCKER_USER/htw-berlin:devicereg
-      
-deployment:
-  staging:
-    branch: master
-    heroku:
-      appname: device-r
