@@ -1,9 +1,17 @@
-# my-project
+# DeviceReg
 
 > A Vue.js project
 
 This is the normal Vue.js template for a new project containing webpack, 
 ESLint, Nodemon and many more...
+
+## Important Note for nodemon
+If you are using a common Unix distribution you might find it useful to deactivate
+the nodemon `legacyWatch` mode.
+This is done by commenting/removing the relevant line in `nodemon.json`
+
+
+Please make sure that you don't commit those changes...
 
 ## Build Setup
 
