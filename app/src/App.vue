@@ -26,13 +26,15 @@
 import Hello from './components/Hello'
 import Goodbye from './components/Goodbye'
 import Navigation from './components/Navigation'
+import Kontakt from './components/Kontakt'
 
 export default {
   name: 'app',
   components: {
     Hello,
     Goodbye,
-    Navigation
+    Navigation,
+    Kontakt
   }
 }
 </script>
