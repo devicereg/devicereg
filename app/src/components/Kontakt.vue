@@ -6,7 +6,7 @@
       <option v-bind:value="item" v-for="item in items">{{item.name}}</option>
     </select>
     <div class="land">
-      <table class="table table-hover">
+      <table class="table table-hover" v-if="selected === null">
         <tr>
           <td>Adresse:</td>
           <td v-html="selected.address"></td>
@@ -420,14 +420,3 @@ export default {
   }
 }
 </script>
-<style>
-  h5{
-    text-transform: uppercase;
-    color: black;
-    border-bottom: 1px solid #0000cc;
-    border-top: none;
-    margin: 0;
-    background-color: #f2f2f2;
-    display: block;
-  }
-</style>
