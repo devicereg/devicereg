@@ -1,6 +1,7 @@
 #!/bin/bash
-ssh $SSH_SERVER
-
 cd devicereg
 git pull
-docker-compose up --build -d
+docker-compose build
+docker-compose down
+docker-compose up -d
+exit
