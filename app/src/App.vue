@@ -23,15 +23,11 @@
 </template>
 
 <script>
-import Hello from './components/Hello'
-import Goodbye from './components/Goodbye'
 import Navigation from './components/Navigation'
 
 export default {
   name: 'app',
   components: {
-    Hello,
-    Goodbye,
     Navigation
   }
 }
