@@ -18,3 +18,11 @@ deployment:
     commands:
       - docker login -e $DOCKER_MAIL -u $DOCKER_USER -p $DOCKER_PASS
       - docker push $DOCKER_USER/htw-berlin:devicereg
+
+  production:
+    branch: master #change to release tag latest
+    commands:
+      - ssh $SSH_SERVER
+      - cd devicereg
+      - git pull
+      - docker-compose up --build -d
