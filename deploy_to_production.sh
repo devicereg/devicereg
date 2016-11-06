@@ -1,3 +1,4 @@
+#!/bin/bash
 ssh $SSH_SERVER
 
 cd devicereg
