@@ -18,4 +18,4 @@ deployment:
     commands:
 #      - docker login -e $DOCKER_MAIL -u $DOCKER_USER -p $DOCKER_PASS
 #      - docker push $DOCKER_USER/htw-berlin:devicereg
-      - ssh $SSH_SERVER << deploy_to_production.sh
+      - ssh $SSH_SERVER << ./deploy_to_production.sh
