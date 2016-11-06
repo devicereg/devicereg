@@ -5,33 +5,37 @@
     <select class="form-control" v-model="selected">
       <option v-bind:value="item" v-for="item in items">{{item.name}}</option>
     </select>
-    <div class="land">
-      <table class="table table-hover" v-if="selected === null">
-        <tr>
-          <td>Adresse:</td>
-          <td v-html="selected.address"></td>
-        </tr>
-        <tr v-if="selected.poBox">
-          <td>Postfach:</td>
-          <td>{{ selected.poBox }}</td>
-        </tr>
-        <tr v-if="selected.email">
-          <td>E-Mail:</td>
-          <td>{{ selected.email }}</td>
-        </tr>
-        <tr>
-          <td>Telefon:</td>
-          <td>{{ selected.phone }}</td>
-        </tr>
-      </table>
-    </div>
+    <table id="contact-table" class="table table-hover" v-if="selected != 1">
+      <tr>
+        <td><strong>Adresse:</strong></td>
+        <td v-html="selected.address"></td>
+      </tr>
+      <tr v-if="selected.poBox">
+        <td><strong>Postfach:</strong></td>
+        <td>{{ selected.poBox }}</td>
+      </tr>
+      <tr v-if="selected.email">
+        <td><strong>E-Mail:</strong></td>
+        <td>
+          <a href='mailto:'>{{ selected.email }}</a>
+        </td>
+      </tr>
+      <tr>
+        <td><strong>Telefon:</strong></td>
+        <td>{{ selected.phone }}</td>
+      </tr>
+    </table>
     <h2>Probleme bei der Registrierung?</h2>
     <p>Bitte kontaktieren Sie: <a href="mailto:YDS.Support@eu.yokogawa.com">YDS.Support@eu.yokogawa.com</a></p>
     <h2>Wollen Sie mehr über Yokogawa erfahren?</h2>
     <p>Besuchen Sie uns auf: <a href="www.yokogawa.com/eu">www.yokogawa.com/eu</a></p>
   </div>
 </template>
-
+<style>
+  #contact-table {
+    margin: 0 auto;
+  }
+</style>
 <script>
 export default {
   name: 'kontakt',
