@@ -5,11 +5,13 @@ import VueRouter from 'vue-router'
 import App from './App'
 import Hello from './components/Hello'
 import Goodbye from './components/Goodbye'
+import Privacy from './components/Privacy.vue'
 
 Vue.use(VueRouter)
 const routes = [
   {path: '/', component: Hello},
-  {path: '/bye', component: Goodbye}
+  {path: '/bye', component: Goodbye},
+  {path: '/privacy', component: Privacy}
 ]
 
 const router = new VueRouter({

@@ -3,6 +3,7 @@
     <ul>
       <li><router-link to="/">Home</router-link></li>
       <li><router-link to="/bye">Goodbye</router-link></li>
+      <li><router-link to="/privacy">Datenschutz</router-link></li>
     </ul>
   </div>
 </template>
