@@ -1,1 +1,6 @@
 .idea/
+geckodriver.log
+log.html
+output.xml
+report.html
+selenium*.png
