@@ -8,11 +8,13 @@
 
 <script>
 import Navigation from './components/Navigation'
+import Bootstrap from './components/Bootstrap.vue'
 
 export default {
   name: 'app',
   components: {
-    Navigation
+    Navigation,
+    Bootstrap
   }
 }
 </script>
