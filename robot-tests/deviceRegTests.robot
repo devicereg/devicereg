@@ -3,6 +3,7 @@ Library  Selenium2Library
 
 *** Variables ***
 ${host}  http://127.0.0.1/
+${browser}  chrome
 
 *** Keywords ***
 Gehe zu Willkommensseite
@@ -15,7 +16,7 @@ Pruefe, dass die Willkommensseite angezeigt wird
 
 *** Test Cases ***
 Oeffne Browser
-    Open Browser  ${host}
+    Open Browser  ${host}  ${browser}
 
 Starte die Anwendung
     Gehe zu Willkommensseite
