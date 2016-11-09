@@ -14,7 +14,21 @@ Gehe zu Willkommensseite
 
 Pruefe, dass die Willkommensseite angezeigt wird
     [Documentation]  Für aktuelle Webseite wird geprüft, ob es sich um die Willkommensseite handelt
-    Page Should Contain Element  xpath=//div[@id="app"]/div[@class="navigation"]
+    Page Should Contain  Welcome to Your Vue.js App
+    #Page Should Contain Element  xpath=//div[@class="hello"]/h1[contains(text(),"Welcome")]
+
+Pruefe, dass die Willkommensseite verlassen wurde
+   [Documentation]  Für aktuelle Webseite wird geprüft, ob Willkommensseite nicht mehr angezeigt wird
+   Page Should Not Contain  Welcome to Your Vue.js App
+
+Navigiere zu Abschiedsseite
+    [Documentation]  Navigiere zur Willkommensseite
+    Click Link  Goodbye
+    Pruefe, dass die Willkommensseite verlassen wurde
+
+Pruefe, dass die Abschschiedsseite angezeigt wird
+    [Documentation]  Für aktuelle Webseite wird geprüft, ob es sich um die Abschiedsseite handelt
+    Page Should Contain Element  xpath=//div[@class="goodbye"]/h1[text()="Goodbye"]
 
 *** Test Cases ***
 Oeffne Browser
@@ -23,4 +37,10 @@ Oeffne Browser
 Starte die Anwendung
     Gehe zu Willkommensseite  ${host}
     Pruefe, dass die Willkommensseite angezeigt wird
+
+Rufe die Abschiedsseite auf
+    Navigiere zu Abschiedsseite
+    Pruefe, dass die Abschschiedsseite angezeigt wird
+
+Schliesse Browser
     Close Browser
