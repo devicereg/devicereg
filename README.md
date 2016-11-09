@@ -46,10 +46,26 @@ Run `docker-compose build`. It will
 
 Run `docker-compose up` to create and start the container. The app should then be running on your docker daemon on port 80, port 8080 on the host machine (On OS X you can use `docker-machine ip` to find out the IP address).
 
-## Notes on boot2docker (DEPRECATED we use docker-machine instead of boot2docker)
+# End-to-End Testing with the Robot Framework
 
-It [appears](https://github.com/boot2docker/boot2docker/issues/290) that boot2docker (OS X, Windows) currently does not automatically sync the system clock with the host system after a host resumes from sleep. This becomes a problem due to the way nodemon detects file changes. That might cause it to go bananas, if the clocks on both systems are "too much" out of sync. Until this is fixed, you might use [this workaround](https://github.com/boot2docker/boot2docker/issues/290#issuecomment-62384209) or simply do a manual sync via
+## Prerequisites
 
-```bash
-/usr/local/bin/boot2docker ssh sudo ntpclient -s -h pool.ntp.org
-```
+### Install Firefox or/and Google Chrome
+
+### Install Selenium 
+
+### Install WebDrivers
+
+### Install Robot Framework
+
+### Install Selenium2Library
+
+## Setup
+
+### Add WebDriver executables to system paths
+
+## Run tests
+
+### Runing robot tests 
+
+### View reports and log files
