@@ -1,4 +1,5 @@
 .idea/
+ghostdriver.log
 geckodriver.log
 log.html
 output.xml
