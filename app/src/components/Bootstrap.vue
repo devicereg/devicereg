@@ -4,10 +4,4 @@
   }
 </script>
 
-<style lang="scss">
-body {
-  h1 {
-    text-decoration: underline;
-  }
-}
-</style>
+<style lang="scss" src="../../node_modules/bootstrap-sass/assets/stylesheets/_bootstrap.scss"></style>
