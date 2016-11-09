@@ -9,12 +9,14 @@
 <script>
 import Navigation from './components/Navigation'
 import Bootstrap from './components/Bootstrap.vue'
+import Kontakt from './components/Kontakt'
 
 export default {
   name: 'app',
   components: {
     Navigation,
-    Bootstrap
+    Bootstrap,
+    Kontakt
   }
 }
 </script>

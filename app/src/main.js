@@ -5,11 +5,13 @@ import VueRouter from 'vue-router'
 import App from './App'
 import Hello from './components/Hello'
 import Goodbye from './components/Goodbye'
+import Kontakt from './components/Kontakt'
 
 Vue.use(VueRouter)
 const routes = [
   {path: '/', component: Hello},
-  {path: '/bye', component: Goodbye}
+  {path: '/bye', component: Goodbye},
+  {path: '/kontakt', component: Kontakt}
 ]
 
 const router = new VueRouter({
