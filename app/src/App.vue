@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
     <navigation></navigation>
     <router-view></router-view>
     <h2>Essential Links</h2>
@@ -23,16 +22,15 @@
 </template>
 
 <script>
-import Hello from './components/Hello'
-import Goodbye from './components/Goodbye'
+
 import Navigation from './components/Navigation'
+import Dashboard from './components/Dashboard'
 
 export default {
   name: 'app',
   components: {
-    Hello,
-    Goodbye,
-    Navigation
+    Navigation,
+    Dashboard
   }
 }
 </script>
@@ -44,7 +42,7 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top:100px;
 }
 
 h1, h2 {
