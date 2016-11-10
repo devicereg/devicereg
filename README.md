@@ -46,10 +46,52 @@ Run `docker-compose build`. It will
 
 Run `docker-compose up` to create and start the container. The app should then be running on your docker daemon on port 80, port 8080 on the host machine (On OS X you can use `docker-machine ip` to find out the IP address).
 
-## Notes on boot2docker (DEPRECATED we use docker-machine instead of boot2docker)
+# End-to-End Testing with the Robot Framework
 
-It [appears](https://github.com/boot2docker/boot2docker/issues/290) that boot2docker (OS X, Windows) currently does not automatically sync the system clock with the host system after a host resumes from sleep. This becomes a problem due to the way nodemon detects file changes. That might cause it to go bananas, if the clocks on both systems are "too much" out of sync. Until this is fixed, you might use [this workaround](https://github.com/boot2docker/boot2docker/issues/290#issuecomment-62384209) or simply do a manual sync via
+## Prerequisites
 
-```bash
-/usr/local/bin/boot2docker ssh sudo ntpclient -s -h pool.ntp.org
-```
+### Install Firefox or/and Google Chrome
+Just do it!
+
+### Initialize a virtual environment (OPTIONAL)
+Go to https://blog.dbrgn.ch/2012/9/18/virtualenv-quickstart/ to learn more about virtualenv and decide if you need one.
+
+### Install Python 2.7... (pip inclusive)
+Go to https://www.python.org/downloads/ and download/install Phython 2.7... (contains pip) for your OS.
+
+### Install Selenium 
+It is recommended to install Selenium via pip
+``` pip install selenium ``` 
+
+### Install WebDrivers
+Go to http://www.seleniumhq.org/download/ and download the WebDriver executables for your OS. Geckodriver and/or Chromedriver will last. Unpack the zip archives and place the executables somewhere in your filesystem. Now you have to add the path to the directory where you placed the webdriver executables to your path(s) environment variable.  
+
+* Windows: Go to "Advanced System Settings" > "Advanced" > "Environment Variables" then double click on the path variable and append the path to the webdriver executables (e.g. /bin/webdrivers). Afterwards you should restart all of your terminal instances running. In rare cases it could be possible that you have to restart your PC to apply the changes in the environment variables.
+* Mac/Linux: You can execute the following command to add your webdriver executable directory to $PATH..
+  ``` sudo export PATH=$PATH:/path/to/webdriver/executables/dir ```
+
+### Install Robot Framework
+``` pip install robotframework ``` 
+
+### Install Selenium2Library
+``` pip install robotframework-selenium2library ``` 
+
+## Run tests
+
+### Running robot tests 
+To run tests in Google Chrome you simply need to run the following command in the root directory of the devicereg project.
+
+``` robot robot-tests/deviceRegTests.robot ```
+
+To specify an directory for the log files and reports you can use the --outputdir flag on robot. In the following case test output is saved under app/static/test-output/.
+
+``` robot --outputdir app/static/test-output/ robot-tests/deviceRegTests.robot ```
+
+To run robot test in another browser you can use the -v (--variable) flag on robot. To run the tests in Firefox (be sure you have the path to the geckodriver executable in your system path!) you can run this command:
+
+``` robot -v browser:firefox robot-tests/deviceRegTests.robot ```
+
+### View reports and log files
+You can view the log files and reports in your browser and find them in the directory you specified with the 
+--outputdir flag. The default location for the test output is the directory from where you run robot.
+On the production server you can view the log file from the most recent robot test execution under this uri: http://devicereg-frontend.f4.htw-berlin.de/static/test-output/log.html

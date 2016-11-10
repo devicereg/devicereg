@@ -14,7 +14,6 @@
 </style>
 
 <template>
-
   <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
       <ul class="nav navbar-nav">
@@ -33,10 +32,10 @@
         <li v-if="!user.authenticated">
           <router-link to="/registrieren">Registrieren</router-link>
         </li>
+        <li><router-link to="/kontakt">Kontakt</router-link></li>
       </ul>
     </div>    
   </nav>
-
 </template>
 
 <script>

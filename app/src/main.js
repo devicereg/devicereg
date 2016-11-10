@@ -8,6 +8,8 @@ import auth from './auth'
 import RegistrationForm from './components/RegistrationForm'
 import LoginForm from './components/LoginForm'
 import Dashboard from './components/Dashboard'
+import Kontakt from './components/Kontakt'
+
 
 Vue.use(VueRouter)
 Vue.use(VueResource)
@@ -18,6 +20,7 @@ const routes = [
   {path: '/registrieren', component: RegistrationForm},
   {path: '/login', component: LoginForm},
   {path: '/dashboard', component: Dashboard}
+  {path: '/kontakt', component: Kontakt}
 ]
 
 export const router = new VueRouter({
