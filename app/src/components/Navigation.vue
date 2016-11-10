@@ -11,6 +11,17 @@
 |
 */
 
+.navbar{
+  .container{
+    .navbar-right{
+      .logout-user{
+        border-left:1px solid #e2e2e2;
+        padding-left:10px;
+      }
+    }
+  }
+}
+
 </style>
 
 <template>
@@ -24,15 +35,12 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li v-if="!user.authenticated">
-          <router-link to="/login">Anmelden</router-link>
-        </li>
-        <li v-if="user.authenticated" @click="logout()">
-          <router-link to="/login">Abmelden</router-link>
-        </li>
-        <li v-if="!user.authenticated">
           <router-link to="/registrieren">Registrieren</router-link>
         </li>
         <li><router-link to="/kontakt">Kontakt</router-link></li>
+        <li class="logout-user" v-if="user.authenticated" @click="logout()">
+          <router-link to="/login">Abmelden</router-link>
+        </li>
       </ul>
     </div>    
   </nav>

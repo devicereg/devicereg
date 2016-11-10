@@ -5,8 +5,8 @@ import VueRouter from 'vue-router'
 import VueResource from 'vue-resource'
 import App from './App'
 import auth from './auth'
+import Home from './components/Home'
 import RegistrationForm from './components/RegistrationForm'
-import LoginForm from './components/LoginForm'
 import Dashboard from './components/Dashboard'
 import Kontakt from './components/Kontakt'
 
@@ -17,9 +17,9 @@ Vue.use(VueResource)
 auth.checkAuth()
 
 const routes = [
+  {path: '/', component: Home},
   {path: '/registrieren', component: RegistrationForm},
-  {path: '/login', component: LoginForm},
-  {path: '/dashboard', component: Dashboard}
+  {path: '/dashboard', component: Dashboard},
   {path: '/kontakt', component: Kontakt}
 ]
 

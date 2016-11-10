@@ -19,18 +19,11 @@
 </style>
 
 <template>
-	<div class="container login-form">
+	<div class="login-form">
 		<div class="row">
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-				<div class="alert alert-danger fade in" v-if="error">
-					<p>{{ error }}</p>
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-md-offset-4 col-lg-offset-4">
 
-				<form role="form">
+				<form role="form" v-if="!user.authenticated">
 					<legend>Anmeldung</legend>
 				
 					<div class="form-group">
@@ -54,9 +47,10 @@
 							placeholder="Passwort">
 					</div>
 				
-					
 					<button class="btn btn-primary" @click="submit()">Anmelden</button>
 				</form>
+
+				<button class="btn btn-warning" @click="logout()" v-else>Abmelden</button>
 
 			</div>
 		</div>
@@ -75,7 +69,8 @@
 	    		username: '',
 	    		password: ''
 	    	},
-	    	error: ''
+	    	error: '',
+	    	user: auth.user
 	    }
 	  },
 	  methods: {
@@ -86,6 +81,10 @@
 	  		}
 
 	  		auth.login(this, credentials, 'dashboard')
+	  	},
+
+	  	logout() {
+	  		auth.logout()
 	  	}
 	  }
 	}

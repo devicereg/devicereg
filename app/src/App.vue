@@ -7,6 +7,7 @@
 
 <script>
 
+import Home from './components/Home'
 import Navigation from './components/Navigation'
 import Dashboard from './components/Dashboard'
 import Bootstrap from './components/Bootstrap.vue'
@@ -16,6 +17,7 @@ import Kontakt from './components/Kontakt'
 export default {
   name: 'app',
   components: {
+    Home,
     Navigation,
     Dashboard,
     Bootstrap,
