@@ -13,7 +13,9 @@
  */
 
 .registration-form{
-	
+	.registration-header-titles{
+		margin-bottom:40px;
+	}
 }
 
 </style>
@@ -27,12 +29,20 @@
 				</div>
 			</div>
 		</div>
+		<div class="row registration-header-titles">
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+				<h2>At vero eos et accusam et justo duo dolores et ea rebum.</h2>
+				<p>
+					Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+				</p>
+			</div>
+		</div>
 		<div class="row">
 			<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-md-offset-4 col-lg-offset-4">
 
 				<form role="form">
 					<legend>Registrierung</legend>
-				
+
 					<div class="form-group">
 						<label for="deviceR-login_user">Benutzername</label>
 						<input 
