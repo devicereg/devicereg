@@ -1,36 +1,3 @@
-<style lang="scss">
-
-/**
- *--------------------------------------------------------------------------
- *	Vue-component for home
- *--------------------------------------------------------------------------
- *
- * 	This is the Vue-component for home.
- *
- * 	This file includes the HTML template, sass-stylesheet 
- * 	and javascript for home.
- *
- */
-
-.home{
-	.row{
-		.home-header-titles{
-			margin-bottom:60px;
-
-			h1{
-				margin:0;
-			}
-
-			h2{
-				margin-top:0;
-				margin-bottom:30px;
-			}
-		}
-	}
-}
-
-</style>
-
 <template>
 	<div class="container home">
 		<div class="row">
@@ -59,7 +26,6 @@
 </template>
 
 <script>
-
 	import LoginForm from './LoginForm'
 
 	export default {
@@ -74,3 +40,22 @@
 	  }
 	}
 </script>
+
+<style lang="scss">
+  .home{
+    .row{
+      .home-header-titles{
+        margin-bottom:60px;
+
+        h1{
+          margin:0;
+        }
+
+        h2{
+          margin-top:0;
+          margin-bottom:30px;
+        }
+      }
+    }
+  }
+</style>
