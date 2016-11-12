@@ -26,8 +26,6 @@
     "babel-register": "^6.0.0",
     "connect-history-api-fallback": "^1.1.0",
     "css-loader": "^0.25.0",
-    "node-sass": "^3.4.2",
-    "sass-loader": "^4.0.2",
     "eslint": "^3.7.1",
     "eslint-config-standard": "^6.1.0",
     "eslint-friendly-formatter": "^2.0.5",
