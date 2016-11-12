@@ -1,14 +1,14 @@
 <template>
 	<div class="container home">
 		<div class="row">
-			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			<div class="col-xs-12">
 				<div class="alert alert-danger fade in" v-if="error">
 					<p>{{ error }}</p>
 				</div>
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 home-header-titles">
+			<div class="col-xs-12 home-header-titles">
 				<h1>Willkommen bei DeviceR!</h1>
         <p>Sie haben die Möglichkeit, einen Benutzer anzulegen und anschließend ein Durchflussmessgerät zu registrieren oder
           sich mit Ihrem bestehenden Profilanzumelden um weitere Geräte hinzuzufügen oder diese zu verwalten.
@@ -24,7 +24,7 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-md-offset-4 col-lg-offset-4">
+			<div class="col-xs-12 col-sm-12 col-md-4 col-md-offset-4">
 				<login-form></login-form>
 			</div>
 		</div>
