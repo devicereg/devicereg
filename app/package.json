@@ -5,7 +5,7 @@
   "author": "",
   "private": true,
   "scripts": {
-    "dev": "nodemon build/dev-server.js",
+    "dev": "nodemon build/dev-server.js | node mockserver/server.js",
     "build": "node build/build.js",
     "lint": "eslint --ext .js,.vue src"
   },
@@ -34,6 +34,7 @@
     "eslint-plugin-promise": "^2.0.1",
     "eslint-plugin-standard": "^2.0.1",
     "eventsource-polyfill": "^0.9.6",
+    "expose-loader": "^0.7.1",
     "express": "^4.13.3",
     "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "^0.9.0",
@@ -47,6 +48,7 @@
     "sass-loader": "^4.0.2",
     "shelljs": "^0.7.4",
     "url-loader": "^0.5.7",
+    "vue-resource": "^1.0.3",
     "vue-loader": "^9.4.0",
     "vue-router": "^2.0.1",
     "vue-style-loader": "^1.0.0",
