@@ -44,16 +44,7 @@
     </div>
   </div>
 </template>
-<style>
-  #contact-table {
-    margin: 0 auto;
-    margin-top: 1.5em;
-  }
-  #country-select {
-    margin: 0 auto;
-    width: 50%;
-  }
-</style>
+
 <script>
 export default {
   name: 'kontakt',
@@ -442,3 +433,14 @@ export default {
   }
 }
 </script>
+
+<style>
+  #contact-table {
+    margin: 0 auto;
+    margin-top: 1.5em;
+  }
+  #country-select {
+    margin: 0 auto;
+    width: 50%;
+  }
+</style>

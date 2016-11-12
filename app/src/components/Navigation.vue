@@ -1,29 +1,3 @@
-<style lang="scss">
-
-/*
-|--------------------------------------------------------------------------
-|   Main navigation component
-|--------------------------------------------------------------------------
-|   
-|   This is the main navigation component for this application
-| 
-| 
-|
-*/
-
-.navbar{
-  .container{
-    .navbar-right{
-      .logout-user{
-        border-left:1px solid #e2e2e2;
-        padding-left:10px;
-      }
-    }
-  }
-}
-
-</style>
-
 <template>
   <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
@@ -42,7 +16,7 @@
           <router-link to="/login">Abmelden</router-link>
         </li>
       </ul>
-    </div>    
+    </div>
   </nav>
 </template>
 
@@ -65,3 +39,16 @@ export default {
 }
 
 </script>
+
+<style lang="scss">
+  .navbar{
+    .container{
+      .navbar-right{
+        .logout-user{
+          border-left:1px solid #e2e2e2;
+          padding-left:10px;
+        }
+      }
+    }
+  }
+</style>

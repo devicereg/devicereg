@@ -1,25 +1,3 @@
-<style lang="scss">
-
-/**
- *--------------------------------------------------------------------------
- *	Vue-component for registration-form
- *--------------------------------------------------------------------------
- *
- * 	This is the Vue-component for the registration-form.
- *
- * 	This file includes the HTML template, sass-stylesheet 
- * 	and javascript for the registration-form.
- *
- */
-
-.registration-form{
-	.registration-header-titles{
-		margin-bottom:40px;
-	}
-}
-
-</style>
-
 <template>
 	<div class="container registration-form">
 		<div class="row">
@@ -45,26 +23,26 @@
 
 					<div class="form-group">
 						<label for="deviceR-login_user">Benutzername</label>
-						<input 
-							type="text" 
-							class="form-control" 
+						<input
+							type="text"
+							class="form-control"
 							id="deviceR-login_user"
-							v-model="credentials.username" 
+							v-model="credentials.username"
 							placeholder="Benutzername"
 						>
 					</div>
 
 					<div class="form-group">
 						<label for="deviceR-login_password">Passwort</label>
-						<input 
-							type="password" 
-							class="form-control" 
-							id="deviceR-login_password" 
-							v-model="credentials.password" 
+						<input
+							type="password"
+							class="form-control"
+							id="deviceR-login_password"
+							v-model="credentials.password"
 							placeholder="Passwort">
 					</div>
-				
-					
+
+
 					<button class="btn btn-primary" @click="submit()">Registrieren</button>
 				</form>
 
@@ -74,7 +52,7 @@
 </template>
 
 <script>
-	
+
 	import auth from '../auth'
 
 	export default {
@@ -100,3 +78,11 @@
 	  }
 	}
 </script>
+
+<style lang="scss">
+  .registration-form{
+    .registration-header-titles{
+      margin-bottom:40px;
+    }
+  }
+</style>
