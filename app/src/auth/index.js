@@ -1,18 +1,7 @@
-/*
-|--------------------------------------------------------------------------
-|	Authentication service
-|--------------------------------------------------------------------------
-|	
-| 	This is the authentication service for the app
-| 
-| 
-|
-*/
-
 import {router} from '../main'
 
 const API_URL = 'http://localhost:3001/'
-const LOGIN_URL = API_URL + 'sessions/create'
+const LOGIN_URL = API_URL + 'authenticate/'
 const SIGNUP_URL = API_URL + 'users/'
 
 export default {
@@ -28,7 +17,7 @@ export default {
 	login(context, creds, redirect)
 	{
 		context.$http.post(LOGIN_URL, creds).then((response) => {
-			
+
 			localStorage.setItem('id_token', response.data.id_token)
 			localStorage.setItem('username', creds.username)
 
@@ -52,9 +41,9 @@ export default {
 	 * @param      {string}  redirect  The redirect
 	 */
 	signup(context, creds, redirect)
-	{	
+	{
 	    context.$http.post(SIGNUP_URL, creds).then((response) => {
-			
+
 			localStorage.setItem('id_token', response.data.id_token)
 			localStorage.setItem('username', creds.username)
 
@@ -72,10 +61,10 @@ export default {
 
 	/**
 	 * Method for user logout
-	 * 
+	 *
 	 * @returns  void
 	 */
-	logout() 
+	logout()
 	{
 		localStorage.removeItem('id_token')
 		localStorage.removeItem('username')
@@ -86,18 +75,18 @@ export default {
 
 	/**
 	 * This method checks if the user is authenticated
-	 * 
+	 *
 	 * @return  void
 	 */
-	checkAuth() 
+	checkAuth()
 	{
 		var jwt = localStorage.getItem('id_token')
 
-		if(jwt) 
+		if(jwt)
 		{
 			this.user.authenticated = true
-		} 
-		else 
+		}
+		else
 		{
 			this.user.authenticated = false
 		}
@@ -108,7 +97,7 @@ export default {
 	 *
 	 * @return     {Object}  The auth header.
 	 */
-	getAuthHeader() 
+	getAuthHeader()
 	{
 		return { 'Authorization': 'Bearer' + localStorage.getItem('id_token') }
 	}
