@@ -4,6 +4,9 @@ RUN mkdir /src
 
 RUN npm install -g nodemon
 
+WORKDIR /src/app/mockserver
+RUN npm install
+
 WORKDIR /src/app
 ADD app/package.json /src/package.json
 RUN npm install
