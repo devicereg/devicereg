@@ -5,3 +5,7 @@ log.html
 output.xml
 report.html
 selenium*.png
+app/node_modules
+app/npm-debug.log
+mockserver/node_modules
+mockserver/npm-debug.log
