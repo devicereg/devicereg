@@ -1,13 +1,11 @@
 FROM node:6.8
 
 RUN mkdir /src
-
 RUN npm install -g nodemon
 
-RUN mkdir /src/app
-WORKDIR /src/app/mockserver
-ADD app/mockserver/package.json /src/app/mockserver/package.json
-RUN npm install
+ADD mockserver /src/mockserver
+RUN ls -axl /src/mockserver
+RUN cd /src/mockserver && npm install
 
 WORKDIR /src/app
 ADD app/package.json /src/package.json
