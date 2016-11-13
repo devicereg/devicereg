@@ -1,6 +1,8 @@
 import {router} from '../main'
 
-const API_URL = 'http://localhost:3001/'
+var os = require('os')
+
+const API_URL = 'http://' + os.hostname() + ':3001/'
 const LOGIN_URL = API_URL + 'authenticate/'
 const SIGNUP_URL = API_URL + 'users/'
 
