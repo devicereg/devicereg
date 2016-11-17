@@ -330,7 +330,14 @@ export default {
               3825 HD Amersfoort, Niederlande`
         },
         {
-          name: 'Bosnien und Herzegowina', value: '30'},
+          name: 'Bosnien und Herzegowina',
+           value: '30',
+           email: 'sales_pci@nl.yokogawa.com',
+           phone: '+31 88 464 1888',
+           address: `Yokogawa Europe B.V.<br>
+               Euroweg , 2<br>
+               3825 HD Amersfoort, Niederlande`
+         },
         {
           name: 'Island',
           value: '31',
