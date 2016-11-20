@@ -2,28 +2,28 @@
   <div id="kontakt" class="container-fluid col-sm-offset-4 col-sm-4">
     <div class="row">
       <div class="col-sm-12">
-        <h2>Kundensupport für Durchflussmessgeräte</h2>
+        <h2>{{ $t("Kontakt.Kundensupport_fuer_Durchflussmessgeraete") }}</h2>
         <select id="country-select" class="form-control" v-model="selected">
           <option v-bind:value="item" v-for="item in items">{{item.name}}</option>
         </select>
         <table id="contact-table" class="table table-hover">
           <tbody>
           <tr v-if="selected.address">
-            <td><strong>Adresse:</strong></td>
+            <td><strong>{{ $t("Kontakt.Adresse") }}:</strong></td>
             <td v-html="selected.address"></td>
           </tr>
           <tr v-if="selected.poBox">
-            <td><strong>Postfach:</strong></td>
+            <td><strong>{{ $t("Kontakt.Postfach") }}:</strong></td>
             <td>{{ selected.poBox }}</td>
           </tr>
           <tr v-if="selected.email">
-            <td><strong>E-Mail:</strong></td>
+            <td><strong>{{ $t("Kontakt.Email") }}:</strong></td>
             <td>
               <a href='mailto:'>{{ selected.email }}</a>
             </td>
           </tr>
           <tr v-if="selected.phone">
-            <td><strong>Telefon:</strong></td>
+            <td><strong>{{ $t("Kontakt.Telefon") }}:</strong></td>
             <td>{{ selected.phone }}</td>
           </tr>
           </tbody>
@@ -32,14 +32,14 @@
     </div>
     <div class="row">
       <div class="col-sm-12">
-        <h2>Probleme bei der Registrierung?</h2>
-        <p>Bitte kontaktieren Sie: <a href="mailto:YDS.Support@eu.yokogawa.com">YDS.Support@eu.yokogawa.com</a></p>
+        <h2>{{ $t("Kontakt.Probleme_bei_der_Registrierung") }}?</h2>
+        <p>{{ $t("Kontakt.Bitte_kontaktieren_Sie") }}: <a href="mailto:YDS.Support@eu.yokogawa.com">YDS.Support@eu.yokogawa.com</a></p>
       </div>
     </div>
     <div class="row">
       <div class="col-sm-12">
-        <h2>Wollen Sie mehr über Yokogawa erfahren?</h2>
-        <p>Besuchen Sie uns auf: <a href="www.yokogawa.com/eu">www.yokogawa.com/eu</a></p>
+        <h2>{{ $t("Kontakt.Wollen_Sie_mehr_ueber_Yokogawa_erfahren") }}?</h2>
+        <p>{{ $t("Kontakt.Besuchen_Sie_uns_auf") }}: <a href="www.yokogawa.com/eu">www.yokogawa.com/eu</a></p>
       </div>
     </div>
   </div>

@@ -12,6 +12,7 @@ import Navigation from './components/Navigation'
 import Dashboard from './components/Dashboard'
 import Bootstrap from './components/Bootstrap.vue'
 import Kontakt from './components/Kontakt'
+import Translations from './components/Translations'
 
 
 export default {
@@ -21,7 +22,8 @@ export default {
     Navigation,
     Dashboard,
     Bootstrap,
-    Kontakt
+    Kontakt,
+    Translations
   }
 }
 </script>

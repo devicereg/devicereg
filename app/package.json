@@ -13,6 +13,7 @@
     "bootstrap-sass": "^3.3.7",
     "jquery": "^3.1.1",
     "vue": "^2.0.1",
+    "vue-i18n": "^4.7.2",
     "vueboot": "^0.4.5"
   },
   "devDependencies": {
