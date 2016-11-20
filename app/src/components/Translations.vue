@@ -7,7 +7,6 @@
     de: {
       message: {
         hello: 'Hallo'
-
       },
       Kontakt: {
         Kundensupport_fuer_Durchflussmessgeraete: 'Kundensupport für Durchflussmessgeräte',
@@ -51,8 +50,4 @@
   Object.keys(locales).forEach(function (lang) {
     Vue.locale(lang, locales[lang])
   })
-
-  export default {
-    name: 'translations'
-  }
 </script>
