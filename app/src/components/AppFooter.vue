@@ -19,14 +19,26 @@
     </div>
   </footer>
 </template>
+
 <script>
+  import auth from '../auth'
+
   export default{
-    name: 'app-footer'
+    name: 'app-footer',
+    data() {
+      return { user: auth.user }
+    },
+    methods: {
+      logout(){
+        auth.logout()
+      }
+    }
   }
 </script>
+
 <style lang="scss">
   .footer {
-    position: absolute;
+    position: fixed;
     bottom: 0;
     width: 100%;
     height: 60px;
