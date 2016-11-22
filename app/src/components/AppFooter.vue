@@ -2,18 +2,14 @@
   <footer class="footer">
     <div class="container">
       <ul class="nav navbar-nav">
-        <li><router-link to="/">Home</router-link></li>
-        <li v-if="user.authenticated">
-          <router-link to="/dashboard">Dashboard</router-link>
+        <li>
+          <router-link to="#">Datenschutz</router-link>
         </li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li v-if="!user.authenticated">
-          <router-link to="/registrieren">Registrieren</router-link>
+        <li>
+          <router-link to="#">Nutzungsbedingungen</router-link>
         </li>
-        <li><router-link to="/kontakt">Kontakt</router-link></li>
-        <li class="logout-user" v-if="user.authenticated" @click="logout()">
-          <router-link to="/login">Abmelden</router-link>
+        <li>
+          <router-link to="#">Impressum</router-link>
         </li>
       </ul>
     </div>
@@ -21,18 +17,8 @@
 </template>
 
 <script>
-  import auth from '../auth'
-
   export default{
-    name: 'app-footer',
-    data() {
-      return { user: auth.user }
-    },
-    methods: {
-      logout(){
-        auth.logout()
-      }
-    }
+    name: 'app-footer'
   }
 </script>
 
@@ -41,7 +27,19 @@
     position: fixed;
     bottom: 0;
     width: 100%;
-    height: 60px;
-    background-color: #f5f5f5;
+    background-color: #283259;
+  }
+  .footer .container .nav {
+    display: inline-block;
+    height: 100%;
+    float: none;
+  }
+  .footer .container .nav li a{
+    background-color: transparent;
+    color: #fff;
+  }
+  .footer .container .nav li a:hover{
+    background-color: transparent;
+    color: #5bc0de;
   }
 </style>
