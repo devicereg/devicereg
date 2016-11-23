@@ -9,6 +9,7 @@ import Home from './components/Home'
 import RegistrationForm from './components/RegistrationForm'
 import Dashboard from './components/Dashboard'
 import Kontakt from './components/Kontakt'
+import TermsOfUse from './components/TermsOfUse'
 
 
 Vue.use(VueRouter)
@@ -20,7 +21,8 @@ const routes = [
   {path: '/', component: Home},
   {path: '/registrieren', component: RegistrationForm},
   {path: '/dashboard', component: Dashboard},
-  {path: '/kontakt', component: Kontakt}
+  {path: '/kontakt', component: Kontakt},
+  {path: '/termsofuse', component: TermsOfUse}
 ]
 
 export const router = new VueRouter({
