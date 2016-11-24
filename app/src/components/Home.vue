@@ -1,56 +1,37 @@
 <template>
-	<div class="header">
-	  <div class="row">
-	    <div class="col-md-offset-10">
-	    Sprache:
-	      <select class="language">
-          <option>Deutsch (DE)</option>
-          <option>English (GB)</option>
-	      </select>
-      </div>
-    </div>
-
-	<div class="mid">
+	<div id="homepage">
 	  <div class="row">
 	    <div class="col-md-6">
-          <img src="../assets/u33.jpg" class="logo">
+          <img src="../assets/logo.png" class="logo">
 	    </div>
 	    <div class="col-md-6">
 	    <div class="ueber">DeviceR</div>
 	    </div>
 	  </div>
 
-	  <div class="row">
-       <div class="col-md-6">
+	  <div class="row text-left">
+       <div class="col-md-offset-2 col-md-4">
 
-         <div class="welcome">
-          Willkommen bei DeviceR!<br>
-         </div>
+          <h2>Willkommen bei DeviceR!</h2>
 
-            <div class="text">
-              Sie haben die Möglichkeit, einen Benutzer anzulegen und Ihr <br>
-              Feldgerät zu registrieren oder sich an Ihrem bestehenden Profil <br>
-              anzumelden, um weitere Feldgeräte zu erfassen. <br> <br>
-              <b>Ihr Vorteil:</b> Der Gewährleistungszeitraum registrierter Geräte <br>
-              verlängert sich auf 24 Monate. <br>
-              <b>Ein weiterer Vorteil des DeviceR Service:<b> Unsere <br>
-              Erinnerungsfunktion macht Sie auf anstehende Wartungen oder <br>
+          <p>
+            Sie haben die Möglichkeit, einen Benutzer anzulegen und Ihr
+            Feldgerät zu registrieren oder sich an Ihrem bestehenden Profil
+            anzumelden, um weitere Feldgeräte zu erfassen.
+            <b>Ihr Vorteil:</b> Der Gewährleistungszeitraum registrierter Geräte
+            verlängert sich auf 24 Monate.
+            <b>Ein weiterer Vorteil des DeviceR Service:</b> Unsere
+              Erinnerungsfunktion macht Sie auf anstehende Wartungen oder
               Kalibrierungen der registrierten Feldgeräte aufmerksam.
-            </div>
+          </p>
 
-           <div class="registrieren button">
-              Jetzt registrieren!
-           </div>
+          <router-link to="/registrieren" type="button" class="btn btn-primary btn-lg">Jetzt registrieren!</router-link>
+
        </div>
 
-       <div class="col-md-6">
-          <div class="anmeldung">Anmeldung</div>
-          <form class="formular" action="login" method="post">
-          <div class="username"> <img src="../assets/u10.png"> <input placeholder="Benutzername"> </div>
-          <div class="password"> <img src="../assets/u12.png"> <input placeholder="Passwort" type="password"> </div>
-          <div class="einloggen button"> Login </div>
-          <div class="forget"> <a href="placeholder.html"> Passwort vergessen? </a> </div>
-          </form>
+       <div class="col-md-4">
+         <br />
+         <login-form></login-form>
        </div>
 
 	  </div>
@@ -59,27 +40,24 @@
 
 <script>
 
+  import LoginForm from './LoginForm'
+
+  export default {
+    components: {
+      'login-form': LoginForm
+    },
+    name: 'home',
+    data () {
+      return {
+        error: ''
+      }
+    }
+  }
+
+
 </script>
 
 <style lang="scss">
-
-.header {
-  position: fixed;
-  margin-top: 0;
-  width: 100%;
-  height: 90px;
-  line-height: 90px;
-  background-color: #283259;
-  color: white;
-  }
-
-  .language {
-  color: black;
-  }
-
-  .mid {
-  background-color: #BEBEBE;
-  }
 
   .logo {
   height: 109px;
@@ -88,9 +66,8 @@
   }
 
   .ueber {
-  font-size: 48px;
+  font-size: 65px;
   float: left;
-  font-family: 'Source Sans Pro Bold', 'Source Sans Pro Regular', 'Source Sans Pro';
   }
 
   .anmeldung {
@@ -148,13 +125,11 @@
 
   .welcome {
   font-size: 22px;
-  font-family: 'Source Sans Pro Bold', 'Source Sans Pro Regular', 'Source Sans Pro';
   float: right;
   text-align: left;
   }
 
   .text {
-  font-family: 'Source Sans Pro';
   font-size: 16px;
   float: right;
   text-align: left;
