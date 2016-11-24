@@ -48,6 +48,22 @@ export default {
 
 			localStorage.setItem('id_token', response.data.id_token)
 			localStorage.setItem('username', creds.username)
+			localStorage.setItem('gender', creds.gender)
+			localStorage.setItem('prename', creds.prename)
+			localStorage.setItem('surname', creds.surname)
+			localStorage.setItem('language', creds.language)
+			localStorage.setItem('phone', creds.phone)
+			localStorage.setItem('branche_family', creds.branche_family)
+			localStorage.setItem('branche_typ', creds.branche_typ)
+			localStorage.setItem('company', creds.company)
+			localStorage.setItem('street', creds.street)
+			localStorage.setItem('number', creds.number)
+			localStorage.setItem('zip', creds.zip)
+			localStorage.setItem('city', creds.city)
+			localStorage.setItem('country', creds.country)
+			localStorage.setItem('question', creds.question)
+			localStorage.setItem('answer', creds.answer)
+			localStorage.setItem('agreement', creds.agreement)
 
 	      	this.user.authenticated = true
 
