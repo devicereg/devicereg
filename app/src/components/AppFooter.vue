@@ -23,23 +23,29 @@
 </script>
 
 <style lang="scss">
+  @import '../styles/_colors';
+
   .footer {
     position: fixed;
     bottom: 0;
     width: 100%;
-    background-color: #283259;
-  }
-  .footer .container .nav {
-    display: inline-block;
-    height: 100%;
-    float: none;
-  }
-  .footer .container .nav li a{
-    background-color: transparent;
-    color: #fff;
-  }
-  .footer .container .nav li a:hover{
-    background-color: transparent;
-    color: #5bc0de;
+    background-color: $deep-space-sparkle;
+
+    .container {
+      .nav {
+        display: inline-block;
+        height: 100%;
+        float: none;
+
+        li a {
+          background-color: transparent;
+          color: #fff;
+
+          &:hover {
+            color: #5bc0de;
+          }
+        }
+      }
+    }
   }
 </style>
