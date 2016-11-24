@@ -122,7 +122,7 @@
 <script>
 
   export default{
-    name: 'termsofuse',
+    name: 'terms-of-use',
     data () {
       return {
         items: [

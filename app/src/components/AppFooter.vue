@@ -6,7 +6,7 @@
           <router-link to="/datenschutz">Datenschutz</router-link>
         </li>
         <li>
-          <router-link to="#">Nutzungsbedingungen</router-link>
+          <router-link to="/terms-of-use">Nutzungsbedingungen</router-link>
         </li>
         <li>
           <router-link to="/impressum">Impressum</router-link>
