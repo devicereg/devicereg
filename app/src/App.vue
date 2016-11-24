@@ -13,7 +13,7 @@ import Navigation from './components/Navigation'
 import AppFooter from './components/AppFooter'
 import Dashboard from './components/Dashboard'
 import Bootstrap from './components/Bootstrap'
-import Kontakt from './components/Kontakt'
+import Contact from './components/Contact'
 import Translations from './components/Translations'
 
 
@@ -25,7 +25,7 @@ export default {
     AppFooter,
     Dashboard,
     Bootstrap,
-    Kontakt,
+    Contact,
     Translations
   }
 }

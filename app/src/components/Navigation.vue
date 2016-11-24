@@ -20,7 +20,7 @@
           <li v-if="!user.authenticated">
             <router-link to="/registrieren">Registrieren</router-link>
           </li>
-          <li><router-link to="/kontakt">Kontakt</router-link></li>
+          <li><router-link to="/contact">Kontakt</router-link></li>
           <li class="logout-user" v-if="user.authenticated" @click="logout()">
             <router-link to="/login">Abmelden</router-link>
           </li>
