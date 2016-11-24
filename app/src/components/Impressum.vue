@@ -13,23 +13,23 @@
 
             <strong>Adresse</strong>
 
-            <p>Rheinstraße 8 </br>
+            <p>Rheinstraße 8 <br />
                79664 Wehr, Deutschland</p>
 
 
             <strong>Kontakt</strong>
 
-            <label for="telephone">Tel.: </label><p> +49-7761-567-120</p>
-            <label for="fax">Fax: </label><p> +49-7761-567-126</p>
-            <label for="mail">E-Mail: </label><a href="#">pmk.info@de.yokogawa.com</a>
-            <label for="website">Website: </label><a href="http://www.yokogawa.com/rota-de">http://www.yokogawa.com/rota-de</a>
+            <label>Tel.: </label><p> +49-7761-567-120</p>
+            <label>Fax: </label><p> +49-7761-567-126</p>
+            <label>E-Mail: </label><a href="#">pmk.info@de.yokogawa.com</a>
+            <label>Website: </label><a href="http://www.yokogawa.com/rota-de">http://www.yokogawa.com/rota-de</a>
 
 
             <strong>Eingetragen bei</strong>
 
             <p>
-              Registergericht Freiburg </br>
-              HRA: 630 604 </br>
+              Registergericht Freiburg <br />
+              HRA: 630 604 <br />
               Ust.-Idnr.: DE 142697009
             </p>
 
@@ -47,7 +47,7 @@
 <script>
 
   export default{
-    name: 'Impressum'
+    name: 'impressum'
   }
 
 </script>

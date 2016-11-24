@@ -9,7 +9,6 @@ import Home from './components/Home'
 import RegistrationForm from './components/RegistrationForm'
 import Dashboard from './components/Dashboard'
 import Kontakt from './components/Kontakt'
-import TermsOfUse from './components/TermsOfUse'
 import Impressum from './components/Impressum'
 
 
