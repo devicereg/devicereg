@@ -11,6 +11,9 @@
         <li>
           <router-link to="#">Impressum</router-link>
         </li>
+        <li>
+          <router-link to="/aktionsbedingungen">Aktionsbedingungen</router-link>
+        </li>
       </ul>
     </div>
   </footer>

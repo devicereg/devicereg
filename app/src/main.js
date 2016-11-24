@@ -9,6 +9,7 @@ import Home from './components/Home'
 import RegistrationForm from './components/RegistrationForm'
 import Dashboard from './components/Dashboard'
 import Kontakt from './components/Kontakt'
+import Warranty from './components/Warranty'
 import Datenschutz from './components/Datenschutz'
 
 
@@ -22,6 +23,7 @@ const routes = [
   {path: '/registrieren', component: RegistrationForm},
   {path: '/dashboard', component: Dashboard},
   {path: '/kontakt', component: Kontakt},
+  {path: '/aktionsbedingungen', component: Warranty},
   {path: '/datenschutz', component: Datenschutz}
 ]
 
