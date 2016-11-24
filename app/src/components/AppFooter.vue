@@ -3,7 +3,7 @@
     <div class="container">
       <ul class="nav navbar-nav">
         <li>
-          <router-link to="#">Datenschutz</router-link>
+          <router-link to="/datenschutz">Datenschutz</router-link>
         </li>
         <li>
           <router-link to="#">Nutzungsbedingungen</router-link>
