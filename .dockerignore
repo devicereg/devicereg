@@ -3,3 +3,6 @@
 README.md
 docker-compose.yml
 app/node_modules
+app/npm-debug.log
+mockserver/node_modules
+mockserver/npm-debug.log

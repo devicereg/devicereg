@@ -10,6 +10,7 @@ import RegistrationForm from './components/RegistrationForm'
 import Dashboard from './components/Dashboard'
 import Kontakt from './components/Kontakt'
 import Warranty from './components/Warranty'
+import Datenschutz from './components/Datenschutz'
 
 
 Vue.use(VueRouter)
@@ -22,7 +23,8 @@ const routes = [
   {path: '/registrieren', component: RegistrationForm},
   {path: '/dashboard', component: Dashboard},
   {path: '/kontakt', component: Kontakt},
-  {path: '/aktionsbedingungen', component: Warranty}
+  {path: '/aktionsbedingungen', component: Warranty},
+  {path: '/datenschutz', component: Datenschutz}
 ]
 
 export const router = new VueRouter({

@@ -2,6 +2,7 @@
   <div id="app">
     <navigation></navigation>
     <router-view></router-view>
+    <app-footer></app-footer>
   </div>
 </template>
 
@@ -9,9 +10,11 @@
 
 import Home from './components/Home'
 import Navigation from './components/Navigation'
+import AppFooter from './components/AppFooter'
 import Dashboard from './components/Dashboard'
-import Bootstrap from './components/Bootstrap.vue'
+import Bootstrap from './components/Bootstrap'
 import Kontakt from './components/Kontakt'
+import Translations from './components/Translations'
 
 
 export default {
@@ -19,9 +22,11 @@ export default {
   components: {
     Home,
     Navigation,
+    AppFooter,
     Dashboard,
     Bootstrap,
-    Kontakt
+    Kontakt,
+    Translations
   }
 }
 </script>
