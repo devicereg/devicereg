@@ -14,6 +14,7 @@ import AppFooter from './components/AppFooter'
 import Dashboard from './components/Dashboard'
 import Bootstrap from './components/Bootstrap'
 import Kontakt from './components/Kontakt'
+import Translations from './components/Translations'
 
 
 export default {
@@ -24,7 +25,8 @@ export default {
     AppFooter,
     Dashboard,
     Bootstrap,
-    Kontakt
+    Kontakt,
+    Translations
   }
 }
 </script>
