@@ -10,6 +10,7 @@ import RegistrationForm from './components/RegistrationForm'
 import Dashboard from './components/Dashboard'
 import Kontakt from './components/Kontakt'
 import TermsOfUse from './components/TermsOfUse'
+import Impressum from './components/Impressum'
 
 
 Vue.use(VueRouter)
@@ -22,7 +23,9 @@ const routes = [
   {path: '/registrieren', component: RegistrationForm},
   {path: '/dashboard', component: Dashboard},
   {path: '/kontakt', component: Kontakt},
-  {path: '/termsofuse', component: TermsOfUse}
+  {path: '/termsofuse', component: TermsOfUse},
+  {path: '/impressum', component: Impressum}
+
 ]
 
 export const router = new VueRouter({

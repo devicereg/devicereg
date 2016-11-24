@@ -13,6 +13,7 @@ import Dashboard from './components/Dashboard'
 import Bootstrap from './components/Bootstrap.vue'
 import Kontakt from './components/Kontakt'
 import TermsOfUse from './components/TermsOfUse'
+import Impressum from './components/Impressum'
 
 
 export default {
@@ -23,7 +24,8 @@ export default {
     Dashboard,
     Bootstrap,
     Kontakt,
-    TermsOfUse
+    TermsOfUse,
+    Impressum
   }
 }
 </script>
