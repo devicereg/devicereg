@@ -1,11 +1,10 @@
 <template xmlns:v-bind="http://www.w3.org/1999/xhtml">
   <div id="kontakt" class="container-fluid col-sm-offset-2 col-sm-8">
     <div class="row">
-<<<<<<< HEAD
       <div class="col-sm-11 col-sm-offset-1">
-        <h3 class="text-left">Kundensupport für Durchflussmessgeräte</h3>
+        <h3 class="text-left">{{ $t("Kontakt.titel") }}</h3>
         <div class="form-group">
-          <label class="col-sm-2 control-label text-left">Land:</label>
+          <label class="col-sm-2 control-label text-left">{{ $t("Kontakt.land") }}:</label>
           <select id="country-select" class="form-control" v-model="selected">
             <option v-bind:value="item" v-for="item in items">{{item.name}}</option>
           </select>
@@ -13,44 +12,21 @@
         <table id="contact-table" class="table table-hover">
           <tbody>
           <tr v-if="selected.address">
-            <td class="text-left"><strong>Adresse:</strong></td>
+            <td class="text-left"><strong>{{ $t("Kontakt.adresse") }}:</strong></td>
             <td v-html="selected.address"></td>
           </tr>
           <tr v-if="selected.poBox">
-            <td class="text-left"><strong>Postfach:</strong></td>
+            <td class="text-left"><strong>{{ $t("Kontakt.postfach") }}:</strong></td>
             <td>{{ selected.poBox }}</td>
           </tr>
           <tr v-if="selected.email">
-            <td class="text-left"><strong>E-Mail:</strong></td>
-=======
-      <div class="col-sm-12">
-        <h2>{{ $t("Kontakt.titel") }}</h2>
-        <select id="country-select" class="form-control" v-model="selected">
-          <option v-bind:value="item" v-for="item in items">{{item.name}}</option>
-        </select>
-        <table id="contact-table" class="table table-hover">
-          <tbody>
-          <tr v-if="selected.address">
-            <td><strong>{{ $t("Kontakt.adresse") }}:</strong></td>
-            <td v-html="selected.address"></td>
-          </tr>
-          <tr v-if="selected.poBox">
-            <td><strong>{{ $t("Kontakt.postfach") }}:</strong></td>
-            <td>{{ selected.poBox }}</td>
-          </tr>
-          <tr v-if="selected.email">
-            <td><strong>{{ $t("Kontakt.email") }}:</strong></td>
->>>>>>> master
+            <td class="text-left"><strong>{{ $t("Kontakt.email") }}:</strong></td>
             <td>
               <a href='mailto:'>{{ selected.email }}</a>
             </td>
           </tr>
           <tr v-if="selected.phone">
-<<<<<<< HEAD
-            <td class="text-left"><strong>Telefon:</strong></td>
-=======
-            <td><strong>{{ $t("Kontakt.telefon") }}:</strong></td>
->>>>>>> master
+            <td class="text-left"><strong>{{ $t("Kontakt.telefon") }}:</strong></td>
             <td>{{ selected.phone }}</td>
           </tr>
           </tbody>
@@ -59,28 +35,16 @@
     </div>
     <hr>
     <div class="row">
-<<<<<<< HEAD
       <div class="col-sm-11 col-sm-offset-1">
-        <h4 class="text-left">Probleme bei der Registrierung?</h4>
-        <p class="text-left">Bitte kontaktieren Sie: <a href="mailto:YDS.Support@eu.yokogawa.com">YDS.Support@eu.yokogawa.com</a></p>
-=======
-      <div class="col-sm-12">
-        <h2>{{ $t("Kontakt.registrierungsprobleme") }}?</h2>
-        <p>{{ $t("Kontakt.kontaktieren") }}: <a href="mailto:YDS.Support@eu.yokogawa.com">YDS.Support@eu.yokogawa.com</a></p>
->>>>>>> master
+        <h4 class="text-left">{{ $t("Kontakt.registrierungsprobleme") }}?</h4>
+        <p class="text-left">{{ $t("Kontakt.kontaktieren") }}: <a href="mailto:YDS.Support@eu.yokogawa.com">YDS.Support@eu.yokogawa.com</a></p>
       </div>
     </div>
     <hr>
     <div class="row">
-<<<<<<< HEAD
       <div class="col-sm-11 col-sm-offset-1">
-        <h4 class="text-left">Wollen Sie mehr über Yokogawa erfahren?</h4>
-        <p class="text-left">Besuchen Sie uns auf: <a href="http://www.yokogawa.com/eu">www.yokogawa.com/eu</a></p>
-=======
-      <div class="col-sm-12">
-        <h2>{{ $t("Kontakt.mehr_erfahren") }}?</h2>
-        <p>{{ $t("Kontakt.uns_besuchen") }}: <a href="www.yokogawa.com/eu">www.yokogawa.com/eu</a></p>
->>>>>>> master
+        <h4 class="text-left">{{ $t("Kontakt.mehr_erfahren") }}?</h4>
+        <p class="text-left">{{ $t("Kontakt.uns_besuchen") }}: <a href="http://www.yokogawa.com/eu">www.yokogawa.com/eu</a></p>
       </div>
     </div>
   </div>
