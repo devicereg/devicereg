@@ -1,4 +1,4 @@
-<template>
+<template xmlns:v-bind="http://www.w3.org/1999/xhtml">
 
     <div class="termsofuse">
         <div class="row">
@@ -10,7 +10,7 @@
               und seiner Inhalte unterliegt den folgenden Nutzungsbedingungen:
             </p>
 
-            <strong>1. Inhalt des Onlineangebotes</strong>
+            <h5><strong>1. Inhalt des Onlineangebotes </strong></h5>
 
             <p>
               Alle Inhalte unseres Internetauftritts werden mit Sorgfalt und nach bestem Gewissen erstellt. Eine Gewähr für die Aktualität,
@@ -24,7 +24,7 @@
             </p>
 
 
-            <strong>2. Verweise und Links</strong>
+             <h5><strong>2. Verweise und Links </strong></h5>
 
             <p>
               Diese Internetseite enthält als Information auch entsprechend gekennzeichnete Links oder Verweise auf Internetseiten Dritter.
@@ -46,7 +46,7 @@
             </p>
 
 
-            <strong>3. Urheber- und Kennzeichenrecht</strong>
+             <h5><strong>3. Urheber- und Kennzeichenrecht </strong></h5>
 
             <p>
               Falls nicht anders angegeben, unterliegen alle Seiten dem Urheberrecht (Copyright). Dies gilt insbesondere für Texte, Bilder, Grafiken, Ton-, Video- oder
@@ -62,14 +62,14 @@
             </p>
 
 
-            <strong>4. Datenschutz</strong>
+             <h5><strong>4. Datenschutz </strong></h5>
 
             <p>
-              Siehe <a href="#">Datenschutzerkkärung</a>
+              Siehe <router-link to="/datenschutz">Datenschutzerkkärung</router-link>
             </p>
 
 
-            <strong>5. Passwort, Registrierung</strong>
+             <h5><strong>5. Passwort, Registrierung </strong></h5>
 
             <p>
               Einige Seiten der Internetseite können passwortgeschützt sein. Der Zugang zu diesen Seiten ist im Interesse der Sicherheit des Geschäftsverkehrs und
@@ -77,19 +77,18 @@
               oder mobile Applikationen schließen, wenn Sie die Kommunikation mit uns beendet haben, insbesondere wenn Sie den Computer oder mobile Endgeräte gemeinsam
               mit anderen nutzen.
             </p>
+
             <p>
-            Auf eine Registrierung durch Rota Yokogawa besteht kein Anspruch. Rota Yokogawa behält sich insbesondere vor, auch bisher frei zugängliche Internetseiten
-            einer Registrierungspflicht zu unterwerfen. Rota Yokogawa ist berechtigt, die Zugangsberechtigung durch Sperrung der Zugangsdaten zu widerrufen, ohne dass es
-            der Angabe von Gründen bedarf, insbesondere wenn der Nutzer
-                <ul id="list">
-                  <li v-for="items in item">
-                    {{ item.message }}
-                  </li>
-                </ul>
+              Auf eine Registrierung durch Rota Yokogawa besteht kein Anspruch. Rota Yokogawa behält sich insbesondere vor, auch bisher frei zugängliche Internetseiten
+              einer Registrierungspflicht zu unterwerfen. Rota Yokogawa ist berechtigt, die Zugangsberechtigung durch Sperrung der Zugangsdaten zu widerrufen, ohne dass es
+              der Angabe von Gründen bedarf, insbesondere wenn der Nutzer
             </p>
+            <ul>
+              <li v-bind:value="item" v-for="item in items"> {{ item.message }} </li>
+            </ul>
 
 
-            <strong>6. Service Angebote</strong>
+             <h5><strong>6. Service Angebote </strong></h5>
 
             <p>
               Rota Yokogawa bietet optional Support- und/oder Serviceleistungen in einem speziell geschützten Bereich an. Hierzu ist es notwendig, dass sich Nutzer registrieren
@@ -103,7 +102,7 @@
               Der Kunde ist um die Sicherung seiner Daten selbst besorgt. Die Nutzung erfolgt in alleiniger Verantwortung des Kunden.
             </p>
 
-            <strong>7. Änderung der Nutzungsbedingungen</strong>
+             <h5><strong>7. Änderung der Nutzungsbedingungen </strong></h5>
 
             <p>
               Rota Yokogawa behält sich das Recht vor, diese Nutzungsbedingungen mit vorheriger Ankündigung zu ändern. Solche Änderungen werden Ihnen vorher mitgeteilt.
@@ -124,16 +123,15 @@
 
   export default{
     name: 'termsofuse',
-      data () {
-        return {
-          el: '#list,
-            items: [
-              { message: 'zur Registrierung falsche Angaben gemacht hat oder die Zugangskennung missbräuchlich verwendet wird,' },
-              { message: 'gegen diese Nutzungsbedingungen oder gegen seine Sorgfaltspflichten im Umgang mit den Zugangsdaten verstoßen hat, oder' },
-              { message: 'gegen anwendbares Recht beim Zugang zu oder der Nutzung der Internetseite verstoßen hat.' }
-            ]
-        }
+    data () {
+      return {
+        items: [
+          { message: 'zur Registrierung falsche Angaben gemacht hat oder die Zugangskennung missbräuchlich verwendet wird,' },
+          { message: 'gegen diese Nutzungsbedingungen oder gegen seine Sorgfaltspflichten im Umgang mit den Zugangsdaten verstoßen hat, oder' },
+          { message: 'gegen anwendbares Recht beim Zugang zu oder der Nutzung der Internetseite verstoßen hat.' }
+        ]
       }
+    }
   }
 
 </script>
