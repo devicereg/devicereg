@@ -14,8 +14,8 @@ import AppFooter from './components/AppFooter'
 import Dashboard from './components/Dashboard'
 import Bootstrap from './components/Bootstrap'
 import Kontakt from './components/Kontakt'
+import Impressum from './components/Impressum'
 import Translations from './components/Translations'
-
 
 export default {
   name: 'app',
@@ -26,6 +26,7 @@ export default {
     Dashboard,
     Bootstrap,
     Kontakt,
+    Impressum,
     Translations
   }
 }
