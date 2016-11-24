@@ -21,8 +21,8 @@
 
             <label>Tel.: </label><p> +49-7761-567-120</p>
             <label>Fax: </label><p> +49-7761-567-126</p>
-            <label>E-Mail: </label><a href="#">pmk.info@de.yokogawa.com</a>
-            <label>Website: </label><a href="http://www.yokogawa.com/rota-de">http://www.yokogawa.com/rota-de</a>
+            <label>E-Mail: </label><p><a href="#">pmk.info@de.yokogawa.com</a></p>
+            <label>Website: </label><p><a href="http://www.yokogawa.com/rota-de">http://www.yokogawa.com/rota-de</a></p>
 
 
             <strong>Eingetragen bei</strong>

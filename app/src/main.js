@@ -22,9 +22,7 @@ const routes = [
   {path: '/registrieren', component: RegistrationForm},
   {path: '/dashboard', component: Dashboard},
   {path: '/kontakt', component: Kontakt},
-  {path: '/termsofuse', component: TermsOfUse},
   {path: '/impressum', component: Impressum}
-
 ]
 
 export const router = new VueRouter({
@@ -35,13 +33,13 @@ export const router = new VueRouter({
 
 /* eslint-disable no-new */
 new Vue({
-  router,
-  el: '#app',
-  http:{
-  	root: '/',
-  	headers: {
-  		Authorization: auth.getAuthHeader()
-  	}
-  },
-  render: h => h(App)
+    router,
+    el: '#app',
+    http:{
+      root: '/',
+      headers: {
+        Authorization: auth.getAuthHeader()
+      }
+    },
+    render: h => h(App)
 })
