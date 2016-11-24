@@ -9,6 +9,8 @@ import Home from './components/Home'
 import RegistrationForm from './components/RegistrationForm'
 import Dashboard from './components/Dashboard'
 import Contact from './components/Contact'
+import TermsOfUse from './components/TermsOfUse'
+import Impressum from './components/Impressum'
 import Warranty from './components/Warranty'
 import Datenschutz from './components/Datenschutz'
 
@@ -23,6 +25,8 @@ const routes = [
   {path: '/registrieren', component: RegistrationForm},
   {path: '/dashboard', component: Dashboard},
   {path: '/contact', component: Contact},
+  {path: '/terms-of-use', component: TermsOfUse},
+  {path: '/impressum', component: Impressum},
   {path: '/aktionsbedingungen', component: Warranty},
   {path: '/datenschutz', component: Datenschutz}
 ]
@@ -35,13 +39,13 @@ export const router = new VueRouter({
 
 /* eslint-disable no-new */
 new Vue({
-  router,
-  el: '#app',
-  http:{
-  	root: '/',
-  	headers: {
-  		Authorization: auth.getAuthHeader()
-  	}
-  },
-  render: h => h(App)
+    router,
+    el: '#app',
+    http:{
+      root: '/',
+      headers: {
+        Authorization: auth.getAuthHeader()
+      }
+    },
+    render: h => h(App)
 })
