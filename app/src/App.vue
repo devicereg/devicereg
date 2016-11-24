@@ -13,8 +13,10 @@ import Navigation from './components/Navigation'
 import AppFooter from './components/AppFooter'
 import Dashboard from './components/Dashboard'
 import Bootstrap from './components/Bootstrap'
-import Kontakt from './components/Kontakt'
-
+import Contact from './components/Contact'
+import TermsOfUse from './components/TermsOfUse'
+import Impressum from './components/Impressum'
+import Translations from './components/Translations'
 
 export default {
   name: 'app',
@@ -24,7 +26,10 @@ export default {
     AppFooter,
     Dashboard,
     Bootstrap,
-    Kontakt
+    Contact,
+    TermsOfUse,
+    Impressum,
+    Translations
   }
 }
 </script>
@@ -36,7 +41,8 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top:100px;
+  margin-top: 85px;
+  margin-bottom: 85px;
 }
 
 h1, h2 {
