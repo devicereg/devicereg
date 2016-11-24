@@ -31,9 +31,10 @@
   .footer {
     position: fixed;
     bottom: 0;
+    margin-top: 55px;
     width: 100%;
     background-color: $deep-space-sparkle;
-
+    overflow: auto;
     .container {
       .nav {
         display: inline-block;
