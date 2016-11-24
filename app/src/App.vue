@@ -14,6 +14,7 @@ import AppFooter from './components/AppFooter'
 import Dashboard from './components/Dashboard'
 import Bootstrap from './components/Bootstrap'
 import Kontakt from './components/Kontakt'
+import TermsOfUse from './components/TermsOfUse'
 import Impressum from './components/Impressum'
 import Translations from './components/Translations'
 
@@ -26,6 +27,7 @@ export default {
     Dashboard,
     Bootstrap,
     Kontakt,
+    TermsOfUse,
     Impressum,
     Translations
   }
