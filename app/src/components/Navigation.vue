@@ -14,7 +14,7 @@
           <li v-if="!user.authenticated">
             <router-link to="/registrieren">Registrieren</router-link>
           </li>
-          <li><router-link to="/kontakt">Kontakt</router-link></li>
+          <li><router-link to="/contact">Kontakt</router-link></li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> Sprache <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
