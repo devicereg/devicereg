@@ -12,252 +12,239 @@
 				<div class="col-md-12">
 					<h2>{{$t("RegistrationForm.title")}}</h2>
 				</div>
-		</div></div>
+		  </div>
+    </div>
 		<div class="row">
 			<div class="col-md-10">
 				<form role="form">
 					<legend>{{$t("RegistrationForm.personal_details")}}</legend>
-					<div class="row">
-						<div class="form-group">
-							<div class="col-md-4 control-label">
-								<label for="deviceR-login_user">{{$t("RegistrationForm.gender")}}</label></div>
-							<div class="col-md-4">
-								<select
-									type="text"
-									class="form-control"
-									id="deviceR-login_gender"
-									v-model="credentials.gender" required>
-									<option value="">{{$t("RegistrationForm.choose")}}</option>
-									<option>{{$t("RegistrationForm.mr")}}</option>
-    							<option>{{$t("RegistrationForm.mrs")}}</option>
-								</select>
-							</div></div></div>
-							<br>
-					<div class="row">
-						<div class="form-group">
-							<div class="col-md-4 control-label">
-								<label for="deviceR-login_user">{{$t("RegistrationForm.prename")}}</label></div>
-							<div class="col-md-4">
-								<input
-									type="text"
-									class="form-control"
-									id="deviceR-login_prename"
-									v-model="credentials.prename" required>
-							</div></div></div>
-							<br>
-					<div class="row">
-						<div class="form-group">
-							<div class="col-md-4 control-label">
-								<label for="deviceR-login_user">{{$t("RegistrationForm.surname")}}</label></div>
-							<div class="col-md-4">
-								<input
-									type="text"
-									class="form-control"
-									id="deviceR-login_surname"
-									v-model="credentials.surname" required>
-							</div></div></div>
-							<br>
-					<div class="row">
-						<div class="form-group">
-							<div class="col-md-4 control-label">
-								<label for="deviceR-login_user">{{$t("language")}}</label></div>
-							<div class="col-md-4">
-								<select
-									type="text"
-									class="form-control"
-									id="deviceR-login_language"
-									v-model="credentials.language" required>
-									<option value="">{{$t("RegistrationForm.choose")}}</option>
-									<option>{{$t("RegistrationForm.german")}}</option>
-									<option>{{$t("RegistrationForm.english")}}</option>
-								</select>
-							</div></div></div>
-							<br>
-					<div class="row">
-						<div class="form-group">
-							<div class="col-md-4 control-label">
-								<label for="deviceR-login_user">{{$t("phone")}}</label></div>
-							<div class="col-md-4">
-								<input
-									type="tel"
-									class="form-control"
-									id="deviceR-login_phone"
-									v-model="credentials.phone" required>
-							</div></div></div>
-							<br>
+					<div class="form-group row">
+            <div class="col-md-4 control-label">
+              <label for="register_gender">{{$t("RegistrationForm.gender")}}</label>
+            </div>
+            <div class="col-md-4">
+              <select
+                class="form-control"
+                id="register_gender"
+                v-model="credentials.gender" required>
+                <option value="">{{$t("RegistrationForm.choose")}}</option>
+                <option>{{$t("RegistrationForm.mr")}}</option>
+                <option>{{$t("RegistrationForm.mrs")}}</option>
+              </select>
+            </div>
+          </div>
+					<div class="form-group row">
+            <div class="col-md-4 control-label">
+              <label for="register_prename">{{$t("RegistrationForm.prename")}}</label>
+            </div>
+            <div class="col-md-4">
+              <input
+                type="text"
+                class="form-control"
+                id="register_prename"
+                v-model="credentials.prename" required>
+            </div>
+          </div>
+					<div class="form-group row">
+            <div class="col-md-4 control-label">
+              <label for="register_surname">{{$t("RegistrationForm.surname")}}</label>
+            </div>
+            <div class="col-md-4">
+              <input
+                type="text"
+                class="form-control"
+                id="register_surname"
+                v-model="credentials.surname" required>
+            </div>
+          </div>
+					<div class="form-group row">
+            <div class="col-md-4 control-label">
+              <label for="register_language">{{$t("language")}}</label>
+            </div>
+            <div class="col-md-4">
+              <select class="form-control" id="register_language" v-model="credentials.language" required>
+                <option value="">{{$t("RegistrationForm.choose")}}</option>
+                <option>{{$t("RegistrationForm.german")}}</option>
+                <option>{{$t("RegistrationForm.english")}}</option>
+              </select>
+            </div>
+          </div>
+					<div class="form-group row">
+            <div class="col-md-4 control-label">
+              <label for="register_phone">{{$t("phone")}}</label>
+            </div>
+            <div class="col-md-4">
+              <input
+                type="tel"
+                class="form-control"
+                id="register_phone"
+                v-model="credentials.phone" required>
+            </div>
+          </div>
 					<legend>{{$t("RegistrationForm.company_details")}}</legend>
-					<div class="row">
-						<div class="form-group">
-							<div class="col-md-4 control-label">
-								<label for="deviceR-login_user">{{$t("RegistrationForm.industry_family")}}</label></div>
-							<div class="col-md-4">
-								<select
-								type="text"
-								class="form-control"
-								id="deviceR-login_industry_family"
-								v-model="credentials.industry_family" required>
-								<option value="">{{$t("RegistrationForm.choose")}}</option>
-								<option>Elektro</option>
-								<option>Strom</option>
-							</select>
-						</div></div></div>
-						<br>
-				<div class="row">
-					<div class="form-group">
-						<div class="col-md-4 control-label">
-							<label for="deviceR-login_user">{{$t("RegistrationForm.industry_type")}}</label></div>
-						<div class="col-md-4">
-							<input
-							type="text"
-							class="form-control"
-							id="deviceR-login_industry_type"
-							v-model="credentials.industry_type" required>
-						</div></div></div>
-						<br>
-					<div class="row">
-						<div class="form-group">
-							<div class="col-md-4 control-label">
-								<label for="deviceR-login_user">{{$t("RegistrationForm.company")}}</label></div>
-							<div class="col-md-4">
-								<input
-								type="text"
-								class="form-control"
-								id="deviceR-login_company"
-								v-model="credentials.company" required>
-							</div></div></div>
-							<br>
-					<div class="row">
-						<div class="form-group">
-							<div class="col-md-4 control-label">
-								<label for="deviceR-login_user">{{$t("RegistrationForm.street")}}</label></div>
-							<div class="col-md-4">
-								<input
-								type="text"
-								class="form-control"
-								id="deviceR-login_street"
-								v-model="credentials.street" required>
-							</div></div></div>
-							<br>
-					<div class="row">
-						<div class="form-group">
-							<div class="col-md-4 control-label">
-								<label for="deviceR-login_user">{{$t("RegistrationForm.number")}}</label></div>
-							<div class="col-md-4">
-								<input
-								type="text"
-								class="form-control"
-								id="deviceR-login_number"
-								v-model="credentials.number" required>
-						</div></div></div>
-						<br>
-					<div class="row">
-						<div class="form-group">
-							<div class="col-md-4 control-label">
-								<label for="deviceR-login_user">{{$t("RegistrationForm.zip")}}</label></div>
-							<div class="col-md-4">
-								<input
-								type="number"
-								class="form-control"
-								id="deviceR-login_zip"
-								v-model="credentials.zip" required>
-						</div></div></div>
-						<br>
-					<div class="row">
-						<div class="form-group">
-							<div class="col-md-4 control-label">
-								<label for="deviceR-login_user">{{$t("city")}}</label></div>
-							<div class="col-md-4">
-								<input
-								type="text"
-								class="form-control"
-								id="deviceR-login_city"
-								v-model="credentials.city" required>
-						</div></div></div>
-						<br>
-					<div class="row">
-						<div class="form-group">
-							<div class="col-md-4 control-label">
-								<label for="deviceR-login_user">{{$t("country")}}</label></div>
-							<div class="col-md-4">
-								<select
-									type="text"
-									class="form-control"
-									id="deviceR-login_country"
-									v-model="credentials.country" required>
-									<option value="">{{$t("RegistrationForm.choose")}}</option>
-									<option>Deutschland</option>
-									<option>Österreich</option>
-									<option>Schweiz</option>
-								</select>
-							</div></div></div>
-							<br>
+					<div class="form-group row">
+            <div class="col-md-4 control-label">
+              <label for="register_industry_family">{{$t("RegistrationForm.industry_family")}}</label>
+            </div>
+            <div class="col-md-4">
+              <select
+              class="form-control"
+              id="register_industry_family"
+              v-model="credentials.industry_family" required>
+              <option value="">{{$t("RegistrationForm.choose")}}</option>
+              <option>Elektro</option>
+              <option>Strom</option>
+            </select>
+          </div>
+        </div>
+				<div class="form-group row">
+          <div class="col-md-4 control-label">
+            <label for="register_industry_type">{{$t("RegistrationForm.industry_type")}}</label>
+          </div>
+          <div class="col-md-4">
+            <input
+            type="text"
+            class="form-control"
+            id="register_industry_type"
+            v-model="credentials.industry_type" required>
+          </div>
+        </div>
+					<div class="form-group row">
+            <div class="col-md-4 control-label">
+              <label for="register_company">{{$t("RegistrationForm.company")}}</label>
+            </div>
+            <div class="col-md-4">
+              <input type="text" class="form-control" id="register_company" v-model="credentials.company" required>
+            </div>
+          </div>
+					<div class="form-group row">
+            <div class="col-md-4 control-label">
+              <label for="register_street">{{$t("RegistrationForm.street")}}</label>
+            </div>
+            <div class="col-md-4">
+              <input
+              type="text"
+              class="form-control"
+              id="register_street"
+              v-model="credentials.street" required>
+            </div>
+          </div>
+					<div class="form-group row">
+            <div class="col-md-4 control-label">
+              <label for="register_number">{{$t("RegistrationForm.number")}}</label>
+            </div>
+            <div class="col-md-4">
+              <input
+              type="text"
+              class="form-control"
+              id="register_number"
+              v-model="credentials.number" required>
+            </div>
+          </div>
+					<div class="form-group row">
+            <div class="col-md-4 control-label">
+              <label for="register_zip">{{$t("RegistrationForm.zip")}}</label>
+            </div>
+            <div class="col-md-4">
+              <input
+              type="number"
+              class="form-control"
+              id="register_zip"
+              v-model="credentials.zip" required>
+            </div>
+          </div>
+					<div class="form-group row">
+            <div class="col-md-4 control-label">
+              <label for="register_city">{{$t("city")}}</label>
+            </div>
+            <div class="col-md-4">
+              <input
+              type="text"
+              class="form-control"
+              id="register_city"
+              v-model="credentials.city" required>
+            </div>
+          </div>
+					<div class="form-group row">
+            <div class="col-md-4 control-label">
+              <label for="register_country">{{$t("country")}}</label>
+            </div>
+            <div class="col-md-4">
+              <select class="form-control" id="register_country" v-model="credentials.country" required>
+                <option value="">{{$t("RegistrationForm.choose")}}</option>
+                <option>Deutschland</option>
+                <option>Österreich</option>
+                <option>Schweiz</option>
+              </select>
+            </div>
+          </div>
 					<legend>{{$t("RegistrationForm.system_access")}}</legend>
-					<div class="row">
-						<div class="form-group">
-							<div class="col-md-4 control-label">
-								<label for="deviceR-login_user">{{$t("RegistrationForm.user")}}</label></div>
-							<div class="col-md-4">
-								<input
-									type="email"
-									class="form-control"
-									id="deviceR-login_user"
-									v-model="credentials.username" required>
-							</div></div></div>
-							<br>
-					<div class="row">
-						<div class="form-group">
-							<div class="col-md-4 control-label">
-								<label for="deviceR-login_password">{{$t("RegistrationForm.password")}}</label></div>
-							<div class="col-md-4">
-								<input
-									type="password"
-									data-minlength="6"
-									class="form-control"
-									id="deviceR-login_password"
-									v-model="credentials.password" required>
-							</div></div></div>
-							<br>
-					<div class="row">
-						<div class="form-group">
-							<div class="col-md-4 control-label">
-								<label for="deviceR-login_question">{{$t("RegistrationForm.question")}}</label></div>
-							<div class="col-md-4">
-								<input
-									type="text"
-									class="form-control"
-									id="deviceR-login_question"
-									v-model="credentials.question" required>
-							</div></div></div>
-							<br>
-					<div class="row">
-						<div class="form-group">
-							<div class="col-md-4 control-label">
-								<label for="deviceR-login_answer">{{$t("RegistrationForm.answer")}}</label></div>
-							<div class="col-md-4">
-								<input
-									type="text"
-									class="form-control"
-									id="deviceR-login_answer"
-									v-model="credentials.answer" required>
-							</div></div></div>
-							<br>
+					<div class="form-group row">
+            <div class="col-md-4 control-label">
+              <label for="register_user">{{$t("RegistrationForm.user")}}</label>
+            </div>
+            <div class="col-md-4">
+              <input type="email" class="form-control" id="register_user" v-model="credentials.username" required>
+            </div>
+          </div>
+					<div class="form-group row">
+            <div class="col-md-4 control-label">
+              <label for="register_password">{{$t("RegistrationForm.password")}}</label>
+            </div>
+            <div class="col-md-4">
+              <input
+                type="password"
+                data-minlength="6"
+                class="form-control"
+                id="register_password"
+                v-model="credentials.password" required>
+            </div>
+          </div>
+					<div class="form-group row">
+            <div class="col-md-4 control-label">
+              <label for="register_question">{{$t("RegistrationForm.question")}}</label>
+            </div>
+            <div class="col-md-4">
+              <input
+                type="text"
+                class="form-control"
+                id="register_question"
+                v-model="credentials.question" required>
+            </div>
+          </div>
+					<div class="form-group row">
+            <div class="col-md-4 control-label">
+              <label for="register_answer">{{$t("RegistrationForm.answer")}}</label>
+            </div>
+            <div class="col-md-4">
+              <input
+                type="text"
+                class="form-control"
+                id="register_answer"
+                v-model="credentials.answer" required>
+            </div>
+          </div>
 					<legend>{{$t("RegistrationForm.agreement")}}</legend>
 					<div class="row">
 						<div class="form-check">
 							<div class="col-md-12 control-label">
-		    				<label class="form-check-label"></label>
 		      			<input
 									type="checkbox"
 									class="form-check-input"
-									id="deviceR-login_agreement"
+									id="register_agreement"
 									v-model="credentials.agreement"
-									required>{{$t("RegistrationForm.terms_of_agreement")}}
-	  				</div></div></div>
-						<br>
-						<div class="row">
-							<div class="col-md-1">
-								<button class="btn btn-primary" @click="submit()">{{$t("RegistrationForm.register")}}</button>
-						</div></div>
+									required>
+                <label for="register_agreement" class="form-check-label">
+                  {{$t("RegistrationForm.terms_of_agreement")}}
+                </label>
+	  				  </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-1">
+              <button class="btn btn-primary" @click="submit()">{{$t("RegistrationForm.register")}}</button>
+            </div>
+          </div>
 				</form>
 
 			</div>
@@ -266,7 +253,6 @@
 </template>
 
 <script>
-
 	import auth from '../auth'
 
 	export default {
@@ -326,23 +312,24 @@
 </script>
 
 <style lang="scss">
-  .registration-form{
+  .registration-form {
 		margin-left: 10em;
-    .registration-header-titles{
+
+    .registration-header-titles {
       margin-bottom: 100px;
 			text-align: left;
     }
-		.row{
-			legend{
+
+		.row {
+			legend {
 				text-align: left
 			}
-			.form-group{
+
+			.form-group {
 				text-align: left;
-				#input{
-					width: 1260px;
-				}
 			}
-			.form-check{
+
+			.form-check {
 				text-align: left;
 			}
 		}
