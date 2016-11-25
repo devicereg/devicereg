@@ -38,6 +38,6 @@ app.use(require('./user-routes'));
 var port = process.env.PORT || 3001;
 
 http.createServer(app).listen(port, function (err) {
-  console.log('mock server listening in http://localhost:' + port);
+  console.log('listening in http://localhost:' + port);
 });
 
