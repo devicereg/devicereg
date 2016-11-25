@@ -10,6 +10,7 @@
       email: 'E-Mail',
       phone: 'Telefon',
       language: 'Sprache',
+      city: 'Stadt',
 
       Contact: {
         box_address: 'Postfach',
@@ -55,6 +56,8 @@
       email: 'Email',
       phone: 'Phone',
       language: 'Language',
+      city: 'City',
+
       Contact: {
         box_address: 'Mailbox',
         contact: 'Please contact',
