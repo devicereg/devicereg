@@ -28,7 +28,6 @@ export default {
     AppFooter,
     Dashboard,
     Bootstrap,
-    Kontakt,
     Translations,
     DeviceRegForm,
     Contact,
