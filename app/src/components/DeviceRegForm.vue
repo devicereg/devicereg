@@ -185,7 +185,7 @@ export default {
         maintenanceMsg: '', //boolean, true if notifications about maintenance schedule desired
         cInterval: '', //Interval for calibration schedule
         calibrationMsg: '', //boolean, true if notifications about calibration schedule desired
-        cBeginning: '', //start date of recieving notifications about calibration schedules
+        cBeginning: '' //start date of recieving notifications about calibration schedules
       },
       categories: [
         {name: 'Cat1', value: '1'},
