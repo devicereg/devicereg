@@ -15,6 +15,8 @@ import Dashboard from './components/Dashboard'
 import Bootstrap from './components/Bootstrap'
 import Kontakt from './components/Kontakt'
 import Translations from './components/Translations'
+import DeviceRegForm from './components/DeviceRegForm'
+
 
 
 export default {
@@ -26,7 +28,8 @@ export default {
     Dashboard,
     Bootstrap,
     Kontakt,
-    Translations
+    Translations,
+    DeviceRegForm
   }
 }
 </script>

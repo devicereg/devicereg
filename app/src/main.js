@@ -11,6 +11,7 @@ import Dashboard from './components/Dashboard'
 import Kontakt from './components/Kontakt'
 import Warranty from './components/Warranty'
 import Datenschutz from './components/Datenschutz'
+import DeviceRegForm from './components/DeviceRegForm'
 
 
 Vue.use(VueRouter)
@@ -24,7 +25,8 @@ const routes = [
   {path: '/dashboard', component: Dashboard},
   {path: '/kontakt', component: Kontakt},
   {path: '/aktionsbedingungen', component: Warranty},
-  {path: '/datenschutz', component: Datenschutz}
+  {path: '/datenschutz', component: Datenschutz},
+  {path: '/gerät_registrieren', component: DeviceRegForm}
 ]
 
 export const router = new VueRouter({
