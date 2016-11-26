@@ -1,6 +1,7 @@
 var express = require('express'),
     jwt     = require('express-jwt'),
-    config  = require('./config');
+    config  = require('./config'),
+    quoter  = require('./quoter');
 
 var app = module.exports = express.Router();
 
@@ -10,6 +11,6 @@ var jwtCheck = jwt({
 
 app.use('/api/protected', jwtCheck);
 
-app.get('/api/protected/test', function(req, res) {
-  res.status(200).send("protected test");
+app.get('/api/protected/random-quote', function(req, res) {
+  res.status(200).send(quoter.getRandomOne());
 });

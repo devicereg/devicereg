@@ -6,10 +6,10 @@
           <router-link to="/datenschutz">Datenschutz</router-link>
         </li>
         <li>
-          <router-link to="#">Nutzungsbedingungen</router-link>
+          <router-link to="/terms-of-use">Nutzungsbedingungen</router-link>
         </li>
         <li>
-          <router-link to="#">Impressum</router-link>
+          <router-link to="/impressum">Impressum</router-link>
         </li>
         <li>
           <router-link to="/aktionsbedingungen">Aktionsbedingungen</router-link>
@@ -31,9 +31,10 @@
   .footer {
     position: fixed;
     bottom: 0;
+    margin-top: 55px;
     width: 100%;
     background-color: $deep-space-sparkle;
-
+    overflow: auto;
     .container {
       .nav {
         display: inline-block;

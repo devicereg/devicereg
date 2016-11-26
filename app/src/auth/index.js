@@ -3,7 +3,7 @@ import {router} from '../main'
 var os = require('os')
 
 const API_URL = 'http://' + os.hostname() + ':3001/'
-const LOGIN_URL = API_URL + 'authenticate/'
+const LOGIN_URL = API_URL + 'sessions/create/'
 const SIGNUP_URL = API_URL + 'users/'
 
 export default {
@@ -48,6 +48,22 @@ export default {
 
 			localStorage.setItem('id_token', response.data.id_token)
 			localStorage.setItem('username', creds.username)
+			localStorage.setItem('gender', creds.gender)
+			localStorage.setItem('prename', creds.prename)
+			localStorage.setItem('surname', creds.surname)
+			localStorage.setItem('language', creds.language)
+			localStorage.setItem('phone', creds.phone)
+			localStorage.setItem('industry_family', creds.industry_family)
+			localStorage.setItem('industry_typ', creds.industry_typ)
+			localStorage.setItem('company', creds.company)
+			localStorage.setItem('street', creds.street)
+			localStorage.setItem('number', creds.number)
+			localStorage.setItem('zip', creds.zip)
+			localStorage.setItem('city', creds.city)
+			localStorage.setItem('country', creds.country)
+			localStorage.setItem('question', creds.question)
+			localStorage.setItem('answer', creds.answer)
+			localStorage.setItem('agreement', creds.agreement)
 
 	      	this.user.authenticated = true
 
