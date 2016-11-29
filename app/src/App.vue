@@ -20,8 +20,6 @@ import TermsOfUse from './components/TermsOfUse'
 import Impressum from './components/Impressum'
 import Translations from './components/Translations'
 import DeleteProfileModal from './components/UserDeleteModal'
-import Bootstrap from './components/Bootstrap.vue'
-import Kontakt from './components/Kontakt'
 
 
 export default {
@@ -37,7 +35,6 @@ export default {
     TermsOfUse,
     Impressum,
     Translations,
-    Kontakt
   },
   data() {
     return { user: auth.user }

@@ -14,7 +14,6 @@ import TermsOfUse from './components/TermsOfUse'
 import Impressum from './components/Impressum'
 import Warranty from './components/Warranty'
 import Datenschutz from './components/Datenschutz'
-import Kontakt from './components/Kontakt'
 import UserEdit from './components/UserEdit'
 
 
@@ -32,7 +31,6 @@ const routes = [
   {path: '/impressum', component: Impressum},
   {path: '/aktionsbedingungen', component: Warranty},
   {path: '/datenschutz', component: Datenschutz},
-  {path: '/kontakt', component: Kontakt},
   {path: '/edit-profile', component: UserEdit}
 ]
 
