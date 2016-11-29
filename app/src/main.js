@@ -31,7 +31,7 @@ const routes = [
   {path: '/terms-of-use', component: TermsOfUse},
   {path: '/impressum', component: Impressum},
   {path: '/aktionsbedingungen', component: Warranty},
-  {path: '/datenschutz', component: Datenschutz}
+  {path: '/datenschutz', component: Datenschutz},
   {path: '/kontakt', component: Kontakt},
   {path: '/edit-profile', component: UserEdit}
 ]

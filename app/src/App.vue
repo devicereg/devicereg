@@ -36,8 +36,7 @@ export default {
     Contact,
     TermsOfUse,
     Impressum,
-    Translations
-  }
+    Translations,
     Kontakt
   },
   data() {
@@ -49,8 +48,8 @@ export default {
 <style lang="scss">
   @import './styles/_colors';
 
-  html {
-    background: $background;
+  body {
+    background: $body-background;
   }
 
   #app {
@@ -61,7 +60,7 @@ export default {
     color: #2c3e50;
     margin-top: 85px;
     margin-bottom: 85px;
-    background: $background;
+    background: $body-background;
   }
 
   h1, h2 {
