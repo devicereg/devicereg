@@ -12,10 +12,6 @@ function createToken(user) {
 
 app.post('/users', function(req, res)
 {
-  
-  /**
-   * SQLite database
-   */
   var db = new sqlite3.Database('database/devicer.sqlite');
 
   db.serialize(function()
@@ -54,9 +50,6 @@ app.post('/users', function(req, res)
 
 app.post('/user/update', function(req, res)
 {
-  /**
-   * SQLite database
-   */
   var db = new sqlite3.Database('database/devicer.sqlite');
 
   db.serialize(function()
@@ -93,9 +86,6 @@ app.post('/user/update', function(req, res)
 
 app.post('/user/delete', function(req, res)
 {
-  /**
-   * SQLite database
-   */
   var db = new sqlite3.Database('database/devicer.sqlite');
 
   db.serialize(function()
@@ -110,9 +100,6 @@ app.post('/user/delete', function(req, res)
 
 app.post('/sessions/create', function(req, res)
 {
-  /**
-   * SQLite database
-   */
   var db = new sqlite3.Database('database/devicer.sqlite');
 
   db.serialize(function()
