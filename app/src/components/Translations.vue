@@ -101,7 +101,7 @@
 
 
   // set lang
-  Vue.config.lang = 'en'
+  Vue.config.lang = 'de'
 
   // set locales
   Object.keys(locales).forEach(function (lang) {
