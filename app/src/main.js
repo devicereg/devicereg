@@ -3,12 +3,14 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import VueResource from 'vue-resource'
+import jwt from 'jsonwebtoken'
 import App from './App'
 import auth from './auth'
 import Home from './components/Home'
 import RegistrationForm from './components/RegistrationForm'
 import Dashboard from './components/Dashboard'
 import Kontakt from './components/Kontakt'
+import UserEdit from './components/UserEdit'
 
 
 Vue.use(VueRouter)
@@ -20,7 +22,8 @@ const routes = [
   {path: '/', component: Home},
   {path: '/registrieren', component: RegistrationForm},
   {path: '/dashboard', component: Dashboard},
-  {path: '/kontakt', component: Kontakt}
+  {path: '/kontakt', component: Kontakt},
+  {path: '/edit-profile', component: UserEdit}
 ]
 
 export const router = new VueRouter({

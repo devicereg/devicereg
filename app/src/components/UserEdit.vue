@@ -1,5 +1,5 @@
 <template>
-	<div class="container registration-form">
+	<div class="container user-edit-form">
 		<div class="row">
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 				<div class="alert alert-danger fade in" v-if="error">
@@ -7,20 +7,14 @@
 				</div>
 			</div>
 		</div>
-		<div class="row registration-header-titles">
-			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-				<h2>At vero eos et accusam et justo duo dolores et ea rebum.</h2>
-				<p>
-					Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-				</p>
-			</div>
-		</div>
 		<div class="row">
 
 				<form role="form">
-					<legend>Registrierung</legend>
+					<legend>Profil bearbeiten</legend>
 
 					<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+
+						<input type="hidden" v-model="credentials.id">
 
 						<div class="form-group">
 							<label for="deviceR-login_lastname">Nachname*</label>
@@ -45,6 +39,21 @@
 								required
 							>
 						</div>
+
+						<div class="form-group">
+							<label for="deviceR-login_email">E-Mail Adresse*</label>
+							<input
+								type="email"
+								class="form-control"
+								id="deviceR-login_email"
+								v-model="credentials.email"
+								placeholder="E-Mail Adresse*"
+								required
+							>
+						</div>
+				
+					</div>
+					<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
 
 						<div class="form-group">
 							<label for="deviceR-login_street">Straße*</label>
@@ -93,50 +102,12 @@
 								required
 							>
 						</div>
-				
-					</div>
-					<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-
-						<div class="form-group">
-							<label for="deviceR-login_email">E-Mail Adresse*</label>
-							<input
-								type="email"
-								class="form-control"
-								id="deviceR-login_email"
-								v-model="credentials.email"
-								placeholder="E-Mail Adresse*"
-								required
-							>
-						</div>
-
-						<div class="form-group">
-							<label for="deviceR-login_password">Passwort*</label>
-							<input
-								type="password"
-								class="form-control"
-								id="deviceR-login_password"
-								v-model="credentials.password"
-								placeholder="Passwort*"
-								required
-							>
-						</div>
-
-						<div class="form-group">
-							<label for="deviceR-login_password-repeat">Passwort wiederholen*</label>
-							<input
-								type="password"
-								class="form-control"
-								id="deviceR-login_password-repeat"
-								v-model="credentials.password_repeat"
-								placeholder="Passwort wiederholen*"
-								required
-							>
-						</div>
+						
 					</div>
 					
 					<div class="row">
 						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-							<button class="btn btn-block btn-primary" @click="submit()">Registrieren</button>	
+							<button class="btn btn-block btn-primary" @click="submit()">Aktualisieren</button>	
 						</div>
 					</div>
 				</form>
@@ -147,54 +118,35 @@
 <script>
 
 	import auth from '../auth'
+	import jwt from 'jsonwebtoken'
 
 	export default {
-	  name: 'registration-form',
+	  name: 'user-edit-form',
 	  data () {
 	    return {
-	    	credentials: {
-	    		lastname: '',
-	    		name: '',
-	    		street: '',
-	    		housenumber: '',
-	    		zip: '',
-	    		city: '',
-	    		email: '',
-	    		password: ''
-	    	},
+	    	credentials: jwt.verify(localStorage.getItem('id_token'), 'DeviceR rocks as well!'),
 	    	error: ''
 	    }
 	  },
 	  methods: {
 	  	submit() {
 	  		var credentials = {
+	  			id: this.credentials.id,
 	  			lastname: this.credentials.lastname,
 	    		name: this.credentials.name,
 	    		street: this.credentials.street,
 	    		housenumber: this.credentials.housenumber,
 	    		zip: this.credentials.zip,
 	    		city: this.credentials.city,
-	  			email: this.credentials.email,
-	  			password: this.credentials.password
+	  			email: this.credentials.email
 	  		}
 
-	  		auth.signup(this, credentials, '/dashboard')
+	  		auth.update(this, credentials, '/dashboard')
 	  	}
 	  }
 	}
 </script>
 
 <style lang="scss">
-  .registration-form{
-
-    .registration-header-titles{
-      margin-bottom:40px;
-    }
-
-    form{
-    	.form-group{
-    		text-align:left;
-    	}
-    }
-  }
+  
 </style>

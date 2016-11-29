@@ -1,7 +1,8 @@
 var express = require('express'),
     _       = require('lodash'),
     config  = require('./config'),
-    jwt     = require('jsonwebtoken');
+    jwt     = require('jsonwebtoken'),
+    sqlite3 = require('sqlite3').verbose();
 
 var app = module.exports = express.Router();
 
@@ -11,6 +12,7 @@ var users = [{
   username: 'gonto',
   password: 'gonto'
 }];
+
 
 function createToken(user) {
   return jwt.sign(_.omit(user, 'password'), config.secret, { expiresIn: 60*60*5 });
@@ -42,47 +44,124 @@ function getUserScheme(req) {
   }
 }
 
-app.post('/users', function(req, res) {
+app.post('/users', function(req, res) 
+{
   
-  var userScheme = getUserScheme(req);  
+  var userScheme = getUserScheme(req);
+  
+  /**
+   * SQLite database
+   */
+  var db = new sqlite3.Database('database/devicer.sqlite');
 
-  if (!userScheme.username || !req.body.password) {
-    return res.status(400).send("You must send the username and the password");
-  }
+  db.serialize(function() 
+  {
+    db.run(
+      "INSERT INTO user " + 
+        "('id', 'lastname', 'name', 'email', 'street', 'housenumber', 'zip', 'city', 'password') " +
+      "VALUES " +
+        "($id, $lastname, $name, $email, $street, $housenumber, $zip, $city, $password)", 
+        {
+          $id: null,
+          $lastname: req.body.lastname,
+          $name: req.body.name,
+          $email: req.body.email,
+          $street: req.body.street,
+          $housenumber: req.body.housenumber,
+          $zip: req.body.zip,
+          $city: req.body.city,
+          $password: req.body.password
+        }
+    );
 
-  if (_.find(users, userScheme.userSearch)) {
-   return res.status(400).send("A user with that username already exists");
-  }
 
-  var profile = _.pick(req.body, userScheme.type, 'password', 'extra');
-  profile.id = _.max(users, 'id').id + 1;
+    db.get("SELECT * FROM user WHERE email = ?", [ req.body.email ], 
+      function(err, row)
+      {
+        jwt_token = createToken(row);
+        console.log("User object: " + row);
+        console.log("JWT Token: " + jwt_token);
 
-  users.push(profile);
-
-  res.status(201).send({
-    id_token: createToken(profile)
+        res.status(201).send({ id_token: jwt_token });
+      }
+    );
   });
 });
 
-app.post('/sessions/create', function(req, res) {
+app.post('/user/update', function(req, res) 
+{  
+  /**
+   * SQLite database
+   */
+  var db = new sqlite3.Database('database/devicer.sqlite');
 
-  var userScheme = getUserScheme(req);
+  db.serialize(function() 
+  {
+    db.run(
+      "UPDATE user " + 
+        "SET lastname=?, name=?, email=?, street=?, housenumber=?, zip=?, city=? " +
+      "WHERE id=?", 
+        [
+          req.body.lastname,
+          req.body.name,
+          req.body.email,
+          req.body.street,
+          req.body.housenumber,
+          req.body.zip,
+          req.body.city,
+          req.body.id
+        ]
+    );
 
-  if (!userScheme.username || !req.body.password) {
-    return res.status(400).send("You must send the username and the password");
-  }
 
-  var user = _.find(users, userScheme.userSearch);
-  
-  if (!user) {
-    return res.status(401).send("The username or password don't match");
-  }
+    db.get("SELECT * FROM user WHERE email = ?", [ req.body.email ], 
+      function(err, row)
+      {
+        jwt_token = createToken(row);
+        console.log("User object: " + row);
+        console.log("JWT Token: " + jwt_token);
 
-  if (user.password !== req.body.password) {
-    return res.status(401).send("The username or password don't match");
-  }
+        res.status(201).send({ id_token: jwt_token });
+      }
+    );
+  });
+});
 
-  res.status(201).send({
-    id_token: createToken(user)
+app.post('/user/delete', function(req, res) 
+{  
+  /**
+   * SQLite database
+   */
+  var db = new sqlite3.Database('database/devicer.sqlite');
+
+  db.serialize(function() 
+  {
+    db.run("DELETE FROM user WHERE id=?", req.body.id, 
+      function(err)
+      {
+        res.status(201).send({ message: "Profil wurde erfolgreich gelöscht." });
+      });
+  });
+});
+
+app.post('/sessions/create', function(req, res) 
+{
+  /**
+   * SQLite database
+   */
+  var db = new sqlite3.Database('database/devicer.sqlite');
+
+  db.serialize(function() 
+  {
+    db.get("SELECT * FROM user WHERE email = ?", [ req.body.email ], 
+      function(err, row)
+      {
+        jwt_token = createToken(row);
+        console.log("User object: " + row);
+        console.log("JWT Token: " + jwt_token);
+
+        res.status(201).send({ id_token: jwt_token });
+      }
+    );
   });
 });

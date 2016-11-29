@@ -7,13 +7,14 @@
 					<legend>Anmeldung</legend>
 
 					<div class="form-group">
-						<label for="deviceR-login_user">Benutzername</label>
+						<label for="deviceR-login_email">E-Mail Adresse</label>
 						<input
-							type="text"
+							type="email"
 							class="form-control"
-							id="deviceR-login_user"
-							v-model="credentials.username"
-							placeholder="Benutzername"
+							id="deviceR-login_email"
+							v-model="credentials.email"
+							placeholder="E-Mail Adresse"
+							required
 						>
 					</div>
 
@@ -24,7 +25,9 @@
 							class="form-control"
 							id="deviceR-login_password"
 							v-model="credentials.password"
-							placeholder="Passwort">
+							placeholder="Passwort"
+							required
+						>
 					</div>
 
 					<button class="btn btn-primary" @click="submit()">Anmelden</button>
@@ -46,7 +49,7 @@
 	  data () {
 	    return {
 	    	credentials: {
-	    		username: '',
+	    		email: '',
 	    		password: ''
 	    	},
 	    	error: '',
@@ -56,7 +59,7 @@
 	  methods: {
 	  	submit() {
 	  		var credentials = {
-	  			username: this.credentials.username,
+	  			email: this.credentials.email,
 	  			password: this.credentials.password
 	  		}
 

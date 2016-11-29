@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <delete-modal v-if="user.authenticated"></delete-modal>
     <navigation></navigation>
     <router-view></router-view>
   </div>
@@ -7,9 +8,11 @@
 
 <script>
 
+import auth from './auth'
 import Home from './components/Home'
 import Navigation from './components/Navigation'
 import Dashboard from './components/Dashboard'
+import DeleteProfileModal from './components/UserDeleteModal'
 import Bootstrap from './components/Bootstrap.vue'
 import Kontakt from './components/Kontakt'
 
@@ -20,9 +23,13 @@ export default {
     Home,
     Navigation,
     Dashboard,
+    'delete-modal': DeleteProfileModal,
     Bootstrap,
     Kontakt
-  }
+  },
+  data() {
+    return { user: auth.user }
+  },
 }
 </script>
 

@@ -3,8 +3,10 @@ import {router} from '../main'
 var os = require('os')
 
 const API_URL = 'http://' + os.hostname() + ':3001/'
-const LOGIN_URL = API_URL + 'authenticate/'
+const LOGIN_URL = API_URL + 'sessions/create/'
 const SIGNUP_URL = API_URL + 'users/'
+const UPDATE_URL = API_URL + 'user/update'
+const DELETE_URL = API_URL + 'user/delete'
 
 export default {
 	user: { authenticated: false },
@@ -21,7 +23,7 @@ export default {
 		context.$http.post(LOGIN_URL, creds).then((response) => {
 
 			localStorage.setItem('id_token', response.data.id_token)
-			localStorage.setItem('username', creds.username)
+			// localStorage.setItem('username', creds.username)
 
 			this.user.authenticated = true
 
@@ -46,8 +48,8 @@ export default {
 	{
 	    context.$http.post(SIGNUP_URL, creds).then((response) => {
 
+	    	console.log(response);
 			localStorage.setItem('id_token', response.data.id_token)
-			localStorage.setItem('username', creds.username)
 
 	      	this.user.authenticated = true
 
@@ -55,6 +57,52 @@ export default {
 			{
 				router.push(redirect)
 			}
+
+	    }, (err) => {
+	    	context.error = err
+	    })
+  	},
+
+
+  	/**
+	 * Method for user update
+	 *
+	 * @param      {object}  context   The context
+	 * @param      {json}  	 creds     The creds
+	 * @param      {string}  redirect  The redirect
+	 */
+	update(context, creds, redirect)
+	{
+	    context.$http.post(UPDATE_URL, creds).then((response) => {
+
+	    	console.log(response);
+			localStorage.setItem('id_token', response.data.id_token)
+
+	      	this.user.authenticated = true
+
+			if(redirect)
+			{
+				router.push(redirect)
+			}
+
+	    }, (err) => {
+	    	context.error = err
+	    })
+  	},
+
+  	/**
+	 * Method for user delete
+	 *
+	 * @param      {object}  context   The context
+	 * @param      {json}  	 creds     The creds
+	 * @param      {string}  redirect  The redirect
+	 */
+	delete(context, creds)
+	{
+	    context.$http.post(DELETE_URL, creds).then((response) => {
+
+	    	console.log(response.data.message);
+	    	this.logout()
 
 	    }, (err) => {
 	    	context.error = err
