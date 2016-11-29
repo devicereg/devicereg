@@ -6,48 +6,13 @@ var express = require('express'),
 
 var app = module.exports = express.Router();
 
-// XXX: This should be a database of users :).
-var users = [{
-  id: 1,
-  username: 'gonto',
-  password: 'gonto'
-}];
-
 function createToken(user) {
   return jwt.sign(_.omit(user, 'password'), config.secret, { expiresIn: 60*60*5 });
-}
-
-function getUserScheme(req) {
-  
-  var username;
-  var type;
-  var userSearch = {};
-
-  // The POST contains a username and not an email
-  if(req.body.username) {
-    username = req.body.username;
-    type = 'username';
-    userSearch = { username: username };
-  }
-  // The POST contains an email and not an username
-  else if(req.body.email) {
-    username = req.body.email;
-    type = 'email';
-    userSearch = { email: username };
-  }
-
-  return {
-    username: username,
-    type: type,
-    userSearch: userSearch
-  }
 }
 
 app.post('/users', function(req, res)
 {
   
-  var userScheme = getUserScheme(req);
-
   /**
    * SQLite database
    */
