@@ -13,7 +13,6 @@ var users = [{
   password: 'gonto'
 }];
 
-
 function createToken(user) {
   return jwt.sign(_.omit(user, 'password'), config.secret, { expiresIn: 60*60*5 });
 }
@@ -44,23 +43,23 @@ function getUserScheme(req) {
   }
 }
 
-app.post('/users', function(req, res) 
+app.post('/users', function(req, res)
 {
   
   var userScheme = getUserScheme(req);
-  
+
   /**
    * SQLite database
    */
   var db = new sqlite3.Database('database/devicer.sqlite');
 
-  db.serialize(function() 
+  db.serialize(function()
   {
     db.run(
-      "INSERT INTO user " + 
+      "INSERT INTO user " +
         "('id', 'lastname', 'name', 'email', 'street', 'housenumber', 'zip', 'city', 'password') " +
       "VALUES " +
-        "($id, $lastname, $name, $email, $street, $housenumber, $zip, $city, $password)", 
+        "($id, $lastname, $name, $email, $street, $housenumber, $zip, $city, $password)",
         {
           $id: null,
           $lastname: req.body.lastname,
@@ -75,7 +74,7 @@ app.post('/users', function(req, res)
     );
 
 
-    db.get("SELECT * FROM user WHERE email = ?", [ req.body.email ], 
+    db.get("SELECT * FROM user WHERE email = ?", [ req.body.email ],
       function(err, row)
       {
         jwt_token = createToken(row);
@@ -88,19 +87,19 @@ app.post('/users', function(req, res)
   });
 });
 
-app.post('/user/update', function(req, res) 
-{  
+app.post('/user/update', function(req, res)
+{
   /**
    * SQLite database
    */
   var db = new sqlite3.Database('database/devicer.sqlite');
 
-  db.serialize(function() 
+  db.serialize(function()
   {
     db.run(
-      "UPDATE user " + 
+      "UPDATE user " +
         "SET lastname=?, name=?, email=?, street=?, housenumber=?, zip=?, city=? " +
-      "WHERE id=?", 
+      "WHERE id=?",
         [
           req.body.lastname,
           req.body.name,
@@ -114,7 +113,7 @@ app.post('/user/update', function(req, res)
     );
 
 
-    db.get("SELECT * FROM user WHERE email = ?", [ req.body.email ], 
+    db.get("SELECT * FROM user WHERE email = ?", [ req.body.email ],
       function(err, row)
       {
         jwt_token = createToken(row);
@@ -127,16 +126,16 @@ app.post('/user/update', function(req, res)
   });
 });
 
-app.post('/user/delete', function(req, res) 
-{  
+app.post('/user/delete', function(req, res)
+{
   /**
    * SQLite database
    */
   var db = new sqlite3.Database('database/devicer.sqlite');
 
-  db.serialize(function() 
+  db.serialize(function()
   {
-    db.run("DELETE FROM user WHERE id=?", req.body.id, 
+    db.run("DELETE FROM user WHERE id=?", req.body.id,
       function(err)
       {
         res.status(201).send({ message: "Profil wurde erfolgreich gelöscht." });
@@ -144,16 +143,16 @@ app.post('/user/delete', function(req, res)
   });
 });
 
-app.post('/sessions/create', function(req, res) 
+app.post('/sessions/create', function(req, res)
 {
   /**
    * SQLite database
    */
   var db = new sqlite3.Database('database/devicer.sqlite');
 
-  db.serialize(function() 
+  db.serialize(function()
   {
-    db.get("SELECT * FROM user WHERE email = ?", [ req.body.email ], 
+    db.get("SELECT * FROM user WHERE email = ?", [ req.body.email ],
       function(err, row)
       {
         jwt_token = createToken(row);

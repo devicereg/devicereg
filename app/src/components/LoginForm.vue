@@ -3,9 +3,8 @@
 		<div class="row">
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
-				<form role="form" v-if="!user.authenticated">
+				<form class="form-horizontal" role="form" v-if="!user.authenticated">
 					<legend>Anmeldung</legend>
-
 					<div class="form-group">
 						<label for="deviceR-login_email">E-Mail Adresse</label>
 						<input
@@ -17,7 +16,6 @@
 							required
 						>
 					</div>
-
 					<div class="form-group">
 						<label for="deviceR-login_password">Passwort</label>
 						<input
@@ -29,10 +27,21 @@
 							required
 						>
 					</div>
+					<div class="form-group">
+						<div class="col-sm-offset-2 col-sm-10">
+							<div class="checkbox">
+								<label><input type="checkbox"> Angemeldet bleiben </label>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-offset-2 col-sm-10">
+							<button class="btn btn-primary" @click="submit()">Anmelden</button>
+							<router-link to="#"> | Passwort vergessen? </router-link>
+						</div>
+					</div>
 
-					<button class="btn btn-primary" @click="submit()">Anmelden</button>
 				</form>
-
 				<button class="btn btn-warning" @click="logout()" v-else>Abmelden</button>
 
 			</div>
