@@ -52,7 +52,7 @@
 
 <script>
 export default {
-  name: 'Kontakt',
+  name: 'Contakt',
   data () {
     return {
       selected: '0',

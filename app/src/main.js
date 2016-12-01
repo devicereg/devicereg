@@ -3,6 +3,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import VueResource from 'vue-resource'
+import jwt from 'jsonwebtoken'
 import App from './App'
 import auth from './auth'
 import Home from './components/Home'
@@ -13,6 +14,7 @@ import TermsOfUse from './components/TermsOfUse'
 import Impressum from './components/Impressum'
 import Warranty from './components/Warranty'
 import Datenschutz from './components/Datenschutz'
+import UserEdit from './components/UserEdit'
 
 
 Vue.use(VueRouter)
@@ -28,7 +30,8 @@ const routes = [
   {path: '/terms-of-use', component: TermsOfUse},
   {path: '/impressum', component: Impressum},
   {path: '/aktionsbedingungen', component: Warranty},
-  {path: '/datenschutz', component: Datenschutz}
+  {path: '/datenschutz', component: Datenschutz},
+  {path: '/edit-profile', component: UserEdit}
 ]
 
 export const router = new VueRouter({
@@ -39,13 +42,13 @@ export const router = new VueRouter({
 
 /* eslint-disable no-new */
 new Vue({
-    router,
-    el: '#app',
-    http:{
-      root: '/',
-      headers: {
-        Authorization: auth.getAuthHeader()
-      }
-    },
-    render: h => h(App)
+  router,
+  el: '#app',
+  http:{
+  	root: '/',
+  	headers: {
+  		Authorization: auth.getAuthHeader()
+  	}
+  },
+  render: h => h(App)
 })
