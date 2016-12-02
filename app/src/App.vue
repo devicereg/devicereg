@@ -44,19 +44,19 @@ export default {
 
 <style lang="scss">
   @import './styles/_colors';
+  $font-family-sans-serif: 'Source Sans Pro', 'Avenir', Helvetica, Arial, sans-serif;
 
   body {
     background: $body-background;
   }
 
   #app {
-    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    font-family: $font-family-sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
     color: #2c3e50;
-    margin-top: 85px;
-    margin-bottom: 85px;
+    margin: 85px 0;
     background: $body-background;
   }
 
@@ -75,6 +75,6 @@ export default {
   }
 
   a {
-      color: #42b983;
+      color: $primary-link-color;
   }
 </style>
