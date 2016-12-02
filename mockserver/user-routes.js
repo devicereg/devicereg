@@ -23,11 +23,11 @@ app.post('/users', function(req, res)
         "($id, $lastname, $name, $email, $street, $housenumber, $zip, $city, $password)",
         {
           $id: null,
-          $lastname: req.body.lastname,
-          $name: req.body.name,
+          $lastname: req.body.surname,
+          $name: req.body.prename,
           $email: req.body.email,
           $street: req.body.street,
-          $housenumber: req.body.housenumber,
+          $housenumber: req.body.number,
           $zip: req.body.zip,
           $city: req.body.city,
           $password: req.body.password
@@ -104,7 +104,7 @@ app.post('/sessions/create', function(req, res)
 
   db.serialize(function()
   {
-    db.get("SELECT * FROM user WHERE email = ?", [ req.body.email ],
+    db.get("SELECT * FROM user WHERE email = ? AND password = ?", [ req.body.email, req.body.password ],
       function(err, row)
       {
         if(typeof row != 'undefined')
