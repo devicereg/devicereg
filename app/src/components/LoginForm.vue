@@ -20,14 +20,14 @@
 				<form class="form-horizontal" role="form" v-if="!user.authenticated">
 					<legend>Anmeldung</legend>
 					<div class="form-group">
-						<label class="control-label col-sm-2" for="deviceR-login_email">
+						<label class="control-label col-sm-2" for="login_email">
 							<img src="../assets/u10.png">
 						</label>
 						<div class="col-sm-10">
 							<input
 								type="email"
 								class="form-control"
-								id="deviceR-login_email"
+								id="login_email"
 								v-model="credentials.email"
 								placeholder="E-Mail Adresse"
 								required
@@ -35,14 +35,14 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="control-label col-sm-2" for="deviceR-login_password">
+						<label class="control-label col-sm-2" for="login_password">
 							<img src="../assets/u12.png">
 						</label>
 						<div class="col-sm-10">
 							<input
 								type="password"
 								class="form-control"
-								id="deviceR-login_password"
+								id="login_password"
 								v-model="credentials.password"
 								placeholder="Passwort"
 								required
