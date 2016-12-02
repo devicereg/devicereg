@@ -321,16 +321,10 @@
     }
 
 		.row {
-			legend {
+			legend,
+      .form-group,
+      .form-check {
 				text-align: left
-			}
-
-			.form-group {
-				text-align: left;
-			}
-
-			.form-check {
-				text-align: left;
 			}
 		}
   }
