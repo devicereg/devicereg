@@ -28,12 +28,11 @@ export default {
     AppFooter,
     Dashboard,
     Bootstrap,
-    Translations,
-    DeviceRegForm,
     Contact,
     TermsOfUse,
     Impressum,
-    Translations
+    Translations,
+    DeviceRegForm,
   }
 }
 </script>
