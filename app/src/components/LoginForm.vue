@@ -20,27 +20,34 @@
 				<form class="form-horizontal" role="form" v-if="!user.authenticated">
 					<legend>Anmeldung</legend>
 					<div class="form-group">
-						<label for="deviceR-login_email">E-Mail Adresse</label>
-						<input
-							type="email"
-							class="form-control"
-							id="deviceR-login_email"
-							v-model="credentials.email"
-							placeholder="E-Mail Adresse"
-							required
-						>
+						<label class="control-label col-sm-2" for="deviceR-login_email">
+							<img src="../assets/u10.png">
+						</label>
+						<div class="col-sm-10">
+							<input
+								type="email"
+								class="form-control"
+								id="deviceR-login_email"
+								v-model="credentials.email"
+								placeholder="E-Mail Adresse"
+								required
+							>
+						</div>
 					</div>
 					<div class="form-group">
-						<label for="deviceR-login_password">Passwort</label>
-						<input
-							type="password"
-							class="form-control"
-							id="deviceR-login_password"
-							v-model="credentials.password"
-							placeholder="Passwort"
-							required
-						>
-					</div>
+						<label class="control-label col-sm-2" for="deviceR-login_password">
+							<img src="../assets/u12.png">
+						</label>
+						<div class="col-sm-10">
+							<input
+								type="password"
+								class="form-control"
+								id="deviceR-login_password"
+								v-model="credentials.password"
+								placeholder="Passwort"
+								required
+							>
+						</div>
 					<div class="form-group">
 						<div class="col-sm-offset-2 col-sm-10">
 							<div class="checkbox">
