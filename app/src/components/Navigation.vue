@@ -35,8 +35,6 @@
 
 import auth from '../auth'
 
-console.log(localStorage.getItem('username'))
-
 export default {
   name: 'navigation',
   data() {
@@ -79,8 +77,6 @@ export default {
           }
         }
       }
-
-
     }
   }
 </style>

@@ -4,7 +4,8 @@ var logger          = require('morgan'),
     express         = require('express'),
     errorhandler    = require('errorhandler'),
     dotenv          = require('dotenv'),
-    bodyParser      = require('body-parser');
+    bodyParser      = require('body-parser'),
+    sqlite3         = require('sqlite3').verbose();
 
 var app = express();
 
@@ -36,6 +37,7 @@ app.use(require('./protected-routes'));
 app.use(require('./user-routes'));
 
 var port = process.env.PORT || 3001;
+
 
 http.createServer(app).listen(port, function (err) {
   console.log('listening in http://localhost:' + port);
