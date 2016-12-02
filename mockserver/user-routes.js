@@ -107,11 +107,21 @@ app.post('/sessions/create', function(req, res)
     db.get("SELECT * FROM user WHERE email = ?", [ req.body.email ],
       function(err, row)
       {
-        jwt_token = createToken(row);
-        console.log("User object: " + row);
-        console.log("JWT Token: " + jwt_token);
+        if(typeof row != 'undefined')
+        {
+          jwt_token = createToken(row);
+          console.log("User object: " + row);
+          console.log("JWT Token: " + jwt_token);
 
-        res.status(201).send({ id_token: jwt_token });
+          res.status(201).send({ id_token: jwt_token });
+        }
+        else
+        {
+          res.status(401).send(
+          { 
+            message: "Der Benutzer mit der E-Mail Adresse '" + req.body.email + "' konnte nicht gefunden werden." 
+          });
+        }
       }
     );
   });

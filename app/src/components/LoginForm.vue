@@ -3,6 +3,20 @@
 		<div class="row">
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
+				<div class="alert alert-danger" v-if="error">
+					<button 
+						type="button" 
+						class="close" 
+						data-dismiss="alert" 
+						aria-hidden="true"
+					>
+						&times;
+					</button>
+
+					<p><strong>Anmeldung Fehlgeschlagen!</strong></p>
+					<p>{{ error }}</p>
+				</div>
+
 				<form class="form-horizontal" role="form" v-if="!user.authenticated">
 					<legend>Anmeldung</legend>
 					<div class="form-group">
