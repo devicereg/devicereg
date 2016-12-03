@@ -1,19 +1,13 @@
 <template>
 	<div class="login-form">
 		<div class="row">
-			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			<div class="col-xs-12">
 
 				<div class="alert alert-danger" v-if="error">
-					<button 
-						type="button" 
-						class="close" 
-						data-dismiss="alert" 
-						aria-hidden="true"
-					>
-						&times;
-					</button>
-
-					<p><strong>Anmeldung Fehlgeschlagen!</strong></p>
+					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+					<p>
+            <strong>Anmeldung Fehlgeschlagen!</strong>
+          </p>
 					<p>{{ error }}</p>
 				</div>
 
@@ -48,11 +42,11 @@
 								required
 							>
 						</div>
+          </div>
 					<div class="form-group">
-						<div class="col-sm-offset-2 col-sm-10">
-							<div class="checkbox">
-								<label><input type="checkbox"> Angemeldet bleiben </label>
-							</div>
+						<div class="col-sm-10 col-sm-offset-2">
+              <input type="checkbox" id="stay-logged-in">
+              <label for="stay-logged-in">Angemeldet bleiben</label>
 						</div>
 					</div>
 					<div class="form-group">
@@ -61,17 +55,15 @@
 							<router-link to="#"> | Passwort vergessen? </router-link>
 						</div>
 					</div>
-
 				</form>
-				<button class="btn btn-warning" @click="logout()" v-else>Abmelden</button>
 
+				<button class="btn btn-warning" @click="logout()" v-else>Abmelden</button>
 			</div>
 		</div>
 	</div>
 </template>
 
 <script>
-
 	import auth from '../auth'
 
 	export default {
