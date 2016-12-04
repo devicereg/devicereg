@@ -2,18 +2,10 @@
   <footer class="footer">
     <div class="container">
       <ul class="nav navbar-nav">
-        <li>
-          <router-link to="/datenschutz">Datenschutz</router-link>
-        </li>
-        <li>
-          <router-link to="/terms-of-use">Nutzungsbedingungen</router-link>
-        </li>
-        <li>
-          <router-link to="/impressum">Impressum</router-link>
-        </li>
-        <li>
-          <router-link to="/aktionsbedingungen">Aktionsbedingungen</router-link>
-        </li>
+        <li><router-link to="/datenschutz">Datenschutz</router-link></li>
+        <li><router-link to="/terms-of-use">Nutzungsbedingungen</router-link></li>
+        <li><router-link to="/impressum">Impressum</router-link></li>
+        <li><router-link to="/aktionsbedingungen">Aktionsbedingungen</router-link></li>
       </ul>
     </div>
   </footer>

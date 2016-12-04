@@ -3,7 +3,7 @@
 		<div class="row">
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 				<div>
-					<h1>Welcome {{ username }}</h1>
+					<h1>Welcome {{ user.name }} {{ user.lastname }}</h1>
 					<h2>This is your Dashboard</h2>
 				</div>
 			</div>
@@ -13,12 +13,13 @@
 
 <script>
 	import auth from '../auth'
+	import jwt from 'jsonwebtoken'
 
 	export default {
 	  name: 'dashboard',
 	  data () {
 	    return {
-	    	username: localStorage.getItem('username')
+	    	user: jwt.verify(localStorage.getItem('id_token'), 'DeviceR rocks as well!')
 	    }
 	  }
 	}

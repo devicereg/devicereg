@@ -184,7 +184,7 @@
               <label for="register_user">{{$t("RegistrationForm.user")}}</label>
             </div>
             <div class="col-md-4">
-              <input type="email" class="form-control" id="register_user" v-model="credentials.username" required>
+              <input type="email" class="form-control" id="register_user" v-model="credentials.email" required>
             </div>
           </div>
 					<div class="form-group row">
@@ -273,7 +273,7 @@
 					zip: '',
 					city: '',
 					country: '',
-	    		username: '',
+	    		email: '',
 	    		password: '',
 					question: '',
 					answer: '',
@@ -298,7 +298,7 @@
 					zip: this.credentials.zip,
 					city: this.credentials.city,
 					country: this.credentials.country,
-	  			username: this.credentials.username,
+	  			email: this.credentials.email,
 	  			password: this.credentials.password,
 					question: this.credentials.question,
 					answer: this.credentials.answer,
@@ -321,16 +321,10 @@
     }
 
 		.row {
-			legend {
+			legend,
+      .form-group,
+      .form-check {
 				text-align: left
-			}
-
-			.form-group {
-				text-align: left;
-			}
-
-			.form-check {
-				text-align: left;
 			}
 		}
   }
