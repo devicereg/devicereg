@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <delete-modal v-if="user.authenticated"></delete-modal>
     <navigation></navigation>
     <router-view></router-view>
     <app-footer></app-footer>
@@ -8,6 +9,7 @@
 
 <script>
 
+import auth from './auth'
 import Home from './components/Home'
 import Navigation from './components/Navigation'
 import AppFooter from './components/AppFooter'
@@ -18,6 +20,7 @@ import TermsOfUse from './components/TermsOfUse'
 import Impressum from './components/Impressum'
 import Translations from './components/Translations'
 import DeviceRegForm from './components/DeviceRegForm'
+import DeleteProfileModal from './components/UserDeleteModal'
 
 
 export default {
@@ -27,32 +30,40 @@ export default {
     Navigation,
     AppFooter,
     Dashboard,
+    'delete-modal': DeleteProfileModal,
     Bootstrap,
     Contact,
     TermsOfUse,
     Impressum,
     Translations,
+<<<<<<< HEAD
     DeviceRegForm,
   }
+=======
+  },
+  data() {
+    return { user: auth.user }
+  },
+>>>>>>> master
 }
 </script>
 
 <style lang="scss">
   @import './styles/_colors';
+  $font-family-sans-serif: 'Source Sans Pro', 'Avenir', Helvetica, Arial, sans-serif;
 
-  html {
-    background: $background;
+  body {
+    background: $body-background;
   }
 
   #app {
-    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    font-family: $font-family-sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
     color: #2c3e50;
-    margin-top: 85px;
-    margin-bottom: 85px;
-    background: $background;
+    margin: 85px 0;
+    background: $body-background;
   }
 
   h1, h2 {
@@ -70,6 +81,6 @@ export default {
   }
 
   a {
-      color: #42b983;
+      color: $primary-link-color;
   }
 </style>

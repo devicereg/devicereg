@@ -1,3 +1,25 @@
+Table of Contents
+========================
+* [DeviceR - a VueJS app](#express-app-with-vuejs-and-nodemon-server)
+    * [Prerequisites](#prerequisites)
+        * [Install Docker on your system](#install-docker-on-your-system)
+        * [Install Docker Compose on your system](#install-docker-compose-on-your-system)
+        * [Create a Docker Machine](#create-a-docker-machine)
+    * [Setup](#setup)
+    * [Start](#start)
+* [End-to-End Testing with the Robot Framework](#end-to-end-testing-with-the-robot-framework)
+    * [Prerequisites](#prerequisites-1)
+        * [Install Firefox or/and Google Chrome](#install-firefox-orand-google-chrome)
+        * [Initialize a virtual environment (OPTIONAL)](#initialize-a-virtual-environment-optional)
+        * [Install Python 2.7... (pip inclusive)](#install-python-27-pip-inclusive)
+        * [Install Selenium](#install-selenium)
+        * [Install WebDrivers](#install-webdrivers)
+        * [Install Robot Framework](#install-robot-framework)
+        * [Install Selenium2Library](#install-selenium2library)
+    * [Run tests](#run-tests)
+        * [Running robot tests](#running-robot-tests)
+        * [View reports and log files](#view-reports-and-log-files)
+
 # Express app with Vue.js and nodemon server
 
 Use [nodemon's](https://github.com/remy/nodemon) legacy mode to monitor file changes in your container. The app will restart, if you change any **.vue**, **.js**, **.json** or **.hjs** file.
@@ -44,7 +66,7 @@ Run `docker-compose build`. It will
 
 ## Start
 
-Run `docker-compose up` to create and start the container. The app should then be running on your docker daemon on port 80, port 8080 on the host machine (On OS X you can use `docker-machine ip` to find out the IP address).
+Run `docker-compose up -d` to create and start the container. The app should then be running on your docker daemon on port 80, port 8080 on the host machine (On OS X you can use `docker-machine ip` to find out the IP address).
 
 # End-to-End Testing with the Robot Framework
 
