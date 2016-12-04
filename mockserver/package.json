@@ -30,10 +30,7 @@
     "express-jwt": "^0.3.1",
     "jsonwebtoken": "^5.0.1",
     "lodash": "^2.4.1",
-<<<<<<< HEAD
     "morgan": "^1.2.3",
-=======
     "sqlite3": "^3.1.8"
->>>>>>> ed53e093b38be6f98badde205f6d9fe53da5e699
   }
 }

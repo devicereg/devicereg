@@ -14,8 +14,8 @@ import TermsOfUse from './components/TermsOfUse'
 import Impressum from './components/Impressum'
 import Warranty from './components/Warranty'
 import Datenschutz from './components/Datenschutz'
-import DeviceRegForm from './components/DeviceRegForm'
 import UserEdit from './components/UserEdit'
+import DeviceRegForm from './components/DeviceRegForm'
 
 
 Vue.use(VueRouter)
