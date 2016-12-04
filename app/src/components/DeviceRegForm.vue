@@ -165,7 +165,9 @@
       </div>
     </form>
   </div>
+
 </template>
+
 <script>
 export default {
   name: 'devreg',
@@ -220,6 +222,7 @@ export default {
         calibrationMsg: this.device.calibrationMsg,
         cBeginning: this.device.cBeginning
       }
+
       this.$http.post('~/api/user/device', {device},function() {
         window.location.replace("/");
       });
