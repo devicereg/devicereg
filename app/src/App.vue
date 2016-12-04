@@ -22,7 +22,6 @@ import Translations from './components/Translations'
 import DeviceRegForm from './components/DeviceRegForm'
 import DeleteProfileModal from './components/UserDeleteModal'
 
-
 export default {
   name: 'app',
   components: {
@@ -37,7 +36,6 @@ export default {
     Impressum,
     Translations,
     DeviceRegForm,
-    Translations,
   },
   data() {
     return { user: auth.user }
