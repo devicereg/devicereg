@@ -36,15 +36,12 @@ export default {
     TermsOfUse,
     Impressum,
     Translations,
-<<<<<<< HEAD
     DeviceRegForm,
   }
-=======
   },
   data() {
     return { user: auth.user }
   },
->>>>>>> master
 }
 </script>
 

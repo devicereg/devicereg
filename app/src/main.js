@@ -32,11 +32,8 @@ const routes = [
   {path: '/impressum', component: Impressum},
   {path: '/aktionsbedingungen', component: Warranty},
   {path: '/datenschutz', component: Datenschutz},
-<<<<<<< HEAD
   {path: '/gerät_registrieren', component: DeviceRegForm}
-=======
   {path: '/edit-profile', component: UserEdit}
->>>>>>> master
 ]
 
 export const router = new VueRouter({
