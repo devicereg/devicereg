@@ -190,21 +190,21 @@ export default {
         cBeginning: '' //start date of recieving notifications about calibration schedules
       },
       categories: [
-        {name: 'Cat1'},
-        {name: 'Cat2'}
+        {id: 1, name: 'Durchfluss'}
       ],
       technologies: [
-        {name: 'Rotamass'},
-        {name: 'Flowmeter'}
+        {id: 1, name: 'Rotamass'},
+        {id: 2, name: 'Flowmeter'}
       ],
       customCat: '', //boolean, if true can create own category
       procmedia: [
-        {name: 'H2O'}
+        {id: 1, name: 'Wasser'},
+        {id: 2, name: 'Argon'},
+        {id: 3, name: 'Benzol'}
       ]
     }
   },
   methods: {
-
     submit() {
       var device = {
         technology: this.device.technology,
