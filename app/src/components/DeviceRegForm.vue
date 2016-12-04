@@ -190,17 +190,17 @@ export default {
         cBeginning: '' //start date of recieving notifications about calibration schedules
       },
       categories: [
-        {id: '1', name: 'Durchfluss'}
+        {id: 1, name: 'Durchfluss'}
       ],
       technologies: [
-        {id: '1', name: 'Rotamass'},
-        {id: '2', name: 'Flowmeter'}
+        {id: 1, name: 'Rotamass'},
+        {id: 2, name: 'Flowmeter'}
       ],
       customCat: '', //boolean, if true can create own category
       procmedia: [
-        {id: '1', name: 'Wasser'},
-        {id: '2', name: 'Argon'},
-        {id: '3', name: 'Benzol'}
+        {id: 1, name: 'Wasser'},
+        {id: 2, name: 'Argon'},
+        {id: 3, name: 'Benzol'}
       ]
     }
   },
