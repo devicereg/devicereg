@@ -13,10 +13,10 @@
 				<form role="form">
 					<legend>{{$t("RegistrationForm.personal_details")}}</legend>
 					<div class="form-group row">
-            <div class="col-sm-3 control-label">
+            <div class="col-sm-4 control-label">
               <label for="register_gender">{{$t("RegistrationForm.gender")}}</label>
             </div>
-            <div class="col-sm-5">
+            <div class="col-sm-4">
               <select
                 class="form-control"
                 id="register_gender"
