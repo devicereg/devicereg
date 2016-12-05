@@ -3,14 +3,16 @@
   <div id="devreg" class="container-fluid col-sm-offset-2 col-sm-8">
     <div class="row text-left">
         <h2>{{$t("DeviceRegForm.title")}}</h2>
-    </div><br>
+    </div>
+    <br>
     <form>
       <div class="row">
         <div class="col-sm-10 col-sm-offset-1 text-left">
           <h3>{{$t("DeviceRegForm.categorization")}}</h3>
         </div>
       </div>
-      <hr><br>
+      <hr>
+      <br>
       <div class="row">
         <div class="col-sm-2 col-sm-offset-1 text-left">
           <label for="technology">{{$t("DeviceRegForm.technology")}}:</label>
@@ -31,7 +33,7 @@
             <option v-bind:value="item" v-for="item in categories">{{item.name}}</option>
           </select>
         </div>
-        <div class="col-sm-2" id="checkCat">
+        <div class="col-sm-2 checkCat">
           <input type="checkbox" v-model="customCat"> {{$t("DeviceRegForm.custom")}}
         </div>
       </div>
@@ -41,7 +43,8 @@
           <h3>{{$t("DeviceRegForm.description_data")}}</h3>
         </div>
       </div>
-      <hr><br>
+      <hr>
+      <br>
       <div class="row">
         <div class="col-sm-2 col-sm-offset-1 text-left">
           <label for="serialnumber">{{$t("DeviceRegForm.serial_number")}}:</label>
@@ -81,7 +84,7 @@
           <label for="comment">{{$t("DeviceRegForm.comment")}}:</label>
         </div>
         <div class="col-sm-4 col-sm-offset-1">
-          <textarea class="form-control" cols="40" rows="5" id="comment" v-model="device.comment">
+          <textarea class="form-control" cols="40" rows="5" id="comment" v-model="device.comment"></textarea>
         </div>
       </div>
       <br>
@@ -90,7 +93,8 @@
           <h3>{{$t("DeviceRegForm.maintenance_and_calibration")}}</h3>
         </div>
       </div>
-      <hr><br>
+      <hr>
+      <br>
       <div class="row">
         <div class="col-sm-1 col-sm-offset-1 text-left">
           <label for="maintenance">{{$t("DeviceRegForm.maintenance")}}:</label>
@@ -157,10 +161,10 @@
       </div>
       <div class="row" style="margin-bottom: 100px; margin-top:50px;">
         <div class="col-sm-3 col-sm-offset-1">
-          <button class="btn-block btn-lg btn-primary" id="btn-custom" @click="submit()">{{$t("save")}}</button>
+          <button class="btn-block btn-lg btn-primary btn-custom" @click="submit()">{{$t("save")}}</button>
         </div>
         <div class="col-sm-3 col-sm-offset-3">
-          <button class="btn-block btn-lg btn-primary" id="btn-custom">{{$t("cancel")}}</button>
+          <button class="btn-block btn-lg btn-primary btn-custom">{{$t("cancel")}}</button>
         </div>
       </div>
     </form>
@@ -230,21 +234,20 @@ export default {
   }
 }
 </script>
-<style>
-#form-row{
-  margin-top: 15px;
-  margin-bottom: 15px;
-}
-#checkCat{
-  padding-top: 8px;
-}
-#btn-custom{
-  background-color: #3b5b71;
-  color: white;
-}
-#btn-custom:hover{
-  background-color: white;
-  color: #3b5b71;
-}
+<style lang="scss">
+  @import '../styles/_colors';
 
+  .checkCat {
+    padding-top: 8px;
+  }
+
+  .btn-custom {
+    background-color: $btn-primary-bg;
+    color: transparent;
+  }
+
+  .btn-custom:hover {
+    background-color: transparent;
+    color: $btn-primary-bg;
+  }
 </style>
