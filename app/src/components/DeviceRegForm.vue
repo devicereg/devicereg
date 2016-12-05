@@ -11,7 +11,7 @@
         </div>
       </div>
       <hr><br>
-      <div class="row" id="form-row">
+      <div class="row">
         <div class="col-sm-2 col-sm-offset-1 text-left">
           <label for="technology">{{$t("DeviceRegForm.technology")}}:</label>
         </div>
@@ -21,7 +21,7 @@
           </select>
         </div>
       </div>
-      <div class="row" id="form-row">
+      <div class="row">
         <div class="col-sm-2 col-sm-offset-1 text-left">
           <label for="category" class="control-label">{{$t("DeviceRegForm.category")}}:</label>
         </div>
@@ -36,13 +36,13 @@
         </div>
       </div>
       <br>
-      <div class="row" id="form-row">
+      <div class="row">
         <div class="col-sm-10 col-sm-offset-1 text-left">
           <h3>{{$t("DeviceRegForm.description_data")}}</h3>
         </div>
       </div>
       <hr><br>
-      <div class="row" id="form-row">
+      <div class="row">
         <div class="col-sm-2 col-sm-offset-1 text-left">
           <label for="serialnumber">{{$t("DeviceRegForm.serial_number")}}:</label>
         </div>
@@ -50,7 +50,7 @@
           <input type="text" class="form-control" id="serialnumber" v-model="device.serialnumber" required pattern="[A-Z]{1}[0-9]{8}">
         </div>
       </div>
-      <div class="row" id="form-row">
+      <div class="row">
         <div class="col-sm-2 col-sm-offset-1 text-left">
           <label for="devicelabel">{{$t("DeviceRegForm.label")}}:</label>
         </div>
@@ -58,7 +58,7 @@
           <input type="text" class="form-control" id="devicelabel" v-model="device.devicelabel" required>
         </div>
       </div>
-      <div class="row" id="form-row">
+      <div class="row">
         <div class="col-sm-2 col-sm-offset-1 text-left">
           <label for="procmedium">{{$t("DeviceRegForm.process_fluid")}}:</label>
         </div>
@@ -68,7 +68,7 @@
           </select>
         </div>
       </div>
-      <div class="row" id="form-row">
+      <div class="row">
         <div class="col-sm-2 col-sm-offset-1 text-left">
           <label for="tag">{{$t("DeviceRegForm.tag_number")}}:</label>
         </div>
@@ -76,7 +76,7 @@
           <input type="number" class="form-control" id="tag" v-model="device.tagnumber" required>
         </div>
       </div>
-      <div class="row" id="form-row">
+      <div class="row">
         <div class="col-sm-2 col-sm-offset-1 text-left">
           <label for="comment">{{$t("DeviceRegForm.comment")}}:</label>
         </div>
@@ -91,7 +91,7 @@
         </div>
       </div>
       <hr><br>
-      <div class="row" id="form-row">
+      <div class="row">
         <div class="col-sm-1 col-sm-offset-1 text-left">
           <label for="maintenance">{{$t("DeviceRegForm.maintenance")}}:</label>
         </div>
@@ -109,7 +109,7 @@
           </select>
         </div>
       </div>
-      <div class="row" id="form-row">
+      <div class="row">
         <div class="col-sm-1 col-sm-offset-1 text-left">
           <label for="maintenanceMsg">{{$t("DeviceRegForm.notification")}}:</label>
         </div>
@@ -123,7 +123,7 @@
           <input type="date" class="form-control" id="mBeginning" v-model="device.mBeginning" :disabled="!device.maintenanceMsg" :required="device.maintenanceMsg">
         </div>
       </div>
-      <div class="row" id="form-row">
+      <div class="row">
         <div class="col-sm-1 col-sm-offset-1 text-left">
           <label for="calibration">{{$t("DeviceRegForm.calibration")}}:</label>
         </div>
@@ -141,7 +141,7 @@
           </select>
         </div>
       </div>
-      <div class="row" id="form-row">
+      <div class="row">
         <div class="col-sm-1 col-sm-offset-1 text-left">
           <label for="calibrationMsg">{{$t("DeviceRegForm.notification")}}:</label>
         </div>
