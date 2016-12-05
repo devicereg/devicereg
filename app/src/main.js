@@ -15,6 +15,7 @@ import Impressum from './components/Impressum'
 import Warranty from './components/Warranty'
 import Datenschutz from './components/Datenschutz'
 import UserEdit from './components/UserEdit'
+import MyDevices from './components/MyDevices'
 
 
 Vue.use(VueRouter)
@@ -31,6 +32,7 @@ const routes = [
   {path: '/impressum', component: Impressum},
   {path: '/aktionsbedingungen', component: Warranty},
   {path: '/datenschutz', component: Datenschutz},
+  {path: '/my-devices', component: MyDevices},
   {path: '/edit-profile', component: UserEdit}
 ]
 

@@ -20,6 +20,7 @@ import TermsOfUse from './components/TermsOfUse'
 import Impressum from './components/Impressum'
 import Translations from './components/Translations'
 import DeleteProfileModal from './components/UserDeleteModal'
+import MyDevices from './components/MyDevices'
 
 
 export default {
@@ -35,6 +36,7 @@ export default {
     TermsOfUse,
     Impressum,
     Translations,
+    MyDevices
   },
   data() {
     return { user: auth.user }
