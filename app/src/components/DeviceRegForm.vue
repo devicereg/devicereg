@@ -173,6 +173,8 @@
 </template>
 
 <script>
+import auth from '../auth'
+
 export default {
   name: 'devreg',
   data () {
@@ -227,9 +229,7 @@ export default {
         cBeginning: this.device.cBeginning
       }
 
-      this.$http.post('~/api/user/device', {device},function() {
-        window.location.replace("/");
-      });
+      auth.createDevice(this, device, '/dashboard');
     }
   }
 }

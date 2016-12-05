@@ -135,5 +135,19 @@ export default {
 	getAuthHeader()
 	{
 		return { 'Authorization': 'Bearer' + localStorage.getItem('id_token') }
-	}
+	},
+
+	createDevice(context, data, redirect)
+  {
+    context.$http.post(CREATE_DEVICE_URL, data).then((response) => {
+
+      if(redirect)
+      {
+        router.push(redirect)
+      }
+
+    }, (err) => {
+      context.error = err
+    });
+  }
 }
