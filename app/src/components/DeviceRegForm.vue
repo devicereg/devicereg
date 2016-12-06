@@ -1,170 +1,175 @@
-
 <template>
   <div id="devreg" class="container-fluid col-sm-offset-2 col-sm-8">
     <div class="row text-left">
-        <h2>{{$t("DeviceRegForm.title")}}</h2>
+      <h2 class="col-sm-12">{{$t("DeviceRegForm.title")}}</h2>
     </div>
     <br>
     <form>
-      <div class="row">
-        <div class="col-sm-10 col-sm-offset-1 text-left">
-          <h3>{{$t("DeviceRegForm.categorization")}}</h3>
+      <div class="form-group row">
+        <div class="col-sm-10  text-left">
+          <legend>{{$t("DeviceRegForm.categorization")}}</legend>
         </div>
       </div>
-      <hr>
-      <br>
-      <div class="row">
-        <div class="col-sm-2 col-sm-offset-1 text-left">
-          <label for="technology">{{$t("DeviceRegForm.technology")}}:</label>
+      <div class="form-group row">
+        <div class="col-sm-4  text-left">
+          <label class="control-label" for="technology">{{$t("DeviceRegForm.technology")}}:</label>
         </div>
-        <div class="col-sm-4 col-sm-offset-1">
+        <div class="col-sm-4 ">
           <select class="form-control" id="technology" v-model="device.technology" required>
             <option v-bind:value="item" v-for="item in technologies">{{item.name}}</option>
           </select>
         </div>
       </div>
-      <div class="row">
-        <div class="col-sm-2 col-sm-offset-1 text-left">
-          <label for="category" class="control-label">{{$t("DeviceRegForm.category")}}:</label>
+      <div class="form-group row">
+        <div class="col-sm-2  text-left">
+          <label class="control-label" for="category">{{$t("DeviceRegForm.category")}}:</label>
         </div>
-        <div class="col-sm-4 col-sm-offset-1">
+        <div class="col-sm-2 checkCat">
+          <div class="pull-right">
+            <input type="checkbox" v-model="customCat"> {{$t("DeviceRegForm.custom")}}
+          </div>
+        </div>
+        <div class="col-sm-4 ">
           <input type="text" class="form-control" id="category" v-model="device.category" v-if="customCat" required>
           <select class="form-control" id="category" required v-model="device.category" v-else>
             <option v-bind:value="item" v-for="item in categories">{{item.name}}</option>
           </select>
         </div>
-        <div class="col-sm-2 checkCat">
-          <input type="checkbox" v-model="customCat"> {{$t("DeviceRegForm.custom")}}
-        </div>
       </div>
       <br>
-      <div class="row">
-        <div class="col-sm-10 col-sm-offset-1 text-left">
-          <h3>{{$t("DeviceRegForm.description_data")}}</h3>
+      <div class="form-group row">
+        <div class="col-sm-10  text-left">
+          <legend>{{$t("DeviceRegForm.description_data")}}</legend>
         </div>
       </div>
-      <hr>
-      <br>
-      <div class="row">
-        <div class="col-sm-2 col-sm-offset-1 text-left">
-          <label for="serialnumber">{{$t("DeviceRegForm.serial_number")}}:</label>
+      <div class="form-group row">
+        <div class="col-sm-4  text-left">
+          <label class="control-label" for="serialnumber">{{$t("DeviceRegForm.serial_number")}}:</label>
         </div>
-        <div class="col-sm-4 col-sm-offset-1">
-          <input type="text" class="form-control" id="serialnumber" v-model="device.serialnumber" required pattern="[A-Z]{1}[0-9]{8}">
+        <div class="col-sm-4 ">
+          <input type="text" class="form-control" id="serialnumber" v-model="device.serialnumber" required
+                 pattern="[A-Z]{1}[0-9]{8}">
         </div>
       </div>
-      <div class="row">
-        <div class="col-sm-2 col-sm-offset-1 text-left">
-          <label for="devicelabel">{{$t("DeviceRegForm.label")}}:</label>
+      <div class="form-group row">
+        <div class="col-sm-4  text-left">
+          <label class="control-label" for="devicelabel">{{$t("DeviceRegForm.label")}}:</label>
         </div>
-        <div class="col-sm-4 col-sm-offset-1">
+        <div class="col-sm-4 ">
           <input type="text" class="form-control" id="devicelabel" v-model="device.devicelabel" required>
         </div>
       </div>
-      <div class="row">
-        <div class="col-sm-2 col-sm-offset-1 text-left">
-          <label for="procmedium">{{$t("DeviceRegForm.process_fluid")}}:</label>
+      <div class="form-group row">
+        <div class="col-sm-4  text-left">
+          <label class="control-label" for="procmedium">{{$t("DeviceRegForm.process_fluid")}}:</label>
         </div>
-        <div class="col-sm-4 col-sm-offset-1">
+        <div class="col-sm-4 ">
           <select class="form-control" id="procmedium" v-model="device.procmedium" required>
             <option v-bind:value="item" v-for="item in procmedia">{{item.name}}</option>
           </select>
         </div>
       </div>
-      <div class="row">
-        <div class="col-sm-2 col-sm-offset-1 text-left">
-          <label for="tag">{{$t("DeviceRegForm.tag_number")}}:</label>
+      <div class="form-group row">
+        <div class="col-sm-4  text-left">
+          <label class="control-label" for="tag">{{$t("DeviceRegForm.tag_number")}}:</label>
         </div>
-        <div class="col-sm-4 col-sm-offset-1">
+        <div class="col-sm-4 ">
           <input type="number" class="form-control" id="tag" v-model="device.tagnumber" required>
         </div>
       </div>
-      <div class="row">
-        <div class="col-sm-2 col-sm-offset-1 text-left">
-          <label for="comment">{{$t("DeviceRegForm.comment")}}:</label>
+      <div class="form-group row">
+        <div class="col-sm-4  text-left">
+          <label class="control-label" for="comment">{{$t("DeviceRegForm.comment")}}:</label>
         </div>
-        <div class="col-sm-4 col-sm-offset-1">
+        <div class="col-sm-4 ">
           <textarea class="form-control" cols="40" rows="5" id="comment" v-model="device.comment"></textarea>
         </div>
       </div>
       <br>
-      <div class="row">
-        <div class="col-sm-10 col-sm-offset-1 text-left">
-          <h3>{{$t("DeviceRegForm.maintenance_and_calibration")}}</h3>
+      <div class="form-group row">
+        <div class="col-sm-10  text-left">
+          <legend class="text-capitalize">{{$t("DeviceRegForm.maintenance")}}</legend>
         </div>
       </div>
-      <hr>
-      <br>
-      <div class="row">
-        <div class="col-sm-1 col-sm-offset-1 text-left">
-          <label for="maintenance">{{$t("DeviceRegForm.maintenance")}}:</label>
+      <div class="form-group row">
+        <div class="col-sm-2  text-left">
+          <label class="control-label" for="maintenance">{{$t("DeviceRegForm.maintenance")}}:</label>
         </div>
-        <div class="col-sm-1 col-sm-offset-1">
-            <input type="checkbox" id="maintenance" v-model="device.maintenance"> {{$t("DeviceRegForm.yes")}}
+        <div class="col-sm-2 ">
+          <input type="checkbox" id="maintenance" v-model="device.maintenance"> {{$t("DeviceRegForm.yes")}}
         </div>
-        <div class="col-sm-1 text-left">
-          <label for="mInterval">{{$t("DeviceRegForm.interval")}}:</label>
+        <div class="col-sm-2 text-left">
+          <label class="control-label" for="mInterval">{{$t("DeviceRegForm.interval")}}:</label>
         </div>
-        <div class="col-sm-3">
-          <select class="form-control" id="mInterval" v-model="device.mInterval" :disabled="!device.maintenance" :required="device.maintenance">
+        <div class="col-sm-2">
+          <select class="form-control" id="mInterval" v-model="device.mInterval" :disabled="!device.maintenance"
+                  :required="device.maintenance">
             <option value="1">1 {{$t("DeviceRegForm.month")}}</option>
             <option value="3">3 {{$t("DeviceRegForm.months")}}</option>
             <option value="6">6 {{$t("DeviceRegForm.months")}}</option>
           </select>
         </div>
       </div>
-      <div class="row">
-        <div class="col-sm-1 col-sm-offset-1 text-left">
-          <label for="maintenanceMsg">{{$t("DeviceRegForm.notification")}}:</label>
+      <div class="form-group row">
+        <div class="col-sm-2  text-left">
+          <label class="control-label" for="maintenanceMsg">{{$t("DeviceRegForm.notification")}}:</label>
         </div>
-        <div class="col-sm-1 col-sm-offset-1">
-            <input type="checkbox" id="maintenanceMsg" v-model="device.maintenanceMsg"> {{$t("DeviceRegForm.yes")}}
+        <div class="col-sm-2 ">
+          <input type="checkbox" id="maintenanceMsg" v-model="device.maintenanceMsg"> {{$t("DeviceRegForm.yes")}}
         </div>
-        <div class="col-sm-1 text-left">
-          <label for="mBeginning">{{$t("DeviceRegForm.start")}}:</label>
+        <div class="col-sm-2 text-left">
+          <label class="control-label" for="mBeginning">{{$t("DeviceRegForm.start")}}:</label>
         </div>
-        <div class="col-sm-3">
-          <input type="date" class="form-control" id="mBeginning" v-model="device.mBeginning" :disabled="!device.maintenanceMsg" :required="device.maintenanceMsg">
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-1 col-sm-offset-1 text-left">
-          <label for="calibration">{{$t("DeviceRegForm.calibration")}}:</label>
-        </div>
-        <div class="col-sm-1 col-sm-offset-1">
-            <input type="checkbox" id="calibration" v-model="device.calibration"> {{$t("DeviceRegForm.yes")}}
-        </div>
-        <div class="col-sm-1 text-left">
-          <label for="cInterval">{{$t("DeviceRegForm.interval")}}:</label>
-        </div>
-        <div class="col-sm-3">
-          <select class="form-control" id="cInterval" v-model="device.cInterval" :disabled="!device.calibration" :required="device.calibration">
-            <option value="1">1 {{$t("DeviceRegForm.month")}}</option>
-            <option value="3">3 {{$t("DeviceRegForm.months")}}</option>
-            <option value="6">6 {{$t("DeviceRegForm.months")}}</option>
-          </select>
+        <div class="col-sm-2">
+          <input type="date" class="form-control" id="mBeginning" v-model="device.mBeginning"
+                 :disabled="!device.maintenanceMsg" :required="device.maintenanceMsg">
         </div>
       </div>
-      <div class="row">
-        <div class="col-sm-1 col-sm-offset-1 text-left">
-          <label for="calibrationMsg">{{$t("DeviceRegForm.notification")}}:</label>
-        </div>
-        <div class="col-sm-1 col-sm-offset-1">
-            <input type="checkbox" id="calibrationMsg" v-model="device.calibrationMsg"> {{$t("DeviceRegForm.yes")}}
-        </div>
-        <div class="col-sm-1 text-left">
-          <label for="cBeginning">{{$t("DeviceRegForm.start")}}:</label>
-        </div>
-        <div class="col-sm-3">
-          <input type="date"  class="form-control" id="cBeginning" v-model="device.cBeginning" :disabled="!device.calibrationMsg" :required="device.calibrationMsg">
+      <div class="form-group row">
+        <div class="col-sm-10  text-left">
+          <legend class="text-capitalize">{{$t("DeviceRegForm.calibration")}}</legend>
         </div>
       </div>
-      <div class="row" style="margin-bottom: 100px; margin-top:50px;">
-        <div class="col-sm-3 col-sm-offset-1">
-          <button class="btn-block btn-lg btn-primary btn-custom" @click="submit()">{{$t("save")}}</button>
+      <div class="form-group row">
+      <div class="col-sm-2  text-left">
+        <label class="control-label" for="calibration">{{$t("DeviceRegForm.calibration")}}:</label>
+      </div>
+      <div class="col-sm-2 ">
+        <input type="checkbox" id="calibration" v-model="device.calibration"> {{$t("DeviceRegForm.yes")}}
+      </div>
+      <div class="col-sm-2 text-left">
+        <label class="control-label" for="cInterval">{{$t("DeviceRegForm.interval")}}:</label>
+      </div>
+      <div class="col-sm-2">
+        <select class="form-control" id="cInterval" v-model="device.cInterval" :disabled="!device.calibration"
+                :required="device.calibration">
+          <option value="1">1 {{$t("DeviceRegForm.month")}}</option>
+          <option value="3">3 {{$t("DeviceRegForm.months")}}</option>
+          <option value="6">6 {{$t("DeviceRegForm.months")}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-sm-2  text-left">
+        <label class="control-label" for="calibrationMsg">{{$t("DeviceRegForm.notification")}}:</label>
+      </div>
+      <div class="col-sm-2 ">
+        <input type="checkbox" id="calibrationMsg" v-model="device.calibrationMsg"> {{$t("DeviceRegForm.yes")}}
+      </div>
+      <div class="col-sm-2 text-left">
+        <label class="control-label" for="cBeginning">{{$t("DeviceRegForm.start")}}:</label>
+      </div>
+      <div class="col-sm-2">
+        <input type="date" class="form-control" id="cBeginning" v-model="device.cBeginning"
+               :disabled="!device.calibrationMsg" :required="device.calibrationMsg">
+      </div>
+    </div>
+    <div class="form-group row" style="margin-bottom: 100px; margin-top:50px;">
+        <div class="col-sm-offset-4 col-sm-2">
+          <button class="btn btn-block btn-lg btn-cancel">{{$t("cancel")}}</button>
         </div>
-        <div class="col-sm-3 col-sm-offset-3">
-          <button class="btn-block btn-lg btn-primary btn-custom">{{$t("cancel")}}</button>
+        <div class="col-sm-2">
+          <button class="btn btn-block btn-lg btn-primary" @click="submit()">{{$t("save")}}</button>
         </div>
       </div>
     </form>
@@ -241,13 +246,14 @@ export default {
     padding-top: 8px;
   }
 
-  .btn-custom {
-    background-color: $btn-primary-bg;
-    color: transparent;
+  .hr-line-dashed {
+    border-top: 1px dashed #505050;
+    height: 1px;
+    margin: 20px 0;
   }
 
-  .btn-custom:hover {
-    background-color: transparent;
-    color: $btn-primary-bg;
+  .btn-primary:hover, .btn-cancel:hover {
+    color: $body-background;
+    background: $primary-bg-color;                                             ;
   }
 </style>

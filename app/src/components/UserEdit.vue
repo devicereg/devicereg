@@ -223,9 +223,13 @@
                 v-model="credentials.answer" required>
             </div>
           </div>
-          <div class="row">
-            <div class="col-sm-1">
-              <button class="btn btn-primary" @click="submit()">Aktualisieren</button>
+          <br />
+          <div class="form-group row" >
+            <div class="col-sm-offset-4 col-sm-2">
+              <button class="btn btn-block btn-lg btn-cancel">{{$t("cancel")}}</button>
+            </div>
+            <div class="col-sm-2">
+              <button class="btn btn-block btn-lg btn-primary" @click="submit()">Aktualisieren</button>
             </div>
           </div>
 
