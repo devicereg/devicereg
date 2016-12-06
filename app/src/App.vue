@@ -19,8 +19,8 @@ import Contact from './components/Contact'
 import TermsOfUse from './components/TermsOfUse'
 import Impressum from './components/Impressum'
 import Translations from './components/Translations'
+import DeviceRegForm from './components/DeviceRegForm'
 import DeleteProfileModal from './components/UserDeleteModal'
-
 
 export default {
   name: 'app',
@@ -35,6 +35,7 @@ export default {
     TermsOfUse,
     Impressum,
     Translations,
+    DeviceRegForm,
   },
   data() {
     return { user: auth.user }
