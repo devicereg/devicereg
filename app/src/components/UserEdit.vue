@@ -53,7 +53,7 @@
                 type="text"
                 class="form-control"
                 id="register_surname"
-                v-model="credentials.lastname" required>
+                v-model="credentials.surname" required>
             </div>
           </div>
           <div class="form-group row">

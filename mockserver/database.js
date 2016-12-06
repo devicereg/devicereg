@@ -10,14 +10,23 @@ db.serialize(function() {
     db.run(
         "CREATE TABLE if not exists user (" +
         "id INTEGER PRIMARY KEY AUTOINCREMENT," +
-        "lastname TEXT," +
-        "name TEXT," +
-        "email TEXT," +
+        "gender TEXT," +
+        "surname TEXT," +
+        "prename TEXT," +
+        "language TEXT," +
+        "phone TEXT," +
+        "industry_family TEXT," +
+        "industry_type TEXT," +
+        "company TEXT," +
         "street TEXT," +
-        "housenumber TEXT," +
+        "number TEXT," +
         "zip TEXT," +
         "city TEXT," +
-        "password TEXT,"+
+        "country TEXT," +
+        "password TEXT," +
+        "question TEXT," +
+        "answer TEXT,"+
+        "email TEXT," +
         "UNIQUE(email))"
     );
 
