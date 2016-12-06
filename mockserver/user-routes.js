@@ -18,19 +18,28 @@ app.post('/users', function(req, res)
   {
     db.run(
       "INSERT INTO user " +
-        "('id', 'lastname', 'name', 'email', 'street', 'housenumber', 'zip', 'city', 'password') " +
+        "('id', 'gender', 'surname', 'prename', 'language', 'phone', 'industry_family', 'industry_type', 'company', 'street', 'number', 'zip', 'city', 'country', 'password', 'question', 'answer', 'email') " +
       "VALUES " +
-        "($id, $lastname, $name, $email, $street, $housenumber, $zip, $city, $password)",
+        "($id, $gender, $surname, $prename, $language, $phone, $industry_family, $industry_type, $company, $street, $number, $zip, $city, $country, $password, $question, $answer, $email)",
         {
           $id: null,
-          $lastname: req.body.surname,
-          $name: req.body.prename,
-          $email: req.body.email,
+          $gender: req.body.gender,
+          $surname: req.body.surname,
+          $prename: req.body.prename,
+          $language: req.body.language,
+          $phone: req.body.phone,
+          $industry_family: req.body.industry_family,
+          $industry_type: req.body.industry_type,
+          $company: req.body.company,
           $street: req.body.street,
-          $housenumber: req.body.number,
+          $number: req.body.number,
           $zip: req.body.zip,
           $city: req.body.city,
-          $password: req.body.password
+          $country: req.body.country,
+          $password: req.body.password,
+          $question: req.body.question,
+          $answer: req.body.answer,
+          $email: req.body.email
         }
     );
 
@@ -56,17 +65,26 @@ app.post('/user/update', function(req, res)
   {
     db.run(
       "UPDATE user " +
-        "SET lastname=?, name=?, email=?, street=?, housenumber=?, zip=?, city=? " +
+        "SET gender=?, surname=?, prename=?, language=?, phone=?, industry_family=?, industry_type=?, company=?, street=?, number=?, zip=?, city=?, country=?, password=?, question=?, answer=?, email=? " +
       "WHERE id=?",
         [
-          req.body.lastname,
-          req.body.name,
-          req.body.email,
-          req.body.street,
-          req.body.housenumber,
-          req.body.zip,
-          req.body.city,
-          req.body.id
+            req.body.gender,
+            req.body.surname,
+            req.body.prename,
+            req.body.language,
+            req.body.phone,
+            req.body.industry_family,
+            req.body.industry_type,
+            req.body.company,
+            req.body.street,
+            req.body.number,
+            req.body.zip,
+            req.body.city,
+            req.body.country,
+            req.body.password,
+            req.body.question,
+            req.body.answer,
+            req.body.email
         ]
     );
 

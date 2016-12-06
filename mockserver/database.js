@@ -7,19 +7,28 @@ var db = new sqlite3.Database('/src/app/database/devicer.sqlite');
 
 db.serialize(function() {
 
-  db.run(
-  	"CREATE TABLE if not exists user (" +
-  		"id INTEGER PRIMARY KEY AUTOINCREMENT," +
-	  	"lastname TEXT," +
-	  	"name TEXT," +
-	  	"email TEXT," +
-	  	"street TEXT," +
-	  	"housenumber TEXT," +
-	  	"zip TEXT," +
-	  	"city TEXT," +
-	  	"password TEXT,"+
-	  	"UNIQUE(email))"
-  );
+    db.run(
+        "CREATE TABLE if not exists user (" +
+        "id INTEGER PRIMARY KEY AUTOINCREMENT," +
+        "gender TEXT," +
+        "surname TEXT," +
+        "prename TEXT," +
+        "language TEXT," +
+        "phone TEXT," +
+        "industry_family TEXT," +
+        "industry_type TEXT," +
+        "company TEXT," +
+        "street TEXT," +
+        "number TEXT," +
+        "zip TEXT," +
+        "city TEXT," +
+        "country TEXT," +
+        "password TEXT," +
+        "question TEXT," +
+        "answer TEXT,"+
+        "email TEXT," +
+        "UNIQUE(email))"
+    );
 
     db.run(
         "CREATE TABLE IF NOT EXISTS device (" +
@@ -44,15 +53,17 @@ db.serialize(function() {
     );
 
 
-  db.run(
-    "CREATE TABLE IF NOT EXISTS category (" +
-      "id INTEGER PRIMARY KEY AUTOINCREMENT," +
-      "user_id INTEGER," +
-      "name TEXT," +
-      "FOREIGN KEY(user_id) REFERENCES user(id))"
-  );
-  
-  console.log("created mock database for DeviceR with 'user' table.");
+    db.run(
+        "CREATE TABLE IF NOT EXISTS category (" +
+        "id INTEGER PRIMARY KEY AUTOINCREMENT," +
+        "user_id INTEGER," +
+        "name TEXT," +
+        "FOREIGN KEY(user_id) REFERENCES user(id))"
+    );
+
 
 });
+
+console.log("created mock database for DeviceR");
+
 db.close();
