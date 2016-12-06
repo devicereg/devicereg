@@ -3,7 +3,7 @@ var sqlite3 = require('sqlite3').verbose();
 /**
  * Create SQLite database
  */
-var db = new sqlite3.Database('src/app/database/devicer.sqlite');
+var db = new sqlite3.Database('/src/app/database/devicer.sqlite');
 
 db.serialize(function() {
 
@@ -25,6 +25,7 @@ db.serialize(function() {
     "CREATE TABLE IF NOT EXISTS category (" +
       "id INTEGER PRIMARY KEY AUTOINCREMENT," +
       "name TEXT," +
+	  "user_id INTEGER," +
       "FOREIGN KEY(user_id) REFERENCES user(id))"
   );
 
@@ -44,6 +45,8 @@ db.serialize(function() {
       "cInterval TEXT," +
       "calibrationMsg TEXT," +
       "cBeginning TEXT," +
+	  "user_id INTEGER," +
+	  "category_id INTEGER," +
       "FOREIGN KEY(category_id) REFERENCES category(id)," +
       "FOREIGN KEY(user_id) REFERENCES user(id))"
   );
