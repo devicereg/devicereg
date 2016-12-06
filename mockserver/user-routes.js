@@ -144,3 +144,35 @@ app.post('/sessions/create', function(req, res)
     );
   });
 });
+
+app.post('/device', function (req, res)
+{
+  var db = new sqlite3.Database('database/devicer.sqlite');
+
+  db.serialize(function()
+  {
+    db.run(
+        "INSERT INTO device " +
+        "('technology', 'devicelabel', 'serialnumber', 'procmedium', 'comment', 'mInterval', 'mBeginning'," +
+        "'calibration', 'maintenance', 'maintenanceMsg', 'cInterval', 'calibrationMsg', 'cBeginning')" +
+        "VALUES " +
+        "($technology, $devicelabel, $serialnumber, $procmedium, $comment, $mInterval, $mBeginning," +
+        "$calibration, $maintenance, $maintenanceMsg, $cInterval, $calibrationMsg, $cBeginning)" +
+        {
+          $technology: req.body.technology,
+          $devicelabel: req.body.devicelabel,
+          $serialnumber: req.body.serialnumber,
+          $procmedium: req.body.procmedium,
+          $comment: req.body.comment,
+          $mInterval: req.body.mInterval,
+          $mBeginning: req.body.mBeginning,
+          $calibration: req.body.calibration,
+          $maintenance: req.body.maintenance,
+          $maintenanceMsg: req.body.maintenanceMsg,
+          $cInterval: req.body.cInterval,
+          $calibrationMsg: req.body.calibrationMsg,
+          $cBeginning: req.body.cBeginning
+        }
+    );
+  });
+});
