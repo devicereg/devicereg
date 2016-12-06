@@ -46,7 +46,7 @@ export default {
   @import './styles/_colors';
   $font-family-sans-serif: 'Source Sans Pro', 'Avenir', Helvetica, Arial, sans-serif;
 
-  body {
+  html {
     background: $body-background;
   }
 

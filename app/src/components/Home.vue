@@ -1,11 +1,8 @@
 <template>
 	<div class="container" id="homepage">
 	  <div class="row">
-	    <div class="col-md-6">
-        <img src="../assets/logo.png" class="logo">
-	    </div>
-	    <div class="col-md-6">
-	      <div class="ueber">DeviceR</div>
+	    <div class="col-md-12">
+        <img src="../assets/devicer-home-logo.png" class="logo">
 	    </div>
 	  </div>
 
@@ -53,9 +50,8 @@
 
 <style lang="scss">
   .logo {
-    height: 109px;
-    width: 106px;
-    float: right;
+    height: 30%;
+    width: 30%;
   }
 
   .ueber {

@@ -53,7 +53,7 @@ export default {
   @import '../styles/_colors';
 
   .navbar#top-navigation {
-    background-color: $deep-space-sparkle;
+    background-color: $primary-bg-color;
     .container {
       .navbar-collapse {
         .navbar-right {
