@@ -127,7 +127,7 @@ app.post('/sessions/create', function(req, res)
   });
 });
 
-app.post('', function (req, res)
+app.post('/device', function (req, res)
 {
   var db = new sqlite3.Database('database/devicer.sqlite');
 
