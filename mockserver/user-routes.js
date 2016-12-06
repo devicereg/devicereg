@@ -10,7 +10,7 @@ function createToken(user) {
   return jwt.sign(_.omit(user, 'password'), config.secret, { expiresIn: 60*60*5 });
 }
 
-app.post('/users', function(req, res)
+app.post('/user/create', function(req, res)
 {
   var db = new sqlite3.Database('database/devicer.sqlite');
 
@@ -145,7 +145,7 @@ app.post('/sessions/create', function(req, res)
   });
 });
 
-app.post('/device', function (req, res)
+app.post('/device/create', function (req, res)
 {
   var db = new sqlite3.Database('database/devicer.sqlite');
 
