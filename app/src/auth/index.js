@@ -7,6 +7,7 @@ const LOGIN_URL = API_URL + 'sessions/create/';
 const SIGNUP_URL = API_URL + 'users/';
 const UPDATE_URL = API_URL + 'user/update';
 const DELETE_URL = API_URL + 'user/delete';
+const CREATE_DEVICE_URL = API_URL + 'device';
 
 export default {
 	user: { authenticated: false },

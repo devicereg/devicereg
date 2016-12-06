@@ -3,7 +3,7 @@ var sqlite3 = require('sqlite3').verbose();
 /**
  * Create SQLite database
  */
-var db = new sqlite3.Database('src/app/database/devicer.sqlite');
+var db = new sqlite3.Database('/src/app/database/devicer.sqlite');
 
 db.serialize(function() {
 
@@ -51,6 +51,8 @@ db.serialize(function() {
       "name TEXT," +
       "FOREIGN KEY(user_id) REFERENCES user(id))"
   );
-    console.log("created mock database for DeviceR with 'user' table.");
+  
+  console.log("created mock database for DeviceR with 'user' table.");
+
 });
 db.close();
