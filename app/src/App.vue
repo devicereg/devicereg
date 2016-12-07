@@ -22,6 +22,7 @@ import Translations from './components/Translations'
 import UserEdit from './components/UserEdit'
 import DeviceRegForm from './components/DeviceRegForm'
 import DeleteProfileModal from './components/UserDeleteModal'
+import MyDevices from './components/MyDevices'
 
 export default {
   name: 'app',
@@ -38,6 +39,7 @@ export default {
     Translations,
     UserEdit,
     DeviceRegForm,
+    MyDevices
   },
   data() {
     return { user: auth.user }

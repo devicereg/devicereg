@@ -23,6 +23,13 @@
         titel: 'Kundensupport für Durchflussmessgeräte',
         visit: 'Besuchen Sie uns auf',
       },
+      MyDevices: {
+        title: 'Meine Geräte',
+        technology: 'Technologie',
+        device_description: 'Gerätebeschreibung',
+        category: 'Kategorie',
+        add_button: 'Gerät hinzufügen',
+      },
       RegistrationForm: {
         agreement: 'Einverständniserklärung',
         answer: 'Antwort',
@@ -91,6 +98,13 @@
         register_problems: 'Problems with registration',
         titel: 'Flowmeter customer support',
         visit: 'Visit us at'
+      },
+      MyDevices: {
+        title: 'My Devices',
+        technology: 'Technology',
+        device_description: 'Device description',
+        category: 'Category',
+        add_button: 'Add device',
       },
       RegistrationForm: {
         agreement: 'Agreement',
