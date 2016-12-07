@@ -1,8 +1,10 @@
 <template>
-	<div class="container fluid col-sm-offset-2 col-sm-8">
+	<div class="container fluid">
 		<div class="row">
-			<div id="warranty-text" class="col-sm-12 text-left">
-        <h3>Registrieren Sie Ihr/e Produkt/e und erhalten Sie eine erweiterte Gewährleistung.</h3>
+			<div id="warranty-text" class="col-md-offset-2 col-md-8 text-left">
+        <h1>Bedingungen für die erweiterte Gewährleistung</h1>
+
+        <h4>Registrieren Sie Ihr/e Produkt/e und erhalten Sie eine erweiterte Gewährleistung.</h4>
         <p>
           Registrierten Nutzern bieten wir eine kostenlose Verlängerung der bestehenden
           Gewährleistung auf einen Zeitraum von 24 Monaten, gerechnet ab Lieferdatum, an.
@@ -12,7 +14,8 @@
           Yokogawa Vertriebspartner. Soweit weitergehende oder abweichende vertragliche
           Vereinbarungen getroffen wurden, bleiben diese durch eine erweiterte Gewährleistung unberührt.
         </p>
-        <h3>Unterstützte Länder:</h3>
+
+        <h4>Unterstützte Länder:</h4>
         <p>
           Vereinigtes Königreich, Deutschland, Frankreich, Polen,
           Österreich, Spanien, Schweden, Schweiz, Italien, Belgien,
@@ -23,6 +26,10 @@
           Moldavien, Monaco, Montenegro, Norwegen, Mazedonien, San Marino,
           Serbien, Türkei, Finnland
         </p>
+
+        <a onmouseup="window.print();" title="Drucken">
+          <span class="glyphicon glyphicon-print action button" aria-hidden="true"></span> &nbsp; Drucken
+        </a>
 			</div>
 		</div>
 	</div>
@@ -31,5 +38,19 @@
 <style>
   .warranty-text{
     word-break: normal;
+  }
+
+    h1 {
+    font-weight: bold;
+  }
+
+  h4 {
+    font-weight: bold;
+    padding-top: 1em;
+  }
+
+  span.glyphicon-print {
+    font-size: 20px;
+    padding-top: 1em;
   }
 </style>
