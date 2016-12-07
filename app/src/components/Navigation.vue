@@ -4,26 +4,26 @@
       <div class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-left">
           <li v-if="user.authenticated">
-            <router-link to="/dashboard">Dashboard</router-link>
+            <router-link to="/dashboard"> {{ $t('dashboard') }} </router-link>
           </li>
           <li v-if="!user.authenticated">
-            <router-link to="/">Home</router-link>
+            <router-link to="/"> {{ $t('home') }} </router-link>
           </li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <li v-if="!user.authenticated">
-            <router-link to="/registrieren">Registrieren</router-link>
+            <router-link to="/registrieren"> {{ $t('register') }} </router-link>
           </li>
-          <li><router-link to="/contact">Kontakt</router-link></li>
+          <li><router-link to="/contact"> {{ $t('contact') }} </router-link></li>
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Sprache <span class="caret"></span></a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> {{ $t('language') }} <span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <li @click='setLang("de")'><a>Deutsch</a></li>
-              <li @click='setLang("en")'><a>Englisch</a></li>
+              <li @click='setLang("de")'><a> {{ $t('german') }} </a></li>
+              <li @click='setLang("en")'><a> {{ $t('english') }} </a></li>
             </ul>
           </li>
           <li class="logout-user" v-if="user.authenticated" @click="logout()">
-            <router-link to="/login">Abmelden</router-link>
+            <router-link to="/login"> {{ $t('logout') }} </router-link>
           </li>
         </ul>
       </div>

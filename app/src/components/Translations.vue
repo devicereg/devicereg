@@ -13,6 +13,14 @@
       city: 'Stadt',
       save: 'Speichern',
       cancel: 'Abbrechen',
+      language: 'Sprache',
+      german: 'Deutsch',
+      english: 'Englisch',
+      logout: 'Abmelden',
+      dashboard: 'Dashboard',
+      home: 'Startseite',
+      register: 'Registrieren',
+      contact: 'Kontakt',
 
       Contact: {
         box_address: 'Postfach',
@@ -90,6 +98,14 @@
       city: 'City',
       save: 'Save',
       cancel: 'Cancel',
+      language: 'Language',
+      german: 'German',
+      english: 'English',
+      logout: 'Logout',
+      dashboard: 'Dashboard',
+      home: 'Home',
+      register: 'Sign up',
+      contact: 'Contact',
 
       Contact: {
         box_address: 'Mailbox',
