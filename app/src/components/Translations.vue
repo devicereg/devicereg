@@ -11,6 +11,8 @@
       phone: 'Telefon',
       language: 'Sprache',
       city: 'Stadt',
+      save: 'Speichern',
+      cancel: 'Abbrechen',
 
       Contact: {
         box_address: 'Postfach',
@@ -54,6 +56,28 @@
         title: 'Nutzer registrieren',
         user: 'Benutzer (E-Mail Adresse)',
         zip: 'Postleitzahl'
+      },
+      DeviceRegForm: {
+        title: 'Gerät registrieren',
+        categorization: 'Gerätekategorisierung',
+        technology: 'Technologie',
+        category: 'Gerätekategorie',
+        custom: 'Benutzerdefiniert',
+        description_data: 'Daten zur Gerätebeschreibung',
+        serial_number: 'Seriennummer',
+        label: 'Gerätebezeichnung',
+        process_fluid: 'Prozessmedium',
+        tag_number: 'Tagnummer',
+        comment: 'Kommentar',
+        maintenance_and_calibration: 'Wartung und Kalibrierung',
+        maintenance: 'Wartung',
+        calibration: 'Kalibrierung',
+        notification: 'Benachrichtigung',
+        yes: 'Ja',
+        interval: 'Intervall',
+        start: 'Beginn',
+        month: 'Monat',
+        months: 'Monate'
       }
 
     },
@@ -64,6 +88,8 @@
       phone: 'Phone',
       language: 'Language',
       city: 'City',
+      save: 'Save',
+      cancel: 'Cancel',
 
       Contact: {
         box_address: 'Mailbox',
@@ -83,7 +109,7 @@
       RegistrationForm: {
         agreement: 'Agreement',
         answer: 'Answer',
-        choose: 'Please chosse',
+        choose: 'Please choose',
         company: 'Company',
         company_details: 'Company Details',
         english: 'English',
@@ -106,6 +132,28 @@
         title: 'Register a User',
         user: 'User (E-Mail)',
         zip: 'Zip'
+      },
+      DeviceRegForm: {
+        title: 'Register device',
+        categorization: 'Categorization',
+        technology: 'Technology',
+        category: 'Category',
+        custom: 'Custom',
+        description_data: 'Description data',
+        serial_number: 'Serial number',
+        label: 'Label',
+        process_fluid: 'Process fluid',
+        tag_number: 'Tag number',
+        comment: 'Comment',
+        maintenance_and_calibration: 'Maintenance and calibration',
+        maintenance: 'Maintenance',
+        calibration: 'Calibration',
+        notification: 'Notification',
+        yes: 'Yes',
+        interval: 'Interval',
+        start: 'Start',
+        month: 'Month',
+        months: 'Months'
       }
     }
   }

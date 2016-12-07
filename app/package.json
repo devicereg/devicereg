@@ -5,7 +5,7 @@
   "author": "",
   "private": true,
   "scripts": {
-    "dev": "node ../mockserver/server.js | nodemon build/dev-server.js ",
+    "dev": "node ../mockserver/database.js | node ../mockserver/server.js | nodemon build/dev-server.js ",
     "build": "node build/build.js",
     "lint": "eslint --ext .js,.vue src"
   },

@@ -10,3 +10,5 @@ app/npm-debug.log
 mockserver/node_modules
 mockserver/npm-debug.log
 start_local.sh
+app/database/devicer.sqlite
+app/static/test-output/

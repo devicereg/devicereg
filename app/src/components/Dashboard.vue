@@ -3,7 +3,7 @@
 		<div class="row">
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 				<div>
-					<h1>Welcome {{ user.name }} {{ user.lastname }}</h1>
+					<h1>Welcome {{ user.prename }} {{ user.surname }}</h1>
 					<h2>This is your Dashboard</h2>
 				</div>
 			</div>

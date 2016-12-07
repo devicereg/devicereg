@@ -19,9 +19,10 @@ import Contact from './components/Contact'
 import TermsOfUse from './components/TermsOfUse'
 import Impressum from './components/Impressum'
 import Translations from './components/Translations'
+import UserEdit from './components/UserEdit'
+import DeviceRegForm from './components/DeviceRegForm'
 import DeleteProfileModal from './components/UserDeleteModal'
 import MyDevices from './components/MyDevices'
-
 
 export default {
   name: 'app',
@@ -36,6 +37,8 @@ export default {
     TermsOfUse,
     Impressum,
     Translations,
+    UserEdit,
+    DeviceRegForm,
     MyDevices
   },
   data() {

@@ -1,28 +1,22 @@
 <template>
 	<div class="container registration-form">
 		<div class="row">
-			<div class="col-md-12">
+			<div class="col-sm-12">
 				<div class="alert alert-danger fade in" v-if="error">
 					<p>{{ error }}</p>
 				</div>
 			</div>
 		</div>
 		<div class="row">
-			<div class="registration-header-titles">
-				<div class="col-md-12">
-					<h2>{{$t("RegistrationForm.title")}}</h2>
-				</div>
-		  </div>
-    </div>
-		<div class="row">
-			<div class="col-md-10">
+			<div class="col-sm-12 text-left">
+        <h2 class="registration-header-title">{{$t("RegistrationForm.title")}}</h2>
 				<form role="form">
 					<legend>{{$t("RegistrationForm.personal_details")}}</legend>
 					<div class="form-group row">
-            <div class="col-md-4 control-label">
+            <div class="col-sm-4 control-label">
               <label for="register_gender">{{$t("RegistrationForm.gender")}}</label>
             </div>
-            <div class="col-md-4">
+            <div class="col-sm-4">
               <select
                 class="form-control"
                 id="register_gender"
@@ -34,10 +28,10 @@
             </div>
           </div>
 					<div class="form-group row">
-            <div class="col-md-4 control-label">
+            <div class="col-sm-4 control-label">
               <label for="register_prename">{{$t("RegistrationForm.prename")}}</label>
             </div>
-            <div class="col-md-4">
+            <div class="col-sm-4">
               <input
                 type="text"
                 class="form-control"
@@ -46,10 +40,10 @@
             </div>
           </div>
 					<div class="form-group row">
-            <div class="col-md-4 control-label">
+            <div class="col-sm-4 control-label">
               <label for="register_surname">{{$t("RegistrationForm.surname")}}</label>
             </div>
-            <div class="col-md-4">
+            <div class="col-sm-4">
               <input
                 type="text"
                 class="form-control"
@@ -58,10 +52,10 @@
             </div>
           </div>
 					<div class="form-group row">
-            <div class="col-md-4 control-label">
+            <div class="col-sm-4 control-label">
               <label for="register_language">{{$t("language")}}</label>
             </div>
-            <div class="col-md-4">
+            <div class="col-sm-4">
               <select class="form-control" id="register_language" v-model="credentials.language" required>
                 <option value="">{{$t("RegistrationForm.choose")}}</option>
                 <option>{{$t("RegistrationForm.german")}}</option>
@@ -70,10 +64,10 @@
             </div>
           </div>
 					<div class="form-group row">
-            <div class="col-md-4 control-label">
+            <div class="col-sm-4 control-label">
               <label for="register_phone">{{$t("phone")}}</label>
             </div>
-            <div class="col-md-4">
+            <div class="col-sm-4">
               <input
                 type="tel"
                 class="form-control"
@@ -83,10 +77,10 @@
           </div>
 					<legend>{{$t("RegistrationForm.company_details")}}</legend>
 					<div class="form-group row">
-            <div class="col-md-4 control-label">
+            <div class="col-sm-4 control-label">
               <label for="register_industry_family">{{$t("RegistrationForm.industry_family")}}</label>
             </div>
-            <div class="col-md-4">
+            <div class="col-sm-4">
               <select
               class="form-control"
               id="register_industry_family"
@@ -98,10 +92,10 @@
           </div>
         </div>
 				<div class="form-group row">
-          <div class="col-md-4 control-label">
+          <div class="col-sm-4 control-label">
             <label for="register_industry_type">{{$t("RegistrationForm.industry_type")}}</label>
           </div>
-          <div class="col-md-4">
+          <div class="col-sm-4">
             <input
             type="text"
             class="form-control"
@@ -110,18 +104,18 @@
           </div>
         </div>
 					<div class="form-group row">
-            <div class="col-md-4 control-label">
+            <div class="col-sm-4 control-label">
               <label for="register_company">{{$t("RegistrationForm.company")}}</label>
             </div>
-            <div class="col-md-4">
+            <div class="col-sm-4">
               <input type="text" class="form-control" id="register_company" v-model="credentials.company" required>
             </div>
           </div>
 					<div class="form-group row">
-            <div class="col-md-4 control-label">
+            <div class="col-sm-4 control-label">
               <label for="register_street">{{$t("RegistrationForm.street")}}</label>
             </div>
-            <div class="col-md-4">
+            <div class="col-sm-4">
               <input
               type="text"
               class="form-control"
@@ -130,10 +124,10 @@
             </div>
           </div>
 					<div class="form-group row">
-            <div class="col-md-4 control-label">
+            <div class="col-sm-4 control-label">
               <label for="register_number">{{$t("RegistrationForm.number")}}</label>
             </div>
-            <div class="col-md-4">
+            <div class="col-sm-4">
               <input
               type="text"
               class="form-control"
@@ -142,10 +136,10 @@
             </div>
           </div>
 					<div class="form-group row">
-            <div class="col-md-4 control-label">
+            <div class="col-sm-4 control-label">
               <label for="register_zip">{{$t("RegistrationForm.zip")}}</label>
             </div>
-            <div class="col-md-4">
+            <div class="col-sm-4">
               <input
               type="number"
               class="form-control"
@@ -154,10 +148,10 @@
             </div>
           </div>
 					<div class="form-group row">
-            <div class="col-md-4 control-label">
+            <div class="col-sm-4 control-label">
               <label for="register_city">{{$t("city")}}</label>
             </div>
-            <div class="col-md-4">
+            <div class="col-sm-4">
               <input
               type="text"
               class="form-control"
@@ -166,10 +160,10 @@
             </div>
           </div>
 					<div class="form-group row">
-            <div class="col-md-4 control-label">
+            <div class="col-sm-4 control-label">
               <label for="register_country">{{$t("country")}}</label>
             </div>
-            <div class="col-md-4">
+            <div class="col-sm-4">
               <select class="form-control" id="register_country" v-model="credentials.country" required>
                 <option value="">{{$t("RegistrationForm.choose")}}</option>
                 <option>Deutschland</option>
@@ -180,18 +174,18 @@
           </div>
 					<legend>{{$t("RegistrationForm.system_access")}}</legend>
 					<div class="form-group row">
-            <div class="col-md-4 control-label">
+            <div class="col-sm-4 control-label">
               <label for="register_user">{{$t("RegistrationForm.user")}}</label>
             </div>
-            <div class="col-md-4">
+            <div class="col-sm-4">
               <input type="email" class="form-control" id="register_user" v-model="credentials.email" required>
             </div>
           </div>
 					<div class="form-group row">
-            <div class="col-md-4 control-label">
+            <div class="col-sm-4 control-label">
               <label for="register_password">{{$t("RegistrationForm.password")}}</label>
             </div>
-            <div class="col-md-4">
+            <div class="col-sm-4">
               <input
                 type="password"
                 data-minlength="6"
@@ -201,10 +195,10 @@
             </div>
           </div>
 					<div class="form-group row">
-            <div class="col-md-4 control-label">
+            <div class="col-sm-4 control-label">
               <label for="register_question">{{$t("RegistrationForm.question")}}</label>
             </div>
-            <div class="col-md-4">
+            <div class="col-sm-4">
               <input
                 type="text"
                 class="form-control"
@@ -213,10 +207,10 @@
             </div>
           </div>
 					<div class="form-group row">
-            <div class="col-md-4 control-label">
+            <div class="col-sm-4 control-label">
               <label for="register_answer">{{$t("RegistrationForm.answer")}}</label>
             </div>
-            <div class="col-md-4">
+            <div class="col-sm-4">
               <input
                 type="text"
                 class="form-control"
@@ -225,9 +219,9 @@
             </div>
           </div>
 					<legend>{{$t("RegistrationForm.agreement")}}</legend>
-					<div class="row">
+					<div class="form-group row">
 						<div class="form-check">
-							<div class="col-md-12 control-label">
+							<div class="col-sm-12 control-label">
 		      			<input
 									type="checkbox"
 									class="form-check-input"
@@ -240,9 +234,13 @@
 	  				  </div>
             </div>
           </div>
-          <div class="row">
-            <div class="col-md-1">
-              <button class="btn btn-primary" @click="submit()">{{$t("RegistrationForm.register")}}</button>
+          <br />
+          <div class="form-group row">
+            <div class="col-sm-offset-4 col-sm-2">
+              <button class="btn btn-block btn-lg btn-cancel">{{$t("cancel")}}</button>
+            </div>
+            <div class="col-sm-2">
+              <button class="btn btn-block btn-lg btn-primary" @click="submit()">{{$t("RegistrationForm.register")}}</button>
             </div>
           </div>
 				</form>
@@ -312,20 +310,7 @@
 </script>
 
 <style lang="scss">
-  .registration-form {
-		margin-left: 10em;
-
-    .registration-header-titles {
-      margin-bottom: 100px;
-			text-align: left;
-    }
-
-		.row {
-			legend,
-      .form-group,
-      .form-check {
-				text-align: left
-			}
-		}
+  .registration-header-title {
+    margin-bottom: 1em;
   }
 </style>

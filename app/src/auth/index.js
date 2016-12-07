@@ -4,9 +4,10 @@ var os = require('os');
 
 const API_URL = 'http://' + os.hostname() + ':3001/';
 const LOGIN_URL = API_URL + 'sessions/create/';
-const SIGNUP_URL = API_URL + 'users/';
+const SIGNUP_URL = API_URL + 'user/create';
 const UPDATE_URL = API_URL + 'user/update';
 const DELETE_URL = API_URL + 'user/delete';
+const CREATE_DEVICE_URL = API_URL + 'device/create';
 
 export default {
 	user: { authenticated: false },
@@ -135,5 +136,19 @@ export default {
 	getAuthHeader()
 	{
 		return { 'Authorization': 'Bearer' + localStorage.getItem('id_token') }
-	}
+	},
+
+	createDevice(context, data, redirect)
+  {
+    context.$http.post(CREATE_DEVICE_URL, data).then((response) => {
+
+      if(redirect)
+      {
+        router.push(redirect)
+      }
+
+    }, (err) => {
+      context.error = err
+    });
+  }
 }
