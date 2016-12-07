@@ -16,13 +16,6 @@
           </li>
           <li><router-link to="/contact">Kontakt</router-link></li>
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> Sprache <span class="caret"></span></a>
-            <ul class="dropdown-menu" role="menu">
-              <li><span class="lang-sm lang-lbl-full" lang="de"><a href="#">Deutsch</a></span></li>
-              <li><span class="lang-sm lang-lbl-full" lang="en"> Englisch </span></li>
-            </ul>
-          </li>
-          <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Sprache <span class="caret"></span></a>
             <ul class="dropdown-menu">
               <li @click='setLang("de")'><a>Deutsch</a></li>
