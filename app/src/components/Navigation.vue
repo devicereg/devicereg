@@ -1,6 +1,15 @@
 <template>
   <nav id="top-navigation" class="navbar navbar-default navbar-fixed-top">
     <div class="container">
+      <div class="nav-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <img class="img-circle" src="../assets/logo_navbar.png">
+      </div>
       <LoggedOutNavigation v-if="!user.authenticated"></LoggedOutNavigation>
       <LoggedInNavigation v-if="user.authenticated"></LoggedInNavigation>
     </div>
@@ -37,6 +46,12 @@ export default {
   .navbar#top-navigation {
     background-color: $primary-bg-color;
     .container {
+      .nav-header>img{
+        float: left;
+        display: inline-block;
+        width: 48px;
+        height: 48px;
+      }
       .navbar-collapse {
         .navbar-right {
           .dropdown {
@@ -54,6 +69,8 @@ export default {
           }
         }
         .nav {
+          padding-left: 0;
+          margin: 7.5px -15px;
           display: inline-block;
           height: 100%;
           float: none;
