@@ -151,13 +151,14 @@ app.post('/device/create', function (req, res)
 
   db.serialize(function()
   {
+    console.log(req.body);
     db.run(
         "INSERT INTO device " +
         "('technology', 'devicelabel', 'serialnumber', 'procmedium', 'comment', 'mInterval', 'mBeginning'," +
-        "'calibration', 'maintenance', 'maintenanceMsg', 'cInterval', 'calibrationMsg', 'cBeginning')" +
+        "'calibration', 'maintenance', 'maintenanceMsg', 'cInterval', 'calibrationMsg', 'cBeginning', 'category_id', 'user_id')" +
         "VALUES " +
         "($technology, $devicelabel, $serialnumber, $procmedium, $comment, $mInterval, $mBeginning," +
-        "$calibration, $maintenance, $maintenanceMsg, $cInterval, $calibrationMsg, $cBeginning)" +
+        "$calibration, $maintenance, $maintenanceMsg, $cInterval, $calibrationMsg, $cBeginning, $category, $user)",
         {
           $technology: req.body.technology,
           $devicelabel: req.body.devicelabel,
@@ -171,7 +172,9 @@ app.post('/device/create', function (req, res)
           $maintenanceMsg: req.body.maintenanceMsg,
           $cInterval: req.body.cInterval,
           $calibrationMsg: req.body.calibrationMsg,
-          $cBeginning: req.body.cBeginning
+          $cBeginning: req.body.cBeginning,
+          $category: req.body.category,
+          $user: 1 //@TODO
         }
     );
   });
