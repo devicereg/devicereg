@@ -13,6 +13,14 @@
       city: 'Stadt',
       save: 'Speichern',
       cancel: 'Abbrechen',
+      language: 'Sprache',
+      german: 'Deutsch',
+      english: 'Englisch',
+      logout: 'Abmelden',
+      dashboard: 'Dashboard',
+      home: 'Startseite',
+      register: 'Registrieren',
+      contact: 'Kontakt',
 
       Contact: {
         box_address: 'Postfach',
@@ -22,6 +30,13 @@
         register_problems: 'Probleme bei der Registrierung',
         titel: 'Kundensupport für Durchflussmessgeräte',
         visit: 'Besuchen Sie uns auf',
+      },
+      MyDevices: {
+        title: 'Meine Geräte',
+        technology: 'Technologie',
+        device_description: 'Gerätebeschreibung',
+        category: 'Kategorie',
+        add_button: 'Gerät hinzufügen',
       },
       RegistrationForm: {
         agreement: 'Einverständniserklärung',
@@ -83,6 +98,14 @@
       city: 'City',
       save: 'Save',
       cancel: 'Cancel',
+      language: 'Language',
+      german: 'German',
+      english: 'English',
+      logout: 'Logout',
+      dashboard: 'Dashboard',
+      home: 'Home',
+      register: 'Sign up',
+      contact: 'Contact',
 
       Contact: {
         box_address: 'Mailbox',
@@ -91,6 +114,13 @@
         register_problems: 'Problems with registration',
         titel: 'Flowmeter customer support',
         visit: 'Visit us at'
+      },
+      MyDevices: {
+        title: 'My Devices',
+        technology: 'Technology',
+        device_description: 'Device description',
+        category: 'Category',
+        add_button: 'Add device',
       },
       RegistrationForm: {
         agreement: 'Agreement',

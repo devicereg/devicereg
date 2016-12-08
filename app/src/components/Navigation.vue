@@ -4,26 +4,26 @@
       <div class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-left">
           <li v-if="user.authenticated">
-            <router-link to="/dashboard">Dashboard</router-link>
+            <router-link to="/dashboard"> {{ $t('dashboard') }} </router-link>
           </li>
           <li v-if="!user.authenticated">
-            <router-link to="/">Home</router-link>
+            <router-link to="/"> {{ $t('home') }} </router-link>
           </li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <li v-if="!user.authenticated">
-            <router-link to="/registrieren">Registrieren</router-link>
+            <router-link to="/registrieren"> {{ $t('register') }} </router-link>
           </li>
-          <li><router-link to="/contact">Kontakt</router-link></li>
+          <li><router-link to="/contact"> {{ $t('contact') }} </router-link></li>
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> Sprache <span class="caret"></span></a>
-            <ul class="dropdown-menu" role="menu">
-              <li><span class="lang-sm lang-lbl-full" lang="de"></span></li>
-              <li><span class="lang-sm lang-lbl-full" lang="en"></span></li>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> {{ $t('language') }} <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li @click='setLang("de")'><a> {{ $t('german') }} </a></li>
+              <li @click='setLang("en")'><a> {{ $t('english') }} </a></li>
             </ul>
           </li>
           <li class="logout-user" v-if="user.authenticated" @click="logout()">
-            <router-link to="/login">Abmelden</router-link>
+            <router-link to="/login"> {{ $t('logout') }} </router-link>
           </li>
         </ul>
       </div>
@@ -34,6 +34,7 @@
 <script>
 
 import auth from '../auth'
+var Vue = require('vue')
 
 export default {
   name: 'navigation',
@@ -43,6 +44,9 @@ export default {
   methods: {
     logout(){
       auth.logout()
+    },
+    setLang(lang){
+      Vue.config.lang = lang
     }
   }
 }
@@ -57,6 +61,15 @@ export default {
     .container {
       .navbar-collapse {
         .navbar-right {
+          .dropdown {
+            .dropdown-menu {
+              background: $primary-bg-color;
+              border-radius: 0;
+              li {
+                color: $body-background;
+              }
+            }
+          }
           .logout-user {
             border-left: 1px solid #e2e2e2;
             padding-left: 10px;

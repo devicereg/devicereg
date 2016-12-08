@@ -1,14 +1,15 @@
 <template xmlns:v-bind="http://www.w3.org/1999/xhtml">
-    <div class="termsofuse">
+    <div class="container fluid">
         <div class="row">
-          <div class="col-md-offset-2 col-md-8">
+          <div class="col-md-offset-2 col-md-8 text-left">
             <h1>Nutzungsbedingungen</h1>
+            <br/>
             <p>
               Die Nutzung dieser von der Rota Yokogawa GmbH & Co. KG („Rota Yokogawa“) bereitgestellten Internetseite
               und seiner Inhalte unterliegt den folgenden Nutzungsbedingungen:
             </p>
 
-            <h5>1. Inhalt des Onlineangebotes</h5>
+            <h4>1. &nbsp; Inhalt des Onlineangebotes</h4>
             <p>
               Alle Inhalte unseres Internetauftritts werden mit Sorgfalt und nach bestem Gewissen erstellt. Eine Gewähr für die Aktualität,
               Vollständigkeit und Richtigkeit sämtlicher Seiten kann jedoch nicht übernommen werden. Ebenso übernimmt Rota Yokogawa keine Gewähr für die
@@ -20,7 +21,7 @@
               zu löschen oder die Veröffentlichung zeitweise oder endgültig einzustellen.
             </p>
 
-            <h5>2. Verweise und Links </h5>
+            <h4>2. &nbsp; Verweise und Links </h4>
             <p>
               Diese Internetseite enthält als Information auch entsprechend gekennzeichnete Links oder Verweise auf Internetseiten Dritter.
               Die Verantwortlichkeit für diese fremden Inhalte liegt alleine bei dem Anbieter, der die Inhalte bereithält. Rota Yokogawa vermittelt lediglich den Zugang
@@ -40,7 +41,7 @@
               der Kenntniserlangung.
             </p>
 
-            <h5>3. Urheber- und Kennzeichenrecht </h5>
+            <h4>3. &nbsp; Urheber- und Kennzeichenrecht </h4>
             <p>
               Falls nicht anders angegeben, unterliegen alle Seiten dem Urheberrecht (Copyright). Dies gilt insbesondere für Texte, Bilder, Grafiken, Ton-, Video- oder
               Animationsdateien einschließlich deren Anordnung auf den Internetseiten. Eine Vervielfältigung oder Verwendung solcher Seiten (oder Teilen davon) in anderen
@@ -54,12 +55,12 @@
               und den Besitzrechten der jeweiligen eingetragenen Eigentümer.
             </p>
 
-            <h5>4. Datenschutz </h5>
+            <h4>4. &nbsp; Datenschutz </h4>
             <p>
               Siehe <router-link to="/datenschutz">Datenschutzerkkärung</router-link>
             </p>
 
-            <h5>5. Passwort, Registrierung </h5>
+            <h4>5. &nbsp; Passwort, Registrierung </h4>
             <p>
               Einige Seiten der Internetseite können passwortgeschützt sein. Der Zugang zu diesen Seiten ist im Interesse der Sicherheit des Geschäftsverkehrs und
               des Datenschutzes nur registrierten Nutzern möglich. Sie sollten Ihre Zugangsinformationen deshalb stets vertraulich behandeln und das Browserfenster
@@ -75,7 +76,7 @@
               <li v-bind:value="item" v-for="item in items"> {{ item.message }} </li>
             </ul>
 
-            <h5>6. Service Angebote </h5>
+            <h4>6. &nbsp; Service Angebote </h4>
             <p>
               Rota Yokogawa bietet optional Support- und/oder Serviceleistungen in einem speziell geschützten Bereich an. Hierzu ist es notwendig, dass sich Nutzer registrieren
               und gerätespezifische Informationen und weiterführende Daten auf der Rota Yokogawa Online-Plattform einpflegen und aktualisieren. Rota Yokogawa weist darauf hin,
@@ -88,15 +89,21 @@
               Der Kunde ist um die Sicherung seiner Daten selbst besorgt. Die Nutzung erfolgt in alleiniger Verantwortung des Kunden.
             </p>
 
-            <h5>7. Änderung der Nutzungsbedingungen </h5>
+            <h4>7. &nbsp; Änderung der Nutzungsbedingungen </h4>
             <p>
               Rota Yokogawa behält sich das Recht vor, diese Nutzungsbedingungen mit vorheriger Ankündigung zu ändern. Solche Änderungen werden Ihnen vorher mitgeteilt.
               Die Änderungen erlangen erst Wirkung, nachdem sie von Ihnen akzeptiert wurden. Für den Fall, dass Sie die Änderungen nicht akzeptieren, kann jede Partei diese
               Vereinbarung kündigen. Die Kündigungsfrist beträgt einen Monat ab Zugang der Mitteilung der Änderung.
             </p>
+            <br/>
             <p>
              November 2016
             </p>
+
+            <a onmouseup="window.print();" title="Drucken">
+              <span class="glyphicon glyphicon-print action button" aria-hidden="true"></span> &nbsp; Drucken
+            </a>
+
         </div>
       </div>
     </div>
@@ -108,17 +115,36 @@
     data () {
       return {
         items: [
-          { message: 'zur Registrierung falsche Angaben gemacht hat oder die Zugangskennung missbräuchlich verwendet wird,' },
-          { message: 'gegen diese Nutzungsbedingungen oder gegen seine Sorgfaltspflichten im Umgang mit den Zugangsdaten verstoßen hat, oder' },
-          { message: 'gegen anwendbares Recht beim Zugang zu oder der Nutzung der Internetseite verstoßen hat.' }
+          { message: '- zur Registrierung falsche Angaben gemacht hat oder die Zugangskennung missbräuchlich verwendet wird,' },
+          { message: '- gegen diese Nutzungsbedingungen oder gegen seine Sorgfaltspflichten im Umgang mit den Zugangsdaten verstoßen hat, oder' },
+          { message: '- gegen anwendbares Recht beim Zugang zu oder der Nutzung der Internetseite verstoßen hat.' }
         ]
       }
     }
   }
 </script>
 
-<style scoped>
-  h5 {
+<style scoped lang="scss">
+  h1 {
     font-weight: bold;
+  }
+
+  h4 {
+    font-weight: bold;
+    padding-top: 1em;
+  }
+
+  p {
+    margin-left: 2em;
+  }
+
+  ul {
+    margin-left: 3em;
+  }
+
+  span.glyphicon-print {
+    font-size: 20px;
+    margin-left: 30px;
+    padding-top: 1em;
   }
 </style>

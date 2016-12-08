@@ -15,8 +15,8 @@ import Impressum from './components/Impressum'
 import Warranty from './components/Warranty'
 import Datenschutz from './components/Datenschutz'
 import UserEdit from './components/UserEdit'
+import MyDevices from './components/MyDevices'
 import DeviceRegForm from './components/DeviceRegForm'
-
 
 Vue.use(VueRouter)
 Vue.use(VueResource)
@@ -32,6 +32,7 @@ const routes = [
   {path: '/impressum', component: Impressum},
   {path: '/aktionsbedingungen', component: Warranty},
   {path: '/datenschutz', component: Datenschutz},
+  {path: '/my-devices', component: MyDevices},
   {path: '/device/create', component: DeviceRegForm},
   {path: '/user/edit', component: UserEdit}
 ]
