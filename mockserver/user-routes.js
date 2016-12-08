@@ -122,7 +122,8 @@ app.post('/sessions/create', function(req, res)
 
   db.serialize(function()
   {
-    db.get("SELECT * FROM user WHERE email = ? AND password = ?", [ req.body.email, req.body.password ],
+    db.get("SELECT * FROM user WHERE email = ? AND password = ?",
+        [req.body.email, req.body.password],
         function(err, row)
         {
           if(typeof row != 'undefined')
@@ -131,14 +132,13 @@ app.post('/sessions/create', function(req, res)
             console.log("User object: " + row);
             console.log("JWT Token: " + jwt_token);
 
-            res.status(201).send({ id_token: jwt_token });
+            res.status(201).send({id_token: jwt_token});
           }
           else
           {
-            res.status(401).send(
-                {
-                  message: "Der Benutzer mit der E-Mail Adresse '" + req.body.email + "' konnte nicht gefunden werden."
-                });
+            res.status(401).send({
+              message: "Der Benutzer mit der E-Mail Adresse '" + req.body.email + "' konnte nicht gefunden werden."
+            });
           }
         }
     );

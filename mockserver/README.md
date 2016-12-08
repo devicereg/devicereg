@@ -45,18 +45,6 @@ It returns the following:
 
 The JWT is signed with the secret located at the `config.json` file. That JWT will contain the `username` and the `extra` information that you sent at signup time.
 
-### Quotes API
-
-#### GET `/api/random-quote`
-
-It returns a String with a Random quote from Chuck Norris. It doesn't require authentication.
-
-#### GET `/api/protected/random-quote`
-
-It returns a String with a Random quote from Chuck Norris. It requires authentication. 
-
-The JWT must be sent on the `Authorization` header as follows: `Authorization: Bearer {jwt}`
-
 ## Running it
 
 Just clone the repository, run `npm install` and then `node server.js`. That's it :).
