@@ -5,7 +5,6 @@ var express = require('express'),
     sqlite3 = require('sqlite3').verbose();
 
 var app = module.exports = express.Router();
-<<<<<<< HEAD
 
 // XXX: This should be a database of users :).
 var users = [{
@@ -13,16 +12,13 @@ var users = [{
   username: 'gonto',
   password: 'gonto'
 }];
-=======
->>>>>>> ed53e093b38be6f98badde205f6d9fe53da5e699
 
 function createToken(user) {
   return jwt.sign(_.omit(user, 'password'), config.secret, { expiresIn: 60*60*5 });
 }
 
-<<<<<<< HEAD
 function getUserScheme(req) {
-  
+
   var username;
   var type;
   var userSearch = {};
@@ -48,8 +44,8 @@ function getUserScheme(req) {
 }
 
 app.post('/users', function(req, res) {
-  
-  var userScheme = getUserScheme(req);  
+
+  var userScheme = getUserScheme(req);
 
   if (!userScheme.username || !req.body.password) {
     return res.status(400).send("You must send the username and the password");
@@ -63,8 +59,8 @@ app.post('/users', function(req, res) {
   profile.id = _.max(users, 'id').id + 1;
 
   users.push(profile);
-=======
 app.post('/users', function(req, res)
+app.post('/user/create', function(req, res)
 {
   var db = new sqlite3.Database('database/devicer.sqlite');
 
@@ -72,19 +68,28 @@ app.post('/users', function(req, res)
   {
     db.run(
       "INSERT INTO user " +
-        "('id', 'lastname', 'name', 'email', 'street', 'housenumber', 'zip', 'city', 'password') " +
+        "('id', 'gender', 'surname', 'prename', 'language', 'phone', 'industry_family', 'industry_type', 'company', 'street', 'number', 'zip', 'city', 'country', 'password', 'question', 'answer', 'email') " +
       "VALUES " +
-        "($id, $lastname, $name, $email, $street, $housenumber, $zip, $city, $password)",
+        "($id, $gender, $surname, $prename, $language, $phone, $industry_family, $industry_type, $company, $street, $number, $zip, $city, $country, $password, $question, $answer, $email)",
         {
           $id: null,
-          $lastname: req.body.surname,
-          $name: req.body.prename,
-          $email: req.body.email,
+          $gender: req.body.gender,
+          $surname: req.body.surname,
+          $prename: req.body.prename,
+          $language: req.body.language,
+          $phone: req.body.phone,
+          $industry_family: req.body.industry_family,
+          $industry_type: req.body.industry_type,
+          $company: req.body.company,
           $street: req.body.street,
-          $housenumber: req.body.number,
+          $number: req.body.number,
           $zip: req.body.zip,
           $city: req.body.city,
-          $password: req.body.password
+          $country: req.body.country,
+          $password: req.body.password,
+          $question: req.body.question,
+          $answer: req.body.answer,
+          $email: req.body.email
         }
     );
 
@@ -95,7 +100,6 @@ app.post('/users', function(req, res)
         jwt_token = createToken(row);
         console.log("User object: " + row);
         console.log("JWT Token: " + jwt_token);
->>>>>>> ed53e093b38be6f98badde205f6d9fe53da5e699
 
         res.status(201).send({ id_token: jwt_token });
       }
@@ -111,21 +115,29 @@ app.post('/user/update', function(req, res)
   {
     db.run(
       "UPDATE user " +
-        "SET lastname=?, name=?, email=?, street=?, housenumber=?, zip=?, city=? " +
+        "SET gender=?, surname=?, prename=?, language=?, phone=?, industry_family=?, industry_type=?, company=?, street=?, number=?, zip=?, city=?, country=?, password=?, question=?, answer=?, email=? " +
       "WHERE id=?",
         [
-          req.body.lastname,
-          req.body.name,
-          req.body.email,
-          req.body.street,
-          req.body.housenumber,
-          req.body.zip,
-          req.body.city,
-          req.body.id
+            req.body.gender,
+            req.body.surname,
+            req.body.prename,
+            req.body.language,
+            req.body.phone,
+            req.body.industry_family,
+            req.body.industry_type,
+            req.body.company,
+            req.body.street,
+            req.body.number,
+            req.body.zip,
+            req.body.city,
+            req.body.country,
+            req.body.password,
+            req.body.question,
+            req.body.answer,
+            req.body.email
         ]
     );
 
-<<<<<<< HEAD
   var userScheme = getUserScheme(req);
 
   if (!userScheme.username || !req.body.password) {
@@ -133,11 +145,10 @@ app.post('/user/update', function(req, res)
   }
 
   var user = _.find(users, userScheme.userSearch);
-  
+
   if (!user) {
     return res.status(401).send("The username or password don't match");
   }
-=======
 
     db.get("SELECT * FROM user WHERE email = ?", [ req.body.email ],
       function(err, row)
@@ -169,7 +180,6 @@ app.post('/user/delete', function(req, res)
 app.post('/sessions/create', function(req, res)
 {
   var db = new sqlite3.Database('database/devicer.sqlite');
->>>>>>> ed53e093b38be6f98badde205f6d9fe53da5e699
 
   db.serialize(function()
   {
@@ -187,11 +197,43 @@ app.post('/sessions/create', function(req, res)
         else
         {
           res.status(401).send(
-          { 
-            message: "Der Benutzer mit der E-Mail Adresse '" + req.body.email + "' konnte nicht gefunden werden." 
+          {
+            message: "Der Benutzer mit der E-Mail Adresse '" + req.body.email + "' konnte nicht gefunden werden."
           });
         }
       }
+    );
+  });
+});
+
+app.post('/device/create', function (req, res)
+{
+  var db = new sqlite3.Database('database/devicer.sqlite');
+
+  db.serialize(function()
+  {
+    db.run(
+        "INSERT INTO device " +
+        "('technology', 'devicelabel', 'serialnumber', 'procmedium', 'comment', 'mInterval', 'mBeginning'," +
+        "'calibration', 'maintenance', 'maintenanceMsg', 'cInterval', 'calibrationMsg', 'cBeginning')" +
+        "VALUES " +
+        "($technology, $devicelabel, $serialnumber, $procmedium, $comment, $mInterval, $mBeginning," +
+        "$calibration, $maintenance, $maintenanceMsg, $cInterval, $calibrationMsg, $cBeginning)" +
+        {
+          $technology: req.body.technology,
+          $devicelabel: req.body.devicelabel,
+          $serialnumber: req.body.serialnumber,
+          $procmedium: req.body.procmedium,
+          $comment: req.body.comment,
+          $mInterval: req.body.mInterval,
+          $mBeginning: req.body.mBeginning,
+          $calibration: req.body.calibration,
+          $maintenance: req.body.maintenance,
+          $maintenanceMsg: req.body.maintenanceMsg,
+          $cInterval: req.body.cInterval,
+          $calibrationMsg: req.body.calibrationMsg,
+          $cBeginning: req.body.cBeginning
+        }
     );
   });
 });

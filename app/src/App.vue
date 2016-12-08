@@ -19,8 +19,9 @@ import Contact from './components/Contact'
 import TermsOfUse from './components/TermsOfUse'
 import Impressum from './components/Impressum'
 import Translations from './components/Translations'
+import UserEdit from './components/UserEdit'
+import DeviceRegForm from './components/DeviceRegForm'
 import DeleteProfileModal from './components/UserDeleteModal'
-
 
 export default {
   name: 'app',
@@ -35,6 +36,8 @@ export default {
     TermsOfUse,
     Impressum,
     Translations,
+    UserEdit,
+    DeviceRegForm,
   },
   data() {
     return { user: auth.user }
@@ -46,7 +49,7 @@ export default {
   @import './styles/_colors';
   $font-family-sans-serif: 'Source Sans Pro', 'Avenir', Helvetica, Arial, sans-serif;
 
-  body {
+  html {
     background: $body-background;
   }
 

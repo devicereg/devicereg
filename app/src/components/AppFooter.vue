@@ -25,7 +25,7 @@
     bottom: 0;
     margin-top: 55px;
     width: 100%;
-    background-color: $deep-space-sparkle;
+    background-color: $primary-bg-color;
     overflow: auto;
     .container {
       .nav {

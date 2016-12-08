@@ -15,7 +15,7 @@
 					<legend>Anmeldung</legend>
 					<div class="form-group">
 						<label class="control-label col-sm-2" for="login_email">
-							<img src="../assets/u10.png">
+              <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
 						</label>
 						<div class="col-sm-10">
 							<input
@@ -30,7 +30,7 @@
 					</div>
 					<div class="form-group">
 						<label class="control-label col-sm-2" for="login_password">
-							<img src="../assets/u12.png">
+              <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
 						</label>
 						<div class="col-sm-10">
 							<input
@@ -62,7 +62,9 @@
 		</div>
 	</div>
 </template>
+<style lang="scss">
 
+</style>
 <script>
 	import auth from '../auth'
 
