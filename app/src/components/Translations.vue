@@ -21,6 +21,10 @@
       home: 'Startseite',
       register: 'Registrieren',
       contact: 'Kontakt',
+      privacy_policy: 'Datenschutz',
+      site_policy: 'Nutzungsbedingungen',
+      legal_disclosure: 'Impressum',
+      terms_of_warranty: 'Aktionsbedingungen',
 
       Contact: {
         box_address: 'Postfach',
@@ -106,6 +110,10 @@
       home: 'Home',
       register: 'Sign up',
       contact: 'Contact',
+      privacy_policy: 'Privacy policy',
+      site_policy: 'Site policy',
+      legal_disclosure: 'Legal disclosure',
+      terms_of_warranty: 'Terms of warranty',
 
       Contact: {
         box_address: 'Mailbox',
