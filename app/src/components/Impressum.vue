@@ -2,37 +2,35 @@
     <div class="container fluid">
         <div class="row">
           <div class="col-md-offset-2 col-md-8 text-left">
-            <h1>Impressum</h1>
+            <h1>{{$t("Impressum.title")}}</h1>
 
-            <h4>Geschäftsführer</h4>
-            <p>Andreas Dobratz, Yoji Saito</p>
-            <h4>Adresse</h4>
+            <h4>{{$t("Impressum.header1")}}</h4>
+            <p>{{$t("Impressum.paragraph1")}}</p>
+            <h4>{{$t("Impressum.header2")}}</h4>
             <p>
-              Rheinstraße 8 <br />
-              79664 Wehr, Deutschland
+              {{$t("Impressum.paragraph_item2_1")}}<br />
+              {{$t("Impressum.paragraph_item2_2")}}
             </p>
 
-            <h4>Kontakt</h4>
+            <h4>{{$t("Impressum.header3")}}</h4>
+
+              <label>{{$t("Impressum.label1")}}</label>{{$t("Impressum.label_item1")}}<br/>
+              <label>{{$t("Impressum.label2")}}</label>{{$t("Impressum.label_item2")}}<br/>
+              <label>{{$t("Impressum.label3")}}</label>
+              <a href="#">{{$t("Impressum.label_item3")}}</a><br/>
+              <label>{{$t("Impressum.label4")}}</label>
+              <a href="http://www.yokogawa.com/rota-de">{{$t("Impressum.label_item4")}}</a>
 
 
-
-              <label>Tel.: </label>+49-7761-567-120<br/>
-              <label>Fax: </label>+49-7761-567-126<br/>
-              <label>E-Mail: </label>
-              <a href="#">pmk.info@de.yokogawa.com</a><br/>
-              <label>Website: </label>
-              <a href="http://www.yokogawa.com/rota-de">http://www.yokogawa.com/rota-de</a>
-
-
-            <h4>Eingetragen bei</h4>
+            <h4>{{$t("Impressum.header4")}}</h4>
             <p>
-              Registergericht Freiburg <br />
-              HRA: 630 604 <br />
-              Ust.-Idnr.: DE 142697009
+              {{$t("Impressum.paragraph_item4_1")}}<br />
+              {{$t("Impressum.paragraph_item4_2")}} <br />
+              {{$t("Impressum.paragraph_item4_3")}}
             </p>
 
-            <h4>Redaktionelle Verantwortlichkeit</h4>
-            <p>Jürgen Fischer, Andreas Dobratz</p>
+            <h4>{{$t("Impressum.header5")}}</h4>
+            <p>{{$t("Impressum.paragraph5")}}</p>
         </div>
       </div>
     </div>
