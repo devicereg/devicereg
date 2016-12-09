@@ -8,142 +8,157 @@ const SIGNUP_URL = API_URL + 'user/create';
 const UPDATE_URL = API_URL + 'user/update';
 const DELETE_URL = API_URL + 'user/delete';
 const CREATE_DEVICE_URL = API_URL + 'device/create';
+const DELETE_DEVICE_URL = API_URL + 'device/delete';
 
 export default {
-	user: { authenticated: false },
+  user: {authenticated: false},
 
-	/**
-	 * Method for user login
-	 *
-	 * @param      {object}  context   The context
-	 * @param      {JSON}    creds     The creds
-	 * @param      {string}  redirect  The redirect
-	 */
-	login(context, creds, redirect)
-	{
-		context.$http.post(LOGIN_URL, creds).then((response) => {
+  /**
+   * Method for user login
+   *
+   * @param      {object}  context   The context
+   * @param      {JSON}    creds     The creds
+   * @param      {string}  redirect  The redirect
+   */
+  login(context, creds, redirect)
+  {
+    context.$http.post(LOGIN_URL, creds).then((response) => {
 
-			localStorage.setItem('id_token', response.data.id_token);
-			this.user.authenticated = true;
+      localStorage.setItem('id_token', response.data.id_token);
+      this.user.authenticated = true;
 
-			if(redirect)
-			{
-				router.push(redirect)
-			}
+      if (redirect) {
+        router.push(redirect)
+      }
 
-		}, (err) => {
-			context.error = err.body.message
-		})
-	},
+    }, (err) => {
+      context.error = err.body.message
+    })
+  },
 
-	/**
-	 * Method for user registration
-	 *
-	 * @param      {object}  context   The context
-	 * @param      {JSON}  	 creds     The creds
-	 * @param      {string}  redirect  The redirect
-	 */
-	signup(context, creds, redirect)
-	{
-	    context.$http.post(SIGNUP_URL, creds).then((response) => {
+  /**
+   * Method for user registration
+   *
+   * @param      {object}  context   The context
+   * @param      {JSON}     creds     The creds
+   * @param      {string}  redirect  The redirect
+   */
+  signup(context, creds, redirect)
+  {
+    context.$http.post(SIGNUP_URL, creds).then((response) => {
 
-			localStorage.setItem('id_token', response.data.id_token);
-	      	this.user.authenticated = true;
+      localStorage.setItem('id_token', response.data.id_token);
+      this.user.authenticated = true;
 
-			if(redirect)
-			{
-				router.push(redirect)
-			}
+      if (redirect) {
+        router.push(redirect)
+      }
 
-	    }, (err) => {
-	    	context.error = err
-	    })
-  	},
+    }, (err) => {
+      context.error = err
+    })
+  },
 
 
-  	/**
-	 * Method for user update
-	 *
-	 * @param      {object}  context   The context
-	 * @param      {JSON}  	 creds     The creds
-	 * @param      {string}  redirect  The redirect
-	 */
-	update(context, creds, redirect)
-	{
-	    context.$http.post(UPDATE_URL, creds).then((response) => {
+  /**
+   * Method for user update
+   *
+   * @param      {object}  context   The context
+   * @param      {JSON}     creds     The creds
+   * @param      {string}  redirect  The redirect
+   */
+  update(context, creds, redirect)
+  {
+    context.$http.post(UPDATE_URL, creds).then((response) => {
 
-			//@TODO implement UPDATE method
+      //@TODO implement UPDATE method
 
-			if(redirect)
-			{
-				router.push(redirect)
-			}
+      if (redirect) {
+        router.push(redirect)
+      }
 
-	    }, (err) => {
-	    	context.error = err
-	    })
-  	},
+    }, (err) => {
+      context.error = err
+    })
+  },
 
-  	/**
-	 * Method for user delete
-	 *
-	 * @param      {object}  context   The context
- 	 * @param      {int}   	 id     	The creds
-	 */
-	delete(context, id)
-	{
-	    context.$http.post(DELETE_URL, id).then((response) => {
+  /**
+   * Method for user delete
+   *
+   * @param      {object}  context   The context
+   * @param      {int}     id      The creds
+   */
+  delete(context, id)
+  {
+    context.$http.post(DELETE_URL, id).then((response) => {
 
-	    	console.log(response.data.message);
-	    	this.logout()
+      console.log(response.data.message);
+      this.logout()
 
-	    }, (err) => {
-	    	context.error = err
-	    })
-  	},
+    }, (err) => {
+      context.error = err
+    })
+  },
 
-	/**
-	 * Method for user logout
-	 *
-	 * @returns  void
-	 */
-	logout()
-	{
-		localStorage.removeItem('id_token');
-		localStorage.removeItem('username');
-		this.user.authenticated = false;
+  /**
+   * Method for user logout
+   *
+   * @returns  void
+   */
+  logout()
+  {
+    localStorage.removeItem('id_token');
+    localStorage.removeItem('username');
+    this.user.authenticated = false;
 
-		router.push("/")
-	},
+    router.push("/")
+  },
 
-	/**
-	 * This method checks if the user is authenticated
-	 *
-	 * @return  void
-	 */
-	checkAuth()
-	{
-		var jwt = localStorage.getItem('id_token');
+  /**
+   * This method checks if the user is authenticated
+   *
+   * @return  void
+   */
+  checkAuth()
+  {
+    var jwt = localStorage.getItem('id_token');
 
-		this.user.authenticated = !!jwt;
-	},
+    this.user.authenticated = !!jwt;
+  },
 
-	/**
-	 * Gets the auth header.
-	 *
-	 * @return     {Object}  The auth header.
-	 */
-	getAuthHeader()
-	{
-		return { 'Authorization': 'Bearer' + localStorage.getItem('id_token') }
-	},
+  /**
+   * Gets the auth header.
+   *
+   * @return     {Object}  The auth header.
+   */
+  getAuthHeader()
+  {
+    return {'Authorization': 'Bearer' + localStorage.getItem('id_token')}
+  },
 
-	createDevice(context, data, redirect)
+  createDevice(context, data, redirect)
   {
     context.$http.post(CREATE_DEVICE_URL, data).then((response) => {
+      if (redirect) {
+        router.push(redirect)
+      }
 
-      if(redirect)
-      {
+    }, (err) => {
+      context.error = err
+    });
+  },
+
+  /**
+   * Method for removing a device
+   *
+   * @param      {object}  context   The context
+   * @param      {JSON}    data      The device- and user-id
+   * @param      {string}  redirect  The redirect
+   */
+  deleteDevice(context, data, redirect)
+  {
+    context.$http.post(DELETE_DEVICE_URL, data).then((response) => {
+      if (redirect) {
         router.push(redirect)
       }
 
