@@ -52,7 +52,7 @@
 					<div class="form-group">
 						<div class="col-sm-offset-2 col-sm-10">
 							<button class="btn btn-primary" @click="submit()">Anmelden</button>
-							<router-link to="#"> | Passwort vergessen? </router-link>
+							<router-link to="/reset-password"> | Passwort vergessen? </router-link>
 						</div>
 					</div>
 				</form>

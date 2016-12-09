@@ -1,12 +1,14 @@
-var express = require('express'),
-    _       = require('lodash'),
-    config  = require('./config'),
-    jwt     = require('jsonwebtoken'),
-    sqlite3 = require('sqlite3').verbose();
+var express     = require('express'),
+    _           = require('lodash'),
+    config      = require('./config'),
+    jwt         = require('jsonwebtoken'),
+    sqlite3     = require('sqlite3').verbose(),
+    nodemailer  = require('nodemailer');
 
 var app = module.exports = express.Router();
 
-function createToken(user) {
+function createToken(user) 
+{
   return jwt.sign(_.omit(user, 'password'), config.secret, { expiresIn: 60*60*5 });
 }
 
@@ -126,6 +128,8 @@ app.post('/sessions/create', function(req, res)
         [req.body.email, req.body.password],
         function(err, row)
         {
+          console.log("User email: " + req.body.email);
+
           if(typeof row != 'undefined')
           {
             jwt_token = createToken(row);
@@ -175,6 +179,54 @@ app.post('/device/create', function (req, res)
           $cBeginning: req.body.cBeginning,
           $category: req.body.category,
           $user: 1 //@TODO
+        }
+    );
+  });
+});
+
+
+app.post('/reset-user-password', function (req, res)
+{
+  var db = new sqlite3.Database('database/devicer.sqlite');
+
+  db.serialize(function()
+  {
+    db.get("SELECT * FROM user WHERE email = ?",
+        [req.body.email],
+        function(err, row)
+        {
+          if(typeof row != 'undefined')
+          {
+            jwt_token = createToken(row);
+            console.log("User object: " + row);
+            console.log("JWT Token: " + jwt_token);
+
+            // Transporter object using the direct transport protocol
+            var transporter = nodemailer.createTransport('direct:?name=localhost');
+
+            var mailOptions = {
+              from: '"DeviceR ?" <info@devicer.com>',
+              to: req.body.email, 
+              subject: 'Reset Password',
+              text: 'Bitte klicken Sie den Link unten an, um ein neues Passwort eingeben zu können.',
+              html: '<p><b>Bitte klicken Sie den Link unten an, um ein neues Passwort eingeben zu können.</b></p><a href="http://localhost/#/reset-password/' +jwt_token+ '"></a>'
+            };
+
+            transporter.sendMail(mailOptions, function(error, info)
+            {
+              if(error)
+              {
+                  return console.log(error);
+              }
+              console.log('Message sent: ' + info.response);
+            });
+          }
+          else
+          {
+            res.status(401).send({
+              message: "Der Benutzer mit der E-Mail Adresse '" + req.body.email + "' konnte nicht gefunden werden."
+            });
+          }
         }
     );
   });

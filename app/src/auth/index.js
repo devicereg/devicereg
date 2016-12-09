@@ -8,6 +8,7 @@ const SIGNUP_URL = API_URL + 'user/create';
 const UPDATE_URL = API_URL + 'user/update';
 const DELETE_URL = API_URL + 'user/delete';
 const CREATE_DEVICE_URL = API_URL + 'device/create';
+const RESET_PASSWORD_URL = API_URL + 'reset-user-password';
 
 export default {
 	user: { authenticated: false },
@@ -139,16 +140,33 @@ export default {
 	},
 
 	createDevice(context, data, redirect)
-  {
-    context.$http.post(CREATE_DEVICE_URL, data).then((response) => {
+  	{
+	    context.$http.post(CREATE_DEVICE_URL, data).then((response) => {
 
-      if(redirect)
-      {
-        router.push(redirect)
-      }
+	      if(redirect)
+	      {
+	        router.push(redirect)
+	      }
 
-    }, (err) => {
-      context.error = err
-    });
-  }
+	    }, (err) => {
+	      context.error = err
+	    });
+  	},
+
+  	/**
+  	 * Reset user password
+  	 *
+  	 * @param      {object}  context  The context
+  	 * @param      {string}  email    The email
+  	 */
+  	resetPassword(context, email)
+  	{
+  		context.$http.post(RESET_PASSWORD_URL, email).then((response) => {
+
+	    	console.log(response.data.message);
+
+	    }, (err) => {
+	    	context.error = err
+	    })
+  	}
 }

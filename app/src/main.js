@@ -17,6 +17,7 @@ import Datenschutz from './components/Datenschutz'
 import UserEdit from './components/UserEdit'
 import MyDevices from './components/MyDevices'
 import DeviceRegForm from './components/DeviceRegForm'
+import ResetPassword from './components/ResetPassword'
 
 Vue.use(VueRouter)
 Vue.use(VueResource)
@@ -34,7 +35,8 @@ const routes = [
   {path: '/datenschutz', component: Datenschutz},
   {path: '/my-devices', component: MyDevices},
   {path: '/device/create', component: DeviceRegForm},
-  {path: '/user/edit', component: UserEdit}
+  {path: '/user/edit', component: UserEdit},
+  {path: '/reset-password', component: ResetPassword},
 ]
 
 export const router = new VueRouter({

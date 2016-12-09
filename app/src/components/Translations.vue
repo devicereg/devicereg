@@ -90,6 +90,10 @@
         start: 'Beginn',
         month: 'Monat',
         months: 'Monate'
+      },
+      ResetPassword: {
+        reset_password: 'Passwort zurücksetzen',
+        email: 'E-Mail Adresse'
       }
 
     },
@@ -178,6 +182,10 @@
         start: 'Start',
         month: 'Month',
         months: 'Months'
+      },
+      ResetPassword: {
+        reset_password: 'Reset Password',
+        email: 'E-Mail address'
       }
     }
   }
