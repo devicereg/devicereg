@@ -33,9 +33,7 @@
             <router-link to="#">
               <span class="glyphicon glyphicon-edit action-button" aria-hidden="true"></span>
             </router-link>
-            <router-link to="#">
-              <span class="glyphicon glyphicon-trash action-button" aria-hidden="true"></span>
-            </router-link>
+            <span @click="deleteDevice(device.id)" class="glyphicon glyphicon-trash action-button" aria-hidden="true"></span>
           </td>
         </tr>
         </tbody>
@@ -59,249 +57,20 @@
   }
 </style>
 <script>
+  import mockDevices from "./MockData/devices.json"
 
   export default{
     name: 'my-devices',
     data () {
       return {
         selected: '0',
-        devices: [
-          {
-            technology: 'Flowmeter',
-            description_data: 'Benzin-Durchflussmesser',
-            category: 'Durchfluss'
-          },
-          {
-            technology: 'Rotamass',
-            description_data: 'Wasser-Durchflussmesser',
-            category: 'Durchfluss'
-          },
-          {
-            technology: 'Flowmeter',
-            description_data: 'Benzin-Durchflussmesser',
-            category: 'Durchfluss'
-          },
-          {
-            technology: 'Rotamass',
-            description_data: 'Wasser-Durchflussmesser',
-            category: 'Durchfluss'
-          },
-          {
-            technology: 'Flowmeter',
-            description_data: 'Benzin-Durchflussmesser',
-            category: 'Durchfluss'
-          },
-          {
-            technology: 'Flowmeter',
-            description_data: 'Benzin-Durchflussmesser',
-            category: 'Durchfluss'
-          },
-          {
-            technology: 'Rotamass',
-            description_data: 'Wasser-Durchflussmesser',
-            category: 'Durchfluss'
-          },
-          {
-            technology: 'Flowmeter',
-            description_data: 'Benzin-Durchflussmesser',
-            category: 'Durchfluss'
-          },
-          {
-            technology: 'Rotamass',
-            description_data: 'Wasser-Durchflussmesser',
-            category: 'Durchfluss'
-          },
-          {
-            technology: 'Flowmeter',
-            description_data: 'Benzin-Durchflussmesser',
-            category: 'Durchfluss'
-          },
-          {
-            technology: 'Flowmeter',
-            description_data: 'Benzin-Durchflussmesser',
-            category: 'Durchfluss'
-          },
-          {
-            technology: 'Rotamass',
-            description_data: 'Wasser-Durchflussmesser',
-            category: 'Durchfluss'
-          },
-          {
-            technology: 'Flowmeter',
-            description_data: 'Benzin-Durchflussmesser',
-            category: 'Durchfluss'
-          },
-          {
-            technology: 'Rotamass',
-            description_data: 'Wasser-Durchflussmesser',
-            category: 'Durchfluss'
-          },
-          {
-            technology: 'Flowmeter',
-            description_data: 'Benzin-Durchflussmesser',
-            category: 'Durchfluss'
-          },
-          {
-            technology: 'Flowmeter',
-            description_data: 'Benzin-Durchflussmesser',
-            category: 'Durchfluss'
-          },
-          {
-            technology: 'Rotamass',
-            description_data: 'Wasser-Durchflussmesser',
-            category: 'Durchfluss'
-          },
-          {
-            technology: 'Flowmeter',
-            description_data: 'Benzin-Durchflussmesser',
-            category: 'Durchfluss'
-          },
-          {
-            technology: 'Rotamass',
-            description_data: 'Wasser-Durchflussmesser',
-            category: 'Durchfluss'
-          },
-          {
-            technology: 'Flowmeter',
-            description_data: 'Benzin-Durchflussmesser',
-            category: 'Durchfluss'
-          },
-          {
-            technology: 'Flowmeter',
-            description_data: 'Benzin-Durchflussmesser',
-            category: 'Durchfluss'
-          },
-          {
-            technology: 'Rotamass',
-            description_data: 'Wasser-Durchflussmesser',
-            category: 'Durchfluss'
-          },
-          {
-            technology: 'Flowmeter',
-            description_data: 'Benzin-Durchflussmesser',
-            category: 'Durchfluss'
-          },
-          {
-            technology: 'Rotamass',
-            description_data: 'Wasser-Durchflussmesser',
-            category: 'Durchfluss'
-          },
-          {
-            technology: 'Flowmeter',
-            description_data: 'Benzin-Durchflussmesser',
-            category: 'Durchfluss'
-          },
-          {
-            technology: 'Flowmeter',
-            description_data: 'Benzin-Durchflussmesser',
-            category: 'Durchfluss'
-          },
-          {
-            technology: 'Rotamass',
-            description_data: 'Wasser-Durchflussmesser',
-            category: 'Durchfluss'
-          },
-          {
-            technology: 'Flowmeter',
-            description_data: 'Benzin-Durchflussmesser',
-            category: 'Durchfluss'
-          },
-          {
-            technology: 'Rotamass',
-            description_data: 'Wasser-Durchflussmesser',
-            category: 'Durchfluss'
-          },
-          {
-            technology: 'Flowmeter',
-            description_data: 'Benzin-Durchflussmesser',
-            category: 'Durchfluss'
-          },
-          {
-            technology: 'Flowmeter',
-            description_data: 'Benzin-Durchflussmesser',
-            category: 'Durchfluss'
-          },
-          {
-            technology: 'Rotamass',
-            description_data: 'Wasser-Durchflussmesser',
-            category: 'Durchfluss'
-          },
-          {
-            technology: 'Flowmeter',
-            description_data: 'Benzin-Durchflussmesser',
-            category: 'Durchfluss'
-          },
-          {
-            technology: 'Rotamass',
-            description_data: 'Wasser-Durchflussmesser',
-            category: 'Durchfluss'
-          },
-          {
-            technology: 'Flowmeter',
-            description_data: 'Benzin-Durchflussmesser',
-            category: 'Durchfluss'
-          },
-          {
-            technology: 'Flowmeter',
-            description_data: 'Benzin-Durchflussmesser',
-            category: 'Durchfluss'
-          },
-          {
-            technology: 'Rotamass',
-            description_data: 'Wasser-Durchflussmesser',
-            category: 'Durchfluss'
-          },
-          {
-            technology: 'Flowmeter',
-            description_data: 'Benzin-Durchflussmesser',
-            category: 'Durchfluss'
-          },
-          {
-            technology: 'Rotamass',
-            description_data: 'Wasser-Durchflussmesser',
-            category: 'Durchfluss'
-          },
-          {
-            technology: 'Flowmeter',
-            description_data: 'Benzin-Durchflussmesser',
-            category: 'Durchfluss'
-          },
-          {
-            technology: 'Flowmeter',
-            description_data: 'Benzin-Durchflussmesser',
-            category: 'Durchfluss'
-          },
-          {
-            technology: 'Rotamass',
-            description_data: 'Wasser-Durchflussmesser',
-            category: 'Durchfluss'
-          },
-          {
-            technology: 'Flowmeter',
-            description_data: 'Benzin-Durchflussmesser',
-            category: 'Durchfluss'
-          },
-          {
-            technology: 'Rotamass',
-            description_data: 'Wasser-Durchflussmesser',
-            category: 'Durchfluss'
-          },
-          {
-            technology: 'Flowmeter',
-            description_data: 'Benzin-Durchflussmesser',
-            category: 'Durchfluss'
-          },
-          {
-            technology: 'Rotamass',
-            description_data: 'Wasser-Durchflussmesser',
-            category: 'Durchfluss'
-          }
-        ]
+        devices: mockDevices
       }
     },
-    components: {
-
+    methods: {
+      deleteDevice(id) {
+        console.log(id);
+      }
     }
-
   }
 </script>
