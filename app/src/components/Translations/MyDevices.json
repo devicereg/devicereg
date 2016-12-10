@@ -1,0 +1,16 @@
+{
+  "de": {
+    "title": "Meine Geräte",
+    "technology": "Technologie",
+    "device_description": "Gerätebeschreibung",
+    "category": "Kategorie",
+    "add_button": "Gerät hinzufügen"
+  },
+  "en": {
+    "title": "My Devices",
+    "technology": "Technology",
+    "device_description": "Device description",
+    "category": "Category",
+    "add_button": "Add device"
+  }
+}
