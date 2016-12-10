@@ -1,43 +1,24 @@
 <template>
   <nav id="top-navigation" class="navbar navbar-default navbar-fixed-top">
     <div class="container">
-      <div class="navbar-collapse collapse">
-        <ul class="nav navbar-nav navbar-left">
-          <li v-if="user.authenticated">
-            <router-link to="/dashboard"> {{ $t('dashboard') }} </router-link>
-          </li>
-          <li v-if="!user.authenticated">
-            <router-link to="/"> {{ $t('home') }} </router-link>
-          </li>
-        </ul>
-        <ul class="nav navbar-nav navbar-right">
-          <li v-if="!user.authenticated">
-            <router-link to="/registrieren"> {{ $t('register') }} </router-link>
-          </li>
-          <li><router-link to="/contact"> {{ $t('contact') }} </router-link></li>
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> {{ $t('language') }} <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li @click='setLang("de")'><a> {{ $t('german') }} </a></li>
-              <li @click='setLang("en")'><a> {{ $t('english') }} </a></li>
-            </ul>
-          </li>
-          <li class="logout-user" v-if="user.authenticated" @click="logout()">
-            <router-link to="/login"> {{ $t('logout') }} </router-link>
-          </li>
-        </ul>
-      </div>
+      <LoggedOutNavigation v-if="!user.authenticated"></LoggedOutNavigation>
+      <LoggedInNavigation v-if="user.authenticated"></LoggedInNavigation>
     </div>
   </nav>
 </template>
 
 <script>
-
+import LoggedInNavigation from './Navigation/LoggedInNavigation.vue'
+import LoggedOutNavigation from './Navigation/LoggedOutNavigation.vue'
 import auth from '../auth'
 var Vue = require('vue')
 
 export default {
   name: 'navigation',
+  components: {
+    LoggedInNavigation,
+    LoggedOutNavigation
+  },
   data() {
     return { user: auth.user }
   },
@@ -45,9 +26,6 @@ export default {
     logout(){
       auth.logout()
     },
-    setLang(lang){
-      Vue.config.lang = lang
-    }
   }
 }
 
