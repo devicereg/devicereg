@@ -66,20 +66,23 @@ export default {
   }
 
   h1, h2 {
-      font-weight: normal;
+    font-weight: normal;
   }
 
   ul {
-      list-style-type: none;
-      padding: 0;
+    list-style-type: none;
+    padding: 0;
+
+    &.list {
+      list-style-type: disc;
+    }
   }
 
   li {
-      display: inline-block;
-      margin: 0 10px;
+    margin: 0 10px;
   }
 
   a {
-      color: $primary-link-color;
+    color: $primary-link-color;
   }
 </style>

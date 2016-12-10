@@ -19,15 +19,14 @@
             <p>{{$t("TermsOfUse.paragraph3_2")}}</p>
 
             <h4>4. &nbsp; {{$t("TermsOfUse.header4")}} </h4>
-            <p>{{$t("TermsOfUse.paragraph4")}}<router-link to="/datenschutz">{{$t("TermsOfUse.routerlink_privacy")}}</router-link></p>
+            <p>{{$t("TermsOfUse.paragraph4")}} <router-link to="/datenschutz">{{$t("TermsOfUse.routerlink_privacy")}}</router-link></p>
 
             <h4>5. &nbsp; {{$t("TermsOfUse.header5")}} </h4>
             <p>{{$t("TermsOfUse.paragraph5_1")}}</p>
             <p>{{$t("TermsOfUse.paragraph5_2")}}</p>
 
-            <!-- The translation of the list is not working. Will be implemented later. For any tips please comment. I´m tired :D -->
-            <ul>
-              <li v-bind:value="item" v-for="item in items"> {{ item.message }} </li>
+            <ul class="list">
+              <li v-for="item in items"> {{ $t(item.message) }} </li>
             </ul>
 
             <h4>6. &nbsp; {{$t("TermsOfUse.header6")}}</h4>
@@ -53,9 +52,9 @@
     data () {
       return {
         items: [
-          { message: '{{$t("TermsOfUse.list_item_1")}}'},
-          { message: '{{$t("TermsOfUse.list_item_2")}}'},
-          { message: '{{$t("TermsOfUse.list_item_3")}}'}
+          { message: "TermsOfUse.list_item_1"},
+          { message: "TermsOfUse.list_item_2"},
+          { message: "TermsOfUse.list_item_3"}
         ]
       }
     }
