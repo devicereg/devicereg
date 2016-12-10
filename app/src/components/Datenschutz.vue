@@ -2,72 +2,45 @@
   <div class="container fluid">
     <div class="row">
       <div class="col-md-offset-2 col-md-8 text-left">
-        <!-- Datenschutz.main.headline -->
         <h1>{{$t("Datenschutz.title")}}</h1>
-        <!-- Datenschutz.main.introduction -->
         <p>{{$t("Datenschutz.paragraph0")}}</p>
 
-        <!-- Datenschutz.responsible.headline -->
         <h4>1. &nbsp; {{$t("Datenschutz.header1")}}</h4>
-        <!-- Datenschutz.responsible.content -->
         <p>
           {{$t("Datenschutz.paragraph_item1_1")}}<br/>
           {{$t("Datenschutz.paragraph_item1_2")}}
         </p>
 
-        <!-- Datenschutz.what_is_personal_data.headline -->
         <h4>2. &nbsp; {{$t("Datenschutz.header2")}}</h4>
-        <!-- Datenschutz.what_is_personal_data.content -->
         <p>{{$t("Datenschutz.paragraph2")}}</p>
 
-        <!-- Datenschutz.collecting_personal_data.headline -->
         <h4>3. &nbsp; {{$t("Datenschutz.header3")}}</h4>
-        <!-- Datenschutz.collecting_personal_data.content -->
         <p>{{$t("Datenschutz.paragraph3")}}</p>
 
-        <!-- Datenschutz.use_and_transmission.headline -->
         <h4>4. &nbsp; {{$t("Datenschutz.header4")}}</h4>
-        <!-- Datenschutz.use_and_transmission.content -->
         <p>{{$t("Datenschutz.paragraph4")}}</p>
 
-        <!-- Datenschutz.online_registration.headline -->
         <h4>5. &nbsp; {{$t("Datenschutz.header5")}}</h4>
-        <!-- Datenschutz.online_registration.content.1 -->
         <p>{{$t("Datenschutz.paragraph5_1")}}</p>
-        <!-- Datenschutz.online_registration.content.2 -->
         <p>{{$t("Datenschutz.paragraph5_2")}} </p>
-        <!-- Datenschutz.online_registration.content.3 -->
         <p>{{$t("Datenschutz.paragraph5_3")}}</p>
-        <!-- Datenschutz.online_registration.content.4 -->
         <p>{{$t("Datenschutz.paragraph5_4")}}</p>
 
-        <!-- Datenschutz.cookies.headline -->
         <h4>6. &nbsp; {{$t("Datenschutz.header6")}}</h4>
-        <!-- Datenschutz.cookies.content.1 -->
         <p>{{$t("Datenschutz.paragraph6_1")}}</p>
-        <!-- Datenschutz.cookies.content.2 -->
         <p>{{$t("Datenschutz.paragraph6_2")}}</p>
 
-        <!-- Datenschutz.security.headline -->
         <h4>7. &nbsp; {{$t("Datenschutz.header7")}}</h4>
-        <!--  Datenschutz.security.content -->
         <p>{{$t("Datenschutz.paragraph7")}}</p>
 
-        <!-- Datenschutz.links.headline -->
         <h4>8. &nbsp; {{$t("Datenschutz.header8")}}</h4>
-        <!--  Datenschutz.links.content -->
         <p>{{$t("Datenschutz.paragraph8")}}</p>
 
-        <!--  Datenschutz.right_to_information.headline -->
         <h4>9. &nbsp; {{$t("Datenschutz.header9")}}</h4>
-        <!--  Datenschutz.right_to_information.content -->
         <p>{{$t("Datenschutz.paragraph9")}}</p>
 
-        <!--  Datenschutz.officer.headline -->
         <h4>10. {{$t("Datenschutz.header10")}}</h4>
-        <!--  Datenschutz.officer.content.1 -->
         <p>{{$t("Datenschutz.paragraph10")}}</p>
-        <!--  Datenschutz.officer.content.2 -->
         <p>
           {{$t("Datenschutz.paragraph_item10_1")}}<br/>
           {{$t("Datenschutz.paragraph_item10_2")}}<br/>
@@ -77,9 +50,7 @@
           {{$t("Datenschutz.paragraph_item10_6")}}
         </p>
         <br/>
-        <!-- Datenschutz.main.modification_date -->
         <p>{{$t("Datenschutz.current_date")}}</p>
-
 
         <a onmouseup="window.print();">
           <span class="glyphicon glyphicon-print action button" aria-hidden="true"></span> &nbsp; {{$t("TermsOfUse.print")}}
