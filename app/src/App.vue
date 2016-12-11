@@ -84,5 +84,9 @@ export default {
 
   a {
     color: $primary-link-color;
+
+    &:hover {
+      cursor: pointer;
+    }
   }
 </style>
