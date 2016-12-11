@@ -6,13 +6,13 @@
 				<div class="alert alert-danger" v-if="error">
 					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 					<p>
-            <strong>Anmeldung Fehlgeschlagen!</strong>
+            <strong>{{ $t("LoginForm.login_fail") }}</strong>
           </p>
 					<p>{{ error }}</p>
 				</div>
 
 				<form class="form-horizontal" role="form" v-if="!user.authenticated">
-					<legend>Anmeldung</legend>
+					<legend>{{ $t("LoginForm.registration") }}</legend>
 					<div class="form-group">
 						<label class="control-label col-sm-2" for="login_email">
               <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
@@ -46,18 +46,18 @@
 					<div class="form-group">
 						<div class="col-sm-10 col-sm-offset-2">
               <input type="checkbox" id="stay-logged-in">
-              <label for="stay-logged-in">Angemeldet bleiben</label>
+              <label for="stay-logged-in">{{ $t("LoginForm.remember_me") }}</label>
 						</div>
 					</div>
 					<div class="form-group">
 						<div class="col-sm-offset-2 col-sm-10">
-							<button class="btn btn-primary" @click="submit()">Anmelden</button>
-							<router-link to="#"> | Passwort vergessen? </router-link>
+							<button class="btn btn-primary" @click="submit()"> {{ $t("LoginForm.sign_in") }}</button>
+							<router-link to="#"> | {{ $t("LoginForm.forgot") }} </router-link>
 						</div>
 					</div>
 				</form>
 
-				<button class="btn btn-warning" @click="logout()" v-else>Abmelden</button>
+				<button class="btn btn-warning" @click="logout()" v-else>{{ $t("LoginForm.logout") }}</button>
 			</div>
 		</div>
 	</div>

@@ -22,6 +22,28 @@
       register: 'Registrieren',
       contact: 'Kontakt',
 
+      Home: {
+          welcome: 'Wilkommen bei DeviceR!',
+          info: 'Sie haben die Möglichkeit, einen Benutzer anzulegen und Ihr ' +
+          'Feldgerät zu registrieren oder sich an Ihrem bestehenden Profil' +
+          ' anzumelden, um weitere Feldgeräte zu erfassen.' +
+          ' Ihr Vorteil: Der Gewährleistungszeitraum registrierter Geräte' +
+          ' verlängert sich auf 24 Monate.' +
+          ' Ein weiterer Vorteil des DeviceR Service: Unsere' +
+          ' Erinnerungsfunktion macht Sie auf anstehende Wartungen oder ' +
+          'Kalibrierungen der registrierten Feldgeräte aufmerksam.',
+        register_now: 'Jetzt registrieren!'
+      },
+
+      LoginForm: {
+          registration: 'Anmeldung',
+        login_fail: 'Anmeldung fehlgeschlagen!',
+        remember_me: 'Angemeldet bleiben',
+        sign_in: 'Anmelden',
+        forgot: 'Passwort vergessen?',
+        logout: 'Ausloggen'
+      },
+
       Contact: {
         box_address: 'Postfach',
         contact: 'Bitte kontaktieren Sie',
@@ -106,6 +128,24 @@
       home: 'Home',
       register: 'Sign up',
       contact: 'Contact',
+
+      Home: {
+          welcome: 'Welcome at DeviceR!',
+          info: 'You have the opportunity to create a user and to register a field device or to log into your' +
+          'existing profile to capture more field devices. Your advantage: The period of warranty extends' +
+          'to 24 months. Another advantage of the DeviceR service: Our memory function reminds you of upcoming maintenance ' +
+          'or calibration of your registered devices',
+          register_now: 'Register now!'
+      },
+
+      LoginForm: {
+        registration: 'Registration',
+        login_fail: 'Registration failed!',
+        remember_me: 'Remember me',
+        sign_in: 'Sign in',
+        forgot: 'Forgot password?',
+        logout: 'Logout'
+      },
 
       Contact: {
         box_address: 'Mailbox',
