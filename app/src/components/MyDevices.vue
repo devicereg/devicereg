@@ -1,43 +1,47 @@
 <template>
-  <div class="row">
-    <div class="col-sm-offset-2 col-sm-8 text-left">
-      <div class="row">
-        <div class="col-sm-6">
-          <h2> {{$t("MyDevices.title")}} </h2>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 text-left">
+        <div class="row">
+          <div class="col-sm-6">
+            <h2> {{$t("MyDevices.title")}} </h2>
+          </div>
+          <div class="col-sm-6">
+            <router-link to="#" id="add-button" class="btn btn-primary pull-right">
+              <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> &nbsp; {{ $t("MyDevices.add_button") }}
+            </router-link>
+          </div>
         </div>
-        <div class="col-sm-6">
-          <router-link to="#" id="add-button" class="btn btn-primary pull-right">
-            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> &nbsp; {{ $t("MyDevices.add_button") }}
-          </router-link>
-        </div>
-      </div>
 
-      <table class="table table-striped">
-        <thead>
-        <tr>
-          <th>{{$t("MyDevices.technology")}}</th>
-          <th>{{$t("MyDevices.device_description")}}</th>
-          <th>{{$t("MyDevices.category")}}</th>
-          <th></th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr v-for="device in devices">
-          <td>{{device.technology}}</td>
-          <td>{{device.description_data}}</td>
-          <td>{{device.category}}</td>
-          <td>
-            <router-link to="#">
-              <span class="glyphicon glyphicon-eye-open action-button" aria-hidden="true"></span>
-            </router-link>
-            <router-link to="#">
-              <span class="glyphicon glyphicon-edit action-button" aria-hidden="true"></span>
-            </router-link>
-            <span @click="deleteDevice(device.id)" class="glyphicon glyphicon-trash action-button" aria-hidden="true"></span>
-          </td>
-        </tr>
-        </tbody>
-      </table>
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th>{{$t("MyDevices.technology")}}</th>
+            <th>{{$t("MyDevices.device_description")}}</th>
+            <th>{{$t("MyDevices.category")}}</th>
+            <th></th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr v-for="device in devices">
+            <td>{{device.technology}}</td>
+            <td>{{device.description_data}}</td>
+            <td>{{device.category}}</td>
+            <td>
+              <router-link to="#">
+                <span class="glyphicon glyphicon-eye-open action-button" aria-hidden="true"></span>
+              </router-link>
+              <router-link to="#">
+                <span class="glyphicon glyphicon-edit action-button" aria-hidden="true"></span>
+              </router-link>
+              <a @click="deleteDevice(device.id)">
+                <span class="glyphicon glyphicon-trash action-button" aria-hidden="true"></span>
+              </a>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </template>
