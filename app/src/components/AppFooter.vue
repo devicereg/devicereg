@@ -27,6 +27,7 @@
     width: 100%;
     background-color: $primary-bg-color;
     overflow: auto;
+
     .container {
       .nav {
         display: inline-block;
@@ -44,4 +45,18 @@
       }
     }
   }
+
+  @media only screen
+  and (max-width: 767px) {
+
+    .footer {
+      display: none;
+    }
+  }
+
+
+
+
+
+
 </style>

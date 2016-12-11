@@ -7,6 +7,9 @@
   import RegistrationForm from "./Translations/RegistrationForm.json"
   import TermsOfUse from "./Translations/TermsOfUse.json"
   import Warranty from "./Translations/Warranty.json"
+  import Home from "./Translations/Home.json"
+  import LoginForm from "./Translations/LoginForm.json"
+
 
   var Vue = require('vue')
   var VueI18n = require('vue-i18n')
@@ -34,6 +37,7 @@
       legal_disclosure: 'Impressum',
       terms_of_warranty: 'Aktionsbedingungen',
 
+
       Contact: Contact.de,
       MyDevices: MyDevices.de,
       RegistrationForm: RegistrationForm.de,
@@ -41,7 +45,9 @@
       TermsOfUse: TermsOfUse.de,
       Datenschutz: Datenschutz.de,
       Warranty: Warranty.de,
-      Impressum: Impressum.de
+      Impressum: Impressum.de,
+      Home: Home.de,
+      LoginForm: LoginForm.de
     },
     en: {
       address: 'Address',
@@ -65,6 +71,7 @@
       legal_disclosure: 'Imprint',
       terms_of_warranty: 'Terms of warranty',
 
+
       Contact: Contact.en,
       MyDevices: MyDevices.en,
       RegistrationForm: RegistrationForm.en,
@@ -72,7 +79,9 @@
       TermsOfUse: TermsOfUse.en,
       Datenschutz: Datenschutz.en,
       Warranty: Warranty.en,
-      Impressum: Impressum.en
+      Impressum: Impressum.en,
+      Home: Home.en,
+      LoginForm: LoginForm.en
     }
   }
 
