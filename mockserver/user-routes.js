@@ -4,8 +4,11 @@ var express = require('express'),
     jwt     = require('jsonwebtoken'),
     sqlite3 = require('sqlite3').verbose();
 
-var app = module.exports = express.Router();
+const sqliteJSON = require('sqlite-json');
+const exporter = sqliteJSON('database/devicer.sqlite');
 var db = new sqlite3.Database('database/devicer.sqlite');
+
+var app = module.exports = express.Router();
 
 function createToken(user) {
   return jwt.sign(_.omit(user, 'password'), config.secret, { expiresIn: 60*60*5 });
@@ -183,5 +186,13 @@ app.post('/device/delete', function(req, res)
       {
         res.status(201).send({ message: "Gerät wurde erfolgreich gelöscht." });
       });
+  });
+});
+
+app.get('/devices', function (req, res)
+{
+  exporter.json({table: "device", where: "user_id = 1"}, function (err, json) {
+    console.log(json);
+    res.status(200).send(json);
   });
 });

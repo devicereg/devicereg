@@ -1,6 +1,11 @@
 <template>
   <div class="container">
     <div class="row">
+      ####
+      <div v-for="data in deviceData">
+        {{data.id}}
+      </div>
+      ####
       <div class="col-sm-12 text-left">
         <div class="row">
           <div class="col-sm-6">
@@ -28,9 +33,9 @@
             <td>{{device.description_data}}</td>
             <td>{{device.category}}</td>
             <td>
-              <router-link to="#">
+              <a @click="getDevices()">
                 <span class="glyphicon glyphicon-eye-open action-button" aria-hidden="true"></span>
-              </router-link>
+              </a>
               <router-link to="#">
                 <span class="glyphicon glyphicon-edit action-button" aria-hidden="true"></span>
               </router-link>
@@ -62,20 +67,28 @@
 </style>
 <script>
   import mockDevices from "./MockData/devices.json"
+  import auth from "../auth/index.js"
 
   export default{
     name: 'my-devices',
     data () {
       return {
         selected: '0',
-        devices: mockDevices
+        devices: mockDevices,
+        deviceData: []
       }
     },
     methods: {
       deleteDevice(device) {
         var index = this.devices.indexOf(device);
         this.devices.splice(index, 1);
+      },
+      getDeviceData() {
+        auth.getDevices(this)
       }
+    },
+    ready: function() {
+      this.getDeviceData();
     }
   }
 </script>
