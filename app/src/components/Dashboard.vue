@@ -5,6 +5,9 @@
 				<div>
 					<h1>Welcome {{ user.prename }} {{ user.surname }}</h1>
 					<h2>This is your Dashboard</h2>
+          <p>
+            <router-link to="/my-devices">Geräteübersicht</router-link>
+          </p>
 				</div>
 			</div>
 		</div>
