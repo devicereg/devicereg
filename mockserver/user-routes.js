@@ -5,6 +5,7 @@ var express = require('express'),
     sqlite3 = require('sqlite3').verbose();
 
 var app = module.exports = express.Router();
+var db = new sqlite3.Database('database/devicer.sqlite');
 
 function createToken(user) {
   return jwt.sign(_.omit(user, 'password'), config.secret, { expiresIn: 60*60*5 });
@@ -12,8 +13,6 @@ function createToken(user) {
 
 app.post('/user/create', function(req, res)
 {
-  var db = new sqlite3.Database('database/devicer.sqlite');
-
   db.serialize(function()
   {
     db.run(
@@ -59,8 +58,6 @@ app.post('/user/create', function(req, res)
 
 app.post('/user/update', function(req, res)
 {
-  var db = new sqlite3.Database('database/devicer.sqlite');
-
   db.serialize(function()
   {
     db.run(
@@ -104,8 +101,6 @@ app.post('/user/update', function(req, res)
 
 app.post('/user/delete', function(req, res)
 {
-  var db = new sqlite3.Database('database/devicer.sqlite');
-
   db.serialize(function()
   {
     db.run("DELETE FROM user WHERE id=?", req.body.id,
@@ -118,8 +113,6 @@ app.post('/user/delete', function(req, res)
 
 app.post('/sessions/create', function(req, res)
 {
-  var db = new sqlite3.Database('database/devicer.sqlite');
-
   db.serialize(function()
   {
     db.get("SELECT * FROM user WHERE email = ? AND password = ?",
@@ -147,8 +140,6 @@ app.post('/sessions/create', function(req, res)
 
 app.post('/device/create', function (req, res)
 {
-  var db = new sqlite3.Database('database/devicer.sqlite');
-
   db.serialize(function()
   {
     db.run(
@@ -181,8 +172,6 @@ app.post('/device/create', function (req, res)
 
 app.post('/device/delete', function(req, res)
 {
-  var db = new sqlite3.Database('database/devicer.sqlite');
-
   db.serialize(function()
   {
     db.run("DELETE FROM device WHERE id=$id AND user_id=$user_id",
