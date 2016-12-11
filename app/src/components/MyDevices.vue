@@ -34,7 +34,7 @@
               <router-link to="#">
                 <span class="glyphicon glyphicon-edit action-button" aria-hidden="true"></span>
               </router-link>
-              <a @click="deleteDevice(device.id)">
+              <a @click="deleteDevice(device)">
                 <span class="glyphicon glyphicon-trash action-button" aria-hidden="true"></span>
               </a>
             </td>
@@ -72,8 +72,9 @@
       }
     },
     methods: {
-      deleteDevice(id) {
-        console.log(id);
+      deleteDevice(device) {
+        var index = this.devices.indexOf(device);
+        this.devices.splice(index, 1);
       }
     }
   }
