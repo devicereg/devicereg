@@ -15,12 +15,12 @@
 
         <table class="table table-striped">
           <thead>
-          <tr>
-            <th>{{$t("MyDevices.technology")}}</th>
-            <th>{{$t("MyDevices.device_description")}}</th>
-            <th>{{$t("MyDevices.category")}}</th>
-            <th></th>
-          </tr>
+            <tr>
+              <th>{{$t("MyDevices.technology")}}</th>
+              <th>{{$t("MyDevices.device_description")}}</th>
+              <th>{{$t("MyDevices.category")}}</th>
+              <th></th>
+            </tr>
           </thead>
           <tbody>
           <tr v-for="device in devices">
