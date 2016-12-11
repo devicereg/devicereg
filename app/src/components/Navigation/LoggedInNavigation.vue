@@ -1,0 +1,38 @@
+<template>
+  <div class="navbar-collapse collapse">
+    <ul class="nav navbar-nav navbar-left">
+      <li>
+        <router-link to="/dashboard"> {{ $t('dashboard') }} </router-link>
+      </li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li>
+        <router-link to="/contact"> {{ $t('contact') }} </router-link>
+      </li>
+      <language-switch></language-switch>
+      <li class="logout-user" @click="logout()">
+        <router-link to="/login"> {{ $t('logout') }} </router-link>
+      </li>
+    </ul>
+  </div>
+</template>
+
+<script>
+import LanguageSwitch from './LanguageSwitch.vue'
+import auth from '../../auth'
+
+export default {
+  name: 'logged-in-navigation',
+  data() {
+    return { user: auth.user }
+  },
+  components: {
+    LanguageSwitch
+  },
+  methods: {
+    logout(){
+      auth.logout()
+    },
+  }
+}
+</script>

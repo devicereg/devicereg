@@ -16,7 +16,7 @@
         </div>
         <div class="col-sm-4 ">
           <select class="form-control" id="technology" v-model="device.technology" required>
-            <option v-bind:value="item" v-for="item in technologies">{{item.name}}</option>
+            <option v-bind:value="item.id" v-for="item in technologies">{{item.name}}</option>
           </select>
         </div>
       </div>
@@ -32,7 +32,7 @@
         <div class="col-sm-4 ">
           <input type="text" class="form-control" id="category" v-model="device.category" v-if="customCat" required>
           <select class="form-control" id="category" required v-model="device.category" v-else>
-            <option v-bind:value="item" v-for="item in categories">{{item.name}}</option>
+            <option v-bind:value="item.id" v-for="item in categories">{{item.name}}</option>
           </select>
         </div>
       </div>
@@ -65,7 +65,7 @@
         </div>
         <div class="col-sm-4 ">
           <select class="form-control" id="procmedium" v-model="device.procmedium" required>
-            <option v-bind:value="item" v-for="item in procmedia">{{item.name}}</option>
+            <option v-bind:value="item.id" v-for="item in procmedia">{{item.name}}</option>
           </select>
         </div>
       </div>
@@ -122,7 +122,7 @@
         </div>
         <div class="col-sm-2">
           <input type="date" class="form-control" id="mBeginning" v-model="device.mBeginning"
-                 :disabled="!device.maintenanceMsg" :required="device.maintenanceMsg">
+                 :disabled="!device.maintenanceMsg" :required="device.maintenanceMsg" :min="today">
         </div>
       </div>
       <div class="form-group row">
@@ -154,14 +154,14 @@
         <label class="control-label" for="calibrationMsg">{{$t("DeviceRegForm.notification")}}:</label>
       </div>
       <div class="col-sm-2 ">
-        <input type="checkbox" id="calibrationMsg" v-model="device.calibrationMsg"> {{$t("DeviceRegForm.yes")}}
+        <input type="checkbox" id="calibrationMsg" v-model="device.calibrationMsg" value="1"> {{$t("DeviceRegForm.yes")}}
       </div>
       <div class="col-sm-2 text-left">
         <label class="control-label" for="cBeginning">{{$t("DeviceRegForm.start")}}:</label>
       </div>
       <div class="col-sm-2">
         <input type="date" class="form-control" id="cBeginning" v-model="device.cBeginning"
-               :disabled="!device.calibrationMsg" :required="device.calibrationMsg">
+               :disabled="!device.calibrationMsg" :required="device.calibrationMsg" :min="today">
       </div>
     </div>
     <div class="form-group row" style="margin-bottom: 100px; margin-top:50px;">
@@ -179,7 +179,6 @@
 
 <script>
 import auth from '../auth'
-
 export default {
   name: 'devreg',
   data () {
@@ -193,11 +192,11 @@ export default {
         comment: '',
         mInterval: '', //Interval for maintenance schedule
         mBeginning: '', //start date of recieving notifications about maintenance schedules
-        calibration: '', //boolean, true if calibration desired
-        maintenance: '', //boolean, true if maintenance desired
-        maintenanceMsg: '', //boolean, true if notifications about maintenance schedule desired
+        calibration: 0, //boolean, true if calibration desired
+        maintenance: 0, //boolean, true if maintenance desired
+        maintenanceMsg: 0, //boolean, true if notifications about maintenance schedule desired
         cInterval: '', //Interval for calibration schedule
-        calibrationMsg: '', //boolean, true if notifications about calibration schedule desired
+        calibrationMsg: 0, //boolean, true if notifications about calibration schedule desired
         cBeginning: '' //start date of recieving notifications about calibration schedules
       },
       categories: [
@@ -207,7 +206,7 @@ export default {
         {id: 1, name: 'Rotamass'},
         {id: 2, name: 'Flowmeter'}
       ],
-      customCat: '', //boolean, if true can create own category
+      customCat: 0, //boolean, if true can create own category
       procmedia: [
         {id: 1, name: 'Wasser'},
         {id: 2, name: 'Argon'},
@@ -236,6 +235,12 @@ export default {
 
       auth.createDevice(this, device, '/dashboard');
     }
+  },
+  computed: {
+    today: function() {
+      var today = new Date().toISOString().slice(0, 10);
+      return today.toString();
+    }
   }
 }
 </script>
@@ -254,6 +259,6 @@ export default {
 
   .btn-primary:hover, .btn-cancel:hover {
     color: $body-background;
-    background: $primary-bg-color;                                             ;
+    background: $primary-bg-color;
   }
 </style>
