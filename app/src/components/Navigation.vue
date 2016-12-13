@@ -9,7 +9,7 @@
           <span class="icon-bar"></span>
         </button>
         <a class="navbar-brand" href="#">
-          <img class="img img-responsive" src="../assets/logo_navbar.png" alt="DeviceR">
+          <img class="img img-responsive" src="../assets/logo-navbar.png" alt="DeviceR">
         </a>
       </div>
       <LoggedOutNavigation v-if="!user.authenticated"></LoggedOutNavigation>

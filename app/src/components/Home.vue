@@ -1,8 +1,8 @@
 <template>
-	<div class="container" id="homepage">
+	<div class="container-fluid col-md-offset-2 col-md-8" id="homepage">
 	  <div class="row">
 	    <div class="col-md-12">
-        <img src="../assets/devicer-home-logo.png" class="logo">
+        <img src="../assets/home-logo-transparent-bg-v1.png" class="logo">
 	    </div>
 	  </div>
 
