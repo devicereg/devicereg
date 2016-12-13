@@ -9,7 +9,3 @@ var jwtCheck = jwt({
 });
 
 app.use('/api/protected', jwtCheck);
-
-app.get('/api/protected/test', function(req, res) {
-  res.status(200).send("protected test");
-});

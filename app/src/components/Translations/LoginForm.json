@@ -1,0 +1,18 @@
+{
+  "de": {
+    "registration": "Anmeldung",
+    "login_fail": "Anmeldung fehlgeschlagen!",
+    "remember_me": "Angemeldet bleiben",
+    "sign_in": "Anmelden",
+    "forgot": "Passwort vergessen?",
+    "logout": "Ausloggen"
+  },
+  "en": {
+    "registration": "Registration",
+    "login_fail": "Registration failed!",
+    "remember_me": "Remember me",
+    "sign_in": "Sign in",
+    "forgot": "Forgot password?",
+    "logout": "Logout"
+  }
+}

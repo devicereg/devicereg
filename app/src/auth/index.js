@@ -1,122 +1,169 @@
 import {router} from '../main'
 
-var os = require('os')
+var os = require('os');
 
-const API_URL = 'http://' + os.hostname() + ':3001/'
-const LOGIN_URL = API_URL + 'sessions/create/'
-const SIGNUP_URL = API_URL + 'users/'
+const API_URL = 'http://' + os.hostname() + ':3001/';
+const LOGIN_URL = API_URL + 'sessions/create/';
+const SIGNUP_URL = API_URL + 'user/create';
+const UPDATE_URL = API_URL + 'user/update';
+const DELETE_URL = API_URL + 'user/delete';
+const CREATE_DEVICE_URL = API_URL + 'device/create';
+const DELETE_DEVICE_URL = API_URL + 'device/delete';
 
 export default {
-	user: { authenticated: false },
+  user: {authenticated: false},
 
-	/**
-	 * Method for user login
-	 *
-	 * @param      {object}  context   The context
-	 * @param      {json}    creds     The creds
-	 * @param      {string}  redirect  The redirect
-	 */
-	login(context, creds, redirect)
-	{
-		context.$http.post(LOGIN_URL, creds).then((response) => {
+  /**
+   * Method for user login
+   *
+   * @param      {object}  context   The context
+   * @param      {JSON}    creds     The creds
+   * @param      {string}  redirect  The redirect
+   */
+  login(context, creds, redirect)
+  {
+    context.$http.post(LOGIN_URL, creds).then((response) => {
 
-			localStorage.setItem('id_token', response.data.id_token)
-			localStorage.setItem('username', creds.username)
+      localStorage.setItem('id_token', response.data.id_token);
+      this.user.authenticated = true;
 
-			this.user.authenticated = true
+      if (redirect) {
+        router.push(redirect)
+      }
 
-			if(redirect)
-			{
-				router.push(redirect)
-			}
+    }, (err) => {
+      context.error = err.body.message
+    })
+  },
 
-		}, (err) => {
-			context.error = err
-		})
-	},
+  /**
+   * Method for user registration
+   *
+   * @param      {object}  context   The context
+   * @param      {JSON}     creds     The creds
+   * @param      {string}  redirect  The redirect
+   */
+  signup(context, creds, redirect)
+  {
+    context.$http.post(SIGNUP_URL, creds).then((response) => {
 
-	/**
-	 * Method for user registration
-	 *
-	 * @param      {object}  context   The context
-	 * @param      {json}  	 creds     The creds
-	 * @param      {string}  redirect  The redirect
-	 */
-	signup(context, creds, redirect)
-	{
-	    context.$http.post(SIGNUP_URL, creds).then((response) => {
+      localStorage.setItem('id_token', response.data.id_token);
+      this.user.authenticated = true;
 
-			localStorage.setItem('id_token', response.data.id_token)
-			localStorage.setItem('username', creds.username)
-			localStorage.setItem('gender', creds.gender)
-			localStorage.setItem('prename', creds.prename)
-			localStorage.setItem('surname', creds.surname)
-			localStorage.setItem('language', creds.language)
-			localStorage.setItem('phone', creds.phone)
-			localStorage.setItem('industry_family', creds.industry_family)
-			localStorage.setItem('industry_typ', creds.industry_typ)
-			localStorage.setItem('company', creds.company)
-			localStorage.setItem('street', creds.street)
-			localStorage.setItem('number', creds.number)
-			localStorage.setItem('zip', creds.zip)
-			localStorage.setItem('city', creds.city)
-			localStorage.setItem('country', creds.country)
-			localStorage.setItem('question', creds.question)
-			localStorage.setItem('answer', creds.answer)
-			localStorage.setItem('agreement', creds.agreement)
+      if (redirect) {
+        router.push(redirect)
+      }
 
-	      	this.user.authenticated = true
+    }, (err) => {
+      context.error = err
+    })
+  },
 
-			if(redirect)
-			{
-				router.push(redirect)
-			}
 
-	    }, (err) => {
-	    	context.error = err
-	    })
-  	},
+  /**
+   * Method for user update
+   *
+   * @param      {object}  context   The context
+   * @param      {JSON}     creds     The creds
+   * @param      {string}  redirect  The redirect
+   */
+  update(context, creds, redirect)
+  {
+    context.$http.post(UPDATE_URL, creds).then((response) => {
 
-	/**
-	 * Method for user logout
-	 *
-	 * @returns  void
-	 */
-	logout()
-	{
-		localStorage.removeItem('id_token')
-		localStorage.removeItem('username')
-		this.user.authenticated = false
+      //@TODO implement UPDATE method
 
-		router.push("/")
-	},
+      if (redirect) {
+        router.push(redirect)
+      }
 
-	/**
-	 * This method checks if the user is authenticated
-	 *
-	 * @return  void
-	 */
-	checkAuth()
-	{
-		var jwt = localStorage.getItem('id_token')
+    }, (err) => {
+      context.error = err
+    })
+  },
 
-		if(jwt)
-		{
-			this.user.authenticated = true
-		}
-		else
-		{
-			this.user.authenticated = false
-		}
-	},
+  /**
+   * Method for user delete
+   *
+   * @param      {object}  context   The context
+   * @param      {int}     id      The creds
+   */
+  delete(context, id)
+  {
+    context.$http.post(DELETE_URL, id).then((response) => {
 
-	/**
-	 * Gets the auth header.
-	 *
-	 * @return     {Object}  The auth header.
-	 */
-	getAuthHeader()
-	{
-		return { 'Authorization': 'Bearer' + localStorage.getItem('id_token') }
-	}
+      console.log(response.data.message);
+      this.logout()
+
+    }, (err) => {
+      context.error = err
+    })
+  },
+
+  /**
+   * Method for user logout
+   *
+   * @returns  void
+   */
+  logout()
+  {
+    localStorage.removeItem('id_token');
+    localStorage.removeItem('username');
+    this.user.authenticated = false;
+
+    router.push("/")
+  },
+
+  /**
+   * This method checks if the user is authenticated
+   *
+   * @return  void
+   */
+  checkAuth()
+  {
+    var jwt = localStorage.getItem('id_token');
+
+    this.user.authenticated = !!jwt;
+  },
+
+  /**
+   * Gets the auth header.
+   *
+   * @return     {Object}  The auth header.
+   */
+  getAuthHeader()
+  {
+    return {'Authorization': 'Bearer' + localStorage.getItem('id_token')}
+  },
+
+  createDevice(context, data, redirect)
+  {
+    context.$http.post(CREATE_DEVICE_URL, data).then((response) => {
+      if (redirect) {
+        router.push(redirect)
+      }
+
+    }, (err) => {
+      context.error = err
+    });
+  },
+
+  /**
+   * Method for removing a device
+   *
+   * @param      {object}  context   The context
+   * @param      {JSON}    data      The device- and user-id
+   * @param      {string}  redirect  The redirect
+   */
+  deleteDevice(context, data, redirect)
+  {
+    context.$http.post(DELETE_DEVICE_URL, data).then((response) => {
+      if (redirect) {
+        router.push(redirect)
+      }
+
+    }, (err) => {
+      context.error = err
+    });
+  }
 }

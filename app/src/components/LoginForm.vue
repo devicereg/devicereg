@@ -1,57 +1,71 @@
 <template>
 	<div class="login-form">
 		<div class="row">
-			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			<div class="col-xs-12">
+
+				<div class="alert alert-danger" v-if="error">
+					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+					<p>
+            <strong>{{ $t("LoginForm.login_fail") }}</strong>
+          </p>
+					<p>{{ error }}</p>
+				</div>
 
 				<form class="form-horizontal" role="form" v-if="!user.authenticated">
-					<legend>Anmeldung</legend>
+					<legend>{{ $t("LoginForm.registration") }}</legend>
 					<div class="form-group">
-						<label class="control-label col-sm-2" for="deviceR-login_user"><img src="../assets/u10.png"></label>
+						<label class="control-label col-sm-2" for="login_email">
+              <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+						</label>
 						<div class="col-sm-10">
 							<input
-									type="text"
-									class="form-control"
-									id="deviceR-login_user"
-									v-model="credentials.username"
-									placeholder="Benutzername"
+								type="email"
+								class="form-control"
+								id="login_email"
+								v-model="credentials.email"
+								placeholder="E-Mail Adresse"
+								required
 							>
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="control-label col-sm-2" for="deviceR-login_password"><img src="../assets/u12.png"></label>
+						<label class="control-label col-sm-2" for="login_password">
+              <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
+						</label>
 						<div class="col-sm-10">
 							<input
-									type="password"
-									class="form-control"
-									id="deviceR-login_password"
-									v-model="credentials.password"
-									placeholder="Passwort">
+								type="password"
+								class="form-control"
+								id="login_password"
+								v-model="credentials.password"
+								placeholder="Passwort"
+								required
+							>
+						</div>
+          </div>
+					<div class="form-group">
+						<div class="col-sm-10 col-sm-offset-2">
+              <input type="checkbox" id="stay-logged-in">
+              <label for="stay-logged-in">{{ $t("LoginForm.remember_me") }}</label>
 						</div>
 					</div>
 					<div class="form-group">
 						<div class="col-sm-offset-2 col-sm-10">
-							<div class="checkbox">
-								<label><input type="checkbox"> Angemeldet bleiben </label>
-							</div>
+							<button class="btn btn-primary" @click="submit()"> {{ $t("LoginForm.sign_in") }}</button>
+							<router-link to="#"> | {{ $t("LoginForm.forgot") }} </router-link>
 						</div>
 					</div>
-					<div class="form-group">
-						<div class="col-sm-offset-2 col-sm-10">
-							<button class="btn btn-primary" @click="submit()">Anmelden</button>
-							<router-link to="#"> | Passwort vergessen? </router-link>
-						</div>
-					</div>
-
 				</form>
-				<button class="btn btn-warning" @click="logout()" v-else>Abmelden</button>
 
+				<button class="btn btn-warning" @click="logout()" v-else>{{ $t("LoginForm.logout") }}</button>
 			</div>
 		</div>
 	</div>
 </template>
+<style lang="scss">
 
+</style>
 <script>
-
 	import auth from '../auth'
 
 	export default {
@@ -59,7 +73,7 @@
 	  data () {
 	    return {
 	    	credentials: {
-	    		username: '',
+	    		email: '',
 	    		password: ''
 	    	},
 	    	error: '',
@@ -69,7 +83,7 @@
 	  methods: {
 	  	submit() {
 	  		var credentials = {
-	  			username: this.credentials.username,
+	  			email: this.credentials.email,
 	  			password: this.credentials.password
 	  		}
 

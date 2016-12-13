@@ -2,18 +2,10 @@
   <footer class="footer">
     <div class="container">
       <ul class="nav navbar-nav">
-        <li>
-          <router-link to="/datenschutz">Datenschutz</router-link>
-        </li>
-        <li>
-          <router-link to="/terms-of-use">Nutzungsbedingungen</router-link>
-        </li>
-        <li>
-          <router-link to="/impressum">Impressum</router-link>
-        </li>
-        <li>
-          <router-link to="/aktionsbedingungen">Aktionsbedingungen</router-link>
-        </li>
+        <li><router-link to="/datenschutz">{{$t("privacy_policy")}}</router-link></li>
+        <li><router-link to="/terms-of-use">{{$t("site_policy")}}</router-link></li>
+        <li><router-link to="/impressum">{{$t("legal_disclosure")}}</router-link></li>
+        <li><router-link to="/aktionsbedingungen">{{$t("terms_of_warranty")}}</router-link></li>
       </ul>
     </div>
   </footer>
@@ -33,8 +25,9 @@
     bottom: 0;
     margin-top: 55px;
     width: 100%;
-    background-color: $deep-space-sparkle;
+    background-color: $primary-bg-color;
     overflow: auto;
+
     .container {
       .nav {
         display: inline-block;
@@ -52,4 +45,18 @@
       }
     }
   }
+
+  @media only screen
+  and (max-width: 767px) {
+
+    .footer {
+      display: none;
+    }
+  }
+
+
+
+
+
+
 </style>

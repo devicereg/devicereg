@@ -1,0 +1,19 @@
+{
+  "de": {
+    "box_address": "Postfach",
+    "contact": "Bitte kontaktieren Sie",
+    "city": "Stadt",
+    "more": "Wollen Sie mehr über Yokogawa erfahren",
+    "register_problems": "Probleme bei der Registrierung",
+    "titel": "Kundensupport für Durchflussmessgeräte",
+    "visit": "Besuchen Sie uns auf"
+  },
+  "en": {
+    "box_address": "Mailbox",
+    "contact": "Please contact",
+    "more": "Want to learn more about Yokogawa",
+    "register_problems": "Problems with registration",
+    "titel": "Flowmeter customer support",
+    "visit": "Visit us at"
+  }
+}

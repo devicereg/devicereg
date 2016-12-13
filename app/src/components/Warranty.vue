@@ -1,30 +1,39 @@
 <template>
-	<div class="container fluid col-sm-offset-2 col-sm-8">
+	<div class="container fluid">
 		<div class="row">
-			<div id="warranty-text" class="col-sm-12 text-left">
-        <p><strong>Registrieren Sie Ihr/e Produkt/e und erhalten Sie eine erweiterte Gewährleistung.</strong><p><br>
-          <p>Registrierten Nutzern bieten wir eine kostenlose Verlängerung der bestehenden
-             Gewährleistung auf einen Zeitraum von 24 Monaten, gerechnet ab Lieferdatum, an.
-             Die erweiterte Gewährleistung gilt für vollständig und ordnungsgemäß registrierte
-             Yokogawa Produkte der Feldgerätegruppe „Flow“, die nach dem 01.10.2013 ausgeliefert wurden.
-             Bitte wenden Sie sich im Gewährleistungsfall stets an Ihren nächstgelegenen europäischen
-             Yokogawa Vertriebspartner. Soweit weitergehende oder abweichende vertragliche
-             Vereinbarungen getroffen wurden, bleiben diese durch eine erweiterte Gewährleistung unberührt.</p>
-             <p><strong>Unterstützte Länder:</strong></p>
-             <p>Vereinigtes Königreich, Deutschland, Frankreich, Polen,
-                Österreich, Spanien, Schweden, Schweiz, Italien, Belgien,
-                Bulgarien, Kroatien, Zypern, Tschechien, Dänemark, Estland,
-                Griechenland, Ungarn, Lettland, Litauen, Luxemburg, Malta,
-                Niederlande, Portugal, Irland, Rumänien, Slowakei, Slowenien,
-                Albanien, Andorra, Bosnien und Herzegowina, Island, Lichtenstein,
-                Moldavien, Monaco, Montenegro, Norwegen, Mazedonien, San Marino,
-                Serbien, Türkei, Finnland</p>
+			<div id="warranty-text" class="col-md-offset-2 col-md-8 text-left">
+        <h1>{{$t("Warranty.title")}}</h1>
+
+        <h4>{{$t("Warranty.header1")}}</h4>
+        <p>{{$t("Warranty.paragraph1")}}</p>
+
+        <h4>{{$t("Warranty.header2")}}</h4>
+        <p>{{$t("Warranty.paragraph2")}}</p>
+
+        <a onmouseup="window.print();">
+          <span class="glyphicon glyphicon-print action button" aria-hidden="true"></span> &nbsp; {{$t("Warranty.print")}}
+        </a>
 			</div>
 		</div>
 	</div>
 </template>
+
 <style>
   .warranty-text{
     word-break: normal;
+  }
+
+    h1 {
+    font-weight: bold;
+  }
+
+  h4 {
+    font-weight: bold;
+    padding-top: 1em;
+  }
+
+  span.glyphicon-print {
+    font-size: 20px;
+    padding-top: 1em;
   }
 </style>

@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <delete-modal v-if="user.authenticated"></delete-modal>
     <navigation></navigation>
     <router-view></router-view>
     <app-footer></app-footer>
@@ -8,6 +9,7 @@
 
 <script>
 
+import auth from './auth'
 import Home from './components/Home'
 import Navigation from './components/Navigation'
 import AppFooter from './components/AppFooter'
@@ -17,6 +19,10 @@ import Contact from './components/Contact'
 import TermsOfUse from './components/TermsOfUse'
 import Impressum from './components/Impressum'
 import Translations from './components/Translations'
+import UserEdit from './components/UserEdit'
+import DeviceRegForm from './components/DeviceRegForm'
+import DeleteProfileModal from './components/UserDeleteModal'
+import MyDevices from './components/MyDevices'
 
 export default {
   name: 'app',
@@ -25,48 +31,62 @@ export default {
     Navigation,
     AppFooter,
     Dashboard,
+    'delete-modal': DeleteProfileModal,
     Bootstrap,
     Contact,
     TermsOfUse,
     Impressum,
-    Translations
-  }
+    Translations,
+    UserEdit,
+    DeviceRegForm,
+    MyDevices
+  },
+  data() {
+    return { user: auth.user }
+  },
 }
 </script>
 
 <style lang="scss">
   @import './styles/_colors';
+  $font-family-sans-serif: 'Source Sans Pro', 'Avenir', Helvetica, Arial, sans-serif;
 
   html {
-    background: $background;
+    background: $body-background;
   }
 
   #app {
-    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    font-family: $font-family-sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
     color: #2c3e50;
-    margin-top: 85px;
-    margin-bottom: 85px;
-    background: $background;
+    margin: 85px 0;
+    background: $body-background;
   }
 
   h1, h2 {
-      font-weight: normal;
+    font-weight: normal;
   }
 
   ul {
-      list-style-type: none;
-      padding: 0;
+    list-style-type: none;
+    padding: 0;
+
+    &.list {
+      list-style-type: disc;
+    }
   }
 
   li {
-      display: inline-block;
-      margin: 0 10px;
+    margin: 0 10px;
   }
 
   a {
-      color: #42b983;
+    color: $primary-link-color;
+
+    &:hover {
+      cursor: pointer;
+    }
   }
 </style>
