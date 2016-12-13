@@ -7,7 +7,7 @@
             <h2> {{$t("MyDevices.title")}} </h2>
           </div>
           <div class="col-sm-6">
-            <router-link to="#" id="add-button" class="btn btn-primary pull-right">
+            <router-link to="/device/create" id="add-button" class="btn btn-primary pull-right">
               <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> &nbsp; {{ $t("MyDevices.add_button") }}
             </router-link>
           </div>
