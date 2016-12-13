@@ -1,14 +1,16 @@
 <template>
   <nav id="top-navigation" class="navbar navbar-default navbar-fixed-top">
-    <div class="container">
-      <div class="nav-header">
+    <div class="container-fluid col-md-offset-2 col-md-8">
+      <div class="navbar-header">
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
           <span class="sr-only">Toggle navigation</span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <img class="img-circle" src="../assets/logo_navbar.png">
+        <a class="navbar-brand" href="#">
+          <img class="img img-responsive" src="../assets/logo_navbar.png" alt="DeviceR">
+        </a>
       </div>
       <LoggedOutNavigation v-if="!user.authenticated"></LoggedOutNavigation>
       <LoggedInNavigation v-if="user.authenticated"></LoggedInNavigation>
@@ -45,12 +47,16 @@ export default {
 
   .navbar#top-navigation {
     background-color: $primary-bg-color;
-    .container {
-      .nav-header>img{
-        float: left;
-        display: inline-block;
-        width: 48px;
-        height: 48px;
+    .container-fluid {
+      .navbar-header {
+        .navbar-brand {
+          padding: 0px;
+          img {
+            height: 100%;
+            padding: 5px;
+            width: auto;
+          }
+        }
       }
       .navbar-collapse {
         .navbar-right {
@@ -70,7 +76,6 @@ export default {
         }
         .nav {
           padding-left: 0;
-          margin: 7.5px -15px;
           display: inline-block;
           height: 100%;
           float: none;
