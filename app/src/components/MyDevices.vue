@@ -87,7 +87,7 @@
         auth.getDevices(this)
       }
     },
-    ready: function() {
+    mounted: function() {
       this.getDeviceData();
     }
   }
