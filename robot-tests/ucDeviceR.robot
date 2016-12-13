@@ -13,7 +13,7 @@ Registriere neuen Benutzer
     Pruefe, dass das Benutzerregistrierungsformular angezeigt wird
     Gebe die Daten des neuen Benutzers ein  &{Benutzer}
     Sende das Benutzerregistrierungsformular ab
-    Pruefe, dass die Webseite Benutzer registrieren verlassen wurde
+    #Pruefe, dass die Webseite Benutzer registrieren verlassen wurde
 
 Benutzer einloggen
     [Documentation]  Einloggen bei DeviceR als Benuzter mit Passwort
@@ -22,4 +22,4 @@ Benutzer einloggen
     Pruefe, dass das Loginformular angezeigt wird
     Gebe die Logindaten des Benutzers ein  ${Benutzername}  ${Passwort}
     Sende das Loginformular ab
-    #Pruefe, dass die Startseite verlassen wurde
+    Pruefe, dass die Startseite verlassen wurde

@@ -30,4 +30,4 @@ Gebe die Logindaten des Benutzers ein
 
 Sende das Loginformular ab
     [Documentation]  Das Loginformular wird abgeschickt und der Benutzer wird eingeloggt
-    Click Element  xpath=//form//button[contains(@class, "btn-primary")]
+    Click Element  xpath=//form//button

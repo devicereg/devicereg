@@ -51,4 +51,5 @@ Gebe die Daten des neuen Benutzers ein
 
 Sende das Benutzerregistrierungsformular ab
     [Documentation]  Das Benutzerregistrierungsformular wird abgeschickt und der Benutzer wird angelegt
-	Click Element  xpath=//form[@role="form"]//button[contains(@class, "btn-primary")]
+    Execute JavaScript  window.scrollTo(0, document.body.scrollHeight)
+	Click Button  xpath=//form[@role="form"]//button[contains(@class, "btn-primary")]
