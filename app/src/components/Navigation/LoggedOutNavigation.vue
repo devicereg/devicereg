@@ -1,10 +1,5 @@
 <template>
-  <div class="navbar-collapse collapse">
-    <ul class="nav navbar-nav navbar-left">
-      <li>
-        <router-link to="/"> {{ $t('home') }} </router-link>
-      </li>
-    </ul>
+  <div id="navbar" class="navbar-collapse collapse">
     <ul class="nav navbar-nav navbar-right">
       <li>
         <router-link to="/registrieren"> {{ $t('register') }} </router-link>
