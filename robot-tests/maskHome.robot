@@ -26,8 +26,8 @@ Gebe die Logindaten des Benutzers ein
     [Documentation]  Ein bestehender Benutzer wird eingeloggt.
     [Arguments]   ${Email}  ${Password}
     Input Text  xpath=//form//input[@id="login_email"]  ${Email}
-    Input Text  xpath=//form//input[@id="login_password"]  ${Password}
+    Input Password  xpath=//form//input[@id="login_password"]  ${Password}
 
 Sende das Loginformular ab
     [Documentation]  Das Loginformular wird abgeschickt und der Benutzer wird eingeloggt
-    Submit Form
+    Click Element  xpath=//form//button[contains(@class, "btn-primary")]

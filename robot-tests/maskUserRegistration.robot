@@ -51,4 +51,4 @@ Gebe die Daten des neuen Benutzers ein
 
 Sende das Benutzerregistrierungsformular ab
     [Documentation]  Das Benutzerregistrierungsformular wird abgeschickt und der Benutzer wird angelegt
-	SUuubmit Form
+	Click Element  xpath=//form[@role="form"]//button[contains(@class, "btn-primary")]

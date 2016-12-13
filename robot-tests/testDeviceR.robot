@@ -28,8 +28,8 @@ Rufe die Datenschutzsseite auf
 Registriere den Benutzer Max Mustermann
     Registriere neuen Benutzer  &{Mustermax}
 
-#Einloggen des Benutzers Max Mustermann
-#    Benutzer einloggen  &{Mustermax}[Email]  &{Mustermax}[Passwort]
+Einloggen des Benutzers Max Mustermann
+    Benutzer einloggen  &{Mustermax}[Email]  &{Mustermax}[Passwort]
 
-#Schliesse Browser
-    #Close Browser
+Schliesse Browser
+    Close Browser
