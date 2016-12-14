@@ -191,7 +191,7 @@ app.post('/device/delete', function(req, res)
 
 app.get('/devices', function (req, res)
 {
-  exporter.json({table: "device", where: "user_id = 1"}, function (err, json) {
+  exporter.json('SELECT d.*, c.name AS `category_name` from device d LEFT JOIN category AS c ON d.category_id = c.id WHERE d.user_id = 1', function (err, json) {
     console.log(json);
     res.status(200).send(json);
   });
