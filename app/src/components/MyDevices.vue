@@ -23,7 +23,7 @@
             </tr>
           </thead>
           <tbody>
-          <tr v-for="device in deviceData">
+          <tr v-for="device in devices">
             <td>{{device.technology}}</td>
             <td>{{device.comment}}</td>
             <td>{{device.category_name}}</td>
@@ -68,7 +68,7 @@
     data () {
       return {
         selected: '0',
-        deviceData: []
+        devices: []
       }
     },
     methods: {
