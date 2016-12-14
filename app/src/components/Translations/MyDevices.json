@@ -4,13 +4,17 @@
     "technology": "Technologie",
     "device_description": "Gerätebeschreibung",
     "category": "Kategorie",
-    "add_button": "Gerät hinzufügen"
+    "add_button": "Gerät hinzufügen",
+    "all_categories": "Alle Kategorien",
+    "filter_by": "Nach Kategorien filtern"
   },
   "en": {
     "title": "My Devices",
     "technology": "Technology",
     "device_description": "Device description",
     "category": "Category",
-    "add_button": "Add device"
+    "add_button": "Add device",
+    "all_categories": "All categories",
+    "filter_by": "Filter by category"
   }
 }
