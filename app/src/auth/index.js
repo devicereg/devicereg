@@ -171,7 +171,7 @@ export default {
   getDevices(context)
   {
     context.$http.get(GET_DEVICES_URL).then((response) => {
-      context.deviceData = response.body;
+      context.deviceData = JSON.parse(response.body);
     }, (err) => {
       context.error = err;
     });
