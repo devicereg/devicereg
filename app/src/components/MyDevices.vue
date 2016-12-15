@@ -31,7 +31,7 @@
               <a @click="getDevices()">
                 <span class="glyphicon glyphicon-eye-open action-button" aria-hidden="true"></span>
               </a>
-              <router-link to="#">
+              <router-link to="editDevice(device)">
                 <span class="glyphicon glyphicon-edit action-button" aria-hidden="true"></span>
               </router-link>
               <a @click="deleteDevice(device)">
@@ -72,7 +72,12 @@
       }
     },
     methods: {
+      editDevice(device) {
+        var index = this.devices.indexOf(device);
+        this.devices.splice(index, 1);
+      },
       deleteDevice(device) {
+        auth.deleteDevice(this, {id: device.id});
         var index = this.devices.indexOf(device);
         this.devices.splice(index, 1);
       },
