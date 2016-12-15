@@ -4,7 +4,7 @@ Library  Selenium2Library
 *** Keywords ***
 Gehe zu Webseite Benutzer registrieren
     [Documentation]  Webseite "Benutzer registrieren" wird aufgerufen
-    Go To  ${host}/registrieren
+    Go To  ${host}registrieren
 
 Pruefe, dass die Webseite Benutzer registrieren angezeigt wird
     [Documentation]  Für aktuelle Webseite wird geprüft, ob es sich um die Webseite "Benutzer registrieren" handelt
@@ -51,6 +51,7 @@ Gebe die Daten des neuen Benutzers ein
 
 Sende das Benutzerregistrierungsformular ab
     [Documentation]  Das Benutzerregistrierungsformular wird abgeschickt und der Benutzer wird angelegt
-    Execute JavaScript  window.scrollTo(0, document.body.scrollHeight)
-    Sleep  0.5
+    #Execute JavaScript  window.scrollTo(0, document.body.scrollHeight)
+    #Sleep  0.5
 	#Click Button  xpath=//form[@id="user-registration-form"]//button[contains(@class, "btn-primary")]
+	Submit Form

@@ -2,7 +2,9 @@
 Resource  ucDeviceR.robot
 
 *** Variables ***
-${host}     localhost:80/#
+${port}     80
+${url}      localhost
+${host}     ${url}:${port}/#/
 ${browser}  firefox
 
 &{Mustermax}    Anrede=Herr  Vorname=Max  Nachname=Mustermann  Email=mustermax@htw-berlin.de  Sprache=Deutsch  Telefon=012 34 56 789  Branchenfamilie=Strom  Branchentyp=BT  Firmenname=Muster AG  Strasse=Musterstraße  Hausnummer=19  PLZ=12345  Stadt=Berlin  Land=Deutschland  Passwort=password  Geheimfrage=Geheim?  Antwort=Geheim!
@@ -20,6 +22,7 @@ Pruefe, dass die Datenschutzseite angezeigt wird
 *** Test Cases ***
 Oeffne Browser
     Open Browser  ${host}  ${browser}
+    Maximize Browser Window
 
 #Rufe die Datenschutzsseite auf
 #    Navigiere zu Datenschutzseite
@@ -28,8 +31,8 @@ Oeffne Browser
 Registriere den Benutzer Max Mustermann
     Registriere neuen Benutzer  &{Mustermax}
 
-#Einloggen des Benutzers Max Mustermann
-#    Benutzer einloggen  &{Mustermax}[Email]  &{Mustermax}[Passwort]
+Einloggen des Benutzers Max Mustermann
+    Benutzer einloggen  &{Mustermax}[Email]  &{Mustermax}[Passwort]
 
 #Schliesse Browser
 #    Close Browser

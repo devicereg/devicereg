@@ -8,7 +8,7 @@ Gehe zu Startseite
 
 Pruefe, dass die Startseite angezeigt wird
     [Documentation]  Für aktuelle Webseite wird geprüft, ob es sich um die Startseite handelt
-    Page Should Contain Element  css=div#homepage.container-fluid
+    Wait Until Page Contains Element  css=div#homepage.container-fluid
 
 Pruefe, dass die Startseite verlassen wurde
     [Documentation]  Für aktuelle Webseite wird geprüft, ob es sich nicht um die Startseite handelt
@@ -16,7 +16,7 @@ Pruefe, dass die Startseite verlassen wurde
 
 Rufe die Funktion Benutzer registrieren auf
     [Documentation]  Das Kontaktformular wird eingeblendet
-    Click Link  xpath=//div[@id="homepage"]//a[@href="/#/registrieren"]
+    Click Link  xpath=//div[@id="homepage"]//a[@href="/#/signup"]
 
 Pruefe, dass das Loginformular angezeigt wird
     [Documentation]  Es wird geprüft, ob das Loginformular sichtbar ist
@@ -25,9 +25,10 @@ Pruefe, dass das Loginformular angezeigt wird
 Gebe die Logindaten des Benutzers ein
     [Documentation]  Ein bestehender Benutzer wird eingeloggt.
     [Arguments]   ${Email}  ${Password}
-    Input Text  xpath=//form//input[@id="login_email"]  ${Email}
-    Input Password  xpath=//form//input[@id="login_password"]  ${Password}
+    Input Text  xpath=//form//input[@id="login_email"]  asdf@asdf
+    Input Password  xpath=//form//input[@id="login_password"]  asdf
 
 Sende das Loginformular ab
     [Documentation]  Das Loginformular wird abgeschickt und der Benutzer wird eingeloggt
-    Click Element  xpath=//form//button
+    #Click Element  xpath=//form//button
+    Submit Form
