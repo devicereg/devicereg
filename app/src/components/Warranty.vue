@@ -36,4 +36,8 @@
     font-size: 20px;
     padding-top: 1em;
   }
+
+  a {
+       color: primary-bg-color;
+        }
 </style>

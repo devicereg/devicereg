@@ -85,7 +85,7 @@ export default {
             color: #fff;
 
             &:hover {
-              color: #5bc0de;
+              color: $primary-link-color;
             }
           }
         }

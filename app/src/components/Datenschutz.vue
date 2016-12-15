@@ -2,6 +2,7 @@
   <div class="container-fluid col-sm-offset-2 col-sm-8 text-left">
     <div class="row">
         <h1>{{$t("Datenschutz.title")}}</h1>
+        <br/>
         <p>{{$t("Datenschutz.paragraph0")}}</p>
 
         <h4>1. &nbsp; {{$t("Datenschutz.header1")}}</h4>
