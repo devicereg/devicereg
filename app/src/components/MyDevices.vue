@@ -25,12 +25,12 @@
           <tbody>
           <tr v-for="device in devices">
             <td>{{device.technology}}</td>
-            <td>{{device.description_data}}</td>
-            <td>{{device.category}}</td>
+            <td>{{device.comment}}</td>
+            <td>{{device.category_id}}</td>
             <td>
-              <router-link to="#">
+              <a @click="getDevices()">
                 <span class="glyphicon glyphicon-eye-open action-button" aria-hidden="true"></span>
-              </router-link>
+              </a>
               <router-link to="#">
                 <span class="glyphicon glyphicon-edit action-button" aria-hidden="true"></span>
               </router-link>
@@ -61,21 +61,27 @@
   }
 </style>
 <script>
-  import mockDevices from "./MockData/devices.json"
+  import auth from "../auth/index.js"
 
   export default{
     name: 'my-devices',
     data () {
       return {
         selected: '0',
-        devices: mockDevices
+        devices: []
       }
     },
     methods: {
       deleteDevice(device) {
         var index = this.devices.indexOf(device);
         this.devices.splice(index, 1);
+      },
+      getDeviceData() {
+        auth.getDevices(this)
       }
+    },
+    mounted: function() {
+      this.getDeviceData();
     }
   }
 </script>

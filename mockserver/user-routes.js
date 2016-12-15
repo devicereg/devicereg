@@ -4,6 +4,10 @@ var express = require('express'),
     jwt     = require('jsonwebtoken'),
     sqlite3 = require('sqlite3').verbose();
 
+const sqliteJSON = require('sqlite-json');
+const exporter = sqliteJSON('database/devicer.sqlite');
+var db = new sqlite3.Database('database/devicer.sqlite');
+
 var app = module.exports = express.Router();
 
 function createToken(user) {
@@ -12,8 +16,6 @@ function createToken(user) {
 
 app.post('/user/create', function(req, res)
 {
-  var db = new sqlite3.Database('database/devicer.sqlite');
-
   db.serialize(function()
   {
     db.run(
@@ -59,8 +61,6 @@ app.post('/user/create', function(req, res)
 
 app.post('/user/update', function(req, res)
 {
-  var db = new sqlite3.Database('database/devicer.sqlite');
-
   db.serialize(function()
   {
     db.run(
@@ -104,8 +104,6 @@ app.post('/user/update', function(req, res)
 
 app.post('/user/delete', function(req, res)
 {
-  var db = new sqlite3.Database('database/devicer.sqlite');
-
   db.serialize(function()
   {
     db.run("DELETE FROM user WHERE id=?", req.body.id,
@@ -118,8 +116,6 @@ app.post('/user/delete', function(req, res)
 
 app.post('/sessions/create', function(req, res)
 {
-  var db = new sqlite3.Database('database/devicer.sqlite');
-
   db.serialize(function()
   {
     db.get("SELECT * FROM user WHERE email = ? AND password = ?",
@@ -147,8 +143,6 @@ app.post('/sessions/create', function(req, res)
 
 app.post('/device/create', function (req, res)
 {
-  var db = new sqlite3.Database('database/devicer.sqlite');
-
   db.serialize(function()
   {
     db.run(
@@ -181,8 +175,6 @@ app.post('/device/create', function (req, res)
 
 app.post('/device/delete', function(req, res)
 {
-  var db = new sqlite3.Database('database/devicer.sqlite');
-
   db.serialize(function()
   {
     db.run("DELETE FROM device WHERE id=$id AND user_id=$user_id",
@@ -194,5 +186,13 @@ app.post('/device/delete', function(req, res)
       {
         res.status(201).send({ message: "Gerät wurde erfolgreich gelöscht." });
       });
+  });
+});
+
+app.get('/devices', function (req, res)
+{
+  exporter.json('SELECT d.*, c.name AS `category_name` from device d LEFT JOIN category AS c ON d.category_id = c.id WHERE d.user_id = 1', function (err, json) {
+    console.log(json);
+    res.status(200).send(json);
   });
 });
