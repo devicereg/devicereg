@@ -12,7 +12,11 @@
           <h2>{{ $t("Home.welcome") }}</h2>
 
           <p>
-            {{ $t("Home.info") }}
+            {{ $t("Home.info1") }}
+            <b>{{ $t("Home.info_advantage") }}</b>
+            {{ $t("Home.info2") }}
+            <b>{{ $t("Home.info_advantage2") }}</b>
+            {{ $t("Home.info3") }}
           </p>
 
           <router-link to="/registrieren" type="button" class="btn btn-primary btn-lg">{{ $t("Home.register_now") }}</router-link>
@@ -57,9 +61,11 @@
 <style lang="scss">
   @import '../styles/_colors';
 
+
+
   .logo {
-    height: 30%;
-    width: 30%;
+    height: 50%;
+    width:50%;
   }
 
   .dropup {
@@ -75,6 +81,7 @@
 
     .texte {
       display: none;
+      margin-top: 3em;
     }
   }
 

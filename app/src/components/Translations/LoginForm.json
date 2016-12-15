@@ -8,7 +8,7 @@
     "logout": "Ausloggen"
   },
   "en": {
-    "registration": "Registration",
+    "registration": "Sign in",
     "login_fail": "Registration failed!",
     "remember_me": "Remember me",
     "sign_in": "Sign in",

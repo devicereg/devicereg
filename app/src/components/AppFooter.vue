@@ -21,6 +21,7 @@
   @import '../styles/_colors';
 
   .footer {
+    z-index: 100;
     position: fixed;
     bottom: 0;
     margin-top: 55px;

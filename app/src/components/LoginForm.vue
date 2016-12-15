@@ -2,7 +2,6 @@
 	<div class="login-form">
 		<div class="row">
 			<div class="col-xs-12">
-
 				<div class="alert alert-danger" v-if="error">
 					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 					<p>
@@ -10,59 +9,76 @@
           </p>
 					<p>{{ error }}</p>
 				</div>
-
-				<form class="form-horizontal" role="form" v-if="!user.authenticated">
-					<legend>{{ $t("LoginForm.registration") }}</legend>
-					<div class="form-group">
-						<label class="control-label col-sm-2" for="login_email">
-              <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
-						</label>
-						<div class="col-sm-10">
-							<input
-								type="email"
-								class="form-control"
-								id="login_email"
-								v-model="credentials.email"
-								placeholder="E-Mail Adresse"
-								required
-							>
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="control-label col-sm-2" for="login_password">
-              <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
-						</label>
-						<div class="col-sm-10">
-							<input
-								type="password"
-								class="form-control"
-								id="login_password"
-								v-model="credentials.password"
-								placeholder="Passwort"
-								required
-							>
-						</div>
-          </div>
-					<div class="form-group">
-						<div class="col-sm-10 col-sm-offset-2">
-              <input type="checkbox" id="stay-logged-in">
-              <label for="stay-logged-in">{{ $t("LoginForm.remember_me") }}</label>
-						</div>
-					</div>
-					<div class="form-group">
-						<div class="col-sm-offset-2 col-sm-10">
-							<button class="btn btn-primary" @click="submit()"> {{ $t("LoginForm.sign_in") }}</button>
-							<router-link to="#"> | {{ $t("LoginForm.forgot") }} </router-link>
-						</div>
-					</div>
-				</form>
+          <form class="form-horizontal" role="form" v-if="!user.authenticated">
+            <div class="login_up">
+            <h2>{{ $t("LoginForm.registration") }}</h2>
+            <div class="input-group">
+                <span class="input-group-addon">
+                <i class="glyphicon glyphicon-envelope"></i>
+                </span>
+                <input
+                  type="email"
+                  class="form-control"
+                  id="login_email"
+                  v-model="credentials.email"
+                  placeholder="E-Mail Adresse"
+                  required
+                >
+            </div>
+            <div class="lock input-group">
+                <span class="input-group-addon">
+                <i class="glyphicon glyphicon-lock" aria-hidden="true"></i>
+                </span>
+                <input
+                  type="password"
+                  class="form-control"
+                  id="login_password"
+                  v-model="credentials.password"
+                  placeholder="Passwort"
+                  required
+                >
+            </div>
+            <div class="checkbox_signIn">
+              <div class="form-group">
+                <div class="col-sm-10 ">
+                  <input type="checkbox" id="stay-logged-in">
+                  <label for="stay-logged-in">{{ $t("LoginForm.remember_me") }}</label>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-sm col-sm-10">
+                  <button class="btn btn-primary" @click="submit()"> {{ $t("LoginForm.sign_in") }}</button>
+                  <router-link to="#"> | {{ $t("LoginForm.forgot") }} </router-link>
+                </div>
+              </div>
+            </div>
+            </div>
+          </form>
 
 				<button class="btn btn-warning" @click="logout()" v-else>{{ $t("LoginForm.logout") }}</button>
 			</div>
 		</div>
 	</div>
 </template>
-<style lang="scss">
+<style scoped lang="scss">
+
+  .login_up {
+    margin-top: -20px;
+  }
+
+	h2 {
+	margin-bottom: 15px;
+	}
+	.lock {
+		margin-top: 10px;
+	}
+	.checkbox_signIn {
+		margin-left: 3em;
+		margin-top: 10px;
+	}
+	router-link {
+	color: &primary-link-color;
+	}
 
 </style>
 <script>
