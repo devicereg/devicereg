@@ -198,10 +198,26 @@ app.get('/devices', function (req, res)
 });
 
 
-app.get('/device/categories', function (req, res)
+app.get('/categories', function (req, res)
 {
   exporter.json('SELECT id, name FROM category c WHERE c.user_id = 1', function (err, json) {
     console.log(json);
     res.status(200).send(json);
   });
+});
+
+
+app.post('/category/create', function (req, res)
+{
+  db.serialize(function() {
+    db.run("INSERT INTO category (name, user_id) VALUES ($name, $user_id)",
+      {
+        $name: req.body.name,
+        $user_id: 1
+      },
+      function(err)
+      {
+        res.status(201).send({ message: "Kategorie wurde erfolgreich hinzugefügt." });
+      });
+  })
 });

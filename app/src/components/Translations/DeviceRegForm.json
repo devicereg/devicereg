@@ -19,7 +19,8 @@
     "interval": "Intervall",
     "start": "Beginn",
     "month": "Monat",
-    "months": "Monate"
+    "months": "Monate",
+    "save_category": "Speichern"
   },
   "en": {
     "title": "Register device",
@@ -41,6 +42,7 @@
     "interval": "Interval",
     "start": "Start",
     "month": "Month",
-    "months": "Months"
+    "months": "Months",
+    "save_category": "Save"
   }
 }

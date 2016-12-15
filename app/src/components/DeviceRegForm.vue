@@ -29,9 +29,12 @@
             <input type="checkbox" v-model="customCat"> {{$t("DeviceRegForm.custom")}}
           </div>
         </div>
-        <div class="col-sm-4 ">
-          <input type="text" class="form-control" id="category" v-model="device.category" v-if="customCat" required>
-          <select class="form-control" id="category" required v-model="device.category" v-else>
+        <div class="col-sm-4" v-if="customCat">
+          <input type="text" class="form-control" id="custom_category" v-model="custom_category" required>
+          <input type="submit" class="form-control" @click="createCustomCategory" :value="$t('DeviceRegForm.save_category')">
+        </div>
+        <div class="col-sm-4" v-else>
+          <select class="form-control" id="category" required v-model="device.category">
             <option v-bind:value="item.id" v-for="item in categories">{{item.name}}</option>
           </select>
         </div>
@@ -183,6 +186,7 @@ export default {
   name: 'devreg',
   data () {
     return {
+      custom_category: '',
       device: {
         technology: '',
         category: '',
@@ -236,6 +240,16 @@ export default {
 
     getCategories() {
       auth.getCategories(this)
+    },
+
+    createCustomCategory() {
+      var result = auth.createNewCategory(this, {name: this.custom_category});
+    },
+
+    categoryCreated() {
+      this.customCat = 0;
+      this.custom_category = "";
+      this.getCategories();
     }
   },
   mounted: function() {
