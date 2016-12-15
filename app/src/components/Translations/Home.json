@@ -6,6 +6,8 @@
     "info2": "Der Gewährleistungszeitraum registrierter Geräte verlängert sich auf 24 Monate.",
     "info_advantage2": "Ein weiterer Vorteil des DeviceR Service: ",
     "info3": "Unsere Erinnerungsfunktion macht Sie auf anstehende Wartungen oder Kalibrierungen der registrierten Feldgeräte aufmerksam.",
+    "paragraph_1": "Sie haben die Möglichkeit, einen Benutzer anzulegen und Ihr Feldgerät zu registrieren oder sich an Ihrem bestehenden Profil anzumelden, um weitere Feldgeräte zu erfassen.",
+    "paragraph_2": "Ihr Vorteil: Der Gewährleistungszeitraum registrierter Geräte verlängert sich auf 24 Monate. Ein weiterer Vorteil des DeviceR Service: Unsere Erinnerungsfunktion macht Sie auf anstehende Wartungen oder Kalibrierungen der registrierten Feldgeräte aufmerksam.",
     "register_now": "Jetzt registrieren!"
   },
   "en": {
@@ -15,6 +17,8 @@
     "info2": "The period of warranty extends to 24 months. ",
     "info_advantage2": "Another advantage of the DeviceR service: ",
     "info3": "Our memory function reminds you of upcoming maintenance or calibration of your registered devices.",
+    "paragraph_1": "You have the opportunity to create a user and to register a field device or to log into your existing profile to capture more field devices.",
+    "paragraph_2": "Your advantage: The period of warranty extends to 24 months. Another advantage of the DeviceR service: Our memory function reminds you of upcoming maintenance or calibration of your registered devices",
     "register_now": "Register now!"
   }
 }

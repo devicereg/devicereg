@@ -1,7 +1,6 @@
 <template xmlns:v-bind="http://www.w3.org/1999/xhtml">
-    <div class="container fluid">
+    <div class="container-fluid col-md-offset-2 col-md-8">
         <div class="row">
-          <div class="col-md-offset-2 col-md-8 text-left">
             <h1>{{$t("TermsOfUse.title")}}</h1>
             <br/>
             <p>{{$t("TermsOfUse.paragraph0")}}</p>
@@ -41,7 +40,6 @@
               <span class="glyphicon glyphicon-print action button" aria-hidden="true"></span> &nbsp; {{$t("TermsOfUse.print")}}
             </a>
 
-        </div>
       </div>
     </div>
 </template>

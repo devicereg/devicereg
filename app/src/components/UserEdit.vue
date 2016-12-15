@@ -1,5 +1,5 @@
 <template>
-  <div class="container user-edit-form">
+  <div class="container-fluid col-md-offset-2 col-md-8 user-edit-form">
     <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
         <div class="alert alert-danger fade in" v-if="error">

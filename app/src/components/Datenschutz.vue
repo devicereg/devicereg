@@ -1,7 +1,6 @@
 <template>
-  <div class="container fluid">
+  <div class="container-fluid col-md-offset-2 col-md-8 text-left">
     <div class="row">
-      <div class="col-md-offset-2 col-md-8 text-left">
         <h1>{{$t("Datenschutz.title")}}</h1>
         <p>{{$t("Datenschutz.paragraph0")}}</p>
 
@@ -56,7 +55,6 @@
           <span class="glyphicon glyphicon-print action button" aria-hidden="true"></span> &nbsp; {{$t("TermsOfUse.print")}}
         </a>
 
-      </div>
     </div>
   </div>
 </template>

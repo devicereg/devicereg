@@ -1,8 +1,8 @@
 <template>
-	<div class="container-fluid col-md-offset-2 col-md-8" id="homepage">
+	<div class="container-fluid col-md-offset-2 col-md-8 text-left" id="homepage">
 	  <div class="row">
-	    <div class="col-md-12">
-        <img src="../assets/home-logo-transparent-bg-v1.png" class="logo">
+	    <div class="col-md-offset-4 col-xs-offset-2 col-md-4 col-xs-8">
+        <img src="../assets/home-logo-transparent-bg-v1.png" class="img img-responsive">
 	    </div>
 	  </div>
 
@@ -12,14 +12,14 @@
           <h2>{{ $t("Home.welcome") }}</h2>
 
           <p>
-            {{ $t("Home.info1") }}
+            {{ $t("Home.info1") }}<br/>
             <b>{{ $t("Home.info_advantage") }}</b>
-            {{ $t("Home.info2") }}
+            {{ $t("Home.info2") }}<br/>
             <b>{{ $t("Home.info_advantage2") }}</b>
             {{ $t("Home.info3") }}
           </p>
 
-          <router-link to="/registrieren" type="button" class="btn btn-primary btn-lg">{{ $t("Home.register_now") }}</router-link>
+          <router-link to="/registrieren" type="button" class="btn btn-primary">{{ $t("Home.register_now") }}</router-link>
        </div>
        </div>
 
@@ -60,13 +60,6 @@
 
 <style lang="scss">
   @import '../styles/_colors';
-
-
-
-  .logo {
-    height: 50%;
-    width:50%;
-  }
 
   .dropup {
     display: none;
