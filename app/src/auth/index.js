@@ -13,7 +13,6 @@ const GET_DEVICES_URL = API_URL + 'devices';
 const GET_CATEGORIES_URL = API_URL + 'categories';
 const CREATE_CATEGORY_URL = API_URL + 'category/create';
 
-
 export default {
   user: {authenticated: false},
 

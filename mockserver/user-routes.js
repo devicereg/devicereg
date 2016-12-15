@@ -197,7 +197,6 @@ app.get('/devices', function (req, res)
   });
 });
 
-
 app.get('/categories', function (req, res)
 {
   exporter.json('SELECT id, name FROM category c WHERE c.user_id = 1', function (err, json) {
