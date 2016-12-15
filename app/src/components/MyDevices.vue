@@ -72,7 +72,12 @@
       }
     },
     methods: {
+      editDevice(device) {
+        var index = this.devices.indexOf(device);
+        this.devices.splice(index, 1);
+      },
       deleteDevice(device) {
+        auth.deleteDevice(this, {id: device.id});
         var index = this.devices.indexOf(device);
         this.devices.splice(index, 1);
       },
