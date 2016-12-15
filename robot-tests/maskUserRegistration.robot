@@ -8,15 +8,15 @@ Gehe zu Webseite Benutzer registrieren
 
 Pruefe, dass die Webseite Benutzer registrieren angezeigt wird
     [Documentation]  Für aktuelle Webseite wird geprüft, ob es sich um die Webseite "Benutzer registrieren" handelt
-    Wait Until Page Contains Element  xpath=//h2[@class="registration-header-title"]
+    Wait Until Page Contains Element  xpath=//form[@id="user-registration-form"]
 
 Pruefe, dass die Webseite Benutzer registrieren verlassen wurde
     [Documentation]  Für aktuelle Webseite wird geprüft, ob es sich nicht um die Webseite Kontakte handelt
-    Page Should Not Contain Element  xpath=//h2[@class="registration-header-title"]
+    Page Should Not Contain Element  xpath=//form[@id="user-registration-form"]
 
 Pruefe, dass das Benutzerregistrierungsformular angezeigt wird
     [Documentation]  Es wird geprüft, ob das Benutzerregistrierungsformular sichtbar ist
-    Wait Until Page Contains Element  xpath=//form[@role="form"]
+    Wait Until Page Contains Element  xpath=//form[@id="user-registration-form"]
 
 Rufe die Funktion Benutzer registrieren auf
     [Documentation]  Das Kontaktformular wird eingeblendet
@@ -52,4 +52,5 @@ Gebe die Daten des neuen Benutzers ein
 Sende das Benutzerregistrierungsformular ab
     [Documentation]  Das Benutzerregistrierungsformular wird abgeschickt und der Benutzer wird angelegt
     Execute JavaScript  window.scrollTo(0, document.body.scrollHeight)
-	Click Button  xpath=//form[@role="form"]//button[contains(@class, "btn-primary")]
+    Sleep  0.5
+	#Click Button  xpath=//form[@id="user-registration-form"]//button[contains(@class, "btn-primary")]

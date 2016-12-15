@@ -1,5 +1,5 @@
 <template xmlns:v-bind="http://www.w3.org/1999/xhtml">
-    <div class="container-fluid col-md-offset-2 col-md-8">
+    <div class="container-fluid col-sm-offset-2 col-sm-8">
         <div class="row">
             <h1>{{$t("TermsOfUse.title")}}</h1>
             <br/>

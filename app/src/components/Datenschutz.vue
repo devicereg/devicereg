@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid col-md-offset-2 col-md-8 text-left">
+  <div class="container-fluid col-sm-offset-2 col-sm-8 text-left">
     <div class="row">
         <h1>{{$t("Datenschutz.title")}}</h1>
         <p>{{$t("Datenschutz.paragraph0")}}</p>

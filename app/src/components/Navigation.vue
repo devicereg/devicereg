@@ -1,6 +1,6 @@
 <template>
   <nav id="top-navigation" class="navbar navbar-default navbar-fixed-top">
-    <div class="container-fluid col-md-offset-2 col-md-8">
+    <div class="container-fluid col-sm-offset-2 col-sm-8">
       <div class="navbar-header">
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
           <span class="sr-only">Toggle navigation</span>

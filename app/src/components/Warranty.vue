@@ -1,5 +1,5 @@
 <template>
-	<div class="container-fluid col-md-offset-2 col-md-8">
+	<div class="container-fluid col-sm-offset-2 col-sm-8">
 		<div class="row">
 			<div id="warranty-text">
         <h1>{{$t("Warranty.title")}}</h1>

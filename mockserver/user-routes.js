@@ -84,7 +84,8 @@ app.post('/user/update', function(req, res)
         req.body.password,
         req.body.question,
         req.body.answer,
-        req.body.email
+        req.body.email,
+        req.body.id
       ]
     );
 

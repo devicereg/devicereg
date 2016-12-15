@@ -1,7 +1,7 @@
 <template>
-	<div class="container-fluid col-md-offset-2 col-md-8 text-left" id="homepage">
+	<div class="container-fluid col-sm-offset-2 col-sm-8 text-left" id="homepage">
 	  <div class="row">
-	    <div class="col-md-offset-4 col-xs-offset-2 col-md-4 col-xs-8">
+	    <div class="col-md-offset-4 col-xs-offset-2 col-md-4 col-xs-6">
         <img src="../assets/home-logo-transparent-bg-v1.png" class="img img-responsive">
 	    </div>
 	  </div>
@@ -9,7 +9,7 @@
 	  <div class="row text-left">
        <div class="col-md-6">
          <div class="texte">
-          <h2>{{ $t("Home.welcome") }}</h2>
+          <h1>{{ $t("Home.welcome") }}</h1>
 
           <p>
             {{ $t("Home.info1") }}<br/>

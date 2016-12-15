@@ -21,15 +21,15 @@ Pruefe, dass die Datenschutzseite angezeigt wird
 Oeffne Browser
     Open Browser  ${host}  ${browser}
 
-Rufe die Datenschutzsseite auf
-    Navigiere zu Datenschutzseite
-    Pruefe, dass die Datenschutzseite angezeigt wird
+#Rufe die Datenschutzsseite auf
+#    Navigiere zu Datenschutzseite
+#    Pruefe, dass die Datenschutzseite angezeigt wird
 
 Registriere den Benutzer Max Mustermann
     Registriere neuen Benutzer  &{Mustermax}
 
-Einloggen des Benutzers Max Mustermann
-    Benutzer einloggen  &{Mustermax}[Email]  &{Mustermax}[Passwort]
+#Einloggen des Benutzers Max Mustermann
+#    Benutzer einloggen  &{Mustermax}[Email]  &{Mustermax}[Passwort]
 
-Schliesse Browser
-    Close Browser
+#Schliesse Browser
+#    Close Browser

@@ -1,5 +1,5 @@
 <template>
-	<div class="container-fluid col-md-offset-2 col-md-8 text-left registration-form">
+	<div class="container-fluid col-sm-offset-2 col-sm-8 text-left registration-form">
 		<div class="row">
 			<div class="col-sm-12">
 				<div class="alert alert-danger fade in" v-if="error">
@@ -9,9 +9,9 @@
 		</div>
 		<div class="row">
 			<div class="col-sm-12 text-left">
-        <h2 class="registration-header-title">{{$t("RegistrationForm.title")}}</h2>
+        <h1 class="registration-header-title">{{$t("RegistrationForm.title")}}</h1>
 				<form id="user-registration-form" role="form">
-					<legend>{{$t("RegistrationForm.personal_details")}}</legend>
+					<legend><h4>{{$t("RegistrationForm.personal_details")}}</h4></legend>
 					<div class="form-group row">
             <div class="col-sm-4 control-label">
               <label for="register_gender">{{$t("RegistrationForm.gender")}}</label>
@@ -75,7 +75,7 @@
                 v-model="credentials.phone" required>
             </div>
           </div>
-					<legend>{{$t("RegistrationForm.company_details")}}</legend>
+					<legend><h4>{{$t("RegistrationForm.company_details")}}</h4></legend>
 					<div class="form-group row">
             <div class="col-sm-4 control-label">
               <label for="register_industry_family">{{$t("RegistrationForm.industry_family")}}</label>
@@ -172,7 +172,7 @@
               </select>
             </div>
           </div>
-					<legend>{{$t("RegistrationForm.system_access")}}</legend>
+					<legend><h4>{{$t("RegistrationForm.system_access")}}</h4></legend>
 					<div class="form-group row">
             <div class="col-sm-4 control-label">
               <label for="register_user">{{$t("RegistrationForm.user")}}</label>
@@ -218,7 +218,7 @@
                 v-model="credentials.answer" required>
             </div>
           </div>
-					<legend>{{$t("RegistrationForm.agreement")}}</legend>
+					<legend><h4>{{$t("RegistrationForm.agreement")}}</h4></legend>
 					<div class="form-group row">
 						<div class="form-check">
 							<div class="col-sm-12 control-label">
@@ -235,7 +235,7 @@
             </div>
           </div>
           <br />
-          <div class="form-group row">
+          <div class="form-group row" style="margin-bottom: 100px; margin-top:50px;">
             <div class="col-sm-offset-4 col-sm-2">
               <button type="button" class="btn btn-block btn-lg btn-cancel">{{$t("cancel")}}</button>
             </div>

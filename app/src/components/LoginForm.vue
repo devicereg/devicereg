@@ -11,7 +11,7 @@
         </div>
         <form class="form-horizontal" role="form" v-if="!user.authenticated">
           <div class="login_up">
-            <h2>{{ $t("LoginForm.registration") }}</h2>
+            <h1>{{ $t("LoginForm.registration") }}</h1>
             <div class="input-group">
                 <span class="input-group-addon">
                 <i class="glyphicon glyphicon-envelope"></i>
@@ -39,9 +39,9 @@
               >
             </div>
             <div class="form-group">
-              <div class="col-sm-10 ">
-                <input class="form-control" type="checkbox" id="stay-logged-in">
-                <label class="control-label" for="stay-logged-in">{{ $t("LoginForm.remember_me") }}</label>
+  						<div class="checkbox_signIn col-sm-12">
+                <input class="" type="checkbox" id="stay-logged-in"/>
+                <label for="stay-logged-in">{{ $t("LoginForm.remember_me") }}</label>
               </div>
             </div>
             <div class="form-group">
@@ -70,10 +70,10 @@
 	.lock {
 		margin-top: 10px;
 	}
-	/*.checkbox_signIn {
+	.checkbox_signIn {
 		margin-left: 3em;
 		margin-top: 10px;
-	}*/
+	}
 
 	/*router-link {
 	  color: $primary-link-color;
