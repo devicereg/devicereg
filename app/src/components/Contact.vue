@@ -66,10 +66,15 @@ export default {
 </script>
 
 <style scoped>
+  option {
+    font-weight: normal;
+  }
+
   label {
     float: left;
     padding-right: 2em;
   }
+
   #contact-table {
     margin-top: 1.5em;
     width:100%;

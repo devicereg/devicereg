@@ -2,16 +2,16 @@
   <div id="navbar" class="navbar-collapse collapse">
     <ul class="nav navbar-nav navbar-left">
       <li>
-        <router-link to="/dashboard"> {{ $t('dashboard') }} </router-link>
+        <router-link to="/dashboard"><strong> {{ $t('dashboard') }} </strong></router-link>
       </li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
       <li>
-        <router-link to="/contact"> {{ $t('contact') }} </router-link>
+        <router-link to="/contact"><strong> {{ $t('contact') }} </strong></router-link>
       </li>
       <language-switch></language-switch>
       <li class="logout-user" @click="logout()">
-        <router-link to="/login"> {{ $t('logout') }} </router-link>
+        <router-link to="/login"><strong> {{ $t('logout') }} </strong></router-link>
       </li>
     </ul>
   </div>

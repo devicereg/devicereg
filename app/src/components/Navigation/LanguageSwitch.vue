@@ -1,11 +1,11 @@
 <template>
   <li class="dropdown">
     <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-      {{ $t('language') }} <span class="caret"></span>
+      <strong>{{ $t('language') }} </strong><span class="caret"></span>
     </a>
     <ul class="dropdown-menu" role="menu">
-      <li @click='setLang("de")'><a> {{ $t('german') }} </a></li>
-      <li @click='setLang("en")'><a> {{ $t('english') }} </a></li>
+      <li @click='setLang("de")'><a><strong> {{ $t('german') }} </strong></a></li>
+      <li @click='setLang("en")'><a><strong> {{ $t('english') }} </strong></a></li>
     </ul>
   </li>
 </template>
@@ -37,9 +37,10 @@ export default {
 
     li {
       margin: 0;
+      color: $primary-bg-color;
 
       &:hover {
-        background-color: $gray;
+        background-color: $body-background;
       }
     }
   }
