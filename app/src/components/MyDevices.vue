@@ -26,7 +26,7 @@
           <tr v-for="device in devices">
             <td>{{device.technology}}</td>
             <td>{{device.comment}}</td>
-            <td>{{device.category_name}}</td>
+            <td>{{device.category_id}}</td>
             <td>
               <a @click="getDevices()">
                 <span class="glyphicon glyphicon-eye-open action-button" aria-hidden="true"></span>
