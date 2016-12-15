@@ -1,0 +1,55 @@
+*** Settings ***
+Library  Selenium2Library
+
+*** Keywords ***
+Gehe zu Webseite Benutzer registrieren
+    [Documentation]  Webseite "Benutzer registrieren" wird aufgerufen
+    Go To  ${host}/registrieren
+
+Pruefe, dass die Webseite Benutzer registrieren angezeigt wird
+    [Documentation]  Für aktuelle Webseite wird geprüft, ob es sich um die Webseite "Benutzer registrieren" handelt
+    Wait Until Page Contains Element  xpath=//h2[@class="registration-header-title"]
+
+Pruefe, dass die Webseite Benutzer registrieren verlassen wurde
+    [Documentation]  Für aktuelle Webseite wird geprüft, ob es sich nicht um die Webseite Kontakte handelt
+    Page Should Not Contain Element  xpath=//h2[@class="registration-header-title"]
+
+Pruefe, dass das Benutzerregistrierungsformular angezeigt wird
+    [Documentation]  Es wird geprüft, ob das Benutzerregistrierungsformular sichtbar ist
+    Wait Until Page Contains Element  xpath=//form[@role="form"]
+
+Rufe die Funktion Benutzer registrieren auf
+    [Documentation]  Das Kontaktformular wird eingeblendet
+    Click Element  xpath=//a[@data-toggle="modal" and @data-target="#new-contact"]
+
+Gebe die Daten des neuen Benutzers ein
+    [Documentation]  Ein neuer Benutzer wird angelegt.
+    [Arguments]   &{Benutzer}
+	Pruefe, dass das Benutzerregistrierungsformular angezeigt wird
+    Click Element  id=register_gender
+    Click Element  xpath=//select[@id="register_gender"]/option[contains(text(), "&{Benutzer}[Anrede]")]
+	Input Text  id=register_prename  &{Benutzer}[Vorname]
+	Input Text  id=register_surname  &{Benutzer}[Nachname]
+	Click Element  id=register_language
+    Click Element  xpath=//select[@id="register_language"]/option[contains(text(), "&{Benutzer}[Sprache]")]
+	Input Text  id=register_phone  &{Benutzer}[Telefon]
+	Click Element  id=register_industry_family
+    Click Element  xpath=//select[@id="register_industry_family"]/option[contains(text(), "&{Benutzer}[Branchenfamilie]")]
+	Input Text  id=register_industry_type  &{Benutzer}[Branchentyp]
+	Input Text  id=register_company  &{Benutzer}[Firmenname]
+	Input Text  id=register_street  &{Benutzer}[Strasse]
+	Input Text  id=register_number  &{Benutzer}[Hausnummer]
+	Input Text  id=register_zip  &{Benutzer}[PLZ]
+	Input Text  id=register_city  &{Benutzer}[Stadt]
+    Click Element  id=register_country
+    Click Element  xpath=//select[@id="register_country"]/option[contains(text(), "&{Benutzer}[Land]")]
+	Input Text  id=register_user  &{Benutzer}[Email]
+	Input Password  id=register_password  &{Benutzer}[Passwort]
+	Input Text  id=register_question  &{Benutzer}[Geheimfrage]
+	Input Text  id=register_answer  &{Benutzer}[Antwort]
+	Select Checkbox  id=register_agreement
+
+Sende das Benutzerregistrierungsformular ab
+    [Documentation]  Das Benutzerregistrierungsformular wird abgeschickt und der Benutzer wird angelegt
+    Execute JavaScript  window.scrollTo(0, document.body.scrollHeight)
+	Click Button  xpath=//form[@role="form"]//button[contains(@class, "btn-primary")]
