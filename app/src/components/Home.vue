@@ -11,11 +11,10 @@
          <div class="texte">
           <h2>{{ $t("Home.welcome") }}</h2>
 
-          <p>
-            {{ $t("Home.info") }}
-          </p>
+          <p v-html='$t("Home.paragraph_1")'></p>
+          <p v-html='$t("Home.paragraph_2")'></p>
 
-          <router-link to="/registrieren" type="button" class="btn btn-primary btn-lg">{{ $t("Home.register_now") }}</router-link>
+          <router-link to="/registrieren" type="button" class="btn btn-primary">{{ $t("Home.register_now") }}</router-link>
        </div>
        </div>
 

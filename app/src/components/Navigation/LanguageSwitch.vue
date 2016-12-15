@@ -1,6 +1,6 @@
 <template>
   <li class="dropdown">
-    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
       {{ $t('language') }} <span class="caret"></span>
     </a>
     <ul class="dropdown-menu" role="menu">
@@ -22,3 +22,25 @@ export default {
   }
 }
 </script>
+
+<style scoped lang="scss">
+  @import '../../styles/_colors';
+
+  li.dropdown:hover ul.dropdown-menu {
+    display: block;
+    margin-top: 0;
+  }
+
+  ul.dropdown-menu {
+    padding: 0;
+    margin: 0;
+
+    li {
+      margin: 0;
+
+      &:hover {
+        background-color: $gray;
+      }
+    }
+  }
+</style>

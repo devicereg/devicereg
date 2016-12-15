@@ -27,6 +27,7 @@
     width: 100%;
     background-color: $primary-bg-color;
     overflow: auto;
+    text-align: center;
 
     .container {
       .nav {
