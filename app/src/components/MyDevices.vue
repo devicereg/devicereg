@@ -1,11 +1,6 @@
 <template>
   <div class="container">
     <div class="row">
-      ####
-      <div v-for="data in deviceData">
-        {{data.id}}
-      </div>
-      ####
       <div class="col-sm-12 text-left">
         <div class="row">
           <div class="col-sm-6">
@@ -30,8 +25,8 @@
           <tbody>
           <tr v-for="device in devices">
             <td>{{device.technology}}</td>
-            <td>{{device.description_data}}</td>
-            <td>{{device.category}}</td>
+            <td>{{device.comment}}</td>
+            <td>{{device.category_name}}</td>
             <td>
               <a @click="getDevices()">
                 <span class="glyphicon glyphicon-eye-open action-button" aria-hidden="true"></span>
@@ -66,7 +61,6 @@
   }
 </style>
 <script>
-  import mockDevices from "./MockData/devices.json"
   import auth from "../auth/index.js"
 
   export default{
@@ -74,8 +68,7 @@
     data () {
       return {
         selected: '0',
-        devices: mockDevices,
-        deviceData: []
+        devices: []
       }
     },
     methods: {
