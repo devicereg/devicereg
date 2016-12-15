@@ -199,9 +199,7 @@ export default {
         calibrationMsg: 0, //boolean, true if notifications about calibration schedule desired
         cBeginning: '' //start date of recieving notifications about calibration schedules
       },
-      categories: [
-        {id: 1, name: 'Durchfluss'}
-      ],
+      categories: [],
       technologies: [
         {id: 1, name: 'Rotamass'},
         {id: 2, name: 'Flowmeter'}
@@ -234,7 +232,14 @@ export default {
       }
 
       auth.createDevice(this, device, '/dashboard');
+    },
+
+    getCategories() {
+      auth.getCategories(this)
     }
+  },
+  mounted: function() {
+    this.getCategories()
   },
   computed: {
     today: function() {

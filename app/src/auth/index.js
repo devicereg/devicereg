@@ -9,6 +9,8 @@ const UPDATE_URL = API_URL + 'user/update';
 const DELETE_URL = API_URL + 'user/delete';
 const CREATE_DEVICE_URL = API_URL + 'device/create';
 const DELETE_DEVICE_URL = API_URL + 'device/delete';
+const GET_DEVICES_URL = API_URL + 'devices';
+const GET_CATEGORIES_URL = API_URL + 'device/categories';
 
 export default {
   user: {authenticated: false},
@@ -164,6 +166,25 @@ export default {
 
     }, (err) => {
       context.error = err
+    });
+  },
+
+  getDevices(context)
+  {
+    context.$http.get(GET_DEVICES_URL).then((response) => {
+      context.devices = JSON.parse(response.body);
+    }, (err) => {
+      context.error = err;
+    });
+  },
+
+  getCategories(context)
+  {
+    context.$http.get(GET_CATEGORIES_URL).then((response) => {
+      context.categories = JSON.parse(response.body);
+      console.log(context.categories);
+    }, (err) => {
+      context.error = err;
     });
   }
 }
