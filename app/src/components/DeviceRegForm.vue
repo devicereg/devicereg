@@ -235,7 +235,7 @@ export default {
         cBeginning: this.device.cBeginning
       }
 
-      auth.createDevice(this, device, '/dashboard');
+      auth.createDevice(this, device, '/my-devices');
     },
 
     getCategories() {
@@ -243,7 +243,7 @@ export default {
     },
 
     createCustomCategory() {
-      var result = auth.createNewCategory(this, {name: this.custom_category});
+      auth.createNewCategory(this, {name: this.custom_category});
     },
 
     categoryCreated() {
