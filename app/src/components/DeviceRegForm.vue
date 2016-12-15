@@ -4,7 +4,7 @@
       <h2 class="col-sm-12">{{$t("DeviceRegForm.title")}}</h2>
     </div>
     <br>
-    <form>
+    <form id="#device-registration-form" role="form">
       <div class="form-group row">
         <div class="col-sm-10  text-left">
           <legend>{{$t("DeviceRegForm.categorization")}}</legend>
@@ -15,7 +15,7 @@
           <label class="control-label" for="technology">{{$t("DeviceRegForm.technology")}}:</label>
         </div>
         <div class="col-sm-4 ">
-          <select class="form-control" id="technology" v-model="device.technology" required>
+          <select name="technology" class="form-control" id="technology" v-model="device.technology" required>
             <option v-bind:value="item.id" v-for="item in technologies">{{item.name}}</option>
           </select>
         </div>
@@ -26,15 +26,15 @@
         </div>
         <div class="col-sm-2 checkCat">
           <div class="pull-right">
-            <input type="checkbox" v-model="customCat"> {{$t("DeviceRegForm.custom")}}
+            <input name="category" type="checkbox" v-model="customCat"> {{$t("DeviceRegForm.custom")}}
           </div>
         </div>
         <div class="col-sm-4" v-if="customCat">
-          <input type="text" class="form-control" id="custom_category" v-model="custom_category" required>
+          <input name="category" type="text" class="form-control" id="custom_category" v-model="custom_category" required>
           <input type="submit" class="form-control" @click="createCustomCategory" :value="$t('DeviceRegForm.save_category')">
         </div>
         <div class="col-sm-4" v-else>
-          <select class="form-control" id="category" required v-model="device.category">
+          <select name="category" class="form-control" id="category" required v-model="device.category">
             <option v-bind:value="item.id" v-for="item in categories">{{item.name}}</option>
           </select>
         </div>
@@ -50,7 +50,7 @@
           <label class="control-label" for="serialnumber">{{$t("DeviceRegForm.serial_number")}}:</label>
         </div>
         <div class="col-sm-4 ">
-          <input type="text" class="form-control" id="serialnumber" v-model="device.serialnumber" required
+          <input name="serialnumber" type="text" class="form-control" id="serialnumber" v-model="device.serialnumber" required
                  pattern="[A-Z]{1}[0-9]{8}">
         </div>
       </div>
@@ -59,7 +59,7 @@
           <label class="control-label" for="devicelabel">{{$t("DeviceRegForm.label")}}:</label>
         </div>
         <div class="col-sm-4 ">
-          <input type="text" class="form-control" id="devicelabel" v-model="device.devicelabel" required>
+          <input name="label" type="text" class="form-control" id="devicelabel" v-model="device.devicelabel" required>
         </div>
       </div>
       <div class="form-group row">
@@ -67,7 +67,7 @@
           <label class="control-label" for="procmedium">{{$t("DeviceRegForm.process_fluid")}}:</label>
         </div>
         <div class="col-sm-4 ">
-          <select class="form-control" id="procmedium" v-model="device.procmedium" required>
+          <select name="process_fluid" class="form-control" id="procmedium" v-model="device.procmedium" required>
             <option v-bind:value="item.id" v-for="item in procmedia">{{item.name}}</option>
           </select>
         </div>
@@ -77,7 +77,7 @@
           <label class="control-label" for="tag">{{$t("DeviceRegForm.tag_number")}}:</label>
         </div>
         <div class="col-sm-4 ">
-          <input type="number" class="form-control" id="tag" v-model="device.tagnumber" required>
+          <input name="tagnumber" type="number" class="form-control" id="tag" v-model="device.tagnumber" required>
         </div>
       </div>
       <div class="form-group row">
@@ -85,7 +85,7 @@
           <label class="control-label" for="comment">{{$t("DeviceRegForm.comment")}}:</label>
         </div>
         <div class="col-sm-4 ">
-          <textarea class="form-control" cols="40" rows="5" id="comment" v-model="device.comment"></textarea>
+          <textarea name="comment" class="form-control" cols="40" rows="5" id="comment" v-model="device.comment"></textarea>
         </div>
       </div>
       <br>
@@ -96,16 +96,16 @@
       </div>
       <div class="form-group row">
         <div class="col-sm-2  text-left">
-          <label class="control-label" for="maintenance">{{$t("DeviceRegForm.maintenance")}}:</label>
+          <label name="maintenance" class="control-label" for="maintenance">{{$t("DeviceRegForm.maintenance")}}:</label>
         </div>
         <div class="col-sm-2 ">
-          <input type="checkbox" id="maintenance" v-model="device.maintenance"> {{$t("DeviceRegForm.yes")}}
+          <input type="maintenance_desired" id="maintenance" v-model="device.maintenance"> {{$t("DeviceRegForm.yes")}}
         </div>
         <div class="col-sm-2 text-left">
           <label class="control-label" for="mInterval">{{$t("DeviceRegForm.interval")}}:</label>
         </div>
         <div class="col-sm-2">
-          <select class="form-control" id="mInterval" v-model="device.mInterval" :disabled="!device.maintenance"
+          <select name="maintenance_interval" class="form-control" id="mInterval" v-model="device.mInterval" :disabled="!device.maintenance"
                   :required="device.maintenance">
             <option value="1">1 {{$t("DeviceRegForm.month")}}</option>
             <option value="3">3 {{$t("DeviceRegForm.months")}}</option>
@@ -118,10 +118,10 @@
           <label class="control-label" for="maintenanceMsg">{{$t("DeviceRegForm.notification")}}:</label>
         </div>
         <div class="col-sm-2 ">
-          <input type="checkbox" id="maintenanceMsg" v-model="device.maintenanceMsg"> {{$t("DeviceRegForm.yes")}}
+          <input name="maintenance_notification_desired" type="checkbox" id="maintenanceMsg" v-model="device.maintenanceMsg"> {{$t("DeviceRegForm.yes")}}
         </div>
         <div class="col-sm-2 text-left">
-          <label class="control-label" for="mBeginning">{{$t("DeviceRegForm.start")}}:</label>
+          <label name="maintenance_start" class="control-label" for="mBeginning">{{$t("DeviceRegForm.start")}}:</label>
         </div>
         <div class="col-sm-2">
           <input type="date" class="form-control" id="mBeginning" v-model="device.mBeginning"
@@ -135,16 +135,16 @@
       </div>
       <div class="form-group row">
       <div class="col-sm-2  text-left">
-        <label class="control-label" for="calibration">{{$t("DeviceRegForm.calibration")}}:</label>
+        <label name="calibration" class="control-label" for="calibration">{{$t("DeviceRegForm.calibration")}}:</label>
       </div>
       <div class="col-sm-2 ">
-        <input type="checkbox" id="calibration" v-model="device.calibration"> {{$t("DeviceRegForm.yes")}}
+        <input name="calibration_desired" type="checkbox" id="calibration" v-model="device.calibration"> {{$t("DeviceRegForm.yes")}}
       </div>
       <div class="col-sm-2 text-left">
         <label class="control-label" for="cInterval">{{$t("DeviceRegForm.interval")}}:</label>
       </div>
       <div class="col-sm-2">
-        <select class="form-control" id="cInterval" v-model="device.cInterval" :disabled="!device.calibration"
+        <select name="calibration_interval" class="form-control" id="cInterval" v-model="device.cInterval" :disabled="!device.calibration"
                 :required="device.calibration">
           <option value="1">1 {{$t("DeviceRegForm.month")}}</option>
           <option value="3">3 {{$t("DeviceRegForm.months")}}</option>
@@ -157,13 +157,13 @@
         <label class="control-label" for="calibrationMsg">{{$t("DeviceRegForm.notification")}}:</label>
       </div>
       <div class="col-sm-2 ">
-        <input type="checkbox" id="calibrationMsg" v-model="device.calibrationMsg" value="1"> {{$t("DeviceRegForm.yes")}}
+        <input name="calibration_notification_desired" type="checkbox" id="calibrationMsg" v-model="device.calibrationMsg" value="1"> {{$t("DeviceRegForm.yes")}}
       </div>
       <div class="col-sm-2 text-left">
         <label class="control-label" for="cBeginning">{{$t("DeviceRegForm.start")}}:</label>
       </div>
       <div class="col-sm-2">
-        <input type="date" class="form-control" id="cBeginning" v-model="device.cBeginning"
+        <input name="calibration_start" type="date" class="form-control" id="cBeginning" v-model="device.cBeginning"
                :disabled="!device.calibrationMsg" :required="device.calibrationMsg" :min="today">
       </div>
     </div>
@@ -218,24 +218,26 @@ export default {
   },
   methods: {
     submit() {
-      var device = {
-        technology: this.device.technology,
-        category: this.device.category,
-        devicelabel: this.device.devicelabel,
-        serialnumber: this.device.serialnumber,
-        procmedium: this.device.procmedium,
-        comment: this.device.comment,
-        mInterval: this.device.mInterval,
-        mBeginning: this.device.mBeginning,
-        calibration: this.device.calibration,
-        maintenance: this.device.maintenance,
-        maintenanceMsg: this.device.maintenanceMsg,
-        cInterval: this.device.cInterval,
-        calibrationMsg: this.device.calibrationMsg,
-        cBeginning: this.device.cBeginning
-      }
+      if ($("#device-registration-form").valid()) {
+        var device = {
+          technology: this.device.technology,
+          category: this.device.category,
+          devicelabel: this.device.devicelabel,
+          serialnumber: this.device.serialnumber,
+          procmedium: this.device.procmedium,
+          comment: this.device.comment,
+          mInterval: this.device.mInterval,
+          mBeginning: this.device.mBeginning,
+          calibration: this.device.calibration,
+          maintenance: this.device.maintenance,
+          maintenanceMsg: this.device.maintenanceMsg,
+          cInterval: this.device.cInterval,
+          calibrationMsg: this.device.calibrationMsg,
+          cBeginning: this.device.cBeginning
+        }
 
-      auth.createDevice(this, device, '/my-devices');
+        auth.createDevice(this, device, '/my-devices');
+      }
     },
 
     getCategories() {
