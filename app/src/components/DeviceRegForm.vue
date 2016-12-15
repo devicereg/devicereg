@@ -99,7 +99,7 @@
           <label name="maintenance" class="control-label" for="maintenance">{{$t("DeviceRegForm.maintenance")}}:</label>
         </div>
         <div class="col-sm-2 ">
-          <input type="maintenance_desired" id="maintenance" v-model="device.maintenance"> {{$t("DeviceRegForm.yes")}}
+          <input name="maintenance_desired" type="checkbox" id="maintenance" v-model="device.maintenance"> {{$t("DeviceRegForm.yes")}}
         </div>
         <div class="col-sm-2 text-left">
           <label class="control-label" for="mInterval">{{$t("DeviceRegForm.interval")}}:</label>

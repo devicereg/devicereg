@@ -41,7 +41,7 @@
           color: #fff;
 
           &:hover {
-            color: #5bc0de;
+            color: $primary-link-color;
           }
         }
       }
@@ -56,9 +56,7 @@
     }
   }
 
-
-
-
-
-
+  router-link-active{
+    color: $primary-link-color;
+  }
 </style>
