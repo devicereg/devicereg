@@ -1,7 +1,7 @@
 <template>
-	<div class="container-fluid col-sm-offset-2 col-sm-8 text-left" id="homepage">
+	<div id="homepage">
 	  <div class="row">
-	    <div class="col-md-offset-4 col-xs-offset-2 col-md-4 col-xs-6">
+	    <div class="col-xs-offset-2 col-lg-offset-4 col-sm-offset-3 col-lg-4 col-sm-6 col-xs-8">
         <img src="../assets/home-logo-transparent-bg-v1.png" class="img img-responsive">
 	    </div>
 	  </div>
@@ -28,7 +28,7 @@
          <login-form></login-form>
        </div>
 	  </div>
-    <div class="dropup">
+    <!--div class="dropup">
       <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
         <span class="caret"></span></button>
       <ul class="dropdown-menu">
@@ -37,7 +37,7 @@
         <li><router-link to="/impressum">Impressum</router-link></li>
         <li><router-link to="/aktionsbedingungen">Aktionsbedingungen</router-link></li>
       </ul>
-    </div>
+    </div-->
 
 	</div>
 </template>

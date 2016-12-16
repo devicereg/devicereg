@@ -2,7 +2,7 @@
   <div id="navbar" class="navbar-collapse collapse">
     <ul class="nav navbar-nav navbar-left">
       <li>
-        <router-link to="/dashboard"><strong> {{ $t('dashboard') }} </strong></router-link>
+        <router-link to="/my-devices"><strong> {{ $t('my_devices') }} </strong></router-link>
       </li>
     </ul>
     <ul class="nav navbar-nav navbar-right">

@@ -2,7 +2,7 @@
   <div id="app">
     <delete-modal v-if="user.authenticated"></delete-modal>
     <navigation></navigation>
-    <router-view></router-view>
+    <router-view class="container-fluid col-sm-offset-1 col-md-offset-2 col-sm-10 col-md-8" style="margin-bottom: 100px;"></router-view>
     <app-footer></app-footer>
   </div>
 </template>

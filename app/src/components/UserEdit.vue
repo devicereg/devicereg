@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid col-sm-offset-2 col-sm-8 user-edit-form">
+  <div id="user-edit-component">
     <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
         <div class="alert alert-danger fade in" v-if="error">
@@ -8,10 +8,7 @@
       </div>
     </div>
     <div class="row">
-
       <form id="user-edit-form" role="form">
-
-
         <div class="col-sm-12 text-left">
           <h2 class="registration-header-title">Profil bearbeiten</h2>
           <input type="hidden" v-model="credentials.id">
@@ -224,7 +221,7 @@
             </div>
           </div>
           <br />
-          <div class="form-group row" style="margin-bottom: 100px; margin-top:50px;">
+          <div class="form-group row">
             <div class="col-sm-offset-4 col-sm-2">
               <button class="btn btn-block btn-lg btn-cancel">{{$t("cancel")}}</button>
             </div>
@@ -232,7 +229,6 @@
               <button class="btn btn-block btn-lg btn-primary" @click="submit()">Aktualisieren</button>
             </div>
           </div>
-
         </div>
       </form>
     </div>

@@ -7,7 +7,8 @@ ${url}      localhost
 ${host}     ${url}:${port}/#/
 ${browser}  firefox
 
-&{Mustermax}    Anrede=Herr  Vorname=Max  Nachname=Mustermann  Email=mustermax@htw-berlin.de  Sprache=Deutsch  Telefon=012 34 56 789  Branchenfamilie=Strom  Branchentyp=BT  Firmenname=Muster AG  Strasse=Musterstraße  Hausnummer=19  PLZ=12345  Stadt=Berlin  Land=Deutschland  Passwort=password  Geheimfrage=Geheim?  Antwort=Geheim!
+${user}  mustermax@htw-berlin.de
+&{Mustermax}    Anrede=Herr  Vorname=Max  Nachname=Mustermann  Email=${user}  Sprache=Deutsch  Telefon=012 34 56 789  Branchenfamilie=Strom  Branchentyp=BT  Firmenname=Muster AG  Strasse=Musterstraße  Hausnummer=19  PLZ=12345  Stadt=Berlin  Land=Deutschland  Passwort=password  Geheimfrage=Geheim?  Antwort=Geheim!
 
 *** Keywords ***
 Navigiere zu Datenschutzseite
@@ -19,8 +20,12 @@ Pruefe, dass die Datenschutzseite angezeigt wird
     [Documentation]  Für aktuelle Webseite wird geprüft, ob es sich um die Datenschutzseite handelt
     Page Should Contain Element  xpath=//h1[contains(text(), "Datenschutzerklärung")]
 
+Pruefe, dass die Geraeteuebersicht angezeigt wird
+    [Documentation]  Für aktuelle Webseite wird geprüft, ob es sich um die Geräteübersicht handelt
+    Wait Until Page Contains Element  css=div#my-devices-component
+
 *** Test Cases ***
-Oeffne Browser
+Initialisiere Test
     Open Browser  ${host}  ${browser}
     Maximize Browser Window
 
@@ -28,11 +33,12 @@ Oeffne Browser
 #    Navigiere zu Datenschutzseite
 #    Pruefe, dass die Datenschutzseite angezeigt wird
 
-Registriere den Benutzer Max Mustermann
+Registriere den Benutzer Max Musterman
     Registriere neuen Benutzer  &{Mustermax}
 
 Einloggen des Benutzers Max Mustermann
     Benutzer einloggen  &{Mustermax}[Email]  &{Mustermax}[Passwort]
+    Pruefe, dass die Geraeteuebersicht angezeigt wird
 
-#Schliesse Browser
-#    Close Browser
+Schliesse Browser
+    Close Browser

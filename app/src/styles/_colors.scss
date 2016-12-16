@@ -1,6 +1,7 @@
 $dark-blue: #283158;
 $light-blue: #3e7d8b;
 $gray: #e3e3e3;
+$darker-gray: #959595;
 $black: #000;
 
 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700');
@@ -8,4 +9,6 @@ $black: #000;
 $body-background: $gray;
 $primary-bg-color: $dark-blue;
 $btn-primary-bg: $light-blue;
+$btn-secondary-color: $darker-gray;
+$btn-txt-color: white;
 $primary-link-color: $light-blue;

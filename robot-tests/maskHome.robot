@@ -5,18 +5,19 @@ Library  Selenium2Library
 Gehe zu Startseite
     [Documentation]  Startseite wird aufgerufen
     Go To  ${host}
+    Execute Javascript  window.localStorage.clear();
 
 Pruefe, dass die Startseite angezeigt wird
     [Documentation]  Für aktuelle Webseite wird geprüft, ob es sich um die Startseite handelt
-    Wait Until Page Contains Element  css=div#homepage.container-fluid
+    Wait Until Page Contains Element  css=div#homepage
 
 Pruefe, dass die Startseite verlassen wurde
     [Documentation]  Für aktuelle Webseite wird geprüft, ob es sich nicht um die Startseite handelt
-    Page Should Not Contain Element  css=div#homepage.container-fluid
+    Wait Until Page Does Not Contain Element  css=div#homepage
 
 Rufe die Funktion Benutzer registrieren auf
     [Documentation]  Das Kontaktformular wird eingeblendet
-    Click Link  xpath=//div[@id="homepage"]//a[@href="/#/signup"]
+    Click Link  xpath=//div[@id="homepage"]//a[@href="/#/registrieren"]
 
 Pruefe, dass das Loginformular angezeigt wird
     [Documentation]  Es wird geprüft, ob das Loginformular sichtbar ist
@@ -25,10 +26,9 @@ Pruefe, dass das Loginformular angezeigt wird
 Gebe die Logindaten des Benutzers ein
     [Documentation]  Ein bestehender Benutzer wird eingeloggt.
     [Arguments]   ${Email}  ${Password}
-    Input Text  xpath=//form//input[@id="login_email"]  asdf@asdf
-    Input Password  xpath=//form//input[@id="login_password"]  asdf
+    Input Text  xpath=//form//input[@id="login_email"]  ${Email}
+    Input Password  xpath=//form//input[@id="login_password"]  ${Password}
 
 Sende das Loginformular ab
     [Documentation]  Das Loginformular wird abgeschickt und der Benutzer wird eingeloggt
-    #Click Element  xpath=//form//button
-    Submit Form
+    Click Element  xpath=//form//button
