@@ -1,5 +1,5 @@
 <template>
-  <div class="container user-edit-form">
+  <div id="user-edit-component">
     <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
         <div class="alert alert-danger fade in" v-if="error">
@@ -8,10 +8,7 @@
       </div>
     </div>
     <div class="row">
-
-      <form role="form">
-
-
+      <form id="user-edit-form" role="form">
         <div class="col-sm-12 text-left">
           <h2 class="registration-header-title">Profil bearbeiten</h2>
           <input type="hidden" v-model="credentials.id">
@@ -224,7 +221,7 @@
             </div>
           </div>
           <br />
-          <div class="form-group row" >
+          <div class="form-group row">
             <div class="col-sm-offset-4 col-sm-2">
               <button class="btn btn-block btn-lg btn-cancel">{{$t("cancel")}}</button>
             </div>
@@ -232,7 +229,6 @@
               <button class="btn btn-block btn-lg btn-primary" @click="submit()">Aktualisieren</button>
             </div>
           </div>
-
         </div>
       </form>
     </div>
@@ -254,29 +250,31 @@
 	  },
 	  methods: {
 	  	submit() {
-	  		var credentials = {
-	  			id: this.credentials.id,
-	  			gender: this.credentials.gender,
-					prename: this.credentials.prename,
-					surname: this.credentials.surname,
-					language: this.credentials.language,
-					phone: this.credentials.phone,
-					industry_family: this.credentials.industry_family,
-					industry_type: this.credentials.industry_type,
-					company: this.credentials.company,
-					street: this.credentials.street,
-					number: this.credentials.number,
-					zip: this.credentials.zip,
-					city: this.credentials.city,
-					country: this.credentials.country,
-	  			email: this.credentials.email,
-	  			password: this.credentials.password,
-					question: this.credentials.question,
-					answer: this.credentials.answer,
-					agreement: this.credentials.agreement
-	  		}
+        if ($("#user-edit-form").valid()) {
+          var credentials = {
+            id: this.credentials.id,
+            gender: this.credentials.gender,
+            prename: this.credentials.prename,
+            surname: this.credentials.surname,
+            language: this.credentials.language,
+            phone: this.credentials.phone,
+            industry_family: this.credentials.industry_family,
+            industry_type: this.credentials.industry_type,
+            company: this.credentials.company,
+            street: this.credentials.street,
+            number: this.credentials.number,
+            zip: this.credentials.zip,
+            city: this.credentials.city,
+            country: this.credentials.country,
+            email: this.credentials.email,
+            password: this.credentials.password,
+            question: this.credentials.question,
+            answer: this.credentials.answer,
+            agreement: this.credentials.agreement
+          }
 
-	  		auth.update(this, credentials, '/dashboard')
+          auth.update(this, credentials, '/dashboard')
+        }
 	  	}
 	  }
 	}

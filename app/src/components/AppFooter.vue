@@ -2,10 +2,10 @@
   <footer class="footer">
     <div class="container">
       <ul class="nav navbar-nav">
-        <li><router-link to="/datenschutz">{{$t("privacy_policy")}}</router-link></li>
-        <li><router-link to="/terms-of-use">{{$t("site_policy")}}</router-link></li>
-        <li><router-link to="/impressum">{{$t("legal_disclosure")}}</router-link></li>
-        <li><router-link to="/aktionsbedingungen">{{$t("terms_of_warranty")}}</router-link></li>
+        <li><router-link to="/datenschutz"><strong>{{$t("privacy_policy")}}</strong></router-link></li>
+        <li><router-link to="/terms-of-use"><strong>{{$t("site_policy")}}</strong></router-link></li>
+        <li><router-link to="/impressum"><strong>{{$t("legal_disclosure")}}</strong></router-link></li>
+        <li><router-link to="/aktionsbedingungen"><strong>{{$t("terms_of_warranty")}}</strong></router-link></li>
       </ul>
     </div>
   </footer>
@@ -21,12 +21,14 @@
   @import '../styles/_colors';
 
   .footer {
+    z-index: 100;
     position: fixed;
     bottom: 0;
     margin-top: 55px;
     width: 100%;
     background-color: $primary-bg-color;
     overflow: auto;
+    text-align: center;
 
     .container {
       .nav {
@@ -39,7 +41,7 @@
           color: #fff;
 
           &:hover {
-            color: #5bc0de;
+            color: $primary-link-color;
           }
         }
       }
@@ -54,9 +56,7 @@
     }
   }
 
-
-
-
-
-
+  router-link-active{
+    color: $primary-link-color;
+  }
 </style>

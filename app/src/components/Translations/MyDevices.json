@@ -1,6 +1,7 @@
 {
   "de": {
     "title": "Meine Geräte",
+    "label": "Bezeichnung",
     "technology": "Technologie",
     "device_description": "Gerätebeschreibung",
     "category": "Kategorie",
@@ -10,6 +11,7 @@
   },
   "en": {
     "title": "My Devices",
+    "label": "Label",
     "technology": "Technology",
     "device_description": "Device description",
     "category": "Category",

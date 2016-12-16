@@ -1,5 +1,6 @@
 {
   "de": {
+    "header": "Kontakt",
     "box_address": "Postfach",
     "contact": "Bitte kontaktieren Sie",
     "city": "Stadt",
@@ -9,6 +10,7 @@
     "visit": "Besuchen Sie uns auf"
   },
   "en": {
+    "header": "Contact",
     "box_address": "Mailbox",
     "contact": "Please contact",
     "more": "Want to learn more about Yokogawa",

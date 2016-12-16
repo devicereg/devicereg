@@ -1,7 +1,7 @@
 <template>
-	<div class="container fluid">
-		<div class="row">
-			<div id="warranty-text" class="col-md-offset-2 col-md-8 text-left">
+  <div class="row">
+    <div class="col-sm-12">
+      <div id="warranty-text">
         <h1>{{$t("Warranty.title")}}</h1>
 
         <h4>{{$t("Warranty.header1")}}</h4>
@@ -13,9 +13,9 @@
         <a onmouseup="window.print();">
           <span class="glyphicon glyphicon-print action button" aria-hidden="true"></span> &nbsp; {{$t("Warranty.print")}}
         </a>
-			</div>
-		</div>
-	</div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <style>
@@ -36,4 +36,8 @@
     font-size: 20px;
     padding-top: 1em;
   }
+
+  a {
+       color: primary-bg-color;
+        }
 </style>
