@@ -1,12 +1,12 @@
 <template>
-  <div class="row">
-    <div class="col-sm-offset-2 col-sm-8 text-left">
+  <div id="my-devices-component" class="row">
+    <div class="col-sm-12 text-left">
       <div class="row">
         <div class="col-sm-6">
-          <h2> {{$t("MyDevices.title")}} </h2>
+          <h1> {{$t("MyDevices.title")}} </h1>
         </div>
         <div class="col-sm-6">
-          <router-link to="#" id="add-button" class="btn btn-primary pull-right">
+          <router-link to="/device/create" id="add-button" class="btn btn-primary pull-right">
             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> &nbsp; {{ $t("MyDevices.add_button") }}
           </router-link>
         </div>
@@ -14,28 +14,30 @@
 
       <table class="table table-striped">
         <thead>
-        <tr>
-          <th>{{$t("MyDevices.technology")}}</th>
-          <th>{{$t("MyDevices.device_description")}}</th>
-          <th>{{$t("MyDevices.category")}}</th>
-          <th></th>
-        </tr>
+          <tr>
+            <th>{{$t("MyDevices.label")}}</th>
+            <th>{{$t("MyDevices.technology")}}</th>
+            <th>{{$t("MyDevices.category")}}</th>
+            <th>{{$t("MyDevices.device_description")}}</th>
+            <th></th>
+          </tr>
         </thead>
         <tbody>
         <tr v-for="device in devices">
+          <td>{{device.devicelabel}}</td>
           <td>{{device.technology}}</td>
-          <td>{{device.description_data}}</td>
-          <td>{{device.category}}</td>
+          <td>{{device.category_id}}</td>
+          <td>{{device.comment}}</td>
           <td>
-            <router-link to="#">
+            <a @click="getDevices()">
               <span class="glyphicon glyphicon-eye-open action-button" aria-hidden="true"></span>
-            </router-link>
-            <router-link to="#">
+            </a>
+            <router-link to="/my-devices">
               <span class="glyphicon glyphicon-edit action-button" aria-hidden="true"></span>
             </router-link>
-            <router-link to="#">
+            <a @click="deleteDevice(device)">
               <span class="glyphicon glyphicon-trash action-button" aria-hidden="true"></span>
-            </router-link>
+            </a>
           </td>
         </tr>
         </tbody>
@@ -59,249 +61,32 @@
   }
 </style>
 <script>
+  import auth from "../auth/index.js"
 
   export default{
     name: 'my-devices',
     data () {
       return {
         selected: '0',
-        devices: [
-          {
-            technology: 'Flowmeter',
-            description_data: 'Benzin-Durchflussmesser',
-            category: 'Durchfluss'
-          },
-          {
-            technology: 'Rotamass',
-            description_data: 'Wasser-Durchflussmesser',
-            category: 'Durchfluss'
-          },
-          {
-            technology: 'Flowmeter',
-            description_data: 'Benzin-Durchflussmesser',
-            category: 'Durchfluss'
-          },
-          {
-            technology: 'Rotamass',
-            description_data: 'Wasser-Durchflussmesser',
-            category: 'Durchfluss'
-          },
-          {
-            technology: 'Flowmeter',
-            description_data: 'Benzin-Durchflussmesser',
-            category: 'Durchfluss'
-          },
-          {
-            technology: 'Flowmeter',
-            description_data: 'Benzin-Durchflussmesser',
-            category: 'Durchfluss'
-          },
-          {
-            technology: 'Rotamass',
-            description_data: 'Wasser-Durchflussmesser',
-            category: 'Durchfluss'
-          },
-          {
-            technology: 'Flowmeter',
-            description_data: 'Benzin-Durchflussmesser',
-            category: 'Durchfluss'
-          },
-          {
-            technology: 'Rotamass',
-            description_data: 'Wasser-Durchflussmesser',
-            category: 'Durchfluss'
-          },
-          {
-            technology: 'Flowmeter',
-            description_data: 'Benzin-Durchflussmesser',
-            category: 'Durchfluss'
-          },
-          {
-            technology: 'Flowmeter',
-            description_data: 'Benzin-Durchflussmesser',
-            category: 'Durchfluss'
-          },
-          {
-            technology: 'Rotamass',
-            description_data: 'Wasser-Durchflussmesser',
-            category: 'Durchfluss'
-          },
-          {
-            technology: 'Flowmeter',
-            description_data: 'Benzin-Durchflussmesser',
-            category: 'Durchfluss'
-          },
-          {
-            technology: 'Rotamass',
-            description_data: 'Wasser-Durchflussmesser',
-            category: 'Durchfluss'
-          },
-          {
-            technology: 'Flowmeter',
-            description_data: 'Benzin-Durchflussmesser',
-            category: 'Durchfluss'
-          },
-          {
-            technology: 'Flowmeter',
-            description_data: 'Benzin-Durchflussmesser',
-            category: 'Durchfluss'
-          },
-          {
-            technology: 'Rotamass',
-            description_data: 'Wasser-Durchflussmesser',
-            category: 'Durchfluss'
-          },
-          {
-            technology: 'Flowmeter',
-            description_data: 'Benzin-Durchflussmesser',
-            category: 'Durchfluss'
-          },
-          {
-            technology: 'Rotamass',
-            description_data: 'Wasser-Durchflussmesser',
-            category: 'Durchfluss'
-          },
-          {
-            technology: 'Flowmeter',
-            description_data: 'Benzin-Durchflussmesser',
-            category: 'Durchfluss'
-          },
-          {
-            technology: 'Flowmeter',
-            description_data: 'Benzin-Durchflussmesser',
-            category: 'Durchfluss'
-          },
-          {
-            technology: 'Rotamass',
-            description_data: 'Wasser-Durchflussmesser',
-            category: 'Durchfluss'
-          },
-          {
-            technology: 'Flowmeter',
-            description_data: 'Benzin-Durchflussmesser',
-            category: 'Durchfluss'
-          },
-          {
-            technology: 'Rotamass',
-            description_data: 'Wasser-Durchflussmesser',
-            category: 'Durchfluss'
-          },
-          {
-            technology: 'Flowmeter',
-            description_data: 'Benzin-Durchflussmesser',
-            category: 'Durchfluss'
-          },
-          {
-            technology: 'Flowmeter',
-            description_data: 'Benzin-Durchflussmesser',
-            category: 'Durchfluss'
-          },
-          {
-            technology: 'Rotamass',
-            description_data: 'Wasser-Durchflussmesser',
-            category: 'Durchfluss'
-          },
-          {
-            technology: 'Flowmeter',
-            description_data: 'Benzin-Durchflussmesser',
-            category: 'Durchfluss'
-          },
-          {
-            technology: 'Rotamass',
-            description_data: 'Wasser-Durchflussmesser',
-            category: 'Durchfluss'
-          },
-          {
-            technology: 'Flowmeter',
-            description_data: 'Benzin-Durchflussmesser',
-            category: 'Durchfluss'
-          },
-          {
-            technology: 'Flowmeter',
-            description_data: 'Benzin-Durchflussmesser',
-            category: 'Durchfluss'
-          },
-          {
-            technology: 'Rotamass',
-            description_data: 'Wasser-Durchflussmesser',
-            category: 'Durchfluss'
-          },
-          {
-            technology: 'Flowmeter',
-            description_data: 'Benzin-Durchflussmesser',
-            category: 'Durchfluss'
-          },
-          {
-            technology: 'Rotamass',
-            description_data: 'Wasser-Durchflussmesser',
-            category: 'Durchfluss'
-          },
-          {
-            technology: 'Flowmeter',
-            description_data: 'Benzin-Durchflussmesser',
-            category: 'Durchfluss'
-          },
-          {
-            technology: 'Flowmeter',
-            description_data: 'Benzin-Durchflussmesser',
-            category: 'Durchfluss'
-          },
-          {
-            technology: 'Rotamass',
-            description_data: 'Wasser-Durchflussmesser',
-            category: 'Durchfluss'
-          },
-          {
-            technology: 'Flowmeter',
-            description_data: 'Benzin-Durchflussmesser',
-            category: 'Durchfluss'
-          },
-          {
-            technology: 'Rotamass',
-            description_data: 'Wasser-Durchflussmesser',
-            category: 'Durchfluss'
-          },
-          {
-            technology: 'Flowmeter',
-            description_data: 'Benzin-Durchflussmesser',
-            category: 'Durchfluss'
-          },
-          {
-            technology: 'Flowmeter',
-            description_data: 'Benzin-Durchflussmesser',
-            category: 'Durchfluss'
-          },
-          {
-            technology: 'Rotamass',
-            description_data: 'Wasser-Durchflussmesser',
-            category: 'Durchfluss'
-          },
-          {
-            technology: 'Flowmeter',
-            description_data: 'Benzin-Durchflussmesser',
-            category: 'Durchfluss'
-          },
-          {
-            technology: 'Rotamass',
-            description_data: 'Wasser-Durchflussmesser',
-            category: 'Durchfluss'
-          },
-          {
-            technology: 'Flowmeter',
-            description_data: 'Benzin-Durchflussmesser',
-            category: 'Durchfluss'
-          },
-          {
-            technology: 'Rotamass',
-            description_data: 'Wasser-Durchflussmesser',
-            category: 'Durchfluss'
-          }
-        ]
+        devices: []
       }
     },
-    components: {
-
+    methods: {
+      editDevice(device) {
+        var index = this.devices.indexOf(device);
+        this.devices.splice(index, 1);
+      },
+      deleteDevice(device) {
+        auth.deleteDevice(this, {id: device.id});
+        var index = this.devices.indexOf(device);
+        this.devices.splice(index, 1);
+      },
+      getDeviceData() {
+        auth.getDevices(this)
+      }
+    },
+    mounted: function() {
+      this.getDeviceData();
     }
-
   }
 </script>

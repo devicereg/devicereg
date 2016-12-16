@@ -35,7 +35,7 @@
 	        	Abbrechen
 	        </button>
 
-	        <button type="button" class="btn btn-danger" @click="submit()">
+	        <button type="submit" class="btn btn-danger" @click="submit()">
 	        	Löschen
 	        </button>
 	      </div>
@@ -83,7 +83,7 @@
 				margin-left:15px;
 
 				span{
-					color:#C9302C;
+					color: #7c1e1d;
 					font-weight:bold;
 				}
 			}

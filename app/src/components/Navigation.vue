@@ -1,43 +1,35 @@
 <template>
   <nav id="top-navigation" class="navbar navbar-default navbar-fixed-top">
-    <div class="container">
-      <div class="navbar-collapse collapse">
-        <ul class="nav navbar-nav navbar-left">
-          <li v-if="user.authenticated">
-            <router-link to="/dashboard"> {{ $t('dashboard') }} </router-link>
-          </li>
-          <li v-if="!user.authenticated">
-            <router-link to="/"> {{ $t('home') }} </router-link>
-          </li>
-        </ul>
-        <ul class="nav navbar-nav navbar-right">
-          <li v-if="!user.authenticated">
-            <router-link to="/registrieren"> {{ $t('register') }} </router-link>
-          </li>
-          <li><router-link to="/contact"> {{ $t('contact') }} </router-link></li>
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> {{ $t('language') }} <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li @click='setLang("de")'><a> {{ $t('german') }} </a></li>
-              <li @click='setLang("en")'><a> {{ $t('english') }} </a></li>
-            </ul>
-          </li>
-          <li class="logout-user" v-if="user.authenticated" @click="logout()">
-            <router-link to="/login"> {{ $t('logout') }} </router-link>
-          </li>
-        </ul>
+    <div class="container-fluid col-sm-offset-1 col-md-offset-2 col-sm-10 col-md-8">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <div class="navbar-brand">
+          <img class="img img-responsive" src="../assets/devicer-nav-logo-test.png" alt="DeviceR">
+        </div>
       </div>
+      <LoggedOutNavigation v-if="!user.authenticated"></LoggedOutNavigation>
+      <LoggedInNavigation v-if="user.authenticated"></LoggedInNavigation>
     </div>
   </nav>
 </template>
 
 <script>
-
+import LoggedInNavigation from './Navigation/LoggedInNavigation.vue'
+import LoggedOutNavigation from './Navigation/LoggedOutNavigation.vue'
 import auth from '../auth'
 var Vue = require('vue')
 
 export default {
   name: 'navigation',
+  components: {
+    LoggedInNavigation,
+    LoggedOutNavigation
+  },
   data() {
     return { user: auth.user }
   },
@@ -45,9 +37,6 @@ export default {
     logout(){
       auth.logout()
     },
-    setLang(lang){
-      Vue.config.lang = lang
-    }
   }
 }
 
@@ -58,7 +47,33 @@ export default {
 
   .navbar#top-navigation {
     background-color: $primary-bg-color;
-    .container {
+    .container-fluid {
+      .navbar-header {
+        button.navbar-toggle {
+          background: $primary-bg-color;
+          border-color: $body-background;
+          .icon-bar {
+            background: $body-background !important;
+          }
+
+          &:hover {
+            background: $body-background;
+            .icon-bar {
+              background: $btn-primary-bg !important;
+            }
+          }
+        }
+
+        .navbar-brand {
+          margin-left: 0.33em;
+          padding: 0px;
+          img {
+            height: 100%;
+            padding: 5px;
+            width: auto;
+          }
+        }
+      }
       .navbar-collapse {
         .navbar-right {
           .dropdown {
@@ -76,6 +91,7 @@ export default {
           }
         }
         .nav {
+          padding-left: 0;
           display: inline-block;
           height: 100%;
           float: none;
@@ -85,7 +101,7 @@ export default {
             color: #fff;
 
             &:hover {
-              color: #5bc0de;
+              color: $primary-link-color;
             }
           }
         }

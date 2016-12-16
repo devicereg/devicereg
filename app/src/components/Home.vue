@@ -1,27 +1,26 @@
 <template>
-	<div class="container" id="homepage">
+	<div id="homepage">
 	  <div class="row">
-	    <div class="col-md-12">
-        <img src="../assets/devicer-home-logo.png" class="logo">
+	    <div class="col-xs-offset-2 col-lg-offset-4 col-sm-offset-3 col-lg-4 col-sm-6 col-xs-8">
+        <img src="../assets/home-logo-transparent-bg-v1.png" class="img img-responsive">
 	    </div>
 	  </div>
 
 	  <div class="row text-left">
        <div class="col-md-6">
-          <h2>Willkommen bei DeviceR!</h2>
+         <div class="texte">
+          <h1>{{ $t("Home.welcome") }}</h1>
 
           <p>
-            Sie haben die Möglichkeit, einen Benutzer anzulegen und Ihr
-            Feldgerät zu registrieren oder sich an Ihrem bestehenden Profil
-            anzumelden, um weitere Feldgeräte zu erfassen.
-            <b>Ihr Vorteil:</b> Der Gewährleistungszeitraum registrierter Geräte
-            verlängert sich auf 24 Monate.
-            <b>Ein weiterer Vorteil des DeviceR Service:</b> Unsere
-              Erinnerungsfunktion macht Sie auf anstehende Wartungen oder
-              Kalibrierungen der registrierten Feldgeräte aufmerksam.
+            {{ $t("Home.info1") }}<br/>
+            <b>{{ $t("Home.info_advantage") }}</b>
+            {{ $t("Home.info2") }}<br/>
+            <b>{{ $t("Home.info_advantage2") }}</b>
+            {{ $t("Home.info3") }}
           </p>
 
-          <router-link to="/registrieren" type="button" class="btn btn-primary btn-lg">Jetzt registrieren!</router-link>
+          <router-link to="/registrieren" type="button" class="btn btn-primary">{{ $t("Home.register_now") }}</router-link>
+       </div>
        </div>
 
        <div class="col-md-6">
@@ -29,6 +28,17 @@
          <login-form></login-form>
        </div>
 	  </div>
+    <!--div class="dropup">
+      <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+        <span class="caret"></span></button>
+      <ul class="dropdown-menu">
+        <li><router-link to="/datenschutz">Datenschutz</router-link></li>
+        <li><router-link to="/terms-of-use">Nutzungsbedingungen</router-link></li>
+        <li><router-link to="/impressum">Impressum</router-link></li>
+        <li><router-link to="/aktionsbedingungen">Aktionsbedingungen</router-link></li>
+      </ul>
+    </div-->
+
 	</div>
 </template>
 
@@ -49,78 +59,23 @@
 </script>
 
 <style lang="scss">
-  .logo {
-    height: 30%;
-    width: 30%;
+  @import '../styles/_colors';
+
+  .dropup {
+    display: none;
   }
 
-  .ueber {
-    font-size: 65px;
-    float: left;
+  @media only screen
+  and (max-width: 767px) {
+
+    .dropup {
+      display: inline-block;
+    }
+
+    .texte {
+      display: none;
+      margin-top: 3em;
+    }
   }
 
-  .anmeldung {
-     margin-top: 35px;
-     width: 198px;
-     height: 22px;
-     line-height: 22px;
-     background-color: rgba(62, 125, 139, 1);
-     text-align: left;
-     font-size: 18px;
-   }
-
-   .username {
-     margin-top: 30px;
-     color: black;
-     text-align: left;
-     height: 22px;
-     line-height: 22px;
-   }
-
-   .password {
-     margin-top: 30px;
-     color: black;
-     text-align: left;
-     height: 22px;
-     line-height: 22px;
-   }
-
-   .registrieren {
-     cursor: pointer;
-     margin-top: 30px;
-     width: 200px;
-     color: white;
-     background-color: rgba(62, 125, 139, 1);
-     text-align: center;
-     height: 35px;
-     line-height: 35px;
-   }
-
-   .einloggen {
-     cursor: pointer;
-     margin-top: 30px;
-     width: 90px;
-     color: white;
-     background-color: rgba(62, 125, 139, 1);
-     text-align: center;
-     height: 22px;
-     line-height: 22px;
-   }
-
-   .forget {
-     margin-top: 10px;
-     text-align: left;
-   }
-
-  .welcome {
-    font-size: 22px;
-    float: right;
-    text-align: left;
-  }
-
-  .text {
-    font-size: 16px;
-    float: right;
-    text-align: left;
-  }
 </style>

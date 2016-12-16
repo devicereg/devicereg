@@ -1,13 +1,25 @@
 <script>
+  import Contact from "./Translations/Contact.json"
+  import Datenschutz from "./Translations/Datenschutz.json"
+  import DeviceRegForm from "./Translations/DeviceRegForm.json"
+  import Impressum from "./Translations/Impressum.json"
+  import MyDevices from "./Translations/MyDevices.json"
+  import RegistrationForm from "./Translations/RegistrationForm.json"
+  import TermsOfUse from "./Translations/TermsOfUse.json"
+  import Warranty from "./Translations/Warranty.json"
+  import Home from "./Translations/Home.json"
+  import LoginForm from "./Translations/LoginForm.json"
+
+
   var Vue = require('vue')
   var VueI18n = require('vue-i18n')
 
-  // ready translated locales
   var locales = {
     de: {
       address: 'Adresse',
       country: 'Land',
       email: 'E-Mail',
+      password: 'Passwort',
       phone: 'Telefon',
       language: 'Sprache',
       city: 'Stadt',
@@ -17,7 +29,7 @@
       german: 'Deutsch',
       english: 'Englisch',
       logout: 'Abmelden',
-      dashboard: 'Dashboard',
+      my_devices: 'Meine Geräte',
       home: 'Startseite',
       register: 'Registrieren',
       contact: 'Kontakt',
@@ -25,6 +37,7 @@
       site_policy: 'Nutzungsbedingungen',
       legal_disclosure: 'Impressum',
       terms_of_warranty: 'Aktionsbedingungen',
+
 
       Contact: {
         box_address: 'Postfach',
@@ -35,6 +48,7 @@
         titel: 'Kundensupport für Durchflussmessgeräte',
         visit: 'Besuchen Sie uns auf',
       },
+      
       MyDevices: {
         title: 'Meine Geräte',
         technology: 'Technologie',
@@ -42,6 +56,7 @@
         category: 'Kategorie',
         add_button: 'Gerät hinzufügen',
       },
+
       RegistrationForm: {
         agreement: 'Einverständniserklärung',
         answer: 'Antwort',
@@ -69,6 +84,7 @@
         user: 'Benutzer (E-Mail Adresse)',
         zip: 'Postleitzahl'
       },
+
       DeviceRegForm: {
         title: 'Gerät registrieren',
         categorization: 'Gerätekategorisierung',
@@ -94,13 +110,25 @@
       ResetPassword: {
         reset_password: 'Passwort zurücksetzen',
         email: 'E-Mail Adresse'
-      }
+      },
 
+      Contact: Contact.de,
+      MyDevices: MyDevices.de,
+      RegistrationForm: RegistrationForm.de,
+      DeviceRegForm: DeviceRegForm.de,
+      TermsOfUse: TermsOfUse.de,
+      Datenschutz: Datenschutz.de,
+      Warranty: Warranty.de,
+      Impressum: Impressum.de,
+      Home: Home.de,
+      LoginForm: LoginForm.de
     },
+
     en: {
       address: 'Address',
       country: 'Country',
       email: 'Email',
+      password: 'Password',
       phone: 'Phone',
       language: 'Language',
       city: 'City',
@@ -110,13 +138,13 @@
       german: 'German',
       english: 'English',
       logout: 'Logout',
-      dashboard: 'Dashboard',
+      my_devices: 'My Devices',
       home: 'Home',
       register: 'Sign up',
       contact: 'Contact',
       privacy_policy: 'Privacy policy',
       site_policy: 'Site policy',
-      legal_disclosure: 'Legal disclosure',
+      legal_disclosure: 'Imprint',
       terms_of_warranty: 'Terms of warranty',
 
       Contact: {
@@ -127,6 +155,7 @@
         titel: 'Flowmeter customer support',
         visit: 'Visit us at'
       },
+
       MyDevices: {
         title: 'My Devices',
         technology: 'Technology',
@@ -134,6 +163,7 @@
         category: 'Category',
         add_button: 'Add device',
       },
+
       RegistrationForm: {
         agreement: 'Agreement',
         answer: 'Answer',
@@ -161,6 +191,7 @@
         user: 'User (E-Mail)',
         zip: 'Zip'
       },
+
       DeviceRegForm: {
         title: 'Register device',
         categorization: 'Categorization',
@@ -183,10 +214,22 @@
         month: 'Month',
         months: 'Months'
       },
+
       ResetPassword: {
         reset_password: 'Reset Password',
         email: 'E-Mail address'
-      }
+      },
+
+      Contact: Contact.en,
+      MyDevices: MyDevices.en,
+      RegistrationForm: RegistrationForm.en,
+      DeviceRegForm: DeviceRegForm.en,
+      TermsOfUse: TermsOfUse.en,
+      Datenschutz: Datenschutz.en,
+      Warranty: Warranty.en,
+      Impressum: Impressum.en,
+      Home: Home.en,
+      LoginForm: LoginForm.en
     }
   }
 
@@ -195,7 +238,7 @@
 
 
   // set lang
-  Vue.config.lang = 'en'
+  Vue.config.lang = 'de'
 
   // set locales
   Object.keys(locales).forEach(function (lang) {
