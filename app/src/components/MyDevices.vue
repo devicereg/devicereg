@@ -2,17 +2,17 @@
   <div id="my-devices-component" class="row">
     <div class="col-sm-12 text-left">
       <div class="row">
-        <div class="col-sm-6">
+        <div class="col-sm-8">
           <h1> {{$t("MyDevices.title")}} </h1>
         </div>
-        <div class="col-sm-2 form-group-sm text-right">
-          <select id="cat_filter" class="form-control" v-model="cat_filter">
+        <div class="col-sm-2 form-group-sm text-right" id="cat_filter">
+          <select class="form-control" v-model="cat_filter">
             <option id="option_placeholder" value="placeholder" disabled>{{ $t("MyDevices.filter_by") }}</option>
             <option value="all">{{ $t("MyDevices.all_categories") }}</option>
-            <option v-bind:value="cat.name" v-for="cat in categories">{{cat.name}}</option>
+            <option v-bind:value="cat.id" v-for="cat in categories">{{cat.name}}</option>
           </select>
         </div>
-        <div class="col-sm-6">
+        <div class="col-sm-2">
           <router-link to="/device/create" id="add-button" class="btn btn-primary pull-right">
             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> &nbsp; {{ $t("MyDevices.add_button") }}
           </router-link>
@@ -30,7 +30,7 @@
           </tr>
         </thead>
         <tbody>
-        <tr v-for="device in devices" v-if="device.category == cat_filter
+        <tr v-for="device in devices" v-if="device.category_id == cat_filter
                           || cat_filter == 'all' || cat_filter == 'placeholder'">
           <td>{{device.devicelabel}}</td>
           <td>{{device.technology}}</td>
@@ -79,11 +79,8 @@
     data () {
       return {
         selected: '0',
-        categories: [
-          {id: 1, name: 'Durchfluss'},
-          {id: 2, name: 'EigeneKategorie'}
-        ],
-        cat_filter: 'placeholder'
+        categories: [],
+        cat_filter: 'placeholder',
         devices: []
       }
     },
@@ -98,11 +95,15 @@
         this.devices.splice(index, 1);
       },
       getDeviceData() {
-        auth.getDevices(this)
+        auth.getDevices(this);
+      },
+      getCategories() {
+        auth.getCategories(this);
       }
     },
     mounted: function() {
       this.getDeviceData();
+      this.getCategories();
     }
   }
 </script>
