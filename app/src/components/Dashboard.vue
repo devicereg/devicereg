@@ -1,5 +1,5 @@
 <template>
-	<div class="container dashboard">
+	<div class="container-fluid col-sm-offset-2 col-sm-8 text-left dashboard">
 		<div class="row">
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 				<div>

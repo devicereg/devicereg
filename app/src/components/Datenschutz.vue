@@ -1,62 +1,61 @@
 <template>
-  <div class="container fluid">
-    <div class="row">
-      <div class="col-md-offset-2 col-md-8 text-left">
-        <h1>{{$t("Datenschutz.title")}}</h1>
-        <p>{{$t("Datenschutz.paragraph0")}}</p>
+  <div class="row">
+    <div class="col-sm-12">
+      <h1>{{$t("Datenschutz.title")}}</h1>
+      <br/>
+      <p>{{$t("Datenschutz.paragraph0")}}</p>
 
-        <h4>1. &nbsp; {{$t("Datenschutz.header1")}}</h4>
-        <p>
-          {{$t("Datenschutz.paragraph_item1_1")}}<br/>
-          {{$t("Datenschutz.paragraph_item1_2")}}
-        </p>
+      <h4>1. &nbsp; {{$t("Datenschutz.header1")}}</h4>
+      <p>
+        {{$t("Datenschutz.paragraph_item1_1")}}<br/>
+        {{$t("Datenschutz.paragraph_item1_2")}}
+      </p>
 
-        <h4>2. &nbsp; {{$t("Datenschutz.header2")}}</h4>
-        <p>{{$t("Datenschutz.paragraph2")}}</p>
+      <h4>2. &nbsp; {{$t("Datenschutz.header2")}}</h4>
+      <p>{{$t("Datenschutz.paragraph2")}}</p>
 
-        <h4>3. &nbsp; {{$t("Datenschutz.header3")}}</h4>
-        <p>{{$t("Datenschutz.paragraph3")}}</p>
+      <h4>3. &nbsp; {{$t("Datenschutz.header3")}}</h4>
+      <p>{{$t("Datenschutz.paragraph3")}}</p>
 
-        <h4>4. &nbsp; {{$t("Datenschutz.header4")}}</h4>
-        <p>{{$t("Datenschutz.paragraph4")}}</p>
+      <h4>4. &nbsp; {{$t("Datenschutz.header4")}}</h4>
+      <p>{{$t("Datenschutz.paragraph4")}}</p>
 
-        <h4>5. &nbsp; {{$t("Datenschutz.header5")}}</h4>
-        <p>{{$t("Datenschutz.paragraph5_1")}}</p>
-        <p>{{$t("Datenschutz.paragraph5_2")}} </p>
-        <p>{{$t("Datenschutz.paragraph5_3")}}</p>
-        <p>{{$t("Datenschutz.paragraph5_4")}}</p>
+      <h4>5. &nbsp; {{$t("Datenschutz.header5")}}</h4>
+      <p>{{$t("Datenschutz.paragraph5_1")}}</p>
+      <p>{{$t("Datenschutz.paragraph5_2")}} </p>
+      <p>{{$t("Datenschutz.paragraph5_3")}}</p>
+      <p>{{$t("Datenschutz.paragraph5_4")}}</p>
 
-        <h4>6. &nbsp; {{$t("Datenschutz.header6")}}</h4>
-        <p>{{$t("Datenschutz.paragraph6_1")}}</p>
-        <p>{{$t("Datenschutz.paragraph6_2")}}</p>
+      <h4>6. &nbsp; {{$t("Datenschutz.header6")}}</h4>
+      <p>{{$t("Datenschutz.paragraph6_1")}}</p>
+      <p>{{$t("Datenschutz.paragraph6_2")}}</p>
 
-        <h4>7. &nbsp; {{$t("Datenschutz.header7")}}</h4>
-        <p>{{$t("Datenschutz.paragraph7")}}</p>
+      <h4>7. &nbsp; {{$t("Datenschutz.header7")}}</h4>
+      <p>{{$t("Datenschutz.paragraph7")}}</p>
 
-        <h4>8. &nbsp; {{$t("Datenschutz.header8")}}</h4>
-        <p>{{$t("Datenschutz.paragraph8")}}</p>
+      <h4>8. &nbsp; {{$t("Datenschutz.header8")}}</h4>
+      <p>{{$t("Datenschutz.paragraph8")}}</p>
 
-        <h4>9. &nbsp; {{$t("Datenschutz.header9")}}</h4>
-        <p>{{$t("Datenschutz.paragraph9")}}</p>
+      <h4>9. &nbsp; {{$t("Datenschutz.header9")}}</h4>
+      <p>{{$t("Datenschutz.paragraph9")}}</p>
 
-        <h4>10. {{$t("Datenschutz.header10")}}</h4>
-        <p>{{$t("Datenschutz.paragraph10")}}</p>
-        <p>
-          {{$t("Datenschutz.paragraph_item10_1")}}<br/>
-          {{$t("Datenschutz.paragraph_item10_2")}}<br/>
-          {{$t("Datenschutz.paragraph_item10_3")}}<br/>
-          {{$t("Datenschutz.paragraph_item10_4")}}<br/>
-          {{$t("Datenschutz.paragraph_item10_5")}}<br/>
-          {{$t("Datenschutz.paragraph_item10_6")}}
-        </p>
-        <br/>
-        <p>{{$t("Datenschutz.current_date")}}</p>
+      <h4>10. {{$t("Datenschutz.header10")}}</h4>
+      <p>{{$t("Datenschutz.paragraph10")}}</p>
+      <p>
+        {{$t("Datenschutz.paragraph_item10_1")}}<br/>
+        {{$t("Datenschutz.paragraph_item10_2")}}<br/>
+        {{$t("Datenschutz.paragraph_item10_3")}}<br/>
+        {{$t("Datenschutz.paragraph_item10_4")}}<br/>
+        {{$t("Datenschutz.paragraph_item10_5")}}<br/>
+        {{$t("Datenschutz.paragraph_item10_6")}}
+      </p>
+      <br/>
+      <p>{{$t("Datenschutz.current_date")}}</p>
 
-        <a onmouseup="window.print();">
-          <span class="glyphicon glyphicon-print action button" aria-hidden="true"></span> &nbsp; {{$t("TermsOfUse.print")}}
-        </a>
+      <a onmouseup="window.print();">
+        <span class="glyphicon glyphicon-print action button" aria-hidden="true"></span> &nbsp; {{$t("TermsOfUse.print")}}
+      </a>
 
-      </div>
     </div>
   </div>
 </template>

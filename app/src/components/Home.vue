@@ -1,21 +1,25 @@
 <template>
-	<div class="container-fluid col-md-offset-2 col-md-8" id="homepage">
+	<div id="homepage">
 	  <div class="row">
-	    <div class="col-md-12">
-        <img src="../assets/home-logo-transparent-bg-v1.png" class="logo">
+	    <div class="col-xs-offset-2 col-lg-offset-4 col-sm-offset-3 col-lg-4 col-sm-6 col-xs-8">
+        <img src="../assets/home-logo-transparent-bg-v1.png" class="img img-responsive">
 	    </div>
 	  </div>
 
 	  <div class="row text-left">
        <div class="col-md-6">
          <div class="texte">
-          <h2>{{ $t("Home.welcome") }}</h2>
+          <h1>{{ $t("Home.welcome") }}</h1>
 
           <p>
-            {{ $t("Home.info") }}
+            {{ $t("Home.info1") }}<br/>
+            <b>{{ $t("Home.info_advantage") }}</b>
+            {{ $t("Home.info2") }}<br/>
+            <b>{{ $t("Home.info_advantage2") }}</b>
+            {{ $t("Home.info3") }}
           </p>
 
-          <router-link to="/registrieren" type="button" class="btn btn-primary btn-lg">{{ $t("Home.register_now") }}</router-link>
+          <router-link to="/registrieren" type="button" class="btn btn-primary">{{ $t("Home.register_now") }}</router-link>
        </div>
        </div>
 
@@ -24,7 +28,7 @@
          <login-form></login-form>
        </div>
 	  </div>
-    <div class="dropup">
+    <!--div class="dropup">
       <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
         <span class="caret"></span></button>
       <ul class="dropdown-menu">
@@ -33,7 +37,7 @@
         <li><router-link to="/impressum">Impressum</router-link></li>
         <li><router-link to="/aktionsbedingungen">Aktionsbedingungen</router-link></li>
       </ul>
-    </div>
+    </div-->
 
 	</div>
 </template>
@@ -57,11 +61,6 @@
 <style lang="scss">
   @import '../styles/_colors';
 
-  .logo {
-    height: 30%;
-    width: 30%;
-  }
-
   .dropup {
     display: none;
   }
@@ -75,6 +74,7 @@
 
     .texte {
       display: none;
+      margin-top: 3em;
     }
   }
 

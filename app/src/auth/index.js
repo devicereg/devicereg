@@ -9,6 +9,9 @@ const UPDATE_URL = API_URL + 'user/update';
 const DELETE_URL = API_URL + 'user/delete';
 const CREATE_DEVICE_URL = API_URL + 'device/create';
 const DELETE_DEVICE_URL = API_URL + 'device/delete';
+const GET_DEVICES_URL = API_URL + 'devices';
+const GET_CATEGORIES_URL = API_URL + 'categories';
+const CREATE_CATEGORY_URL = API_URL + 'category/create';
 
 export default {
   user: {authenticated: false},
@@ -47,8 +50,8 @@ export default {
   {
     context.$http.post(SIGNUP_URL, creds).then((response) => {
 
-      localStorage.setItem('id_token', response.data.id_token);
-      this.user.authenticated = true;
+      //localStorage.setItem('id_token', response.data.id_token);
+      //this.user.authenticated = true;
 
       if (redirect) {
         router.push(redirect)
@@ -164,6 +167,35 @@ export default {
 
     }, (err) => {
       context.error = err
+    });
+  },
+
+  getDevices(context)
+  {
+    context.$http.get(GET_DEVICES_URL).then((response) => {
+      context.devices = JSON.parse(response.body);
+    }, (err) => {
+      context.error = err;
+    });
+  },
+
+  getCategories(context)
+  {
+    context.$http.get(GET_CATEGORIES_URL).then((response) => {
+      context.categories = JSON.parse(response.body);
+      console.log(context.categories);
+    }, (err) => {
+      context.error = err;
+    });
+  },
+
+  createNewCategory(context, data)
+  {
+    context.$http.post(CREATE_CATEGORY_URL, data).then((response) => {
+      console.log(response);
+      context.categoryCreated();
+    }, (err) => {
+      context.error = err;
     });
   }
 }
