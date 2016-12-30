@@ -9,7 +9,12 @@
           <span class="icon-bar"></span>
         </button>
         <div class="navbar-brand">
-          <img class="img img-responsive" src="../assets/devicer-nav-logo-test.png" alt="DeviceR">
+          <router-link to="/" v-if="!user.authenticated">
+            <img class="img img-responsive" src="../assets/devicer-nav-logo-test.png" alt="DeviceR"/>
+          </router-link>
+          <router-link to="/my-devices" v-if="user.authenticated">
+            <img class="img img-responsive" src="../assets/devicer-nav-logo-test.png" alt="DeviceR"/>
+          </router-link>
         </div>
       </div>
       <LoggedOutNavigation v-if="!user.authenticated"></LoggedOutNavigation>
