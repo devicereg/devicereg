@@ -20,7 +20,7 @@
     "start": "Beginn",
     "month": "Monat",
     "months": "Monate",
-    "save_category": "Speichern"
+    "create_category": "Erstellen"
   },
   "en": {
     "title": "Register device",
@@ -43,6 +43,6 @@
     "start": "Start",
     "month": "Month",
     "months": "Months",
-    "save_category": "Save"
+    "create_category": "Create"
   }
 }
