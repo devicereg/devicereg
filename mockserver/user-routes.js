@@ -1,9 +1,10 @@
-var express     = require('express'),
-    _           = require('lodash'),
-    config      = require('./config'),
-    jwt         = require('jsonwebtoken'),
-    sqlite3     = require('sqlite3').verbose(),
-    nodemailer  = require('nodemailer');
+var express           =  require('express'),
+    _                 = require('lodash'),
+    config            = require('./config'),
+    jwt               = require('jsonwebtoken'),
+    sqlite3           = require('sqlite3').verbose(),
+    nodemailer        = require('nodemailer'),
+    sendmailTransport = require('nodemailer-sendmail-transport');
 
 const sqliteJSON = require('sqlite-json');
 const exporter = sqliteJSON('database/devicer.sqlite');
@@ -127,7 +128,6 @@ app.post('/sessions/create', function(req, res)
       {
         if(typeof row != 'undefined')
         {
-<<<<<<< HEAD
           console.log("User email: " + req.body.email);
 
           if(typeof row != 'undefined')
@@ -144,13 +144,11 @@ app.post('/sessions/create', function(req, res)
               message: "Der Benutzer mit der E-Mail Adresse '" + req.body.email + "' konnte nicht gefunden werden."
             });
           }
-=======
-          jwt_token = createToken(row);
-          console.log("User object: " + row);
-          console.log("JWT Token: " + jwt_token);
+          // jwt_token = createToken(row);
+          // console.log("User object: " + row);
+          // console.log("JWT Token: " + jwt_token);
 
-          res.status(201).send({id_token: jwt_token});
->>>>>>> fb2c64146eed3a272e99cdd30e090409263e6968
+          // res.status(201).send({id_token: jwt_token});
         }
         else
         {
@@ -195,33 +193,68 @@ app.post('/device/create', function (req, res)
   });
 });
 
-<<<<<<< HEAD
+
+// app.get('/reset-user-password', function(req, res)
+// {
+//   var transporter = nodemailer.createTransport({
+//     host: 'smtp.gmail.com',
+//     port: 465,
+//     secure: true, // use SSL
+//     auth: {
+//         user: 'mock.mailserver@gmail.com',
+//         pass: 'WekuTh7@ubaz'
+//     }
+//   });
+
+//   var mailOptions = {
+//     from: 'DeviceR  <info@devicer.com>',
+//     to: 'volkan.oezgen@web.de', 
+//     subject: 'Reset Password',
+//     text: 'Bitte klicken Sie den Link unten an, um ein neues Passwort eingeben zu können.',
+//     html: '<p><b>Bitte klicken Sie den Link unten an, um ein neues Passwort eingeben zu können.</b></p><a href="http://localhost/#/reset-password">Reset password</a>'
+//   };
+
+//   transporter.sendMail(mailOptions, function(error, info)
+//   {
+//     if(error)
+//     {
+//         return console.log(error);
+//     }
+//     console.log('Message sent: ' + info.response);
+//   });
+// });
 
 app.post('/reset-user-password', function (req, res)
 {
-  var db = new sqlite3.Database('database/devicer.sqlite');
-
   db.serialize(function()
   {
-    db.get("SELECT * FROM user WHERE email = ?",
-        [req.body.email],
+    db.get("SELECT * FROM user WHERE email = ?", [req.body.email],
         function(err, row)
         {
+          console.log(row);
           if(typeof row != 'undefined')
           {
             jwt_token = createToken(row);
-            console.log("User object: " + row);
-            console.log("JWT Token: " + jwt_token);
 
             // Transporter object using the direct transport protocol
-            var transporter = nodemailer.createTransport('direct:?name=localhost');
+            var transporter = nodemailer.createTransport({
+              host: 'smtp.gmail.com',
+              port: 465,
+              secure: true, // use SSL
+              auth: {
+                  user: 'mock.mailserver@gmail.com',
+                  pass: 'WekuTh7@ubaz'
+              }
+            });
+
+            var htmlMailTemplate = '<p><b>Bitte klicken Sie den Link unten an, um ein neues Passwort eingeben zu können.</b></p><a href="http://localhost/#/reset-password/' +jwt_token+ '">Passwort zurücksetzen</a>';
 
             var mailOptions = {
-              from: '"DeviceR ?" <info@devicer.com>',
+              from: 'DeviceR <info@devicer.com>',
               to: req.body.email, 
-              subject: 'Reset Password',
-              text: 'Bitte klicken Sie den Link unten an, um ein neues Passwort eingeben zu können.',
-              html: '<p><b>Bitte klicken Sie den Link unten an, um ein neues Passwort eingeben zu können.</b></p><a href="http://localhost/#/reset-password/' +jwt_token+ '"></a>'
+              subject: 'DeviceR Passwort zurückstetzen.',
+              text: 'Bitte klicken Sie den Link unten an, um ein neues Passwort eingeben zu können',
+              html: htmlMailTemplate
             };
 
             transporter.sendMail(mailOptions, function(error, info)
@@ -243,7 +276,7 @@ app.post('/reset-user-password', function (req, res)
     );
   });
 });
-=======
+
 app.post('/device/delete', function(req, res)
 {
   db.serialize(function()
@@ -291,4 +324,3 @@ app.post('/category/create', function (req, res)
       });
   })
 });
->>>>>>> fb2c64146eed3a272e99cdd30e090409263e6968

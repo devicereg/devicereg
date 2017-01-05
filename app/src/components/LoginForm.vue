@@ -51,23 +51,10 @@
             <div class="form-group">
               <div class="col-sm-10">
                 <button type="submit" class="btn btn-primary"> {{ $t("LoginForm.sign_in") }}</button>
-                <router-link to="#"> | {{ $t("LoginForm.forgot") }}</router-link>
+                <router-link to="/reset-password"> | {{ $t("LoginForm.forgot") }}</router-link>
               </div>
             </div>
           </div>
-
-		  <div class="form-group">
-			<div class="col-sm-10 col-sm-offset-2">
-              <input type="checkbox" id="stay-logged-in">
-              <label for="stay-logged-in">Angemeldet bleiben</label>
-			</div>
-		  </div>
-		  <div class="form-group">
-			<div class="col-sm-offset-2 col-sm-10">
-			  <button class="btn btn-primary" @click="submit()">Anmelden</button>
-			  <router-link to="/reset-password"> | Passwort vergessen? </router-link>
-			</div>
-		  </div>
 		</form>
 
 

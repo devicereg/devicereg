@@ -18,6 +18,7 @@ import UserEdit from './components/UserEdit'
 import MyDevices from './components/MyDevices'
 import DeviceRegForm from './components/DeviceRegForm'
 import ResetPassword from './components/ResetPassword'
+import CreateNewPassword from './components/CreateNewPassword'
 
 Vue.use(VueRouter)
 Vue.use(VueResource)
@@ -37,6 +38,7 @@ const routes = [
   {path: '/device/create', component: DeviceRegForm},
   {path: '/user/edit', component: UserEdit},
   {path: '/reset-password', component: ResetPassword},
+  {path: '/reset-password/:jwt', component: CreateNewPassword},
 ]
 
 export const router = new VueRouter({
