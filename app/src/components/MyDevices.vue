@@ -87,9 +87,21 @@
         this.devices.splice(index, 1);
       },
       deleteDevice(device) {
-        auth.deleteDevice(this, {id: device.id});
-        var index = this.devices.indexOf(device);
-        this.devices.splice(index, 1);
+        var self = this;
+        this.$swal({
+                    title: "Delete device?",
+                    text: "You are about to delete this device. Are you sure?",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3e7d8b",
+                    confirmButtonText: "Yes",
+                    cancelButtonText: "No",
+                    cancelButtonColor: "#9c9c9c"
+                  }).then(function(device) {
+                    auth.deleteDevice(self, {id: device.id});
+                    var index = self.devices.indexOf(device);
+                    self.devices.splice(index, 1);
+                  })
       },
       getDeviceData() {
         auth.getDevices(this)

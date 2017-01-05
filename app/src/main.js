@@ -6,6 +6,7 @@ import VueResource from 'vue-resource'
 import jwt from 'jsonwebtoken'
 import App from './App'
 import auth from './auth'
+import VueSweetAlert from 'vue-sweetalert'
 import Home from './components/Home'
 import RegistrationForm from './components/RegistrationForm'
 import Dashboard from './components/Dashboard'
@@ -20,7 +21,7 @@ import DeviceRegForm from './components/DeviceRegForm'
 
 Vue.use(VueRouter)
 Vue.use(VueResource)
-
+Vue.use(VueSweetAlert)
 auth.checkAuth()
 
 const routes = [
