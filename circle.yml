@@ -10,7 +10,8 @@ machine:
 dependencies:
   override:
     - docker info
-    - docker build --rm=false -t $DOCKER_USER/htw-berlin:devicereg .
+    #- docker build --rm=false -t $DOCKER_USER/htw-berlin:devicereg .
+    - docker-compose build
 
 test:
   override:
