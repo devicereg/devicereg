@@ -28,6 +28,7 @@
          <login-form></login-form>
        </div>
 	  </div>
+
     <!--div class="dropup">
       <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
         <span class="caret"></span></button>
@@ -70,6 +71,15 @@
 
     .dropup {
       display: inline-block;
+      background-color: $primary-bg-color;
+      color: $primary-bg-color;
+      border: 10px solid $primary-bg-color;
+      z-index: 100;
+      position: fixed;
+      bottom: 0;
+      margin-top: 55px;
+      width: 100%;
+      text-align: center;
     }
 
     .texte {
