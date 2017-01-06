@@ -193,37 +193,6 @@ app.post('/device/create', function (req, res)
   });
 });
 
-
-// app.get('/reset-user-password', function(req, res)
-// {
-//   var transporter = nodemailer.createTransport({
-//     host: 'smtp.gmail.com',
-//     port: 465,
-//     secure: true, // use SSL
-//     auth: {
-//         user: 'mock.mailserver@gmail.com',
-//         pass: 'WekuTh7@ubaz'
-//     }
-//   });
-
-//   var mailOptions = {
-//     from: 'DeviceR  <info@devicer.com>',
-//     to: 'volkan.oezgen@web.de', 
-//     subject: 'Reset Password',
-//     text: 'Bitte klicken Sie den Link unten an, um ein neues Passwort eingeben zu können.',
-//     html: '<p><b>Bitte klicken Sie den Link unten an, um ein neues Passwort eingeben zu können.</b></p><a href="http://localhost/#/reset-password">Reset password</a>'
-//   };
-
-//   transporter.sendMail(mailOptions, function(error, info)
-//   {
-//     if(error)
-//     {
-//         return console.log(error);
-//     }
-//     console.log('Message sent: ' + info.response);
-//   });
-// });
-
 app.post('/reset-user-password', function (req, res)
 {
   db.serialize(function()
@@ -264,12 +233,42 @@ app.post('/reset-user-password', function (req, res)
                   return console.log(error);
               }
               console.log('Message sent: ' + info.response);
+
+              res.status(201).send({ message: "Es wurde eine E-Mail an die E-Mail Adresse <b>"+req.body.email+"</b> gesendet." });
             });
           }
           else
           {
             res.status(401).send({
               message: "Der Benutzer mit der E-Mail Adresse '" + req.body.email + "' konnte nicht gefunden werden."
+            });
+          }
+        }
+    );
+  });
+});
+
+app.post('/create-new-password', function (req, res)
+{
+  db.serialize(function()
+  {
+    db.run("UPDATE user SET password = ? WHERE id = ?", [req.body.password, req.body.id],
+        function(err)
+        {
+          
+          console.log(req.body.password);
+          console.log(req.body.id);
+
+          if(!err)
+          {
+            res.status(201).send({
+              message: "Neues Passwort wurde erfolgreich angelegt."
+            });
+          }
+          else
+          {
+            res.status(401).send({
+              message: "Es ist ein Fehler aufgetreten, bitte versuchen Sie es erneut."
             });
           }
         }

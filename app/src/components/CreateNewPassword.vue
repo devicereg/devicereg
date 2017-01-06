@@ -1,13 +1,6 @@
 <template>
   <div class="container reset-password-form">
     <div class="row">
-      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        <div class="alert alert-danger fade in" v-if="error">
-          <p>{{ error }}</p>
-        </div>
-      </div>
-    </div>
-    <div class="row">
 
       <form role="form">
         <legend>Neues Passwort anlegen <span>( {{ credentials.prename }} {{ credentials.surname }} )</span></legend>
@@ -30,7 +23,7 @@
             class="form-control" 
             id="repeat_password" 
             placeholder="Passwort wiederholen"
-            v-model="credentials.repeat_passwort"
+            v-model="credentials.repeat_password"
             required
           >
         </div>
@@ -52,18 +45,31 @@
 	  name: 'create-password',
 	  data () {
 	    return {
-        credentials: jwt.verify(this.$route.params.jwt, 'DeviceR rocks as well!'),
-	    	error: ''
+        credentials: jwt.verify(this.$route.params.jwt, 'DeviceR rocks as well!')
 	    }
 	  },
 	  methods: {
 	  	submit() {
 	  		var credentials = {
           password: this.credentials.password,
-          id: this.credentials.id
-	  	}
-        console.log('Password' + this.credentials.id);
-	  		// auth.resetPassword(this, credentials)
+          id:       this.credentials.id
+	  	  }
+
+        if(this.credentials.password != this.credentials.repeat_password)
+        {
+          this.$parent.$refs.toastr.Add({
+              msg: "Die eingegebenen Passwörter stimmen nicht überein. Bitte prüfen Sie Ihre Eingaben.",
+              title: "Passwort zurücksetzen",
+              clickClose: false,
+              timeout: 8000,
+              position: "toast-top-right",
+              type: "error"
+          });
+        }
+        else
+        {
+  	  		auth.createNewPassword(this, credentials, '/new-password-confirmed', this.$parent.$refs.toastr)
+        }
 	  	}
 	  }
 	}

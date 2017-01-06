@@ -1,13 +1,6 @@
 <template>
   <div class="container reset-password-form">
     <div class="row">
-      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        <div class="alert alert-danger fade in" v-if="error">
-          <p>{{ error }}</p>
-        </div>
-      </div>
-    </div>
-    <div class="row">
 
       <form role="form">
         <legend>{{ $t("ResetPassword.reset_password") }}</legend>
@@ -43,9 +36,7 @@
 	    return {
         credentials: {
           email: ''
-        },
-	    	
-	    	error: ''
+        }
 	    }
 	  },
 	  methods: {
@@ -54,7 +45,7 @@
 	  			email: this.credentials.email
 	  	}
 
-	  		auth.resetPassword(this, credentials)
+	  		auth.resetPassword(this, credentials, this.$parent.$refs.toastr)
 	  	}
 	  }
 	}
