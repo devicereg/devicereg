@@ -1,14 +1,22 @@
 $dark-blue: #283158;
 $light-blue: #3e7d8b;
-$gray: #e3e3e3;
-$darker-gray: #959595;
+$darker-light-blue: #376774;
+$light-gray: #e3e3e3;
+$darker-light-gray: #bbbbbb;
+$darker-gray: #9c9c9c;
 $black: #000;
+$dark-blue-gray: #2c3e50;
+$darker-white: #d2d2d2;
 
 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700');
 
-$body-background: $gray;
+$body-background: $light-gray;
+$darker-body-background: $darker-light-gray;
 $primary-bg-color: $dark-blue;
 $btn-primary-bg: $light-blue;
+$btn-primary-bg-hover: $darker-light-blue;
 $btn-secondary-color: $darker-gray;
 $btn-txt-color: white;
+$btn-txt-color-hover: $darker-white;
 $primary-link-color: $light-blue;
+$primary-text-color: $dark-blue-gray;

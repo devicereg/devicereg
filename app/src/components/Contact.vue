@@ -19,23 +19,23 @@
             </tr>
           </thead>
           <tbody>
-          <tr v-if="items[selected].address">
+          <tr v-if="items[selected-1].address">
             <td><strong>{{ $t("address") }}:</strong></td>
-            <td v-html="items[selected].address"></td>
+            <td v-html="items[selected-1].address"></td>
           </tr>
-          <tr v-if="items[selected].poBox">
+          <tr v-if="items[selected-1].poBox">
             <td><strong>{{ $t("Contact.box_address") }}:</strong></td>
-            <td>{{ items[selected].poBox }}</td>
+            <td>{{ items[selected-1].poBox }}</td>
           </tr>
-          <tr v-if="items[selected].email">
+          <tr v-if="items[selected-1].email">
             <td><strong>{{ $t("email") }}:</strong></td>
             <td>
-              <a href='mailto:'>{{ items[selected].email }}</a>
+              <a href='mailto:'>{{ items[selected-1].email }}</a>
             </td>
           </tr>
-          <tr v-if="items[selected].phone">
+          <tr v-if="items[selected-1].phone">
             <td><strong>{{ $t("phone") }}:</strong></td>
-            <td>{{ items[selected].phone }}</td>
+            <td>{{ items[selected-1].phone }}</td>
           </tr>
           </tbody>
         </table>

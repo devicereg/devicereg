@@ -1,9 +1,9 @@
 <template>
   <div id="navbar" class="navbar-collapse collapse">
     <ul class="nav navbar-nav navbar-left">
-      <li>
+      <!--li>
         <router-link to="/"><strong> {{ $t('home') }} </strong></router-link>
-      </li>
+      </li-->
     </ul>
     <ul class="nav navbar-nav navbar-right">
       <li>
