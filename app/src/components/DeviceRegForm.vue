@@ -186,7 +186,6 @@
     </div>
   </div>
 </template>
-
 <script>
 import auth from '../auth'
 export default {
@@ -265,6 +264,7 @@ export default {
       return today.toString();
     }
   }
+
 }
 </script>
 <style lang="scss">

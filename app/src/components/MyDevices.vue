@@ -2,10 +2,17 @@
   <div id="my-devices-component">
     <device-registration-modal></device-registration-modal>
     <div class="row">
-      <div class="col-sm-6">
+      <div class="col-sm-8">
         <h1> {{$t("MyDevices.title")}} </h1>
       </div>
-      <div class="col-sm-6">
+      <div class="col-sm-2 form-group-sm text-right" id="cat_filter">
+        <select class="form-control" v-model="cat_filter">
+          <option id="option_placeholder" value="placeholder" disabled>{{ $t("MyDevices.filter_by") }}</option>
+          <option value="all">{{ $t("MyDevices.all_categories") }}</option>
+          <option v-bind:value="cat.id" v-for="cat in categories">{{cat.name}}</option>
+        </select>
+      </div>
+      <div class="col-sm-2">
         <a href="#" id="add-button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#device-registration-modal">
           <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> &nbsp; {{ $t("MyDevices.add_button") }}
         </a>
@@ -28,7 +35,8 @@
             </tr>
           </thead>
           <tbody>
-          <tr v-for="device in devices">
+          <tr v-for="device in devices" v-if="device.category_id == cat_filter
+                            || cat_filter == 'all' || cat_filter == 'placeholder'">
             <td>{{device.devicelabel}}</td>
             <td>{{device.technology}}</td>
             <td>{{device.category_id}}</td>
@@ -54,7 +62,7 @@
 <style lang="scss">
   @import '../styles/_colors';
 
-  #add-button {
+  #add-button,#cat_filter {
     margin-top: 2em;
   }
 
@@ -64,6 +72,9 @@
 
   a {
     color: $primary-link-color;
+  }
+  #option_placeholder {
+    display: none;
   }
 </style>
 <script>
@@ -78,6 +89,8 @@
     data () {
       return {
         selected: '0',
+        categories: [],
+        cat_filter: 'placeholder',
         devices: []
       }
     },
@@ -92,11 +105,15 @@
         this.devices.splice(index, 1);
       },
       getDeviceData() {
-        auth.getDevices(this)
+        auth.getDevices(this);
+      },
+      getCategories() {
+        auth.getCategories(this);
       }
     },
     mounted: function() {
       this.getDeviceData();
+      this.getCategories();
     }
   }
 </script>
