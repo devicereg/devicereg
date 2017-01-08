@@ -59,6 +59,7 @@
     "webpack-merge": "^0.14.1",
     "sqlite3": "^3.1.8",
     "jsonwebtoken": "^5.0.1",
-    "vue-strap": "^1.1.32"
+    "vue-strap": "^1.1.32",
+    "vue-sweetalert": "^0.1.16"
   }
 }
