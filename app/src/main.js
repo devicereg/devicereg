@@ -1,31 +1,32 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
-import Vue                    from 'vue'
-import VueRouter              from 'vue-router'
-import VueResource            from 'vue-resource'
-import jwt                    from 'jsonwebtoken'
-import App                    from './App'
-import auth                   from './auth'
-import Home                   from './components/Home'
-import RegistrationForm       from './components/RegistrationForm'
-import Dashboard              from './components/Dashboard'
-import Contact                from './components/Contact'
-import TermsOfUse             from './components/TermsOfUse'
-import Impressum              from './components/Impressum'
-import Warranty               from './components/Warranty'
-import Datenschutz            from './components/Datenschutz'
-import UserEdit               from './components/UserEdit'
-import MyDevices              from './components/MyDevices'
-import DeviceRegForm          from './components/DeviceRegForm'
-import ResetPassword          from './components/ResetPassword'
-import CreateNewPassword      from './components/CreateNewPassword'
-import NewPasswordConfirmed   from './components/NewPasswordConfirmed'
+import Vue from 'vue'
+import VueRouter from 'vue-router'
+import VueResource from 'vue-resource'
+import jwt from 'jsonwebtoken'
+import App from './App'
+import auth from './auth'
+import VueSweetAlert from 'vue-sweetalert'
+import Home from './components/Home'
+import RegistrationForm from './components/RegistrationForm'
+import Dashboard from './components/Dashboard'
+import Contact from './components/Contact'
+import TermsOfUse from './components/TermsOfUse'
+import Impressum from './components/Impressum'
+import Warranty from './components/Warranty'
+import Datenschutz from './components/Datenschutz'
+import UserEdit from './components/UserEdit'
+import MyDevices from './components/MyDevices'
+import DeviceRegForm from './components/DeviceRegForm'
+import ResetPassword from './components/ResetPassword'
+import CreateNewPassword from './components/CreateNewPassword'
+import NewPasswordConfirmed from './components/NewPasswordConfirmed'
 
 // require('vue-toastr/src/vue-toastr.less')
 
 Vue.use(VueRouter)
 Vue.use(VueResource)
-
+Vue.use(VueSweetAlert)
 auth.checkAuth()
 
 const routes = [
