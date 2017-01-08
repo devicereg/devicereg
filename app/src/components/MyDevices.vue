@@ -102,13 +102,13 @@
       deleteDevice(device) {
         var self = this;
         this.$swal({
-          title: "Delete device?",
-          text: "You are about to delete this device. Are you sure?",
+          title: this.$t("MyDevices.delete.title"),
+          text: this.$t("MyDevices.delete.text"),
           type: "warning",
           showCancelButton: true,
           confirmButtonColor: "#3e7d8b",
-          confirmButtonText: "Yes",
-          cancelButtonText: "No",
+          confirmButtonText: this.$t("MyDevices.delete.confirm"),
+          cancelButtonText: this.$t("MyDevices.delete.cancel"),
           cancelButtonColor: "#9c9c9c"
         }).then(function(device) {
           auth.deleteDevice(self, {id: device.id});
