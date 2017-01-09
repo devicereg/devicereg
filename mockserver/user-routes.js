@@ -1,8 +1,10 @@
-var express = require('express'),
-    _       = require('lodash'),
-    config  = require('./config'),
-    jwt     = require('jsonwebtoken'),
-    sqlite3 = require('sqlite3').verbose();
+var express           =  require('express'),
+    _                 = require('lodash'),
+    config            = require('./config'),
+    jwt               = require('jsonwebtoken'),
+    sqlite3           = require('sqlite3').verbose(),
+    nodemailer        = require('nodemailer'),
+    sendmailTransport = require('nodemailer-sendmail-transport');
 
 const sqliteJSON = require('sqlite-json');
 const exporter = sqliteJSON('database/devicer.sqlite');
@@ -10,7 +12,8 @@ var db = new sqlite3.Database('database/devicer.sqlite');
 
 var app = module.exports = express.Router();
 
-function createToken(user) {
+function createToken(user) 
+{
   return jwt.sign(_.omit(user, 'password'), config.secret, { expiresIn: 60*60*5 });
 }
 
@@ -125,11 +128,27 @@ app.post('/sessions/create', function(req, res)
       {
         if(typeof row != 'undefined')
         {
-          jwt_token = createToken(row);
-          console.log("User object: " + row);
-          console.log("JWT Token: " + jwt_token);
+          console.log("User email: " + req.body.email);
 
-          res.status(201).send({id_token: jwt_token});
+          if(typeof row != 'undefined')
+          {
+            jwt_token = createToken(row);
+            console.log("User object: " + row);
+            console.log("JWT Token: " + jwt_token);
+
+            res.status(201).send({id_token: jwt_token});
+          }
+          else
+          {
+            res.status(401).send({
+              message: "Der Benutzer mit der E-Mail Adresse '" + req.body.email + "' konnte nicht gefunden werden."
+            });
+          }
+          // jwt_token = createToken(row);
+          // console.log("User object: " + row);
+          // console.log("JWT Token: " + jwt_token);
+
+          // res.status(201).send({id_token: jwt_token});
         }
         else
         {
@@ -170,6 +189,89 @@ app.post('/device/create', function (req, res)
         $category: req.body.category,
         $user: 1 //@TODO
       }
+    );
+  });
+});
+
+app.post('/reset-user-password', function (req, res)
+{
+  db.serialize(function()
+  {
+    db.get("SELECT * FROM user WHERE email = ?", [req.body.email],
+        function(err, row)
+        {
+          console.log(row);
+          if(typeof row != 'undefined')
+          {
+            jwt_token = createToken(row);
+
+            // Transporter object using the direct transport protocol
+            var transporter = nodemailer.createTransport({
+              host: 'smtp.gmail.com',
+              port: 465,
+              secure: true, // use SSL
+              auth: {
+                  user: 'mock.mailserver@gmail.com',
+                  pass: 'WekuTh7@ubaz'
+              }
+            });
+
+            var htmlMailTemplate = '<p><b>Bitte klicken Sie den Link unten an, um ein neues Passwort eingeben zu können.</b></p><a href="http://localhost/#/reset-password/' +jwt_token+ '">Passwort zurücksetzen</a>';
+
+            var mailOptions = {
+              from: 'DeviceR <info@devicer.com>',
+              to: req.body.email, 
+              subject: 'DeviceR Passwort zurückstetzen.',
+              text: 'Bitte klicken Sie den Link unten an, um ein neues Passwort eingeben zu können',
+              html: htmlMailTemplate
+            };
+
+            transporter.sendMail(mailOptions, function(error, info)
+            {
+              if(error)
+              {
+                  return console.log(error);
+              }
+              console.log('Message sent: ' + info.response);
+
+              res.status(201).send({ message: "Es wurde eine E-Mail an die E-Mail Adresse <b>"+req.body.email+"</b> gesendet." });
+            });
+          }
+          else
+          {
+            res.status(401).send({
+              message: "Der Benutzer mit der E-Mail Adresse '" + req.body.email + "' konnte nicht gefunden werden."
+            });
+          }
+        }
+    );
+  });
+});
+
+app.post('/create-new-password', function (req, res)
+{
+  db.serialize(function()
+  {
+    db.run("UPDATE user SET password = ? WHERE id = ?", [req.body.password, req.body.id],
+        function(err)
+        {
+          
+          console.log(req.body.password);
+          console.log(req.body.id);
+
+          if(!err)
+          {
+            res.status(201).send({
+              message: "Neues Passwort wurde erfolgreich angelegt."
+            });
+          }
+          else
+          {
+            res.status(401).send({
+              message: "Es ist ein Fehler aufgetreten, bitte versuchen Sie es erneut."
+            });
+          }
+        }
     );
   });
 });

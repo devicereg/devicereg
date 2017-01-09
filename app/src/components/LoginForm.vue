@@ -9,7 +9,7 @@
           </p>
           <p>{{ error }}</p>
         </div>
-        <form id="user-login-form" class="form-horizontal" role="form" v-if="!user.authenticated" v-on:submit="submitForm">
+        <form id="user-login-form" class="form-horizontal" role="form" v-if="!user.authenticated" v-on:submit.prevent="submitForm">
           <div class="login_up">
             <h1>{{ $t("LoginForm.registration") }}</h1>
             <div class="form-group col-sm-12">
@@ -51,11 +51,12 @@
             <div class="form-group">
               <div class="col-sm-10">
                 <button type="submit" class="btn btn-primary"> {{ $t("LoginForm.sign_in") }}</button>
-                <router-link to="#"> | {{ $t("LoginForm.forgot") }}</router-link>
+                <router-link to="/reset-password"> | {{ $t("LoginForm.forgot") }}</router-link>
               </div>
             </div>
           </div>
-        </form>
+		</form>
+
 
         <button class="btn btn-warning" @click="logout()" v-else>{{ $t("LoginForm.logout") }}</button>
       </div>

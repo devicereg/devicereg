@@ -14,7 +14,8 @@
     "jquery": "^3.1.1",
     "vue": "^2.0.1",
     "vue-i18n": "^4.7.2",
-    "vueboot": "^0.4.5"
+    "vueboot": "^0.4.5",
+    "vue-toastr": "^2.0.5"
   },
   "devDependencies": {
     "autoprefixer": "^6.4.0",
@@ -47,6 +48,7 @@
     "opn": "^4.0.2",
     "ora": "^0.3.0",
     "sass-loader": "^4.0.2",
+    "less-loader": "^2.2.3",
     "shelljs": "^0.7.4",
     "url-loader": "^0.5.7",
     "vue-resource": "^1.0.3",
