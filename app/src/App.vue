@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <vue-toastr ref="toastr"></vue-toastr>
     <delete-modal v-if="user.authenticated"></delete-modal>
     <navigation></navigation>
     <router-view class="container-fluid col-sm-offset-1 col-md-offset-2 col-sm-10 col-md-8" style="margin-bottom: 100px;"></router-view>
@@ -23,10 +24,12 @@ import UserEdit from './components/UserEdit'
 import DeviceRegForm from './components/DeviceRegForm'
 import DeleteProfileModal from './components/UserDeleteModal'
 import MyDevices from './components/MyDevices'
+import Toastr from 'vue-toastr'
 
 export default {
   name: 'app',
   components: {
+    auth,
     Home,
     Navigation,
     AppFooter,
@@ -39,7 +42,8 @@ export default {
     Translations,
     UserEdit,
     DeviceRegForm,
-    MyDevices
+    MyDevices,
+    'vue-toastr': Toastr
   },
   data() {
     return { user: auth.user }
