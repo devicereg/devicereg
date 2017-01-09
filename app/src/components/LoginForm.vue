@@ -9,7 +9,7 @@
           </p>
           <p>{{ error }}</p>
         </div>
-        <form id="user-login-form" class="form-horizontal" role="form" v-if="!user.authenticated" v-on:submit="submitForm">
+        <form id="user-login-form" class="form-horizontal" role="form" v-if="!user.authenticated" v-on:submit.prevent="submitForm">
           <div class="login_up">
             <h1>{{ $t("LoginForm.registration") }}</h1>
             <div class="form-group col-sm-12">

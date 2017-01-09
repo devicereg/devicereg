@@ -9,7 +9,7 @@
           </button>
           <h2 class="modal-title">{{$t("DeviceRegForm.title")}}</h2>
         </div>
-        <form id="device-registration-form" class="ajax" role="form" v-on:submit="submit">
+        <form id="device-registration-form" class="ajax" role="form" v-on:submit.prevent="submit">
           <div class="modal-body">
             <div class="container-fluid">
               <div class="form-group row">
@@ -175,10 +175,10 @@
           </div>
           <div class="modal-footer">
             <div class="col-sm-offset-6 col-xs-6 col-sm-3">
-              <button type="button" class="btn btn-block btn-md btn-cancel btn-modal" v-on:click="closeModalAndRest()" data-dismiss="modal">{{ $t('cancel') }}</button>
+              <button type="button" class="btn btn-block btn-md btn-cancel btn-modal" v-on:click="closeModalAndReset()" data-dismiss="modal">{{ $t('cancel') }}</button>
             </div>
             <div class="col-xs-6 col-sm-3">
-              <input type="submit" class="btn btn-block btn-md btn-primary btn-modal" v-on:submit="closeModalAndRest()" v-bind:value="$t('register')"></input>
+              <input type="submit" class="btn btn-block btn-md btn-primary btn-modal" v-bind:value="$t('register')"></input>
             </div>
           </div>
         </form>
@@ -188,6 +188,7 @@
 </template>
 <script>
 import auth from '../auth'
+
 export default {
   name: 'device-registration-modal',
   data () {
@@ -224,6 +225,7 @@ export default {
   },
   methods: {
     submit() {
+      this.closeModalAndReset();
       var device = {
         technology: this.device.technology,
         category: this.device.category,
@@ -242,6 +244,8 @@ export default {
       }
 
       auth.createDevice(this, device);
+      /* Pseudocode */
+      // MyDevices.devices.push(device);
     },
     getCategories() {
       auth.getCategories(this)
