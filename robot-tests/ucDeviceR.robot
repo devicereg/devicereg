@@ -3,6 +3,7 @@ Library  Selenium2Library
 Library  Collections
 Resource  maskHome.robot
 Resource  maskUserRegistration.robot
+Resource  maskMyDevices.robot
 
 *** Keywords ***
 Registriere neuen Benutzer
@@ -24,3 +25,16 @@ Benutzer einloggen
     Gebe die Logindaten des Benutzers ein  ${Benutzername}  ${Passwort}
     Sende das Loginformular ab
     Pruefe, dass die Startseite verlassen wurde
+
+Registriere neues Geraet
+    [Documentation]  Ein neues Geraet wird registriert
+    [Arguments]  &{Geraet}
+    Gehe zur Seite Geraeteuebersicht
+    Pruefe, dass die Geraeteuebersicht angezeigt wird
+    Rufe die Funktion Geraete hinzufuegen auf
+    Gebe die Daten des neuen Geraetes ein  &{Geraet}
+    Sende das Geraeteregistrierungsformular ab
+    Gehe zur Seite Geraeteuebersicht
+    Pruefe, dass das Geraet in der Geraeteuebersicht angezeigt wird  &{Geraet}[Geraetebezeichnung]
+
+

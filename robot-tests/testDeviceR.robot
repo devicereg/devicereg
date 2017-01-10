@@ -9,6 +9,7 @@ ${browser}  firefox
 
 ${user}  mustermax@htw-berlin.de
 &{Mustermax}    Anrede=Herr  Vorname=Max  Nachname=Mustermann  Email=${user}  Sprache=Deutsch  Telefon=012 34 56 789  Branchenfamilie=Strom  Branchentyp=BT  Firmenname=Muster AG  Strasse=Musterstraße  Hausnummer=19  PLZ=12345  Stadt=Berlin  Land=Deutschland  Passwort=password  Geheimfrage=Geheim?  Antwort=Geheim!
+&{Geraet}       Technologie=Rotamass  Geraetekategorie=katt  Seriennummer=M48348246  Geraetebezeichnung=Der Gerät  Prozessmedium=Wasser  Tagnummer=12  Kommentar=Micha stinkt
 
 *** Keywords ***
 Navigiere zu Datenschutzseite
@@ -32,14 +33,19 @@ Initialisiere Test
     Maximize Browser Window
 
 *** Test Cases ***
-Registriere den Benutzer Max Musterman
-    Initialisiere Test
-    Registriere neuen Benutzer  &{Mustermax}
-    Schliesse Browser
+#Registriere den Benutzer Max Musterman
+#    Initialisiere Test
+#   Registriere neuen Benutzer  &{Mustermax}
+#   Schliesse Browser
 
-Einloggen des Benutzers Max Mustermann
+#Einloggen des Benutzers Max Mustermann
+  #  Initialisiere Test
+   # Benutzer einloggen  &{Mustermax}[Email]  &{Mustermax}[Passwort]
+    #Pruefe, dass die Geraeteuebersicht angezeigt wird
+    #Schliesse Browser
+
+Registriere das Geraet der Geraet
     Initialisiere Test
     Benutzer einloggen  &{Mustermax}[Email]  &{Mustermax}[Passwort]
-    Pruefe, dass die Geraeteuebersicht angezeigt wird
+    Registriere neues Geraet  &{Geraet}
     Schliesse Browser
-
