@@ -12,7 +12,7 @@ Pruefe, dass die Webseite Benutzer registrieren angezeigt wird
 
 Pruefe, dass die Webseite Benutzer registrieren verlassen wurde
     [Documentation]  Für aktuelle Webseite wird geprüft, ob es sich nicht um die Webseite Kontakte handelt
-    Page Should Not Contain Element  xpath=//form[@id="user-registration-form"]
+    Wait Until Page Does Not Contain Element  xpath=//form[@id="user-registration-form"]
 
 Pruefe, dass das Benutzerregistrierungsformular angezeigt wird
     [Documentation]  Es wird geprüft, ob das Benutzerregistrierungsformular sichtbar ist

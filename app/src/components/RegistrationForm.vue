@@ -10,7 +10,7 @@
     <div class="row">
       <div class="col-sm-12 text-left">
         <h1 class="registration-header-title">{{$t("RegistrationForm.title")}}</h1>
-        <form id="user-registration-form" role="form" v-on:submit="submit">
+        <form id="user-registration-form" role="form" v-on:submit.prevent="submit">
           <legend>{{$t("RegistrationForm.personal_details")}}</legend>
           <div class="form-group row">
             <div class="col-sm-4 control-label">
@@ -302,7 +302,7 @@
           agreement: this.credentials.agreement
         }
 
-        auth.signup(this, credentials, '/')
+        auth.signup(this, credentials, '/my-devices')
 	  	}
 	  }
 	}

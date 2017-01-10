@@ -6,6 +6,7 @@ import VueResource from 'vue-resource'
 import jwt from 'jsonwebtoken'
 import App from './App'
 import auth from './auth'
+import VueSweetAlert from 'vue-sweetalert'
 import Home from './components/Home'
 import RegistrationForm from './components/RegistrationForm'
 import Dashboard from './components/Dashboard'
@@ -17,24 +18,32 @@ import Datenschutz from './components/Datenschutz'
 import UserEdit from './components/UserEdit'
 import MyDevices from './components/MyDevices'
 import DeviceRegForm from './components/DeviceRegForm'
+import ResetPassword from './components/ResetPassword'
+import CreateNewPassword from './components/CreateNewPassword'
+import NewPasswordConfirmed from './components/NewPasswordConfirmed'
+
+// require('vue-toastr/src/vue-toastr.less')
 
 Vue.use(VueRouter)
 Vue.use(VueResource)
-
+Vue.use(VueSweetAlert)
 auth.checkAuth()
 
 const routes = [
-  {path: '/', component: Home},
-  {path: '/registrieren', component: RegistrationForm},
-  {path: '/dashboard', component: Dashboard},
-  {path: '/contact', component: Contact},
-  {path: '/terms-of-use', component: TermsOfUse},
-  {path: '/impressum', component: Impressum},
-  {path: '/aktionsbedingungen', component: Warranty},
-  {path: '/datenschutz', component: Datenschutz},
-  {path: '/my-devices', component: MyDevices},
-  {path: '/device/create', component: DeviceRegForm},
-  {path: '/user/edit', component: UserEdit}
+  {path: '/',                         component: Home},
+  {path: '/registrieren',             component: RegistrationForm},
+  {path: '/dashboard',                component: Dashboard},
+  {path: '/contact',                  component: Contact},
+  {path: '/terms-of-use',             component: TermsOfUse},
+  {path: '/impressum',                component: Impressum},
+  {path: '/aktionsbedingungen',       component: Warranty},
+  {path: '/datenschutz',              component: Datenschutz},
+  {path: '/my-devices',               component: MyDevices},
+  {path: '/device/create',            component: DeviceRegForm},
+  {path: '/user/edit',                component: UserEdit},
+  {path: '/reset-password',           component: ResetPassword},
+  {path: '/reset-password/:jwt',      component: CreateNewPassword},
+  {path: '/new-password-confirmed',   component: NewPasswordConfirmed},
 ]
 
 export const router = new VueRouter({
