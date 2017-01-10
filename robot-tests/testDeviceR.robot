@@ -24,21 +24,22 @@ Pruefe, dass die Geraeteuebersicht angezeigt wird
     [Documentation]  Für aktuelle Webseite wird geprüft, ob es sich um die Geräteübersicht handelt
     Wait Until Page Contains Element  css=div#my-devices-component
 
-*** Test Cases ***
+Schliesse Browser
+    Close Browser
+
 Initialisiere Test
     Open Browser  ${host}  ${browser}
     Maximize Browser Window
 
-#Rufe die Datenschutzsseite auf
-#    Navigiere zu Datenschutzseite
-#    Pruefe, dass die Datenschutzseite angezeigt wird
-
+*** Test Cases ***
 Registriere den Benutzer Max Musterman
+    Initialisiere Test
     Registriere neuen Benutzer  &{Mustermax}
+    Schliesse Browser
 
 Einloggen des Benutzers Max Mustermann
+    Initialisiere Test
     Benutzer einloggen  &{Mustermax}[Email]  &{Mustermax}[Passwort]
     Pruefe, dass die Geraeteuebersicht angezeigt wird
+    Schliesse Browser
 
-Schliesse Browser
-    Close Browser

@@ -5,7 +5,15 @@
     "technology": "Technologie",
     "device_description": "Gerätebeschreibung",
     "category": "Kategorie",
-    "add_button": "Gerät hinzufügen"
+    "add_button": "Gerät hinzufügen",
+    "all_categories": "Alle Kategorien",
+    "filter_by": "Nach Kategorien filtern",
+    "delete": {
+      "title": "Gerät löschen?",
+      "text": "Sie sind im Begriff ein Gerät zu löschen. <br> Sind Sie sich sicher?",
+      "confirm": "Ja",
+      "cancel": "Nein"
+    }
   },
   "en": {
     "title": "My Devices",
@@ -13,6 +21,14 @@
     "technology": "Technology",
     "device_description": "Device description",
     "category": "Category",
-    "add_button": "Add device"
+    "add_button": "Add device",
+    "all_categories": "All categories",
+    "filter_by": "Filter by category",
+    "delete": {
+      "title": "Delete device?",
+      "text": "You are about to delete this device. <br> Are you sure?",
+      "confirm": "Yes",
+      "cancel": "No"
+    }
   }
 }

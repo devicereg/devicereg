@@ -9,7 +9,7 @@
     "id": 2,
     "technology": "Rotamass",
     "description_data": "Wasser-Durchflussmesser",
-    "category": "Durchfluss"
+    "category": "EigeneKategorie"
   },
   {
     "id": 3,
@@ -27,7 +27,7 @@
     "id": 5,
     "technology": "Flowmeter",
     "description_data": "Benzin-Durchflussmesser",
-    "category": "Durchfluss"
+    "category": "EigeneKategorie"
   },
   {
     "id": 6,
@@ -93,7 +93,7 @@
   {
     "technology": "Rotamass",
     "description_data": "Wasser-Durchflussmesser",
-    "category": "Durchfluss"
+    "category": "EigeneKategorie"
   },
   {
     "technology": "Flowmeter",
