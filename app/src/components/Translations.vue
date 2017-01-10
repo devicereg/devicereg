@@ -37,6 +37,9 @@
       site_policy: 'Nutzungsbedingungen',
       legal_disclosure: 'Impressum',
       terms_of_warranty: 'Aktionsbedingungen',
+      edit_profile: 'Profil editieren',
+      delete_profile: 'Profil löschen',
+
 
 
       Contact: {
@@ -48,7 +51,7 @@
         titel: 'Kundensupport für Durchflussmessgeräte',
         visit: 'Besuchen Sie uns auf',
       },
-      
+
       MyDevices: {
         title: 'Meine Geräte',
         technology: 'Technologie',
@@ -111,6 +114,12 @@
         reset_password: 'Passwort zurücksetzen',
         email: 'E-Mail Adresse'
       },
+      DeleteUserAlert: {
+        title: 'Profil löschen?',
+        text: 'Sie sind im Begriff Ihr Profil zu löschen. <br> Sind Sie sich sicher?',
+        confirm: 'Ja',
+        cancel: 'Nein'
+      },
 
       Contact: Contact.de,
       MyDevices: MyDevices.de,
@@ -146,6 +155,8 @@
       site_policy: 'Site policy',
       legal_disclosure: 'Imprint',
       terms_of_warranty: 'Terms of warranty',
+      edit_profile: 'Edit profile',
+      delete_profile: 'Delete profile',
 
       Contact: {
         box_address: 'Mailbox',
@@ -218,6 +229,12 @@
       ResetPassword: {
         reset_password: 'Reset Password',
         email: 'E-Mail address'
+      },
+      DeleteUserAlert: {
+        title: 'Delete Profile?',
+        text: 'You are about to delete your profile. <br> Are you sure?',
+        confirm: 'Yes',
+        cancel: 'No'
       },
 
       Contact: Contact.en,

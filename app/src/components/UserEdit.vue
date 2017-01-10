@@ -10,7 +10,7 @@
     <div class="row">
       <form id="user-edit-form" role="form">
         <div class="col-sm-12 text-left">
-          <h2 class="registration-header-title">Profil bearbeiten</h2>
+          <h2 class="registration-header-title">{{$t("edit_profile")}}</h2>
           <input type="hidden" v-model="credentials.id">
 
           <legend>{{$t("RegistrationForm.personal_details")}}</legend>
