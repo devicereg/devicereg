@@ -16,43 +16,11 @@
         <a href="#" id="add-button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#device-registration-modal">
           <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> &nbsp; {{ $t("MyDevices.add_button") }}
         </a>
-        <!-- Create Device on seperate page -->
-        <!--router-link to="/device/create" id="add-button" class="btn btn-primary pull-right">
-          <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> &nbsp; {{ $t("MyDevices.add_button") }}
-        </router-link-->
       </div>
     </div>
     <div class="row">
       <div class="col-sm-12">
-        <table class="table table-striped">
-          <thead>
-            <tr>
-              <th>{{$t("MyDevices.label")}}</th>
-              <th>{{$t("MyDevices.technology")}}</th>
-              <th>{{$t("MyDevices.category")}}</th>
-              <th>{{$t("MyDevices.device_description")}}</th>
-              <th>&nbsp;</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="device in devices" v-if="device.category_id == cat_filter
-                              || cat_filter == 'all' || cat_filter == 'placeholder'">
-              <td>{{device.devicelabel}}</td>
-              <td>{{device.technology}}</td>
-              <td>{{device.category_id}}</td>
-              <td>{{device.comment}}</td>
-              <td>
-                <a @click="getDevices()">
-                  <span class="glyphicon glyphicon-eye-open action-button" aria-hidden="true"></span>
-                </a>
-                <router-link to="/my-devices">
-                  <span class="glyphicon glyphicon-edit action-button" aria-hidden="true"></span>
-                </router-link>
-                <delete-device device="device"></delete-device>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        <sortable-devices></sortable-devices>
       </div>
     </div>
   </div>
@@ -61,90 +29,28 @@
 <script>
   import auth from "../../auth/index.js"
   import DeviceRegForm from "./DeviceRegForm"
-  import DeleteDevice from "./DeleteDevice"
+  import SortableDevices from "./SortableDevices"
 
   export default{
     components: {
       'device-registration-modal': DeviceRegForm,
-      'delete-device': DeleteDevice
-    },
-    props: {
-      data: Array,
-      columns: Array,
-      filterKey: String
+      'sortable-devices': SortableDevices
     },
     name: 'my-devices',
     data () {
-      var sortOrders = {}
-      //this.columns.forEach(function (key) {
-      //  sortOrders[key] = 1;
-      //})
-
       return {
         selected: '0',
         categories: [],
         cat_filter: 'placeholder',
-        devices: [],
-        sortKey: '',
-        sortOrders: sortOrders,
-        searchQuery: '',
-        gridColumns: ['name'],
-        gridData: [
-          {name: 'test'}
-        ]
       }
     },
     methods: {
-      editDevice(device) {
-        var index = this.devices.indexOf(device);
-        this.devices.splice(index, 1);
-      },
-      getDeviceData() {
-        auth.getDevices(this);
-      },
       getCategories() {
         auth.getCategories(this);
-      },
-      sortBy: function (key) {
-        this.sortKey = key
-        this.sortOrders[key] = this.sortOrders[key] * -1
-      },
-      removeDevice: function(device) {
-        var index = this.devices.indexOf(device);
-        this.devices.splice(index, 1);
       }
     },
     mounted: function() {
-      this.getDeviceData();
       this.getCategories();
-    },
-    computed: {
-      filteredData: function () {
-        var sortKey = this.sortKey
-        var filterKey = this.filterKey && this.filterKey.toLowerCase()
-        var order = this.sortOrders[sortKey] || 1
-        var data = this.data
-        if (filterKey) {
-          data = data.filter(function (row) {
-            return Object.keys(row).some(function (key) {
-              return String(row[key]).toLowerCase().indexOf(filterKey) > -1
-            })
-          })
-        }
-        if (sortKey) {
-          data = data.slice().sort(function (a, b) {
-            a = a[sortKey]
-            b = b[sortKey]
-            return (a === b ? 0 : a > b ? 1 : -1) * order
-          })
-        }
-        return data
-      }
-    },
-    filters: {
-      capitalize: function (str) {
-        return str.charAt(0).toUpperCase() + str.slice(1)
-      }
     },
   }
 </script>
