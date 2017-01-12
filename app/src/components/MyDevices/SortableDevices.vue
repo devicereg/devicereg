@@ -1,26 +1,31 @@
 <template>
-  <table class="table table-striped">
-    <thead>
-    <tr>
-      <th v-for="key in gridColumns" @click="sortBy(key)" :class="{ active: sortKey == key }">
-        {{ $t("MyDevices." + key) }}
-        <span class="arrow" :class="sortOrders[key] > 0 ? 'asc' : 'dsc'"></span>
-      </th>
-      <th>&nbsp;</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr v-for="device in filteredData">
-      <td v-for="key in gridColumns">{{ device[key] }}</td>
-      <td>
-        <router-link to="/my-devices">
-          <span class="glyphicon glyphicon-edit action-button" aria-hidden="true"></span>
-        </router-link>
-        <delete-device device="device"></delete-device>
-      </td>
-    </tr>
-    </tbody>
-  </table>
+  <div>
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th v-for="key in gridColumns" @click="sortBy(key)" :class="{ active: sortKey == key }">
+          {{ $t("MyDevices." + key) }}
+          <span class="arrow" :class="sortOrders[key] > 0 ? 'asc' : 'dsc'"></span>
+        </th>
+        <th>&nbsp;</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr v-for="device in filteredData">
+        <td v-for="key in gridColumns">{{ device[key] }}</td>
+        <td>
+          <router-link to="/my-devices">
+            <span class="glyphicon glyphicon-edit action-button" aria-hidden="true"></span>
+          </router-link>
+          <delete-device device="device"></delete-device>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+    <form id="search">
+      Search <input name="query" v-model="filterKey">
+    </form>
+  </div>
 </template>
 
 <script>
@@ -39,7 +44,6 @@
       return {
         devices: [],
         sortOrders: sortOrders,
-        searchQuery: '',
         gridColumns: gridColumns,
         filterKey: '',
         sortKey: '',
