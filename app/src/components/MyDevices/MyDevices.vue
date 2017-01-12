@@ -31,59 +31,42 @@
               <th>{{$t("MyDevices.technology")}}</th>
               <th>{{$t("MyDevices.category")}}</th>
               <th>{{$t("MyDevices.device_description")}}</th>
-              <th></th>
+              <th>&nbsp;</th>
             </tr>
           </thead>
           <tbody>
-          <tr v-for="device in devices" v-if="device.category_id == cat_filter
-                            || cat_filter == 'all' || cat_filter == 'placeholder'">
-            <td>{{device.devicelabel}}</td>
-            <td>{{device.technology}}</td>
-            <td>{{device.category_id}}</td>
-            <td>{{device.comment}}</td>
-            <td>
-              <a @click="getDevices()">
-                <span class="glyphicon glyphicon-eye-open action-button" aria-hidden="true"></span>
-              </a>
-              <router-link to="/my-devices">
-                <span class="glyphicon glyphicon-edit action-button" aria-hidden="true"></span>
-              </router-link>
-              <a @click="deleteDevice(device)">
-                <span class="glyphicon glyphicon-trash action-button" aria-hidden="true"></span>
-              </a>
-            </td>
-          </tr>
+            <tr v-for="device in devices" v-if="device.category_id == cat_filter
+                              || cat_filter == 'all' || cat_filter == 'placeholder'">
+              <td>{{device.devicelabel}}</td>
+              <td>{{device.technology}}</td>
+              <td>{{device.category_id}}</td>
+              <td>{{device.comment}}</td>
+              <td>
+                <a @click="getDevices()">
+                  <span class="glyphicon glyphicon-eye-open action-button" aria-hidden="true"></span>
+                </a>
+                <router-link to="/my-devices">
+                  <span class="glyphicon glyphicon-edit action-button" aria-hidden="true"></span>
+                </router-link>
+                <delete-device device="device"></delete-device>
+              </td>
+            </tr>
           </tbody>
         </table>
       </div>
     </div>
   </div>
 </template>
-<style lang="scss">
-  @import '../../styles/colors';
 
-  #add-button,#cat_filter {
-    margin-top: 2em;
-  }
-
-  .action-button {
-    margin-left: 1em;
-  }
-
-  a {
-    color: $primary-link-color;
-  }
-  #option_placeholder {
-    display: none;
-  }
-</style>
 <script>
   import auth from "../../auth/index.js"
   import DeviceRegForm from "./DeviceRegForm"
+  import DeleteDevice from "./DeleteDevice"
 
   export default{
     components: {
-      'device-registration-modal': DeviceRegForm
+      'device-registration-modal': DeviceRegForm,
+      'delete-device': DeleteDevice
     },
     props: {
       data: Array,
@@ -93,9 +76,9 @@
     name: 'my-devices',
     data () {
       var sortOrders = {}
-      this.columns.forEach(function (key) {
-        sortOrders[key] = 1;
-      })
+      //this.columns.forEach(function (key) {
+      //  sortOrders[key] = 1;
+      //})
 
       return {
         selected: '0',
@@ -116,24 +99,6 @@
         var index = this.devices.indexOf(device);
         this.devices.splice(index, 1);
       },
-      deleteDevice(device) {
-        var self = this;
-        this.$swal({
-          title: this.$t("MyDevices.delete.title"),
-          text: this.$t("MyDevices.delete.text"),
-          type: "warning",
-          showCancelButton: true,
-          confirmButtonColor: "#3e7d8b",
-          confirmButtonText: this.$t("MyDevices.delete.confirm"),
-          cancelButtonText: this.$t("MyDevices.delete.cancel"),
-          cancelButtonColor: "#9c9c9c"
-        }).then(function(device) {
-          auth.deleteDevice(self, {id: device.id});
-
-          var index = self.devices.indexOf(device);
-          self.devices.splice(index, 1);
-        })
-      },
       getDeviceData() {
         auth.getDevices(this);
       },
@@ -143,6 +108,10 @@
       sortBy: function (key) {
         this.sortKey = key
         this.sortOrders[key] = this.sortOrders[key] * -1
+      },
+      removeDevice: function(device) {
+        var index = this.devices.indexOf(device);
+        this.devices.splice(index, 1);
       }
     },
     mounted: function() {
@@ -179,3 +148,22 @@
     },
   }
 </script>
+
+<style lang="scss">
+  @import '../../styles/colors';
+
+  #add-button, #cat_filter {
+    margin-top: 2em;
+  }
+
+  .action-button {
+    margin-left: 1em;
+  }
+
+  a {
+    color: $primary-link-color;
+  }
+  #option_placeholder {
+    display: none;
+  }
+</style>
