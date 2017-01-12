@@ -1,5 +1,5 @@
 *** Settings ***
-Library  Selenium2Library
+Resource  resource.robot
 
 *** Keywords ***
 Gehe zur Seite Geraeteuebersicht
@@ -9,11 +9,11 @@ Gehe zur Seite Geraeteuebersicht
 
 Pruefe, dass die Geraeteuebersicht angezeigt wird
     [Documentation]  Für aktuelle Webseite wird geprüft, ob es sich um die Geraeteuebersicht handelt
-    Wait Until Page Contains Element  css=div#homepage
+    Wait Until Page Contains Element  css=div#my-devices-component
 
 Pruefe, dass die Geraetuebersicht verlassen wurde
     [Documentation]  Für aktuelle Webseite wird geprüft, ob es sich nicht um die Geraeteuebersicht handelt
-    Wait Until Page Does Not Contain Element  css=div#homepage
+    Wait Until Page Does Not Contain Element  css=div#my-devices-component
 
 Pruefe, dass das Geraeteregistrierungsformular angezeigt wird
     [Documentation]  Es wird geprüft, ob das Geraeteregistrierungsformular sichtbar ist

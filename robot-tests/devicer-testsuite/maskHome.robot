@@ -1,11 +1,11 @@
 *** Settings ***
-Library  Selenium2Library
+Resource  resource.robot
 
 *** Keywords ***
 Gehe zu Startseite
     [Documentation]  Startseite wird aufgerufen
     Go To  ${host}
-    Execute Javascript  window.localStorage.clear();
+    #Execute Javascript  window.localStorage.clear();
 
 Pruefe, dass die Startseite angezeigt wird
     [Documentation]  Für aktuelle Webseite wird geprüft, ob es sich um die Startseite handelt

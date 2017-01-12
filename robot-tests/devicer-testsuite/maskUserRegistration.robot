@@ -1,5 +1,5 @@
 *** Settings ***
-Library  Selenium2Library
+Resource  resource.robot
 
 *** Keywords ***
 Gehe zu Webseite Benutzer registrieren

@@ -4,6 +4,8 @@ Library  Collections
 Resource  maskHome.robot
 Resource  maskUserRegistration.robot
 Resource  maskMyDevices.robot
+Resource  maskUserRegistration.robot
+Resource  maskHome.robot
 
 *** Keywords ***
 Registriere neuen Benutzer
