@@ -6,8 +6,8 @@ git pull
 echo "####### shut down the app and remove container #######"
 docker-compose down
 docker-compose rm -f
-echo "####### delete all docker images #######"
-docker rmi $(docker images -q)
+echo "####### delete dangling docker images #######"
+docker rmi $(docker images -f "dangling=true" -q)
 echo "####### building the new docker images #######"
 docker-compose build
 echo "####### starting the app #######"
