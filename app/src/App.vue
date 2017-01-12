@@ -21,9 +21,9 @@ import TermsOfUse from './components/TermsOfUse'
 import Impressum from './components/Impressum'
 import Translations from './components/Translations'
 import UserEdit from './components/UserEdit'
-import DeviceRegForm from './components/DeviceRegForm'
+import DeviceRegForm from './components/MyDevices/DeviceRegForm'
 import DeleteProfileModal from './components/UserDeleteModal'
-import MyDevices from './components/MyDevices'
+import MyDevices from './components/MyDevices/MyDevices'
 import Toastr from 'vue-toastr'
 
 export default {

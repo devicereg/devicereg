@@ -187,7 +187,7 @@
   </div>
 </template>
 <script>
-import auth from '../auth'
+import auth from '../../auth'
 
 export default {
   name: 'device-registration-modal',
@@ -276,7 +276,7 @@ export default {
 }
 </script>
 <style lang="scss">
-  @import '../styles/_colors';
+  @import '../../styles/colors';
 
   .modal-title {
     font-weight: bold;
