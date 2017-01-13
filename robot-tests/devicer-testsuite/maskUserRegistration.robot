@@ -4,7 +4,7 @@ Resource  resource.robot
 *** Keywords ***
 Gehe zu Webseite Benutzer registrieren
     [Documentation]  Webseite "Benutzer registrieren" wird aufgerufen
-    Go To  ${host}registrieren
+    Go To  ${url}registrieren
 
 Pruefe, dass die Webseite Benutzer registrieren angezeigt wird
     [Documentation]  Für aktuelle Webseite wird geprüft, ob es sich um die Webseite "Benutzer registrieren" handelt
@@ -41,6 +41,8 @@ Gebe die Daten des neuen Benutzers ein
 	Input Text  id=register_number  &{Benutzer}[Hausnummer]
 	Input Text  id=register_zip  &{Benutzer}[PLZ]
 	Input Text  id=register_city  &{Benutzer}[Stadt]
+	Execute JavaScript  window.scrollTo(0, document.body.scrollHeight)
+    Sleep  0.5
     Click Element  id=register_country
     Click Element  xpath=//select[@id="register_country"]/option[contains(text(), "&{Benutzer}[Land]")]
 	Input Text  id=register_user  &{Benutzer}[Email]
