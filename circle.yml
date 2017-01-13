@@ -16,6 +16,7 @@ dependencies:
 test:
   override:
     - docker-compose up -d
+    #- ./run-acceptance_tests.sh
     #- curl --retry 20 --retry-delay 10 -v http://localhost:80
 
 deployment:
