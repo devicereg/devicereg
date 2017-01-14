@@ -11,7 +11,7 @@ dependencies:
   override:
     - docker info
     #- docker build --rm=false -t $DOCKER_USER/htw-berlin:devicereg .
-    - docker-compose build
+    - docker-compose --version
 
 test:
   override:
