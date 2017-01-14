@@ -5,10 +5,10 @@
       <br/>
       <p>{{$t("TermsOfUse.paragraph0")}}</p>
 
-      <h4>1. &nbsp; {{$t("TermsOfUse.header1")}}</h4>
+      <h4>1. &nbsp {{$t("TermsOfUse.header1")}}</h4>
       <p>{{$t("TermsOfUse.paragraph1")}}</p>
 
-      <h4>2. &nbsp; {{$t("TermsOfUse.header2")}}</h4>
+      <h4>2. &nbsp {{$t("TermsOfUse.header2")}}</h4>
       <p>{{$t("TermsOfUse.paragraph2_1")}}</p>
       <p>{{$t("TermsOfUse.paragraph2_2")}}</p>
       <p>{{$t("TermsOfUse.paragraph2_3")}}</p>
@@ -83,5 +83,19 @@
     font-size: 20px;
     margin-left: 30px;
     padding-top: 1em;
+  }
+
+  @media (max-width: 767px) {
+
+    h1 {
+      font-size: 1.5em;
+    }
+    h4 {
+      font-size: 1em;
+
+    }
+    p{
+      margin-left: 1.4em;
+    }
   }
 </style>

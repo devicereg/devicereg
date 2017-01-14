@@ -38,6 +38,15 @@
   }
 
   a {
-       color: primary-bg-color;
+     color: primary-bg-color;
         }
+
+@media (max-width: 767px) {
+    h1 {
+      font-size: 1.5em;
+    }
+    h4{
+      font-size: 1em;
+    }
+  }
 </style>
