@@ -40,8 +40,8 @@ RUN wget -q https://dl.google.com/linux/direct/google-chrome-stable_current_amd6
         dpkg -i google-chrome-stable_current_amd64.deb && \
         rm -rf google-chrome-stable_current_amd64.deb
 
-COPY robot-tests/webdriver-executables/chromedriver /usr/local/bin/chromedriver
-COPY robot-tests/webdriver-executables/geckodriver /usr/local/bin/geckodriver
+COPY webdriver-executables/chromedriver /usr/local/bin/chromedriver
+COPY webdriver-executables/geckodriver /usr/local/bin/geckodriver
 
-ADD robot-tests/run.sh /usr/local/bin/run.sh
+ADD run.sh /usr/local/bin/run.sh
 RUN chmod +x /usr/local/bin/run.sh
