@@ -6,6 +6,7 @@ general:
 machine:
   services:
     - docker
+    - docker-compose
 
 dependencies:
   override:
