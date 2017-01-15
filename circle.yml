@@ -22,6 +22,8 @@ test:
   override:
     - docker-compose up -d
     - curl --retry 20 --retry-delay 10 -v http://localhost:80
+    - cd
+    - ls
     - ./devicereg/run-acceptance_tests.sh
 
 deployment:
