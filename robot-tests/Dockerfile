@@ -43,5 +43,10 @@ RUN wget -q https://dl.google.com/linux/direct/google-chrome-stable_current_amd6
 COPY webdriver-executables/chromedriver /usr/local/bin/chromedriver
 COPY webdriver-executables/geckodriver /usr/local/bin/geckodriver
 
+ADD env.sh /usr/local/bin/env.sh
+RUN chmod +x /usr/local/bin/env.sh
+
 ADD run.sh /usr/local/bin/run.sh
 RUN chmod +x /usr/local/bin/run.sh
+
+CMD tail -f /dev/null

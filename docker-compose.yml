@@ -5,15 +5,26 @@ services:
     build: .
     command: npm run dev
     volumes:
-      - "./app:/src/app"
+      - "./app/:/src/app/"
     ports:
       - "80:8080"
       - "3001:3001"
   test:
     image: "htw-berlin/devicer-robot"
     build: ./robot-tests/
-    command: echo "robot tests are ready to run"
     volumes:
-      - "/robot-tests/devicer-testsuite"
+      - "./robot-tests/devicer-testsuite/:/robot-tests/devicer-testsuite/"
+      - "./app/static/robot-output/:/robot-test-output/"
+    environment:
+      - ROBOT_CONTAINER_NAME=${ROBOT_CONTAINER_NAME}
+      - ROBOT_DISPLAY=${ROBOT_DISPLAY}
+      - ROBOT_DISPLAY_RESOLUTION=${ROBOT_DISPLAY_RESOLUTION}
+      - ROBOT_BROWSER=${ROBOT_BROWSER}
+      - ROBOT_TESTS=${ROBOT_TESTS}
+      - ROBOT_USER=${ROBOT_USER}
+      - ROBOT_OUTPUTDIR=${ROBOT_OUTPUTDIR}
+      - ROBOT_LOG_LEVEL=${ROBOT_LOG_LEVEL} # Available levels: TRACE, DEBUG, INFO (default), WARN, NONE (no logging)
+      - WEB_IMAGE_HOST_NAME=${WEB_IMAGE_HOST_NAME}
+      - WEB_IMAGE_PORT=${WEB_IMAGE_PORT}
     links:
       - "web"
