@@ -23,14 +23,6 @@ test:
     - docker-compose up -d
     - curl --retry 20 --retry-delay 10 -v http://localhost:80
     - bash ./run_acceptance_tests.sh
-    #- >
-    #    docker run -e ROBOT_USER=${ROBOT_USER} -e WEB_IMAGE_NAME=${WEB_IMAGE_NAME} \
-    #        -e WEB_IMAGE_PORT=${WEB_IMAGE_PORT} -e ROBOT_BROWSER=${ROBOT_BROWSER} \
-    #        -e ROBOT_DISPLAY_RESOLUTION=${ROBOT_DISPLAY_RESOLUTION} \
-    #        -v $(pwd)/${ROBOT_TESTS}:/robot-tests/devicer-testsuite/ \
-    #        -v $(pwd)/${ROBOT_OUTPUTDIR}:/robot-test-output \
-    #        --link ${WEB_CONTAINER_NAME}:${WEB_IMAGE_NAME}  \
-    #        -ti --net ${COMPOSE_NETWORK_NAME} ${ROBOT_IMAGE_NAME} run.sh
 
 deployment:
   production:
