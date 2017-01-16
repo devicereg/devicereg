@@ -12,19 +12,5 @@ services:
   test:
     image: "htw-berlin/devicer-robot"
     build: ./robot-tests/
-    volumes:
-      - "./robot-tests/devicer-testsuite/:/robot-tests/devicer-testsuite/"
-      - "./app/static/test-output/:/robot-test-output/"
-    environment:
-      - ROBOT_CONTAINER_NAME=${ROBOT_CONTAINER_NAME}
-      - ROBOT_DISPLAY=${ROBOT_DISPLAY}
-      - ROBOT_DISPLAY_RESOLUTION=${ROBOT_DISPLAY_RESOLUTION}
-      - ROBOT_BROWSER=${ROBOT_BROWSER}
-      - ROBOT_TESTS=${ROBOT_TESTS}
-      - ROBOT_USER=${ROBOT_USER}
-      - ROBOT_OUTPUTDIR=${ROBOT_OUTPUTDIR}
-      - ROBOT_LOG_LEVEL=${ROBOT_LOG_LEVEL} # Available levels: TRACE, DEBUG, INFO (default), WARN, NONE (no logging)
-      - WEB_IMAGE_HOST_NAME=${WEB_IMAGE_HOST_NAME}
-      - WEB_IMAGE_PORT=${WEB_IMAGE_PORT}
     links:
       - "web"
