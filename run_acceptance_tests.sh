@@ -2,8 +2,8 @@
 ROBOT_DISPLAY_RESOLUTION=${ROBOT_DISPLAY_RESOLUTION:-"1280x1024x24"}
 ROBOT_USER=${ROBOT_USER:-"mustermax@mail.de"}
 ROBOT_BROWSER=${ROBOT_BROWSER:-"chrome"}
-ROBOT_OUTPUTDIR=${ROBOT_OUTPUTDIR:-"devicereg/app/static/test-output"}
-ROBOT_TESTS=${ROBOT_TESTS:-"devicereg/robot-tests/devicer-testsuite/"}
+ROBOT_OUTPUTDIR=${ROBOT_OUTPUTDIR:-"./devicereg/app/static/test-output"}
+ROBOT_TESTS=${ROBOT_TESTS:-"./devicereg/robot-tests/devicer-testsuite/"}
 ROBOT_IMAGE_NAME=${ROBOT_IMAGE_NAME:-"htw-berlin/devicer-robot"}
 
 WEB_IMAGE_NAME=${WEB_IMAGE_NAME:-"web"}

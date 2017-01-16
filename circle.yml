@@ -16,11 +16,11 @@ dependencies:
   override:
     - docker info
     #- docker build --rm=false -t $DOCKER_USER/htw-berlin:devicereg .
-    - docker-compose build
+    #- docker-compose build
 
 test:
   override:
-    - docker-compose up -d
+    #- docker-compose up -d
     - curl --retry 20 --retry-delay 10 -v http://localhost:80
     - bash /home/ubuntu/devicereg/run-acceptance_tests.sh
     #- >
