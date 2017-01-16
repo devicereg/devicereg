@@ -18,7 +18,7 @@
   </div>
 </template>
 
-<style>
+<style scoped lang="scss">
   .warranty-text{
     word-break: normal;
   }

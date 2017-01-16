@@ -10,7 +10,7 @@
     <div class="row">
       <form id="user-edit-form" role="form">
         <div class="col-sm-12 text-left">
-          <h2 class="registration-header-title">Profil bearbeiten</h2>
+          <h1 class="registration-header-title">Profil bearbeiten</h1>
           <input type="hidden" v-model="credentials.id">
 
           <legend>{{$t("RegistrationForm.personal_details")}}</legend>
@@ -281,7 +281,17 @@
 </script>
 
 <style lang="scss">
+
+
   .registration-header-title {
     margin-bottom: 1em;
+    font-weight: bold;
+  }
+
+  @media (max-width: 767px) {
+
+    h1 {
+      font-size: 1.5em;
+    }
   }
 </style>

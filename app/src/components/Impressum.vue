@@ -56,6 +56,7 @@
 </script>
 
 <style scoped lang="scss">
+
   h1 {
     font-weight: bold;
   }
@@ -70,9 +71,11 @@
   }
 
   @media (max-width: 767px) {
+
     h1 {
       font-size: 1.5em;
     }
+
     h4{
       font-size: 1em;
     }
