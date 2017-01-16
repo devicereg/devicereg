@@ -9,3 +9,4 @@ export ROBOT_CONTAINER_NAME=${ROBOT_CONTAINER_NAME:-"devicereg_test_1"} && \
     export ROBOT_LOG_LEVEL=${ROBOT_LOG_LEVEL:-"INFO"}  && \
     export WEB_IMAGE_HOST_NAME=${WEB_IMAGE_HOST_NAME:-"web"} && \
     export WEB_IMAGE_PORT=${WEB_IMAGE_PORT:-"8080"}
+exit
