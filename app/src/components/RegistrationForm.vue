@@ -141,7 +141,8 @@
             </div>
             <div class="col-sm-6">
               <input name="zip"
-              type="number"
+              type="text"
+              pattern="[0-9]{5}"
               class="form-control"
               id="register_zip"
               v-model="credentials.zip" required>

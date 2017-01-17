@@ -24,7 +24,6 @@
        </div>
 
        <div class="col-md-6">
-         <br />
          <login-form></login-form>
        </div>
 	  </div>
