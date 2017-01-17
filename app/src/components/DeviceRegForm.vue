@@ -245,7 +245,7 @@ export default {
 
       auth.createDevice(this, device);
       /* Pseudocode */
-      // MyDevices.devices.push(device);
+      this.$parent.devices.push(device);
     },
     getCategories() {
       auth.getCategories(this)
