@@ -65,6 +65,10 @@
 </template>
 <style scoped lang="scss">
 
+  h1 {
+    font-weight: bold;
+  }
+
   .login_up {
     margin-top: -20px;
   }
@@ -81,6 +85,12 @@
 		margin-left: 3em;
 	}
 
+  @media (max-width: 767px) {
+
+    h1 {
+      font-size: 1.5em;
+    }
+  }
 </style>
 <script>
 	import auth from '../auth'

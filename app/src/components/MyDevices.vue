@@ -62,6 +62,10 @@
 <style lang="scss">
   @import '../styles/_colors';
 
+  h1 {
+    font-weight: bold;
+  }
+
   #add-button,#cat_filter {
     margin-top: 2em;
   }
@@ -75,6 +79,13 @@
   }
   #option_placeholder {
     display: none;
+  }
+
+  @media (max-width: 767px) {
+
+    h1 {
+      font-size: 1.5em;
+    }
   }
 </style>
 <script>
