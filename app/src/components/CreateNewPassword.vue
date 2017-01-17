@@ -1,35 +1,40 @@
 <template>
-  <div class="container reset-password-form">
     <div class="row">
-
-      <form role="form">
-        <legend>Neues Passwort anlegen <span>( {{ credentials.prename }} {{ credentials.surname }} )</span></legend>
-        
-        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
-
+      <div class="col-sm-8">
+        <h1>{{ $t("CreateNewPassword.header") }}<span>( {{ credentials.prename }} {{ credentials.surname }} )</span></h1><form>
         <div class="form-group">
-          <label for="password">Passwort</label>
-          <input 
-            type="password" 
-            class="form-control" 
-            id="password" 
-            placeholder="Passwort"
-            v-model="credentials.password"
-            required
-          >
-          <label for="repeat_password">Passwort wiederholen</label>
-          <input 
-            type="password" 
-            class="form-control" 
-            id="repeat_password" 
-            placeholder="Passwort wiederholen"
+          <div class="input-group ">
+            <span class="input-group-addon">
+              <i class="glyphicon glyphicon-lock" aria-hidden="true"></i>
+            </span>
+              <input
+                type="password"
+                class="form-control"
+                id="password"
+                v-bind:placeholder="$t('CreateNewPassword.password')"
+                v-model="credentials.password"
+                required
+              >
+            </div>
+          </div>
+        <div class="form-group">
+          <div class="input-group ">
+            <span class="input-group-addon">
+              <i class="glyphicon glyphicon-lock" aria-hidden="true"></i>
+            </span>
+          <input
+            type="password"
+            class="form-control"
+            id="repeat_password"
+            v-bind:placeholder="$t('CreateNewPassword.password_repeat')"
             v-model="credentials.repeat_password"
             required
           >
+          </div>
         </div>
-      
-        <button class="btn btn-primary pull-right" @click="submit()">
-          {{ $t("ResetPassword.reset_password") }}
+
+        <button class="btn btn-primary pull-left" @click="submit()">
+          {{ $t("CreateNewPassword.reset_password_button") }}
         </button>
       </form>
     </div>
@@ -58,8 +63,8 @@
         if(this.credentials.password != this.credentials.repeat_password)
         {
           this.$parent.$refs.toastr.Add({
-              msg: "Die eingegebenen Passwörter stimmen nicht überein. Bitte prüfen Sie Ihre Eingaben.",
-              title: "Passwort zurücksetzen",
+              msg: this.$t("CreateNewPassword.toast_msg"),
+              title: this.$t("CreateNewPassword.toast_title"),
               clickClose: false,
               timeout: 8000,
               position: "toast-top-right",
@@ -76,16 +81,14 @@
 </script>
 
 <style lang="scss">
-  .reset-password-form {
-    form{
-      legend{
-        border-bottom:1px solid #ccc;
 
-        span{
-          font-weight:normal;
-          font-size:16px;
-        }
-      }
+  h1 {
+    font-weight: bold;
+  }
+
+  @media (max-width: 767px) {
+    h1 {
+      font-size: 1.5em;
     }
   }
 </style>
