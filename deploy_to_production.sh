@@ -7,8 +7,8 @@ echo "####### building the new docker images #######"
 docker-compose build
 echo "####### shut down the app and remove container #######"
 docker-compose down
-echo "####### starting the app #######"
-docker-compose up -d
 echo "####### delete old dangling images #######"
 docker rmi $(docker images -f "dangling=true" -q)
+echo "####### starting the app #######"
+docker-compose up -d
 exit
