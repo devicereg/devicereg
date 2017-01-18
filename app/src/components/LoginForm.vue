@@ -1,18 +1,10 @@
 <template xmlns:v-bind="http://www.w3.org/1999/xhtml">
 	<div class="login-form">
-    <div class="row">
-      <div class="col-xs-12">
-        <div class="alert alert-danger" v-if="error">
-          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-          <p>
-            <strong>{{ $t("LoginForm.login_fail") }}</strong>
-          </p>
-          <p>{{ error }}</p>
-        </div>
-        <form id="user-login-form" class="form-horizontal" role="form" v-if="!user.authenticated" v-on:submit.prevent="submitForm">
-          <div class="login_up">
-            <h1>{{ $t("LoginForm.registration") }}</h1>
-            <div class="form-group col-sm-12">
+      <!-- UI Message no User -->
+      <form id="user-login-form" class="form-horizontal" role="form" v-if="!user.authenticated" v-on:submit.prevent="submitForm">
+          <h1>{{ $t("LoginForm.registration") }}</h1>
+          <div class="form-group row">
+            <div class="col-xs-12">
               <div class="input-group">
                 <span class="input-group-addon">
                   <i class="glyphicon glyphicon-envelope"></i>
@@ -27,7 +19,9 @@
                   />
               </div>
             </div>
-            <div class="form-group col-sm-12">
+          </div>
+          <div class="form-group row">
+            <div class="col-xs-12">
               <div class="input-group ">
                 <span class="input-group-addon">
                   <i class="glyphicon glyphicon-lock" aria-hidden="true"></i>
@@ -42,45 +36,45 @@
                  />
               </div>
             </div>
-            <div class="form-group">
-  						<div class="checkbox_signIn col-sm-12">
-                <input type="checkbox" id="stay-logged-in"/>
-                <label for="stay-logged-in">{{ $t("LoginForm.remember_me") }}</label>
-              </div>
-            </div>
-            <div class="form-group">
-              <div class="col-sm-10">
-                <button type="submit" class="btn btn-primary"> {{ $t("LoginForm.sign_in") }}</button>
-                <router-link to="/reset-password"> | {{ $t("LoginForm.forgot") }}</router-link>
-              </div>
+          </div>
+          <div class="form-group row">
+            <div class="checkbox_signIn col-xs-12">
+              <input type="checkbox" id="stay-logged-in"/>
+              <label for="stay-logged-in">{{ $t("LoginForm.remember_me") }}</label>
             </div>
           </div>
-		</form>
+          <div class="form-group row">
+            <div class="col-sm-10">
+              <button type="submit" class="btn btn-primary"> {{ $t("LoginForm.sign_in") }}</button>
+              <router-link to="/reset-password"> | {{ $t("LoginForm.forgot") }}</router-link>
+            </div>
+          </div>
+		    </form>
 
 
         <button class="btn btn-warning" @click="logout()" v-else>{{ $t("LoginForm.logout") }}</button>
       </div>
-    </div>
-  </div>
 </template>
 <style scoped lang="scss">
 
-  .login_up {
-    margin-top: -20px;
-  }
-
-  form.user-login-form {
-    margin-left: 1em;
+  h1 {
+    font-weight: bold;
   }
 
 	h2 {
-	margin-bottom: 15px;
+	  margin-bottom: 15px;
 	}
 
 	.checkbox_signIn {
 		margin-left: 3em;
 	}
 
+  @media (max-width: 767px) {
+
+    h1 {
+      font-size: 1.5em;
+    }
+  }
 </style>
 <script>
 	import auth from '../auth'

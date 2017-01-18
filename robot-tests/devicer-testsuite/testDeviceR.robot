@@ -12,6 +12,6 @@ Einloggen des Benutzers Max Mustermann
     Benutzer einloggen  &{Mustermax}[Email]  &{Mustermax}[Passwort]
     Pruefe, dass die Geraeteuebersicht angezeigt wird
 
-#Registriere das Geraet der Geraet
-#    Registriere neues Geraet  &{Geraet}
-#    Schliesse Browser
+Registriere das Geraet der Geraet
+    Registriere neues Geraet  &{Geraet}
+    Schliesse Browser
