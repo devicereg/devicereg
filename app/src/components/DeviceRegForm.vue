@@ -227,7 +227,7 @@ export default {
     submit() {
       this.closeModalAndReset();
       var device = {
-        id: -1,
+        id: this.$parent.selected_device_id,
         technology: this.device.technology,
         category: this.device.category,
         devicelabel: this.device.devicelabel,

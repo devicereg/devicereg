@@ -44,9 +44,9 @@
               <td>{{device.category_id}}</td>
               <td>{{device.comment}}</td>
               <td>
-                <router-link to="editDevice(device)">
+                <a @click="editDevice(device)">
                   <span class="glyphicon glyphicon-edit action-button" aria-hidden="true"></span>
-                </router-link>
+                </a>
                 <a @click="deleteDevice(device)">
                   <span class="glyphicon glyphicon-trash action-button" aria-hidden="true"></span>
                 </a>
@@ -129,9 +129,9 @@
         this.devices.unshift(device);
       },
       updateDevice(device) {
-        auth.updateDevice(this, device);
+        //auth.updateDevice(this, device);
         var index = this.devices.indexOf(device);
-        this.devices.splice(index, 1);
+        this.devices.replace(index, device);
       },
       editDevice(device) {
         this.selected_device_id = device.id;
