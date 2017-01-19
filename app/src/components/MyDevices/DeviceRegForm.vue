@@ -7,7 +7,7 @@
             <span aria-hidden="true">×</span>
             <span class="sr-only">Schließen</span>
           </button>
-          <h2 class="modal-title">{{$t("DeviceRegForm.title")}}</h2>
+          <h1 class="modal-title">{{$t("DeviceRegForm.title")}}</h1>
         </div>
         <form id="device-registration-form" class="ajax" role="form" v-on:submit.prevent="submit">
           <div class="modal-body">
@@ -245,7 +245,7 @@ export default {
 
       auth.createDevice(this, device);
       /* Pseudocode */
-      // MyDevices.devices.push(device);
+      this.$parent.devices.push(device);
     },
     getCategories() {
       auth.getCategories(this)
@@ -280,6 +280,7 @@ export default {
 
   .modal-title {
     font-weight: bold;
+    text-align: left;
   }
 
   .btn-modal.btn-cancel {
@@ -347,5 +348,12 @@ export default {
 
   #maintenance, #calibration, #maintenanceMsg, #calibrationMsg {
     margin-left: 1em;
+  }
+
+  @media (max-width: 767px) {
+
+    h1 {
+      font-size: 1.5em;
+    }
   }
 </style>

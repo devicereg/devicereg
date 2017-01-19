@@ -68,8 +68,8 @@ export default {
     background: $body-background;
   }
 
-  h1, h2 {
-    font-weight: normal;
+  h1 {
+    font-weight: bold;
   }
 
   ul {
@@ -92,4 +92,12 @@ export default {
       cursor: pointer;
     }
   }
+
+  @media (max-width: 767px) {
+
+    h1 {
+      font-size: 1.5em;
+    }
+  }
+
 </style>

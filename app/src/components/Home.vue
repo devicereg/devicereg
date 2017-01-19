@@ -24,21 +24,9 @@
        </div>
 
        <div class="col-md-6">
-         <br />
          <login-form></login-form>
        </div>
 	  </div>
-
-    <!--div class="dropup">
-      <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
-        <span class="caret"></span></button>
-      <ul class="dropdown-menu">
-        <li><router-link to="/datenschutz">Datenschutz</router-link></li>
-        <li><router-link to="/terms-of-use">Nutzungsbedingungen</router-link></li>
-        <li><router-link to="/impressum">Impressum</router-link></li>
-        <li><router-link to="/aktionsbedingungen">Aktionsbedingungen</router-link></li>
-      </ul>
-    </div-->
 
 	</div>
 </template>
@@ -62,30 +50,14 @@
 <style lang="scss">
   @import '../styles/_colors';
 
-  .dropup {
-    display: none;
+  h1 {
+    font-weight: bold;
   }
 
-  @media only screen
-  and (max-width: 767px) {
+  @media (max-width: 767px) {
 
-    .dropup {
-      display: inline-block;
-      background-color: $primary-bg-color;
-      color: $primary-bg-color;
-      border: 10px solid $primary-bg-color;
-      z-index: 100;
-      position: fixed;
-      bottom: 0;
-      margin-top: 55px;
-      width: 100%;
-      text-align: center;
-    }
-
-    .texte {
-      display: none;
-      margin-top: 3em;
+    h1 {
+      font-size: 1.5em;
     }
   }
-
 </style>

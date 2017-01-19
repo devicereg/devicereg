@@ -2,8 +2,13 @@ general:
   branches:
     only:
       - master
+  artifacts:
+      - "~/devicereg/app/static/test-output"
 
 machine:
+  pre:
+    - curl -sSL https://s3.amazonaws.com/circle-downloads/install-circleci-docker.sh | bash -s -- 1.10.0
+    - sudo pip install docker-compose
   services:
     - docker
 
@@ -16,13 +21,14 @@ dependencies:
 test:
   override:
     - docker-compose up -d
-    #- curl --retry 20 --retry-delay 10 -v http://localhost:80
+    - curl --retry 20 --retry-delay 10 -v http://localhost:80
+    - bash ./run_acceptance_tests.sh
 
 deployment:
   production:
     branch: master
     commands:
-#      - docker login -e $DOCKER_MAIL -u $DOCKER_USER -p $DOCKER_PASS
-#      - docker push $DOCKER_USER/htw-berlin:devicereg
+      #- docker login -e $DOCKER_MAIL -u $DOCKER_USER -p $DOCKER_PASS
+      #- docker push $DOCKER_USER/htw-berlin:devicereg
       - ssh $SSH_SERVER -o ServerAliveInterval=30 < ./deploy_to_production.sh
-      - ssh $SSH_SERVER < ./run_acceptance_tests.sh
+      #- ssh $SSH_SERVER < ./run_acceptance_tests.sh

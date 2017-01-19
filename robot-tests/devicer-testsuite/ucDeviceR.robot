@@ -36,7 +36,4 @@ Registriere neues Geraet
     Rufe die Funktion Geraete hinzufuegen auf
     Gebe die Daten des neuen Geraetes ein  &{Geraet}
     Sende das Geraeteregistrierungsformular ab
-    Gehe zur Seite Geraeteuebersicht
     Pruefe, dass das Geraet in der Geraeteuebersicht angezeigt wird  &{Geraet}[Geraetebezeichnung]
-
-

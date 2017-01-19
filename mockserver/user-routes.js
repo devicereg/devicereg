@@ -220,7 +220,7 @@ app.post('/reset-user-password', function (req, res)
 
             var mailOptions = {
               from: 'DeviceR <info@devicer.com>',
-              to: req.body.email, 
+              to: req.body.email,
               subject: 'DeviceR Passwort zurückstetzen.',
               text: 'Bitte klicken Sie den Link unten an, um ein neues Passwort eingeben zu können',
               html: htmlMailTemplate

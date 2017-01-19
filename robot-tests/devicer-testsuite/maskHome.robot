@@ -4,7 +4,7 @@ Resource  resource.robot
 *** Keywords ***
 Gehe zu Startseite
     [Documentation]  Startseite wird aufgerufen
-    Go To  ${host}
+    Go To  ${url}
     #Execute Javascript  window.localStorage.clear();
 
 Pruefe, dass die Startseite angezeigt wird

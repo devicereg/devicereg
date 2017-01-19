@@ -4,8 +4,8 @@ Resource  resource.robot
 *** Keywords ***
 Gehe zur Seite Geraeteuebersicht
     [Documentation]  Geraeteuebersicht wird aufgerufen
-    Go To  ${host}my-devices
-    Execute Javascript  window.localStorage.clear();
+    Go To  ${url}my-devices
+    #Execute Javascript  window.localStorage.clear();
 
 Pruefe, dass die Geraeteuebersicht angezeigt wird
     [Documentation]  Für aktuelle Webseite wird geprüft, ob es sich um die Geraeteuebersicht handelt
@@ -50,4 +50,5 @@ Pruefe, dass das Geraet in der Geraeteuebersicht angezeigt wird
     [Documentation]  Es wird geprueft, ob das Geraet in der Geraeteuebersicht angezeigt wird
     [Arguments]  ${Geraetebezeichnung}
     Reload Page
-    Wait Until Page Contains Element  xpath=//tr/td[text()="${Geraetebezeichnung}"]
+    Wait Until Page Contains Element  xpath=//tr/td[text()="${Geraetebezeichnung}"]  timeout=10
+    #Wait Until Page Contains  ${Geraetebezeichnung} timeout=10
