@@ -9,6 +9,7 @@
   import Warranty from "./Translations/Warranty.json"
   import Home from "./Translations/Home.json"
   import LoginForm from "./Translations/LoginForm.json"
+  import Dashboard from "./Translations/Dashboard.json"
 
 
   var Vue = require('vue')
@@ -47,6 +48,13 @@
         register_problems: 'Probleme bei der Registrierung',
         titel: 'Kundensupport für Durchflussmessgeräte',
         visit: 'Besuchen Sie uns auf',
+      },
+
+      Dashboard: {
+        my_devices: 'Meine Geräte',
+        my_profile: 'Mein Profil',
+        message: 'Das ist Ihre Übersichtsseite',
+        welcome: 'Willkommen'
       },
 
       MyDevices: {
@@ -173,6 +181,13 @@
         register_problems: 'Problems with registration',
         titel: 'Flowmeter customer support',
         visit: 'Visit us at'
+      },
+
+      Dashboard: {
+        my_devices: 'My Devices',
+        my_profile: 'My Profile',
+        message: 'This is your Dashboard',
+        welcome: 'Welcome'
       },
 
       MyDevices: {
