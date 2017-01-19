@@ -114,7 +114,7 @@
 <style lang="scss">
   @import '../../styles/colors';
 
-  table {
+  table, td {
     border: 1px solid $darker-light-gray;
   }
 
