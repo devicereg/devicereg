@@ -64,6 +64,9 @@
         this.sortKey = key
         this.sortOrders[key] = this.sortOrders[key] * -1
       },
+      editDevice: function(device) {
+        this.$parent.editDevice(device);
+      }
     },
     computed: {
       filteredData: function () {
