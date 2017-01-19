@@ -1,9 +1,9 @@
 <template>
-  <div class="container new-password-confirmed">
     <div class="row">
-      <h2>Passwort wurde zurückgesetzt</h2>
-      <p>Neues Passwort wurde erfolgreich angelegt.</p>
-      <p><router-link to="/" type="button" class="btn btn-primary">Zur Anmeldung</router-link></p>
+      <div class="col-md-8">
+      <h1>{{ $t("NewPasswordConfirmed.header") }}</h1>
+      <p>{{ $t("NewPasswordConfirmed.paragraph") }}</p>
+      <p><router-link to="/" type="button" class="btn btn-primary">{{ $t("NewPasswordConfirmed.button") }}</router-link></p>
     </div>
   </div>
 </template>
@@ -15,15 +15,5 @@
 </script>
 
 <style lang="scss">
-  .new-password-confirmed {
-    
-    h2{
-      text-align:center;
-      border-bottom:1px solid #ccc;
-    }
 
-    p{
-      text-align:center;
-    }
-  }
 </style>

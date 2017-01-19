@@ -1,29 +1,33 @@
 <template>
-  <div class="container reset-password-form">
+
     <div class="row">
+      <div class="col-sm-8">
+        <h1>{{ $t("ResetPassword.reset_password") }}</h1>
+        <p>{{ $t("ResetPassword.paragraph") }}</p>
+        <form role="form">
+          <div class="form-group">
+            <div class="input-group col-sm-8">
+             <span class="input-group-addon">
+               <i class="glyphicon glyphicon-envelope"></i>
+             </span>
+              <input
+                type="email"
+                class="form-control"
+                id="email_reset"
+                :placeholder="$t('ResetPassword.email')"
+                v-model="credentials.email"
+                required
+              >
+            </div>
+          </div>
 
-      <form role="form">
-        <legend>{{ $t("ResetPassword.reset_password") }}</legend>
-        
-        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
-
-        <div class="form-group">
-          <input 
-            type="email" 
-            class="form-control" 
-            id="email_reset" 
-            :placeholder="$t('ResetPassword.email')"
-            v-model="credentials.email"
-            required
-          >
-        </div>
-      
-        <button class="btn btn-primary pull-right" @click="submit()">
-          {{ $t("ResetPassword.reset_password") }}
-        </button>
-      </form>
+          <button class="btn btn-primary pull-left" @click="submit()">
+            {{ $t("ResetPassword.reset_password_button") }}
+          </button>
+        </form>
+      </div>
     </div>
-  </div>
+
 </template>
 
 <script>
@@ -51,12 +55,16 @@
 	}
 </script>
 
-<style lang="scss">
-  .reset-password-form {
-    form{
-      legend{
-        border-bottom:1px solid #ccc;
-      }
+<style scoped lang="scss">
+
+  h1 {
+    font-weight: bold;
+  }
+
+  @media (max-width: 767px) {
+
+    h1 {
+      font-size: 1.5em;
     }
   }
 </style>
