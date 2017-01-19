@@ -44,12 +44,9 @@
             <td>{{device.category_id}}</td>
             <td>{{device.comment}}</td>
             <td>
-              <a @click="getDevices()">
-                <span class="glyphicon glyphicon-eye-open action-button" aria-hidden="true"></span>
-              </a>
-              <router-link to="/my-devices">
+              <a @click="editDevice(device)">
                 <span class="glyphicon glyphicon-edit action-button" aria-hidden="true"></span>
-              </router-link>
+              </a>
               <a @click="deleteDevice(device)">
                 <span class="glyphicon glyphicon-trash action-button" aria-hidden="true"></span>
               </a>
@@ -104,13 +101,40 @@
         selected: '0',
         categories: [],
         cat_filter: 'placeholder',
-        devices: []
+        devices: [],
+        selected_device_id: -1
       }
     },
     methods: {
-      editDevice(device) {
+      addDevice(device) {
+        auth.createDevice(this, device);
+        device.id = this.selected_device_id;
+        console.log(device);
+        this.devices.unshift(device);
+      },
+      updateDevice(device) {
+        auth.updateDevice(this, device);
         var index = this.devices.indexOf(device);
         this.devices.splice(index, 1);
+      },
+      editDevice(device) {
+        this.selected_device_id = device.id;
+        $('#device-registration-modal').modal('show');
+        $('#device-registration-form #id').val(device.id);
+        $('#device-registration-form #technology').val(device.technology);
+        $('#device-registration-form #category').val(device.category);
+        $('#device-registration-form #devicelabel').val(device.devicelabel);
+        $('#device-registration-form #serialnumber').val(device.serialnumber);
+        $('#device-registration-form #procmedium').val(device.procmedium);
+        $('#device-registration-form #comment').val(device.comment);
+        $('#device-registration-form #mInterval').val(device.mInterval);
+        $('#device-registration-form #mBeginning').val(device.mBeginning);
+        $('#device-registration-form #calibration').val(device.calibration);
+        $('#device-registration-form #maintenance').val(device.maintenance);
+        $('#device-registration-form #maintenanceMsg').val(device.maintenanceMsg);
+        $('#device-registration-form #cInterval').val(device.cInterval);
+        $('#device-registration-form #calibrationMsg').val(device.calibrationMsg);
+        $('#device-registration-form #cBeginning').val(device.cBeginning);
       },
       deleteDevice(device) {
         var self = this;

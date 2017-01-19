@@ -30,7 +30,7 @@
                   <label class="control-label" for="category">{{$t("DeviceRegForm.category")}}:</label>
                 </div>
                 <div class="col-xs-8 col-sm-6">
-                  <input @keydown.enter="createCustomCategory" name="category" type="text" class="form-control"
+                  <input  name="category" type="text" class="form-control"
                          id="custom_category" v-model="custom_category" required>
                 </div>
                 <div class="col-xs-4 col-sm-3">
@@ -78,6 +78,7 @@
                     <input name="label" type="text" class="form-control" id="devicelabel" v-model="device.devicelabel" required>
                   </div>
                 </div>
+                <!--input name="id" type="text" class="form-control" id="id" v-model="device.id" v-bind:value="-1" style="display: none;" required-->
               </div>
               <div class="row">
                 <div class="form-group col-sm-6">
@@ -175,7 +176,7 @@
           </div>
           <div class="modal-footer">
             <div class="col-sm-offset-6 col-xs-6 col-sm-3">
-              <button type="button" class="btn btn-block btn-md btn-cancel btn-modal" v-on:click="closeModalAndReset()" data-dismiss="modal">{{ $t('cancel') }}</button>
+              <button type="button" class="btn btn-block btn-md btn-cancel btn-modal" v-on:click="this.form.reset()" data-dismiss="modal">{{ $t('cancel') }}</button>
             </div>
             <div class="col-xs-6 col-sm-3">
               <input type="submit" class="btn btn-block btn-md btn-primary btn-modal" v-bind:value="$t('register')"></input>
@@ -227,6 +228,7 @@ export default {
     submit() {
       this.closeModalAndReset();
       var device = {
+        id: this.$parent.selected_device_id,
         technology: this.device.technology,
         category: this.device.category,
         devicelabel: this.device.devicelabel,
@@ -242,10 +244,11 @@ export default {
         calibrationMsg: this.device.calibrationMsg,
         cBeginning: this.device.cBeginning
       }
-
-      auth.createDevice(this, device);
-      /* Pseudocode */
-      this.$parent.devices.push(device);
+      if (device.id == -1) {
+        this.$parent.addDevice(device);
+      } else {
+        this.$parent.updateDevice(device);
+      }
     },
     getCategories() {
       auth.getCategories(this)
