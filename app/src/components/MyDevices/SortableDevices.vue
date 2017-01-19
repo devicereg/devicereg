@@ -11,7 +11,7 @@
       </tr>
       </thead>
       <transition-group name="device-list" tag="tbody">
-        <tr v-for="device in filteredData">
+        <tr v-for="device in filteredData" v-bind:key="device.id" class="device-list-item">
           <td v-for="key in gridColumns">{{ device[key] }}</td>
           <td>
             <a @click="editDevice(device)">
