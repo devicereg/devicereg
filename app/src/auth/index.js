@@ -286,7 +286,6 @@ export default {
   {
     context.$http.get(GET_CATEGORIES_URL).then((response) => {
       context.categories = JSON.parse(response.body);
-      console.log(context.categories);
     }, (err) => {
       context.error = err;
     });

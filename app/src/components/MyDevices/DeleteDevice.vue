@@ -24,10 +24,10 @@
           confirmButtonText: this.$t("MyDevices.delete.confirm"),
           cancelButtonText: this.$t("MyDevices.delete.cancel"),
           cancelButtonColor: "#9c9c9c"
-        }).then(function(device) {
+        }).then(function() {
           auth.deleteDevice(self, {id: device.id});
 
-          self.$parent.removeDevice(device); // dirty but only way without vuex
+          self.$parent.$parent.removeDevice(device); // dirty but only way without vuex
         })
       }
     }
