@@ -178,7 +178,7 @@
               <button type="button" class="btn btn-block btn-md btn-cancel btn-modal" v-on:click="closeModalAndReset()" data-dismiss="modal">{{ $t('cancel') }}</button>
             </div>
             <div class="col-xs-6 col-sm-3">
-              <input type="submit" class="btn btn-block btn-md btn-primary btn-modal" v-bind:value="$t('register')"></input>
+              <input type="submit" class="btn btn-block btn-md btn-primary btn-modal" v-bind:value="$t('register')">
             </div>
           </div>
         </form>
@@ -187,7 +187,7 @@
   </div>
 </template>
 <script>
-import auth from '../auth'
+import auth from '../../auth'
 
 export default {
   name: 'device-registration-modal',
@@ -278,7 +278,7 @@ export default {
 }
 </script>
 <style lang="scss">
-  @import '../styles/_colors';
+  @import '../../styles/colors';
 
   .modal-title {
     font-weight: bold;
