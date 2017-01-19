@@ -8,6 +8,7 @@
     "category": "Kategorie",
     "add_button": "Gerät hinzufügen",
     "all_categories": "Alle Kategorien",
+    "search_by": "Freitext-Suche",
     "filter_by": "Nach Kategorien filtern",
     "delete": {
       "title": "Gerät löschen?",
@@ -25,6 +26,7 @@
     "category": "Category",
     "add_button": "Add device",
     "all_categories": "All categories",
+    "search_by": "Search",
     "filter_by": "Filter by category",
     "delete": {
       "title": "Delete device?",
