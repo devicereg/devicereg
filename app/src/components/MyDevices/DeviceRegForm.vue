@@ -227,6 +227,7 @@ export default {
     submit() {
       this.closeModalAndReset();
       var device = {
+        id: this.$parent.selected_device_id,
         technology: this.device.technology,
         category: this.device.category,
         devicelabel: this.device.devicelabel,
@@ -242,10 +243,11 @@ export default {
         calibrationMsg: this.device.calibrationMsg,
         cBeginning: this.device.cBeginning
       }
-
-      auth.createDevice(this, device);
-      /* Pseudocode */
-      this.$parent.devices.push(device);
+      if (device.id == -1) {
+        this.$parent.addDevice(device);
+      } else {
+        this.$parent.updateDevice(device);
+      }
     },
     getCategories() {
       auth.getCategories(this)
