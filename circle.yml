@@ -3,7 +3,7 @@ general:
     only:
       - master
   artifacts:
-      - "~/robot-test-output"
+      - "/home/ubuntu/devicereg/robot-test-output"
 
 machine:
   pre:
@@ -23,7 +23,7 @@ dependencies:
 test:
   override:
     - docker-compose up -d
-    - curl --retry 20 --retry-delay 10 -v http://localhost:80
+    #- curl --retry 20 --retry-delay 10 -v http://localhost:80
     - bash ./run_acceptance_tests.sh
 
 deployment:
