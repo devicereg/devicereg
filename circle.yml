@@ -25,6 +25,7 @@ test:
     - docker-compose up -d
     - curl --retry 20 --retry-delay 10 -v http://localhost:80
     - bash ./run_acceptance_tests.sh
+    - cp -r ~/devicereg/app/static/test-output $CIRCLE_ARTIFACTS
 
 deployment:
   production:
