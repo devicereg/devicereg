@@ -1,7 +1,7 @@
 <template>
   <div>
-    <table class="table table-striped">
-      <thead>
+    <table class="table table-hover">
+      <thead class="table-header">
       <tr>
         <th v-for="key in gridColumns" @click="sortBy(key)" :class="{ active: sortKey == key }">
           {{ $t("MyDevices." + key) }}
@@ -114,12 +114,22 @@
 <style lang="scss">
   @import '../../styles/colors';
 
-  table, td {
+  table {
     border: 1px solid $darker-light-gray;
+    background: white;
   }
 
-  .table > thead > tr > th {
+  th {
     border: inherit;
+  }
+
+  td {
+    border: inherit;
+  }
+
+  .table-header {
+    background: $primary-bg-color;
+    color: $btn-txt-color;
   }
 
   th {
@@ -131,6 +141,21 @@
   }
 
   th.active {
+    color: $primary-link-color;
+    background: white;
+    opacity: 1;
+
+    .arrow.asc {
+      border-left: 4px solid transparent;
+      border-right: 4px solid transparent;
+      border-bottom: 4px solid $primary-link-color;;
+    }
+
+    .arrow.dsc {
+      border-left: 4px solid transparent;
+      border-right: 4px solid transparent;
+      border-top: 4px solid $primary-link-color;;
+    }
   }
 
   th.active .arrow {
@@ -143,19 +168,19 @@
     width: 0;
     height: 0;
     margin-left: 5px;
-    opacity: 0.33;
+    opacity: 0.56;
   }
 
   .arrow.asc {
     border-left: 4px solid transparent;
     border-right: 4px solid transparent;
-    border-bottom: 4px solid $primary-bg-color;
+    border-bottom: 4px solid white;
   }
 
   .arrow.dsc {
     border-left: 4px solid transparent;
     border-right: 4px solid transparent;
-    border-top: 4px solid $primary-bg-color;
+    border-top: 4px solid white;
   }
 
   .device-list-item {}
@@ -171,7 +196,7 @@
 
   .device-list-leave-to /* .device-list-leave-active for <2.1.8 */ {
     opacity: 0;
-    transform: translateX(-30px);
+    transform: translateX(30px);
   }
 
 </style>
