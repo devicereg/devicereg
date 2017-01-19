@@ -17,14 +17,11 @@
           <router-link to="/my-devices">
             <span class="glyphicon glyphicon-edit action-button" aria-hidden="true"></span>
           </router-link>
-          <delete-device device="device"></delete-device>
+          <delete-device :device="device"></delete-device>
         </td>
       </tr>
       </tbody>
     </table>
-    <form id="search">
-      Search <input name="query" v-model="filterKey">
-    </form>
   </div>
 </template>
 
@@ -33,6 +30,10 @@
   import auth from "../../auth/index.js"
 
   export default{
+    props: [
+      'filterKey',
+      'categoryFilter'
+    ],
     data() {
       var gridColumns = ['devicelabel', 'technology', 'category', 'device_description'];
       var sortOrders = {}
@@ -45,7 +46,6 @@
         devices: [],
         sortOrders: sortOrders,
         gridColumns: gridColumns,
-        filterKey: '',
         sortKey: '',
         gridData: [
           this.devices
@@ -77,6 +77,13 @@
         var filterKey = this.filterKey && this.filterKey.toLowerCase()
         var order = this.sortOrders[sortKey] || 1
         var data = this.devices
+        var categoryFilter = this.categoryFilter;
+
+        if (categoryFilter && categoryFilter != 'all') {
+          data = data.filter(function (row) {
+            return row.category_id === categoryFilter;
+          })
+        }
 
         if (filterKey) {
           data = data.filter(function (row) {
@@ -106,6 +113,10 @@
 
 <style lang="scss">
   @import '../../styles/colors';
+
+  table {
+    border: 1px solid $darker-light-gray;
+  }
 
   th {
     cursor: pointer;
