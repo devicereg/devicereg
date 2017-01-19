@@ -227,6 +227,7 @@ export default {
     submit() {
       this.closeModalAndReset();
       var device = {
+        id: -1,
         technology: this.device.technology,
         category: this.device.category,
         devicelabel: this.device.devicelabel,
@@ -243,9 +244,11 @@ export default {
         cBeginning: this.device.cBeginning
       }
 
-      auth.createDevice(this, device);
-      /* Pseudocode */
-      this.$parent.devices.push(device);
+      var result = auth.createDevice(this, device);
+      device.id = result.id;
+      console.log(deviceID);
+
+      this.$parent.devices.splice(deviceID, 1, device);
     },
     getCategories() {
       auth.getCategories(this)
