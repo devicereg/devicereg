@@ -10,17 +10,17 @@
         <th>&nbsp;</th>
       </tr>
       </thead>
-      <tbody>
-      <tr v-for="device in filteredData">
-        <td v-for="key in gridColumns">{{ device[key] }}</td>
-        <td>
-          <router-link to="/my-devices">
-            <span class="glyphicon glyphicon-edit action-button" aria-hidden="true"></span>
-          </router-link>
-          <delete-device :device="device"></delete-device>
-        </td>
-      </tr>
-      </tbody>
+      <transition-group name="device-list" tag="tbody">
+        <tr v-for="device in filteredData">
+          <td v-for="key in gridColumns">{{ device[key] }}</td>
+          <td>
+            <a @click="editDevice(device)">
+              <span class="glyphicon glyphicon-edit action-button" aria-hidden="true"></span>
+            </a>
+            <delete-device :device="device"></delete-device>
+          </td>
+        </tr>
+      </transition-group>
     </table>
   </div>
 </template>
@@ -32,7 +32,8 @@
   export default{
     props: [
       'filterKey',
-      'categoryFilter'
+      'categoryFilter',
+      'devices'
     ],
     data() {
       var gridColumns = ['devicelabel', 'technology', 'category', 'device_description'];
@@ -43,7 +44,6 @@
       })
 
       return {
-        devices: [],
         sortOrders: sortOrders,
         gridColumns: gridColumns,
         sortKey: '',
@@ -56,9 +56,6 @@
       'delete-device': DeleteDevice
     },
     methods: {
-      getDeviceData() {
-        auth.getDevices(this);
-      },
       removeDevice: function(device) {
         var index = this.devices.indexOf(device);
         this.devices.splice(index, 1);
@@ -67,9 +64,6 @@
         this.sortKey = key
         this.sortOrders[key] = this.sortOrders[key] * -1
       },
-    },
-    mounted: function() {
-      this.getDeviceData();
     },
     computed: {
       filteredData: function () {
@@ -92,6 +86,7 @@
             })
           })
         }
+
         if (sortKey) {
           data = data.slice().sort(function (a, b) {
             a = a[sortKey]
@@ -99,6 +94,8 @@
             return (a === b ? 0 : a > b ? 1 : -1) * order
           })
         }
+
+        console.debug(data)
 
         return data
       }
@@ -157,4 +154,21 @@
     border-right: 4px solid transparent;
     border-top: 4px solid $primary-bg-color;
   }
+
+  .device-list-item {}
+
+  .device-list-enter-active, .device-list-leave-active {
+    transition: all 1s;
+  }
+
+  .device-list-enter /* .device-list-leave-active for <2.1.8 */ {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+
+  .device-list-leave-to /* .device-list-leave-active for <2.1.8 */ {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+
 </style>

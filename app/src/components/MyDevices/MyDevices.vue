@@ -12,11 +12,11 @@
       </div>
     </div>
     <div class="row">
-      <filter-input-elements :categories="categories"></filter-input-elements>
+      <filter-input-elements></filter-input-elements>
     </div>
     <div class="row">
       <div class="col-sm-12">
-        <sortable-devices :filterKey="filter" :categoryFilter="cat_filter"></sortable-devices>
+        <sortable-devices :devices="devices" :filterKey="filter" :categoryFilter="cat_filter"></sortable-devices>
       </div>
     </div>
   </div>
@@ -37,19 +37,49 @@
     name: 'my-devices',
     data () {
       return {
-        selected: '0',
-        categories: [],
         filter: '',
-        cat_filter: 'all'
+        cat_filter: 'all',
+        selected_device_id: -1,
+        devices: []
       }
     },
     methods: {
-      getCategories() {
-        auth.getCategories(this);
-      }
+      addDevice(device) {
+          auth.createDevice(this, device);
+          device.id = this.selected_device_id;
+
+          this.devices.unshift(device);
+      },
+      updateDevice(device) {
+        var index = this.devices.indexOf(device);
+        this.devices.replace(index, device);
+      },
+      editDevice(device) {
+        this.selected_device_id = device.id;
+
+        $('#device-registration-modal').modal('show');
+        $('#device-registration-form #id').val(device.id);
+        $('#device-registration-form #technology').val(device.technology);
+        $('#device-registration-form #category').val(device.category);
+        $('#device-registration-form #devicelabel').val(device.devicelabel);
+        $('#device-registration-form #serialnumber').val(device.serialnumber);
+        $('#device-registration-form #procmedium').val(device.procmedium);
+        $('#device-registration-form #comment').val(device.comment);
+        $('#device-registration-form #mInterval').val(device.mInterval);
+        $('#device-registration-form #mBeginning').val(device.mBeginning);
+        $('#device-registration-form #calibration').val(device.calibration);
+        $('#device-registration-form #maintenance').val(device.maintenance);
+        $('#device-registration-form #maintenanceMsg').val(device.maintenanceMsg);
+        $('#device-registration-form #cInterval').val(device.cInterval);
+        $('#device-registration-form #calibrationMsg').val(device.calibrationMsg);
+        $('#device-registration-form #cBeginning').val(device.cBeginning);
+      },
+      getDeviceData() {
+        auth.getDevices(this);
+      },
     },
     mounted: function() {
-      this.getCategories();
+      this.getDeviceData();
     },
   }
 </script>

@@ -18,15 +18,23 @@
 </template>
 
 <script>
+  import auth from "../../auth/index.js"
+
   export default{
-    props: [
-      'categories'
-    ],
     data(){
       return {
+        categories: [],
         filterKey: "",
         cat_filter: 'placeholder',
       }
+    },
+    methods: {
+      getCategories() {
+        auth.getCategories(this);
+      }
+    },
+    mounted: function() {
+      this.getCategories();
     },
     watch: {
       'filterKey': function(value) {
@@ -35,7 +43,6 @@
       'cat_filter': function(value) {
         this.$parent.cat_filter = value;
       }
-
     }
   }
 </script>
