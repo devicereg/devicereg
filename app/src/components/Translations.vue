@@ -48,7 +48,7 @@
         titel: 'Kundensupport für Durchflussmessgeräte',
         visit: 'Besuchen Sie uns auf',
       },
-      
+
       MyDevices: {
         title: 'Meine Geräte',
         technology: 'Technologie',
@@ -109,20 +109,39 @@
       },
       ResetPassword: {
         reset_password: 'Passwort zurücksetzen',
-        email: 'E-Mail Adresse'
+        email: 'E-Mail Adresse',
+        reset_password_button: "Abschicken",
+        paragraph: "Sie werden eine E-mail mit einem Link erhalten, um Ihr Passwort zurückzusetzen.",
+        toast_title: 'Passwort zurücksetzen',
+        toast_msg: 'Es wurde eine E-Mail an die folgende Adresse gesendet: '
+      },
+
+      NewPasswordConfirmed: {
+        header: 'Passwort zurückgesetzt',
+        paragraph: 'Das Passwort wurde erfolgreich geändert.',
+        button: 'Zurück zum Login'
+      },
+
+      CreateNewPassword: {
+        header: 'Neues passwort anlegen',
+        password: 'Passwort',
+        password_repeat: 'Passwort wiederholen',
+        reset_password_button: 'Passwort zurücksetzen',
+        toast_title: 'Neues Passwort anlegen',
+        toast_msg: 'Die eingegebenen Passwörter stimmen nicht überein. Bitte prüfen Sie Ihre Eingaben.'
       },
 
       Contact: Contact.de,
-      MyDevices: MyDevices.de,
-      RegistrationForm: RegistrationForm.de,
-      DeviceRegForm: DeviceRegForm.de,
-      TermsOfUse: TermsOfUse.de,
-      Datenschutz: Datenschutz.de,
-      Warranty: Warranty.de,
-      Impressum: Impressum.de,
-      Home: Home.de,
-      LoginForm: LoginForm.de
-    },
+        MyDevices: MyDevices.de,
+        RegistrationForm: RegistrationForm.de,
+        DeviceRegForm: DeviceRegForm.de,
+        TermsOfUse: TermsOfUse.de,
+        Datenschutz: Datenschutz.de,
+        Warranty: Warranty.de,
+        Impressum: Impressum.de,
+        Home: Home.de,
+        LoginForm: LoginForm.de
+      },
 
     en: {
       address: 'Address',
@@ -216,20 +235,39 @@
       },
 
       ResetPassword: {
-        reset_password: 'Reset Password',
-        email: 'E-Mail address'
+        reset_password: 'Reset password',
+        email: 'E-Mail address',
+        reset_password_button: "Submit",
+        paragraph: "You'll receive an email containing a link that will allow you to reset your password.",
+        toast_title: 'Reset password',
+        toast_msg: 'E-Mail send to the following adress: '
+      },
+
+      NewPasswordConfirmed: {
+        header: 'Reset password',
+        paragraph: 'Your password has been successfully changed.',
+        button: 'Back to Login'
+      },
+
+      CreateNewPassword: {
+        header: 'Create a new password',
+        password: 'Password',
+        password_repeat: 'Repeat password',
+        reset_password_button: 'Reset password',
+        toast_title: 'Create a new password',
+        toast_msg: 'The entered passwords do not match'
       },
 
       Contact: Contact.en,
-      MyDevices: MyDevices.en,
-      RegistrationForm: RegistrationForm.en,
-      DeviceRegForm: DeviceRegForm.en,
-      TermsOfUse: TermsOfUse.en,
-      Datenschutz: Datenschutz.en,
-      Warranty: Warranty.en,
-      Impressum: Impressum.en,
-      Home: Home.en,
-      LoginForm: LoginForm.en
+        MyDevices: MyDevices.en,
+        RegistrationForm: RegistrationForm.en,
+        DeviceRegForm: DeviceRegForm.en,
+        TermsOfUse: TermsOfUse.en,
+        Datenschutz: Datenschutz.en,
+        Warranty: Warranty.en,
+        Impressum: Impressum.en,
+        Home: Home.en,
+        LoginForm: LoginForm.en
     }
   }
 
