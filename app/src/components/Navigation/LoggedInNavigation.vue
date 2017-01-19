@@ -1,17 +1,20 @@
 <template>
   <div id="navbar" class="navbar-collapse collapse">
-    <ul class="nav navbar-nav navbar-left">
+    <!--<ul class="nav navbar-nav navbar-left">
       <li>
         <router-link to="/my-devices"><strong> {{ $t('my_devices') }} </strong></router-link>
       </li>
-    </ul>
+    </ul>-->
     <ul class="nav navbar-nav navbar-right">
+      <li>
+        <router-link to="/my-devices"><strong> {{ $t('my_devices') }} </strong></router-link>
+      </li>
       <li>
         <router-link to="/contact"><strong> {{ $t('contact') }} </strong></router-link>
       </li>
       <language-switch></language-switch>
       <li class="dropdown">
-        <a class="dropdown-toggle" data-toggle="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <span class="glyphicon glyphicon-user"></span>
         </a>
         <ul class="dropdown-menu" role="menu">
@@ -22,7 +25,6 @@
           <li @click="logout()">
             <router-link to="/login"><strong> {{ $t('logout') }} </strong></router-link>
           </li>
-
         </ul>
       </li>
       <!--<li class="logout-user" @click="logout()">
@@ -96,4 +98,4 @@ export default {
     }
   }
 
-</style>
+</style>-->
