@@ -11,7 +11,12 @@
       </tr>
       </thead>
       <transition-group name="device-list" tag="tbody">
-        <tr v-for="device in filteredData" v-bind:key="device.id" class="device-list-item">
+        <tr v-for="device in filteredData"
+            class="device-list-item"
+            v-bind:id="'device_' + device.id"
+            v-bind:key="device.id"
+            v-on:click="toggleDetail(device.id)"
+        >
           <td v-for="key in gridColumns">{{ device[key] }}</td>
           <td>
             <a @click="editDevice(device)">
@@ -19,6 +24,17 @@
             </a>
             <delete-device :device="device"></delete-device>
           </td>
+          <div>
+            <tr v-bind:id="'details_' + device.id" class="hide">
+              <td colspan="5">
+                <div class="row">
+                  <div class="col-xs-12">
+                    <pre>{{ device }}</pre>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </div>
         </tr>
       </transition-group>
     </table>
@@ -56,6 +72,13 @@
       'delete-device': DeleteDevice
     },
     methods: {
+      toggleDetail: function(id) {
+        var detailView = $("#details_" + id);
+        var parentRow = $("#device_" + id);
+
+        detailView.insertAfter(parentRow)
+        detailView.toggleClass('hide')
+      },
       removeDevice: function(device) {
         var index = this.devices.indexOf(device);
         this.devices.splice(index, 1);
@@ -98,8 +121,6 @@
           })
         }
 
-        console.debug(data)
-
         return data
       }
     },
@@ -128,7 +149,7 @@
   }
 
   .table-header {
-    background: $primary-bg-color;
+    background: $light-blue;
     color: $btn-txt-color;
   }
 
