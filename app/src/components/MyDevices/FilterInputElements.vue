@@ -44,8 +44,8 @@
   @import '../../styles/colors';
 
   .filter {
-    border-top: 1px solid $darker-light-gray;
-    border-bottom: 1px solid $darker-light-gray;
+    border-top:     1px solid $darker-light-gray;
+    border-bottom:  1px solid $darker-light-gray;
     margin: 2em 0;
     padding: 1em;
   }

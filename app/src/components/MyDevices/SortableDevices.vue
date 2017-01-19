@@ -118,6 +118,10 @@
     border: 1px solid $darker-light-gray;
   }
 
+  .table > thead > tr > th {
+    border: inherit;
+  }
+
   th {
     cursor: pointer;
     -webkit-user-select: none;
@@ -139,7 +143,7 @@
     width: 0;
     height: 0;
     margin-left: 5px;
-    opacity: 0.66;
+    opacity: 0.33;
   }
 
   .arrow.asc {
