@@ -49,6 +49,13 @@
         visit: 'Besuchen Sie uns auf',
       },
 
+      Dashboard: {
+        message: 'Das ist Deine Übersicht',
+        my_profile: 'Mein Profil',
+        my_devices: 'Meine Geräte',
+        welcome: 'Willkommen'
+      },
+
       MyDevices: {
         title: 'Meine Geräte',
         technology: 'Technologie',
@@ -173,6 +180,13 @@
         register_problems: 'Problems with registration',
         titel: 'Flowmeter customer support',
         visit: 'Visit us at'
+      },
+
+      Dashboard: {
+        message: 'This is your Dashboard',
+        my_profile: 'My Profile',
+        my_devices: 'My Devices',
+        welcome: 'Welcome'
       },
 
       MyDevices: {
