@@ -188,7 +188,44 @@ app.post('/device/create', function (req, res)
         $cBeginning: req.body.cBeginning,
         $category: req.body.category,
         $user: 1 //@TODO
-      }
+      },
+        function (err) {
+          res.status(201).send({
+            message: "Gerät wurde angelegt!",
+            id: this.lastID
+          });
+        }
+    );
+  });
+});
+
+app.post('/device/update', function (req, res)
+{
+  db.serialize(function()
+  {
+    db.run(
+      "UPDATE device " +
+      "SET technology=?, devicelabel=?, serialnumber=?, procmedium=?, comment=?, mInterval=?, mBeginning=?, " +
+      "calibration=?, maintenance=?, maintenanceMsg=?, cInterval=?, calibrationMsg=?, cBeginning=?, category_id=?, user_id=?)" +
+      "WHERE id=?",
+      [
+        req.body.technology,
+        req.body.devicelabel,
+        req.body.serialnumber,
+        req.body.procmedium,
+        req.body.comment,
+        req.body.mInterval,
+        req.body.mBeginning,
+        req.body.calibration,
+        req.body.maintenance,
+        req.body.maintenanceMsg,
+        req.body.cInterval,
+        req.body.calibrationMsg,
+        req.body.cBeginning,
+        req.body.category,
+        1, //TODO
+        req.body.id
+      ]
     );
   });
 });
