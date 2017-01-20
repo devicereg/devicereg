@@ -1,6 +1,6 @@
 <template>
-    <div class="col-xs-12 filter  form-group">
-      <div class="row">
+    <div class="col-xs-12 filter">
+      <div class="form-group row">
         <div class="col-sm-8">
           <form id="search">
             <label for="search-query">{{ $t("MyDevices.search_by") }}:</label>
@@ -22,20 +22,14 @@
   import auth from "../../auth/index.js"
 
   export default{
+    props: [
+      'categories'
+    ],
     data(){
       return {
-        categories: [],
         filterKey: "",
         cat_filter: 'all',
       }
-    },
-    methods: {
-      getCategories() {
-        auth.getCategories(this);
-      }
-    },
-    mounted: function() {
-      this.getCategories();
     },
     watch: {
       'filterKey': function(value) {
@@ -55,6 +49,6 @@
     //border-top:     1px solid $darker-light-gray;
     //border-bottom:  1px solid $darker-light-gray;
     //margin: 2em 0;
-    padding: 1em;
+    //padding: 1em;
   }
 </style>

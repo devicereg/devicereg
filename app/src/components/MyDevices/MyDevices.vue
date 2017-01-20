@@ -1,22 +1,22 @@
 <template>
   <div id="my-devices-component">
-    <device-registration-modal></device-registration-modal>
+    <device-registration-modal :device="device" :categories="categories"></device-registration-modal>
     <div class="row">
       <div class="col-sm-8">
         <h1> {{$t("MyDevices.title")}} </h1>
       </div>
       <div class="col-sm-4">
-        <a href="#" id="add-button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#device-registration-modal">
+        <a href="#" id="add-button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#device-registration-modal" v-on:click="clearDevice()">
           <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> &nbsp; {{ $t("MyDevices.add_button") }}
         </a>
       </div>
     </div>
     <div class="row">
-      <filter-input-elements></filter-input-elements>
+      <filter-input-elements :categories="categories"></filter-input-elements>
     </div>
     <div class="row">
       <div class="col-sm-12">
-        <sortable-devices :devices="devices" :filterKey="filter" :categoryFilter="cat_filter"></sortable-devices>
+        <sortable-devices :devices="devices" :categories="categories" :filterKey="filter" :categoryFilter="cat_filter"></sortable-devices>
       </div>
     </div>
   </div>
@@ -39,48 +39,56 @@
       return {
         filter: '',
         cat_filter: 'all',
-        selected_device_id: -1,
-        devices: []
+        categories: [],
+        devices: [],
+        device: {}
       }
     },
     methods: {
+      clearDevice() {
+        this.device = {
+          id: -1,
+          technology: '',
+          category_id: '',
+          devicelabel: '',
+          serialnumber: '',
+          procmedium: '', //Process fluid, e.g.H2O
+          comment: '',
+          mInterval: '', //Interval for maintenance schedule
+          mBeginning: '', //start date of recieving notifications about maintenance schedules
+          calibration: 0, //boolean, true if calibration desired
+          maintenance: 0, //boolean, true if maintenance desired
+          maintenanceMsg: 0, //boolean, true if notifications about maintenance schedule desired
+          cInterval: '', //Interval for calibration schedule
+          calibrationMsg: 0, //boolean, true if notifications about calibration schedule desired
+          cBeginning: '' //start date of recieving notifications about calibration schedules
+        };
+      },
       addDevice(device) {
-          auth.createDevice(this, device);
-          device.id = this.selected_device_id;
-
-          this.devices.unshift(device);
+        auth.createDevice(this, device);
+        device.id = this.device.id;
+        this.devices.unshift(device);
       },
       updateDevice(device) {
+        auth.updateDevice(this. device);
         var index = this.devices.indexOf(device);
-        this.devices.replace(index, device);
+        this.devices.splice(index, 1, device);
       },
       editDevice(device) {
-        this.selected_device_id = device.id;
-
+        this.device = device;
         $('#device-registration-modal').modal('show');
-        $('#device-registration-form #id').val(device.id);
-        $('#device-registration-form #technology').val(device.technology);
-        $('#device-registration-form #category').val(device.category);
-        $('#device-registration-form #devicelabel').val(device.devicelabel);
-        $('#device-registration-form #serialnumber').val(device.serialnumber);
-        $('#device-registration-form #procmedium').val(device.procmedium);
-        $('#device-registration-form #comment').val(device.comment);
-        $('#device-registration-form #mInterval').val(device.mInterval);
-        $('#device-registration-form #mBeginning').val(device.mBeginning);
-        $('#device-registration-form #calibration').val(device.calibration);
-        $('#device-registration-form #maintenance').val(device.maintenance);
-        $('#device-registration-form #maintenanceMsg').val(device.maintenanceMsg);
-        $('#device-registration-form #cInterval').val(device.cInterval);
-        $('#device-registration-form #calibrationMsg').val(device.calibrationMsg);
-        $('#device-registration-form #cBeginning').val(device.cBeginning);
       },
       getDeviceData() {
         auth.getDevices(this);
       },
+      getCategories() {
+        auth.getCategories(this);
+      }
     },
     mounted: function() {
       this.getDeviceData();
-    },
+      this.getCategories();
+    }
   }
 </script>
 

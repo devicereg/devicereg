@@ -9,7 +9,7 @@
           </button>
           <h1 class="modal-title">{{$t("DeviceRegForm.title")}}</h1>
         </div>
-        <form id="device-registration-form" class="ajax" role="form" v-on:submit.prevent="submit">
+        <form id="device-registration-form" class="ajax" role="form" v-on:submit.prevent="submit" >
           <div class="modal-body">
             <div class="container-fluid">
               <div class="form-group row">
@@ -44,10 +44,10 @@
               </div>
               <div class="form-group row" v-else>
                 <div class="col-sm-12">
-                  <label class="control-label" for="category">{{$t("DeviceRegForm.category")}}:</label>
+                  <label class="control-label" for="category_id">{{$t("DeviceRegForm.category")}}:</label>
                 </div>
                 <div class="col-sm-6">
-                  <select name="category" class="form-control" id="category" required v-model="device.category">
+                  <select name="category" class="form-control" id="category_id" required v-model="device.category_id">
                     <option v-bind:value="item.id" v-for="item in categories">{{item.name}}</option>
                   </select>
                 </div>
@@ -175,10 +175,13 @@
           </div>
           <div class="modal-footer">
             <div class="col-sm-offset-6 col-xs-6 col-sm-3">
-              <button type="button" class="btn btn-block btn-md btn-cancel btn-modal" v-on:click="closeModalAndReset()" data-dismiss="modal">{{ $t('cancel') }}</button>
+              <button type="button" class="btn btn-block btn-md btn-cancel btn-modal" data-dismiss="modal">{{ $t('cancel') }}</button>
             </div>
-            <div class="col-xs-6 col-sm-3">
+            <div v-if="device.id == -1" class="col-xs-6 col-sm-3">
               <input type="submit" class="btn btn-block btn-md btn-primary btn-modal" v-bind:value="$t('register')">
+            </div>
+            <div v-else class="col-xs-6 col-sm-3">
+              <input type="submit" class="btn btn-block btn-md btn-primary btn-modal" v-bind:value="$t('save')">
             </div>
           </div>
         </form>
@@ -191,26 +194,13 @@ import auth from '../../auth'
 
 export default {
   name: 'device-registration-modal',
+  props: [
+    'device',
+    'categories'
+  ],
   data () {
     return {
       custom_category: '',
-      device: {
-        technology: '',
-        category: '',
-        devicelabel: '',
-        serialnumber: '',
-        procmedium: '', //Process fluid, e.g.H2O
-        comment: '',
-        mInterval: '', //Interval for maintenance schedule
-        mBeginning: '', //start date of recieving notifications about maintenance schedules
-        calibration: 0, //boolean, true if calibration desired
-        maintenance: 0, //boolean, true if maintenance desired
-        maintenanceMsg: 0, //boolean, true if notifications about maintenance schedule desired
-        cInterval: '', //Interval for calibration schedule
-        calibrationMsg: 0, //boolean, true if notifications about calibration schedule desired
-        cBeginning: '' //start date of recieving notifications about calibration schedules
-      },
-      categories: [],
       technologies: [
         {id: 1, name: 'Rotamass'},
         {id: 2, name: 'Flowmeter'}
@@ -225,32 +215,12 @@ export default {
   },
   methods: {
     submit() {
-      this.closeModalAndReset();
-      var device = {
-        id: this.$parent.selected_device_id,
-        technology: this.device.technology,
-        category: this.device.category,
-        devicelabel: this.device.devicelabel,
-        serialnumber: this.device.serialnumber,
-        procmedium: this.device.procmedium,
-        comment: this.device.comment,
-        mInterval: this.device.mInterval,
-        mBeginning: this.device.mBeginning,
-        calibration: this.device.calibration,
-        maintenance: this.device.maintenance,
-        maintenanceMsg: this.device.maintenanceMsg,
-        cInterval: this.device.cInterval,
-        calibrationMsg: this.device.calibrationMsg,
-        cBeginning: this.device.cBeginning
-      }
-      if (device.id == -1) {
-        this.$parent.addDevice(device);
+      $('#device-registration-modal').modal('hide');
+      if(this.device.id == -1) {
+        this.$parent.addDevice(this.device);
       } else {
-        this.$parent.updateDevice(device);
+        this.$parent.updateDevice(this.device);
       }
-    },
-    getCategories() {
-      auth.getCategories(this)
     },
     createCustomCategory() {
       auth.createNewCategory(this, {name: this.custom_category});
@@ -259,14 +229,7 @@ export default {
       this.customCat = 0;
       this.custom_category = "";
       this.getCategories();
-    },
-    closeModalAndReset() {
-       $('#device-registration-modal').modal('hide');
-       $('#device-registration-form')[0].reset();
     }
-  },
-  mounted: function() {
-    this.getCategories()
   },
   computed: {
     today: function() {

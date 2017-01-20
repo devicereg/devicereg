@@ -80,6 +80,7 @@ export default {
   },
   methods: {
     stripeTable: function () {
+      $( ".table-row-content" ).removeClass( "odd");
       $( ".table-row-content:odd" ).addClass( "odd");
     }
   },
