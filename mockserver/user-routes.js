@@ -186,7 +186,7 @@ app.post('/device/create', function (req, res)
         $cInterval: req.body.cInterval,
         $calibrationMsg: req.body.calibrationMsg,
         $cBeginning: req.body.cBeginning,
-        $category: req.body.category,
+        $category: req.body.category_id,
         $user: 1 //@TODO
       },
         function (err) {
