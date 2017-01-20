@@ -1,5 +1,9 @@
 $dark-blue: #283158;
 $light-blue: #3e7d8b;
+$light-blue-transparent: rgba(62, 125, 139, 0.45);
+$light-blue-more-transparent: rgba(62, 125, 139, 0.15);
+$light-blue-most-transparent: rgba(62, 125, 139, 0.07);
+
 $darker-light-blue: #376774;
 $light-gray: #e3e3e3;
 $darker-light-gray: #bbbbbb;
@@ -20,3 +24,6 @@ $btn-txt-color: white;
 $btn-txt-color-hover: $darker-white;
 $primary-link-color: $light-blue;
 $primary-text-color: $dark-blue-gray;
+$table-borders-color: $light-blue-transparent;
+$table-row-hover-color: $light-blue-more-transparent;
+$table-row-odd-bg-color: $light-blue-most-transparent;
