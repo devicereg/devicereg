@@ -21,9 +21,9 @@ import TermsOfUse from './components/TermsOfUse'
 import Impressum from './components/Impressum'
 import Translations from './components/Translations'
 import UserEdit from './components/UserEdit'
-import DeviceRegForm from './components/DeviceRegForm'
+import DeviceRegForm from './components/MyDevices/DeviceRegForm'
 import DeleteProfileModal from './components/UserDeleteModal'
-import MyDevices from './components/MyDevices'
+import MyDevices from './components/MyDevices/MyDevices'
 import Toastr from 'vue-toastr'
 
 export default {
@@ -68,8 +68,8 @@ export default {
     background: $body-background;
   }
 
-  h1, h2 {
-    font-weight: normal;
+  h1 {
+    font-weight: bold;
   }
 
   ul {
@@ -92,4 +92,12 @@ export default {
       cursor: pointer;
     }
   }
+
+  @media (max-width: 767px) {
+
+    h1 {
+      font-size: 1.5em;
+    }
+  }
+
 </style>

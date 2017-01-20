@@ -283,5 +283,13 @@
 <style lang="scss">
   .registration-header-title {
     margin-bottom: 1em;
+    font-weight: bold;
+  }
+
+  @media (max-width: 767px) {
+
+    h1 {
+      font-size: 1.5em;
+    }
   }
 </style>

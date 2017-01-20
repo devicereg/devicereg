@@ -2,8 +2,15 @@ general:
   branches:
     only:
       - master
+  artifacts:
+      - "/home/ubuntu/devicereg/robot-test-output"
 
 machine:
+  pre:
+    - curl -sSL https://s3.amazonaws.com/circle-downloads/install-circleci-docker.sh | bash -s -- 1.10.0
+    - curl -L https://github.com/docker/compose/releases/download/1.10.0/docker-compose-`uname -s`-`uname -m` > /home/ubuntu/bin/docker-compose
+    - chmod +x /home/ubuntu/bin/docker-compose
+    - docker-compose version
   services:
     - docker
 
@@ -17,12 +24,13 @@ test:
   override:
     - docker-compose up -d
     #- curl --retry 20 --retry-delay 10 -v http://localhost:80
+    - bash ./run_acceptance_tests.sh
 
 deployment:
   production:
     branch: master
     commands:
-#      - docker login -e $DOCKER_MAIL -u $DOCKER_USER -p $DOCKER_PASS
-#      - docker push $DOCKER_USER/htw-berlin:devicereg
+      #- docker login -e $DOCKER_MAIL -u $DOCKER_USER -p $DOCKER_PASS
+      #- docker push $DOCKER_USER/htw-berlin:devicereg
       - ssh $SSH_SERVER -o ServerAliveInterval=30 < ./deploy_to_production.sh
-      - ssh $SSH_SERVER < ./run_acceptance_tests.sh
+      #- ssh $SSH_SERVER < ./run_acceptance_tests.sh

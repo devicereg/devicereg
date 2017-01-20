@@ -85,4 +85,16 @@
     margin-left: 30px;
     padding-top: 1em;
   }
+
+  @media (max-width: 767px) {
+    h1 {
+      font-size: 1.5em;
+    }
+    h4{
+      font-size: 1em;
+    }
+    p{
+      margin-left: 1.4em;
+    }
+  }
 </style>

@@ -1,14 +1,14 @@
 <template>
   <div id="navbar" class="navbar-collapse collapse">
-    <!--<ul class="nav navbar-nav navbar-left">
+    <ul class="nav navbar-nav navbar-left">
       <li>
         <router-link to="/my-devices"><strong> {{ $t('my_devices') }} </strong></router-link>
       </li>
-    </ul>-->
+    </ul>
     <ul class="nav navbar-nav navbar-right">
-      <li>
+      <!--li>
         <router-link to="/my-devices"><strong> {{ $t('my_devices') }} </strong></router-link>
-      </li>
+      </li-->
       <li>
         <router-link to="/contact"><strong> {{ $t('contact') }} </strong></router-link>
       </li>
@@ -16,6 +16,7 @@
       <li class="dropdown">
         <a class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <span class="glyphicon glyphicon-user"></span>
+          <span class="caret"></span>
         </a>
         <ul class="dropdown-menu" role="menu">
           <li>

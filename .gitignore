@@ -12,3 +12,4 @@ mockserver/npm-debug.log
 start_local.sh
 app/static/test-output/
 app/database/
+robot-tests/devicer-testsuite/test-output/

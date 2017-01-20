@@ -141,7 +141,8 @@
             </div>
             <div class="col-sm-6">
               <input name="zip"
-              type="number"
+              type="text"
+              pattern="[0-9]{5}"
               class="form-control"
               id="register_zip"
               v-model="credentials.zip" required>
@@ -311,9 +312,21 @@
 <style lang="scss">
   @import "../styles/_colors";
 
+  h1 {
+    font-weight: bold;
+  }
+
   .btn-cancel {
     color: $btn-txt-color;
     background: $btn-secondary-color;
   }
+
+  @media (max-width: 767px) {
+
+    h1 {
+      font-size: 1.5em;
+    }
+  }
+
 
 </style>

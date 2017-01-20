@@ -2,11 +2,13 @@
   "de": {
     "title": "Meine Geräte",
     "label": "Bezeichnung",
+    "devicelabel": "Bezeichnung",
     "technology": "Technologie",
     "device_description": "Gerätebeschreibung",
     "category": "Kategorie",
     "add_button": "Gerät hinzufügen",
     "all_categories": "Alle Kategorien",
+    "search_by": "Freitext-Suche",
     "filter_by": "Nach Kategorien filtern",
     "delete": {
       "title": "Gerät löschen?",
@@ -18,11 +20,13 @@
   "en": {
     "title": "My Devices",
     "label": "Label",
+    "devicelabel": "Label",
     "technology": "Technology",
     "device_description": "Device description",
     "category": "Category",
     "add_button": "Add device",
     "all_categories": "All categories",
+    "search_by": "Search",
     "filter_by": "Filter by category",
     "delete": {
       "title": "Delete device?",
