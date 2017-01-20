@@ -46,17 +46,21 @@
                   </a>
                   <delete-device :device="device"></delete-device>
                 </div>
-                <!--div id="device-detail-view" class="row">
+                <div id="device-detail-view" class="row">
                   <div class="col-sm-12 hide" v-bind:id="'details_' + device.id">
                     <td colspan="5">
                       <div class="row">
                         <div class="col-xs-12">
-                          <pre>{{ device }}</pre>
+						<li>{{ $t("DeviceRegForm.serial_number")}}: {{device.serialnumber}}</li>						 						 
+						 <li>{{ $t("DeviceRegForm.process_fluid")}}: {{device.procmedium}}</li>
+						 <li>{{ $t("DeviceRegForm.comment")}}: {{device.comment}}</li>
+						 <li>{{ $t("DeviceRegForm.maintenance")}}:{{device.mBeginning}}, {{device.mInterval}}, {{device.maintenanceMsg}} </li>
+						 <li>{{ $t("DeviceRegForm.calibration")}}: {{device.cBeginning}}, {{device.cIntervall}}, {{device.calibrationMsg}}</li>
                         </div>
                       </div>
                     </td>
                   </div>
-                </div-->
+                </div>
               </div>
             </div>
           </div>
@@ -182,6 +186,7 @@
       font-weight: bold;
     }
   }
+  
 
   .active {
     color: $primary-link-color;
