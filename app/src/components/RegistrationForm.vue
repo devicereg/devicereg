@@ -10,6 +10,8 @@
     <div class="row">
       <div class="col-sm-12 text-left">
         <h1 class="registration-header-title">{{$t("RegistrationForm.title")}}</h1>
+        <p><b>{{$t("RegistrationForm.hint")}}</b> {{$t("RegistrationForm.hint_message")}}</p>
+        <br/>
         <form id="user-registration-form" role="form" v-on:submit.prevent="submit">
           <legend>{{$t("RegistrationForm.personal_details")}}</legend>
           <div class="form-group row">
@@ -69,28 +71,30 @@
             </div>
             <div class="col-sm-6">
               <input name="phone"
-                type="tel"
-                class="form-control"
-                id="register_phone"
-                v-model="credentials.phone" required>
+                     type="tel"
+                     class="form-control"
+                     id="register_phone"
+                     v-model="credentials.phone" required>
             </div>
           </div>
           <legend>{{$t("RegistrationForm.company_details")}}</legend>
+
           <div class="form-group row">
             <div class="col-sm-4 control-label">
               <label for="register_industry_family">{{$t("RegistrationForm.industry_family")}}</label>
             </div>
             <div class="col-sm-6">
               <select name="industry_family"
-              class="form-control"
-              id="register_industry_family"
-              v-model="credentials.industry_family" required>
-              <option value="">{{$t("RegistrationForm.choose")}}</option>
-              <option>Elektro</option>
-              <option>Strom</option>
-            </select>
+                      class="form-control"
+                      id="register_industry_family"
+                      v-model="credentials.industry_family" required>
+                <option value="">{{$t("RegistrationForm.choose")}}</option>
+                <option>Andere</option>
+                <option>Elektro</option>
+                <option>Strom</option>
+              </select>
+            </div>
           </div>
-        </div>
         <div class="form-group row">
           <div class="col-sm-4 control-label">
             <label for="register_industry_type">{{$t("RegistrationForm.industry_type")}}</label>
@@ -173,6 +177,7 @@
               </select>
             </div>
           </div>
+
           <legend>{{$t("RegistrationForm.system_access")}}</legend>
           <div class="form-group row">
             <div class="col-sm-4 control-label">
@@ -180,6 +185,14 @@
             </div>
             <div class="col-sm-6">
               <input name="user" type="email" class="form-control" id="register_user" v-model="credentials.email" required>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-sm-4 control-label">
+              <label for="register_user_repeat">{{$t("RegistrationForm.user_repeat")}}</label>
+            </div>
+            <div class="col-sm-6">
+              <input name="user_repeat" type="email" class="form-control" id="register_user_repeat" v-model="credentials.email_repeat" required>
             </div>
           </div>
           <div class="form-group row">
@@ -193,6 +206,19 @@
                 class="form-control"
                 id="register_password"
                 v-model="credentials.password" required>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-sm-4 control-label">
+              <label for="register_password_repeat">{{$t("RegistrationForm.password_repeat")}}</label>
+            </div>
+            <div class="col-sm-6">
+              <input name="password_repeat"
+                     type="password"
+                     data-minlength="6"
+                     class="form-control"
+                     id="register_password_repeat"
+                     v-model="credentials.password_repeat" required>
             </div>
           </div>
           <div class="form-group row">
@@ -264,6 +290,7 @@
 					language: '',
 					phone: '',
 					industry_family: '',
+					industry_family_other: '',
 					industry_type: '',
 					company: '',
 					street: '',
@@ -272,7 +299,9 @@
 					city: '',
 					country: '',
 	    		email: '',
+	    		email_repeat: '',
 	    		password: '',
+					password_repeat: '',
 					question: '',
 					answer: '',
 					agreement:''
@@ -289,6 +318,7 @@
           language: this.credentials.language,
           phone: this.credentials.phone,
           industry_family: this.credentials.industry_family,
+          industry_family_other: this.credentials.industry_family_other,
           industry_type: this.credentials.industry_type,
           company: this.credentials.company,
           street: this.credentials.street,
@@ -297,7 +327,9 @@
           city: this.credentials.city,
           country: this.credentials.country,
           email: this.credentials.email,
+          email: this.credentials.email_repeat,
           password: this.credentials.password,
+          password: this.credentials.password_repeat,
           question: this.credentials.question,
           answer: this.credentials.answer,
           agreement: this.credentials.agreement

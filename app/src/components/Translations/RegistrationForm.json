@@ -8,12 +8,15 @@
     "english": "Englisch",
     "gender": "Anrede",
     "german": "Deutsch",
+    "hint": "Hinweis: ",
+    "hint_message": "Die Erhebung Ihrer personenbezogenen Daten erfolgt für Registrierungszwecke zur Nutzung der angebotenen Dienste und der Gewährleistungsverlängerung. Ihre Angaben werden gemäß der Datenschutzrichtlinien vertraulich behandelt.",
     "industry_family": "Branchenfamilie",
     "industry_type": "Branchentyp",
     "mr": "Herr",
     "mrs": "Frau",
     "number": "Hausnummer",
     "password": "Passwort",
+    "password_repeat": "Passwort wiederholen",
     "personal_details": "Personenangaben",
     "prename": "Vorname",
     "question": "Geheimfrage",
@@ -24,6 +27,7 @@
     "terms_of_agreement": "Ich habe die Nutzungsbedingungen, die Datenschutzerklärung und die Gewährleistungsbedingungen verstanden und akzeptiere",
     "title": "Nutzer registrieren",
     "user": "Benutzer (E-Mail Adresse)",
+    "user_repeat": "E-Mail Adresse wiederholen",
     "zip": "Postleitzahl"
   },
   "en": {
@@ -35,12 +39,15 @@
     "english": "English",
     "gender": "Gender",
     "german": "German",
+    "hint": "Hint: ",
+    "hint_message": "The collection of your personal data is for registration purposes to use the offered services and the warranty extension. Your information will be kept confidential in accordance with the privacy policy.",
     "industry_type": "Industry type",
     "industry_family": "Industry Family",
     "mr": "Mr",
     "mrs": "Mrs",
     "number": "Number",
     "password": "Password",
+    "password_repeat": "Repeat password",
     "personal_details": "Person Details",
     "prename": "Prename",
     "question": "Secret Question",
@@ -51,6 +58,7 @@
     "terms_of_agreement": "I have understood the terms and conditions, the privacy policy and the warranty conditions and accept.",
     "title": "Register a User",
     "user": "User (E-Mail)",
+    "user_repeat": "Repeat E-Mail",
     "zip": "Zip"
   }
 }

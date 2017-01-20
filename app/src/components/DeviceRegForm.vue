@@ -114,6 +114,7 @@
                   <div class="form-group">
                     <label name="maintenance" class="control-label" for="maintenance">{{$t("DeviceRegForm.maintenance")}}?</label>
                     <input name="maintenance_desired" type="checkbox" id="maintenance" v-model="device.maintenance"> {{$t("DeviceRegForm.yes")}}
+                    <input name="maintenance_not_desired" type="checkbox" id="no_aintenance" v-model="device.maintenance"> {{$t("DeviceRegForm.no")}}
                   </div>
                   <div class="form-group">
                     <label class="control-label" for="mInterval">{{$t("DeviceRegForm.interval")}}:</label>
