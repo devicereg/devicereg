@@ -10,7 +10,6 @@
         <div class="col-sm-4" id="cat_filter">
           <label for="category-filter">{{ $t("MyDevices.filter_by") }}:</label>
           <select id="category-filter" class="form-control col-xs-6" v-model="cat_filter">
-            <option id="option_placeholder" value="placeholder" disabled>{{ $t("MyDevices.filter_by") }}</option>
             <option value="all">{{ $t("MyDevices.all_categories") }}</option>
             <option v-bind:value="cat.id" v-for="cat in categories">{{cat.name}}</option>
           </select>
@@ -27,7 +26,7 @@
       return {
         categories: [],
         filterKey: "",
-        cat_filter: 'placeholder',
+        cat_filter: 'all',
       }
     },
     methods: {
