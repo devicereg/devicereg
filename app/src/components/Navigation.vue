@@ -96,11 +96,6 @@ export default {
           }
         }
         .nav {
-          padding-left: 0;
-          display: inline-block;
-          height: 100%;
-          float: none;
-
           li a {
             background-color: transparent;
             font-weight: bold;
