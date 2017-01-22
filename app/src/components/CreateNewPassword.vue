@@ -73,7 +73,7 @@
         }
         else
         {
-  	  		auth.createNewPassword(this, credentials, '/new-password-confirmed', this.$parent.$refs.toastr)
+  	  		auth.createNewPassword(this, credentials, '/reset-password/confirmed', this.$parent.$refs.toastr)
         }
 	  	}
 	  }

@@ -1,5 +1,3 @@
-// The Vue build version to load with the `import` command
-// (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import VueResource from 'vue-resource'
@@ -7,22 +5,7 @@ import jwt from 'jsonwebtoken'
 import App from './App'
 import auth from './auth'
 import VueSweetAlert from 'vue-sweetalert'
-import Home from './components/Home'
-import RegistrationForm from './components/RegistrationForm'
-import Dashboard from './components/Dashboard'
-import Contact from './components/Contact'
-import TermsOfUse from './components/TermsOfUse'
-import Impressum from './components/Impressum'
-import Warranty from './components/Warranty'
-import Datenschutz from './components/Datenschutz'
-import UserEdit from './components/UserEdit'
-import MyDevices from './components/MyDevices/MyDevices'
-import DeviceRegForm from './components/MyDevices/DeviceRegForm'
-import ResetPassword from './components/ResetPassword'
-import CreateNewPassword from './components/CreateNewPassword'
-import NewPasswordConfirmed from './components/NewPasswordConfirmed'
 
-// require('vue-toastr/src/vue-toastr.less')
 
 Vue.use(VueRouter)
 Vue.use(VueResource)
@@ -30,20 +13,90 @@ Vue.use(VueSweetAlert)
 auth.checkAuth()
 
 const routes = [
-  {path: '/',                         component: Home},
-  {path: '/registrieren',             component: RegistrationForm},
-  {path: '/dashboard',                component: Dashboard},
-  {path: '/contact',                  component: Contact},
-  {path: '/terms-of-use',             component: TermsOfUse},
-  {path: '/impressum',                component: Impressum},
-  {path: '/aktionsbedingungen',       component: Warranty},
-  {path: '/datenschutz',              component: Datenschutz},
-  {path: '/my-devices',               component: MyDevices},
-  {path: '/device/create',            component: DeviceRegForm},
-  {path: '/user/edit',                component: UserEdit},
-  {path: '/reset-password',           component: ResetPassword},
-  {path: '/reset-password/:jwt',      component: CreateNewPassword},
-  {path: '/new-password-confirmed',   component: NewPasswordConfirmed},
+  {
+    path: '/',
+    name: 'home',
+    component: require('./components/Home'),
+    meta: { authenticated: false }
+  },
+  {
+    path: '/registrieren',
+    name: 'register',
+    component: require('./components/RegistrationForm'),
+    meta: { authenticated: false }
+  },
+  {
+    path: '/dashboard',
+    name: 'dashboard',
+    component: require('./components/Dashboard'),
+    meta: { authenticated: true }
+  },
+  {
+    path: '/contact',
+    name: 'contact',
+    component: require('./components/Contact'),
+    meta: { authenticated: false }
+  },
+  {
+    path: '/terms-of-use',
+    name: 'terms-of-use',
+    component: require('./components/TermsOfUse'),
+    meta: { authenticated: false }
+  },
+  {
+    path: '/impressum',
+    name: 'imprint',
+    component: require('./components/Impressum'),
+    meta: { authenticated: false }
+  },
+  {
+    path: '/aktionsbedingungen',
+    name: 'warranty',
+    component: require('./components/Warranty'),
+    meta: { authenticated: false }
+  },
+  {
+    path: '/datenschutz',
+    name: 'datenschutz',
+    component: require('./components/Datenschutz'),
+    meta: { authenticated: false }
+  },
+  {
+    path: '/my-devices',
+    name: 'my-devices',
+    component: require('./components/MyDevices/MyDevices'),
+    meta: { authenticated: true }
+  },
+  {
+    path: '/device/create',
+    name: 'device-create',
+    component: require('./components/MyDevices/DeviceRegForm'),
+    meta: { authenticated: true }
+  },
+  {
+    path: '/user/edit',
+    name: 'user-edit',
+    component: require('./components/UserEdit'),
+    meta: { authenticated: true }
+  },
+  {
+    path: '/reset-password',
+    name: 'reset-password',
+    component: require('./components/ResetPassword'),
+    meta: { authenticated: false }
+  },
+  {
+    path: '/reset-password/:jwt',
+    name: 'confirm-reset-password',
+    component: require('./components/CreateNewPassword'),
+    meta: { authenticated: false }
+  },
+  {
+    path: '/reset-password/confirmed',
+    name: 'reset-password-confirmed',
+    component: require('./components/NewPasswordConfirmed'),
+    meta: { authenticated: false }
+  },
 ]
 
 export const router = new VueRouter({
