@@ -2,12 +2,12 @@
   <div id="navbar" class="navbar-collapse collapse">
     <ul class="nav navbar-nav navbar-left">
       <li data-toggle="collapse" data-target="#navbar">
-        <router-link to="/my-devices"><strong> {{ $t('my_devices') }} </strong></router-link>
+        <router-link to="/my-devices">{{ $t('my_devices') }}</router-link>
       </li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
       <li data-toggle="collapse" data-target="#navbar">
-        <router-link to="/contact"><strong> {{ $t('contact') }} </strong></router-link>
+        <router-link to="/contact">{{ $t('contact') }}</router-link>
       </li>
       <language-switch></language-switch>
       <li class="dropdown" data-toggle="collapse" data-target="#navbar">
@@ -17,14 +17,14 @@
         </a>
         <ul class="dropdown-menu" role="menu">
           <li data-toggle="collapse" data-target="#navbar">
-            <router-link to="/user/edit"><strong> {{ $t('edit_profile') }} </strong></router-link>
+            <router-link to="/user/edit">{{ $t('edit_profile') }}</router-link>
           </li>
-          <li data-toggle="collapse" data-target="#navbar" @click="deleteProfile()"><a><strong> {{ $t('delete_profile') }} </strong></a></li>
+          <li data-toggle="collapse" data-target="#navbar" @click="deleteProfile()"><a>{{ $t('delete_profile') }}</a></li>
           <li data-toggle="collapse" data-target="#navbar" @click="logout()">
-            <router-link to="/login"><strong> {{ $t('logout') }} </strong></router-link>
+            <router-link to="/login">{{ $t('logout') }}</router-link>
           </li>
         </ul>
-      </li >
+      </li>
     </ul>
   </div>
 </template>

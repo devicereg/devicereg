@@ -103,6 +103,7 @@ export default {
 
           li a {
             background-color: transparent;
+            font-weight: bold;
             color: #fff;
 
             &:hover {
