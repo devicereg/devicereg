@@ -225,7 +225,7 @@
             <div class="col-sm-offset-4 col-sm-2">
               <button class="btn btn-block btn-lg btn-cancel">{{$t("cancel")}}</button>
             </div>
-            <div class="col-sm-2">
+            <div class="col-sm-3">
               <button class="btn btn-block btn-lg btn-primary" @click="submit()">Aktualisieren</button>
             </div>
           </div>

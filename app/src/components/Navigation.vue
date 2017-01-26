@@ -12,7 +12,7 @@
           <router-link to="/" v-if="!user.authenticated">
             <img class="img img-responsive" src="../assets/devicer-nav-logo-test.png" alt="DeviceR"/>
           </router-link>
-          <router-link to="/my-devices" v-if="user.authenticated">
+          <router-link to="/dashboard" v-if="user.authenticated">
             <img class="img img-responsive" src="../assets/devicer-nav-logo-test.png" alt="DeviceR"/>
           </router-link>
         </div>
