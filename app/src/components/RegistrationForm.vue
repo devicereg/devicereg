@@ -12,7 +12,7 @@
         <h1 class="registration-header-title">{{$t("RegistrationForm.title")}}</h1>
         <p><b>{{$t("RegistrationForm.hint")}}</b> {{$t("RegistrationForm.hint_message")}}</p>
         <br/>
-        <form id="user-registration-form" role="form" v-on:submit.prevent="submit">
+        <form  id="user-registration-form" role="form" v-on:submit.prevent="submit">
           <legend>{{$t("RegistrationForm.personal_details")}}</legend>
           <div class="form-group row">
             <div class="col-sm-4 control-label">
@@ -104,7 +104,7 @@
             type="text"
             class="form-control"
             id="register_industry_type"
-            v-model="credentials.industry_type" required>
+            v-model="credentials.industry_type"  :disabled="!credentials.industry_family" :required="credentials.industry_family">
           </div>
         </div>
           <div class="form-group row">
@@ -327,18 +327,32 @@
           city: this.credentials.city,
           country: this.credentials.country,
           email: this.credentials.email,
-          email: this.credentials.email_repeat,
+          email_repeat: this.credentials.email_repeat,
           password: this.credentials.password,
-          password: this.credentials.password_repeat,
+          password_repeat: this.credentials.password_repeat,
           question: this.credentials.question,
           answer: this.credentials.answer,
           agreement: this.credentials.agreement
+
         }
 
-        auth.signup(this, credentials, '/my-devices')
-	  	}
+        if(this.credentials.password != this.credentials.password_repeat){
+          this.$parent.$refs.toastr.Add({
+              msg: this.$t("Passwörter stimmen nicht überein!"),
+              title: this.$t("Passwort"),
+              clickClose: false,
+              timeout: 8000,
+              position: "toast-top-right",
+              type: "error"
+          });
+        }
+        else{
+          auth.signup(this, credentials, '/my-devices')
+        }
+
+      }
 	  }
-	}
+  }
 </script>
 
 <style lang="scss">
