@@ -34,9 +34,11 @@
     watch: {
       'filterKey': function(value) {
         this.$parent.filter = value;
+        this.$parent.stripeTable();
       },
       'cat_filter': function(value) {
         this.$parent.cat_filter = value;
+        this.$parent.stripeTable();
       }
     }
   }

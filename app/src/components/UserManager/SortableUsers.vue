@@ -1,57 +1,53 @@
 <template>
   <div>
-    <div id="devices-table" class="table">
+    <div id="users-table" class="table">
       <div class="table-header col-sm-12">
         <div class="row">
-          <div @click="sortBy('devicelabel')" class="table-cell col-md-3" :class="{ active: sortKey == 'devicelabel' }">
-            {{ $t("MyDevices." + "devicelabel") }}
-            <span class="arrow" :class="sortOrders['devicelabel'] > 0 ? 'asc' : 'dsc'"></span>
+          <div @click="sortBy('surname')" class="table-cell col-md-3" :class="{ active: sortKey == 'surname' }">
+            {{ $t("UserOverview." + "surname") }}
+            <span class="arrow" :class="sortOrders['surname'] > 0 ? 'asc' : 'dsc'"></span>
           </div>
-          <div @click="sortBy('technology')" class="table-cell col-md-2" :class="{ active: sortKey == 'technology' }">
-            {{ $t("MyDevices." + "technology") }}
-            <span class="arrow" :class="sortOrders['technology'] > 0 ? 'asc' : 'dsc'"></span>
+          <div @click="sortBy('prename')" class="table-cell col-md-2" :class="{ active: sortKey == 'prename' }">
+            {{ $t("UserOverview." + "prename") }}
+            <span class="arrow" :class="sortOrders['prename'] > 0 ? 'asc' : 'dsc'"></span>
           </div>
-          <div @click="sortBy('category')" class="table-cell col-md-2" :class="{ active: sortKey == 'category' }">
-            {{ $t("MyDevices." + "category") }}
-            <span class="arrow" :class="sortOrders['category'] > 0 ? 'asc' : 'dsc'"></span>
+          <div @click="sortBy('email')" class="table-cell col-md-2" :class="{ active: sortKey == 'email' }">
+            {{ $t("UserOverview." + "email") }}
+            <span class="arrow" :class="sortOrders['email'] > 0 ? 'asc' : 'dsc'"></span>
           </div>
-          <div @click="sortBy('device_description')" class="table-cell col-md-3"
-               :class="{ active: sortKey == 'device_description' }">
-            {{ $t("MyDevices." + "device_description") }}
-            <span class="arrow" :class="sortOrders['device_description'] > 0 ? 'asc' : 'dsc'"></span>
+          <div @click="sortBy('company')" class="table-cell col-md-3"
+               :class="{ active: sortKey == 'company' }">
+            {{ $t("UserOverview." + "company") }}
+            <span class="arrow" :class="sortOrders['company'] > 0 ? 'asc' : 'dsc'"></span>
           </div>
           <div class="table-cell col-md-2">&nbsp;</div>
         </div>
       </div>
       <div class="table-body col-sm-12">
-        <transition-group name="device-list" tag="div">
-          <div v-for="device in filteredData"
-              class="row table-row device-list-item"
-              v-bind:id="'device_' + device.id"
-              v-bind:key="device.id"
-              v-on:click="toggleDetail(device.id)">
+        <transition-group name="user-list" tag="div">
+          <div v-for="user in filteredData"
+              class="row table-row user-list-item"
+              v-bind:id="'user_' + user.id"
+              v-bind:key="user.id"
+              v-on:click="toggleDetail(user.id)">
             <div class="col-sm-12">
               <div class="table-row-content row">
-                <div class="table-cell col-md-3">{{ device.devicelabel }}</div>
-                <div v-for="technology in technologies" v-if="technology.id==device.technology" class="table-cell col-md-2">
-                  {{ technology.name }}
-                </div>
-                <div v-for="category in categories" v-if="category.id==device.category_id" class="table-cell col-md-2">
-                  {{ category.name }}
-                </div>
-                <div class="table-cell col-md-3">{{ device.comment }}</div>
+                <div class="table-cell col-md-3" v-on:click="router.push('/my-devices')">{{ user.surname }}</div>
+                <div class="table-cell col-md-2" v-on:click="router.push('/my-devices')">{{ user.prename }}</div>
+                <div class="table-cell col-md-2" v-on:click="router.push('/my-devices')">{{ user.email }}</div>
+                <div class="table-cell col-md-3" v-on:click="router.push('/my-devices')">{{ user.company }}</div>
                 <div class="table-cell col-md-2">
-                  <a v-on:click="editDevice(device)">
+                  <a v-on:click="editUser(user)">
                     <span class="glyphicon glyphicon-edit action-button" aria-hidden="true"></span>
                   </a>
-                  <delete-device :device="device"></delete-device>
+                  <delete-user :user="user"></delete-user>
                 </div>
-                <!--div id="device-detail-view" class="row">
-                  <div class="col-sm-12 hide" v-bind:id="'details_' + device.id">
+                <!--div id="user-detail-view" class="row">
+                  <div class="col-sm-12 hide" v-bind:id="'details_' + user.id">
                     <td colspan="5">
                       <div class="row">
                         <div class="col-xs-12">
-                          <pre>{{ device }}</pre>
+                          <pre>{{ user }}</pre>
                         </div>
                       </div>
                     </td>
@@ -67,18 +63,16 @@
 </template>
 
 <script>
-  import DeleteDevice from "./DeleteDevice"
+  import DeleteUser from "./DeleteUser"
   import auth from "../../auth/index.js"
 
   export default{
     props: [
       'filterKey',
-      'categoryFilter',
-      'categories',
-      'devices'
+      'users'
     ],
     data() {
-      var gridColumns = ['devicelabel', 'technology', 'category', 'device_description'];
+      var gridColumns = ['surname', 'prename', 'email', 'company'];
       var sortOrders = {}
 
       gridColumns.forEach(function (key) {
@@ -90,7 +84,7 @@
         gridColumns: gridColumns,
         sortKey: '',
         gridData: [
-          this.devices
+          this.users
         ],
         technologies: [
           {id: 1, name: 'Rotamass'},
@@ -99,26 +93,26 @@
       }
     },
     components: {
-      'delete-device': DeleteDevice
+      'delete-user': DeleteUser
     },
     methods: {
       toggleDetail: function(id) {
         var detailView = $("#details_" + id);
-        var parentRow = $("#device_" + id);
+        var parentRow = $("#user_" + id);
 
         detailView.insertAfter(parentRow)
         detailView.toggleClass('hide')
       },
-      removeDevice: function(device) {
-        var index = this.devices.indexOf(device);
-        this.devices.splice(index, 1);
+      removeUser: function(user) {
+        var index = this.users.indexOf(user);
+        this.users.splice(index, 1);
       },
       sortBy: function (key) {
         this.sortKey = key
         this.sortOrders[key] = this.sortOrders[key] * -1
       },
-      editDevice: function(device) {
-        this.$parent.editDevice(device);
+      editUser: function(user) {
+        this.$parent.editUser(user);
       }
     },
     computed: {
@@ -126,14 +120,7 @@
         var sortKey = this.sortKey
         var filterKey = this.filterKey && this.filterKey.toLowerCase()
         var order = this.sortOrders[sortKey] || 1
-        var data = this.devices
-        var categoryFilter = this.categoryFilter;
-
-        if (categoryFilter && categoryFilter != 'all') {
-          data = data.filter(function (row) {
-            return row.category_id === categoryFilter;
-          })
-        }
+        var data = this.users
 
         if (filterKey) {
           data = data.filter(function (row) {
@@ -254,18 +241,18 @@
     border-top: 4px solid white;
   }
 
-  .device-list-item {}
+  .user-list-item {}
 
-  .device-list-enter-active, .device-list-leave-active {
+  .user-list-enter-active, .user-list-leave-active {
     transition: all 1s;
   }
 
-  .device-list-enter /* .device-list-leave-active for <2.1.8 */ {
+  .user-list-enter /* .user-list-leave-active for <2.1.8 */ {
     opacity: 0;
     transform: translateX(30px);
   }
 
-  .device-list-leave-to /* .device-list-leave-active for <2.1.8 */ {
+  .user-list-leave-to /* .user-list-leave-active for <2.1.8 */ {
     opacity: 0;
     transform: translateX(-30px);
   }

@@ -13,6 +13,7 @@ const CREATE_DEVICE_URL 		= API_URL 	+ 'device/create';
 const UPDATE_DEVICE_URL 		= API_URL 	+ 'device/update';
 const DELETE_DEVICE_URL 		= API_URL 	+ 'device/delete';
 const GET_DEVICES_URL 			= API_URL 	+ 'devices';
+const GET_USERS_URL 			= API_URL 	+ 'users';
 const GET_CATEGORIES_URL 		= API_URL 	+ 'categories';
 const CREATE_CATEGORY_URL 		= API_URL 	+ 'category/create';
 
@@ -277,6 +278,15 @@ export default {
   {
     context.$http.get(GET_DEVICES_URL).then((response) => {
       context.devices = JSON.parse(response.body);
+    }, (err) => {
+      context.error = err;
+    });
+  },
+
+  getUsers(context)
+  {
+    context.$http.get(GET_USERS_URL).then((response) => {
+      context.users = JSON.parse(response.body);
     }, (err) => {
       context.error = err;
     });

@@ -1,0 +1,38 @@
+{
+  "de": {
+    "title": "Benutzerübersicht",
+    "label": "Bezeichnung",
+    "devicelabel": "Bezeichnung",
+    "surname": "Nachname",
+    "device_description": "Gerätebeschreibung",
+    "prename": "Vorname",
+    "add_button": "Benutzer anlegen",
+    "company": "Unternehmen",
+    "search_by": "Freitext-Suche",
+    "email": "E-Mail",
+    "delete": {
+      "title": "Benutzer löschen?",
+      "text": "Sie sind im Begriff einen Benutzer zu löschen. <br> Sind Sie sich sicher?",
+      "confirm": "Ja",
+      "cancel": "Nein"
+    }
+  },
+  "en": {
+    "title": "User Overview",
+    "label": "Label",
+    "devicelabel": "Label",
+    "surname": "Surname",
+    "device_description": "Device description",
+    "prename": "Prename",
+    "add_button": "Add user",
+    "company": "Company",
+    "search_by": "Search",
+    "email": "Email",
+    "delete": {
+      "title": "Delete user?",
+      "text": "You are about to delete this user. <br> Are you sure?",
+      "confirm": "Yes",
+      "cancel": "No"
+    }
+  }
+}

@@ -2,8 +2,10 @@
   import Contact from "./Translations/Contact.json"
   import Datenschutz from "./Translations/Datenschutz.json"
   import DeviceRegForm from "./Translations/DeviceRegForm.json"
+  import UserRegForm from "./Translations/UserRegForm.json"
   import Impressum from "./Translations/Impressum.json"
   import MyDevices from "./Translations/MyDevices.json"
+  import UserOverview from "./Translations/UserOverview.json"
   import RegistrationForm from "./Translations/RegistrationForm.json"
   import TermsOfUse from "./Translations/TermsOfUse.json"
   import Warranty from "./Translations/Warranty.json"
@@ -141,15 +143,17 @@
       },
 
       Contact: Contact.de,
-        MyDevices: MyDevices.de,
-        RegistrationForm: RegistrationForm.de,
-        DeviceRegForm: DeviceRegForm.de,
-        TermsOfUse: TermsOfUse.de,
-        Datenschutz: Datenschutz.de,
-        Warranty: Warranty.de,
-        Impressum: Impressum.de,
-        Home: Home.de,
-        LoginForm: LoginForm.de
+      MyDevices: MyDevices.de,
+      UserOverview: UserOverview.de,
+      RegistrationForm: RegistrationForm.de,
+      DeviceRegForm: DeviceRegForm.de,
+      UserRegForm: UserRegForm.de,
+      TermsOfUse: TermsOfUse.de,
+      Datenschutz: Datenschutz.de,
+      Warranty: Warranty.de,
+      Impressum: Impressum.de,
+      Home: Home.de,
+      LoginForm: LoginForm.de
       },
 
     en: {
@@ -277,8 +281,10 @@
 
       Contact: Contact.en,
         MyDevices: MyDevices.en,
+        UserOverview: UserOverview.en,
         RegistrationForm: RegistrationForm.en,
         DeviceRegForm: DeviceRegForm.en,
+        UserRegForm: UserRegForm.en,
         TermsOfUse: TermsOfUse.en,
         Datenschutz: Datenschutz.en,
         Warranty: Warranty.en,

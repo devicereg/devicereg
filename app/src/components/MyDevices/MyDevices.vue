@@ -83,6 +83,10 @@
       },
       getCategories() {
         auth.getCategories(this);
+      },
+      stripeTable: function () {
+        $( ".table-row-content" ).removeClass( "odd");
+        $( ".table-row-content:odd" ).addClass( "odd");
       }
     },
     mounted: function() {

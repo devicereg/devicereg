@@ -17,7 +17,9 @@ import Warranty from './components/Warranty'
 import Datenschutz from './components/Datenschutz'
 import UserEdit from './components/UserEdit'
 import MyDevices from './components/MyDevices/MyDevices'
+import UserOverview from './components/UserManager/UserOverview'
 import DeviceRegForm from './components/MyDevices/DeviceRegForm'
+import UserRegForm from './components/UserManager/UserRegForm'
 import ResetPassword from './components/ResetPassword'
 import CreateNewPassword from './components/CreateNewPassword'
 import NewPasswordConfirmed from './components/NewPasswordConfirmed'
@@ -40,6 +42,9 @@ const routes = [
   {path: '/datenschutz',              component: Datenschutz},
   {path: '/my-devices',               component: MyDevices},
   {path: '/device/create',            component: DeviceRegForm},
+  {path: '/user-overview',            component: UserOverview},
+  {path: '/device/create',            component: DeviceRegForm},
+  {path: '/user/create',              component: UserRegForm},
   {path: '/user/edit',                component: UserEdit},
   {path: '/reset-password',           component: ResetPassword},
   {path: '/reset-password/:jwt',      component: CreateNewPassword},

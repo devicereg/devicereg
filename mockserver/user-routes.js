@@ -345,6 +345,22 @@ app.get('/categories', function (req, res)
   });
 });
 
+app.get('/users', function (req, res)
+{
+  exporter.json('SELECT * from user', function (err, json) {
+    console.log(json);
+    res.status(200).send(json);
+  });
+});
+
+app.get('/categories', function (req, res)
+{
+  exporter.json('SELECT id, name FROM category c WHERE c.user_id = 1', function (err, json) {
+    console.log(json);
+    res.status(200).send(json);
+  });
+});
+
 
 app.post('/category/create', function (req, res)
 {
