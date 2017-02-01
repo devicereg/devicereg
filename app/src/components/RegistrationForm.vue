@@ -100,21 +100,21 @@
             </div>
           </div>
           <!-- Industry type should be a select field when the industry family field is filled, except the option 'Andere(Eingabe erforderlich) is selected, then it should be normal input field'-->
-          <div v-if="industry_family.id == '0'" class="form-group row">
+          <div v-if="credentials.industry_family == 0" class="form-group row">
             <div class="col-sm-4 control-label">
-              <label for="register_industry_type_other">{{$t("RegistrationForm.industry_type_other")}}</label>
+              <label for="register_industry_type">{{$t("RegistrationForm.industry_type_other")}}</label>
             </div>
             <div class="col-sm-6">
               <input name="industry_type"
                      type="text"
                      class="form-control"
-                     id="register_industry_type_other"
-                     v-model="credentials.industry_type_other"
-                     :disabled="!credentials.industry_family" :required="credentials.industry_family">
+                     id="register_industry_type"
+                     v-model="credentials.industry_type"
+                     :required="credentials.industry_family">
             </div>
           </div>
           <!--             Industry type block starts             -->
-          <div v-else class="form-group row">
+          <div v-else-if="credentials.industry_family != 0" class="form-group row">
             <div class="col-sm-4 control-label">
               <label for="register_industry_type">{{$t("RegistrationForm.industry_type")}}</label>
             </div>
@@ -123,7 +123,7 @@
                       class="form-control"
                       id="register_industry_type"
                       v-model="credentials.industry_type"
-                      :disabled="!credentials.industry_family" :required="credentials.industry_family">
+                      :disabled="credentials.industry_family == -1" :required="credentials.industry_family">
                 <option>bla</option>
               </select>
             </div>
@@ -303,7 +303,6 @@
 	  name: 'registration-form',
 	  data () {
 
-
 	    return {
 	    	credentials: {
 					gender: '',
@@ -311,8 +310,8 @@
 					surname: '',
 					language: '',
 					phone: '',
-					industry_family: '',
-					industry_family_other: '',
+					industry_family: '-1',
+					//industry_family_other: '',
 					industry_type: '',
 					company: '',
 					street: '',
@@ -418,7 +417,7 @@
           language: this.credentials.language,
           phone: this.credentials.phone,
           industry_family: this.credentials.industry_family,
-          industry_family_other: this.credentials.industry_family_other,
+          //industry_family_other: this.credentials.industry_family_other,
           industry_type: this.credentials.industry_type,
           company: this.credentials.company,
           street: this.credentials.street,
