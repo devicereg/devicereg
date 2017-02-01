@@ -3,12 +3,14 @@ general:
     only:
       - master
   artifacts:
-      - "~/devicereg/app/static/test-output"
+      - "/home/ubuntu/devicereg/robot-test-output"
 
 machine:
   pre:
     - curl -sSL https://s3.amazonaws.com/circle-downloads/install-circleci-docker.sh | bash -s -- 1.10.0
-    - sudo pip install docker-compose
+    - curl -L https://github.com/docker/compose/releases/download/1.10.0/docker-compose-`uname -s`-`uname -m` > /home/ubuntu/bin/docker-compose
+    - chmod +x /home/ubuntu/bin/docker-compose
+    - docker-compose version
   services:
     - docker
 
@@ -21,7 +23,7 @@ dependencies:
 test:
   override:
     - docker-compose up -d
-    - curl --retry 20 --retry-delay 10 -v http://localhost:80
+    #- curl --retry 20 --retry-delay 10 -v http://localhost:80
     - bash ./run_acceptance_tests.sh
 
 deployment:

@@ -30,8 +30,8 @@ Gebe die Daten des neuen Geraetes ein
 	Pruefe, dass das Geraeteregistrierungsformular angezeigt wird
     Click Element  id=technology
     Click Element  xpath=//select[@id="technology"]/option[contains(text(), "&{Geraet}[Technologie]")]
-    Click Element  id=category
-    Click Element  xpath=//select[@id="category"]/option[contains(text(), "&{Geraet}[Geraetekategorie]")]
+    Click Element  id=category_id
+    Click Element  xpath=//select[@id="category_id"]/option[contains(text(), "&{Geraet}[Geraetekategorie]")]
 	Input Text  id=serialnumber  &{Geraet}[Seriennummer]
 	Input Text  id=devicelabel  &{Geraet}[Geraetebezeichnung]
 	Click Element  id=procmedium
@@ -50,5 +50,5 @@ Pruefe, dass das Geraet in der Geraeteuebersicht angezeigt wird
     [Documentation]  Es wird geprueft, ob das Geraet in der Geraeteuebersicht angezeigt wird
     [Arguments]  ${Geraetebezeichnung}
     Reload Page
-    Wait Until Page Contains Element  xpath=//tr/td[text()="${Geraetebezeichnung}"]  timeout=10
+    Wait Until Page Contains  ${Geraetebezeichnung}  timeout=10
     #Wait Until Page Contains  ${Geraetebezeichnung} timeout=10

@@ -65,10 +65,6 @@
 	  margin-bottom: 15px;
 	}
 
-	.checkbox_signIn {
-		margin-left: 3em;
-	}
-
   @media (max-width: 767px) {
 
     h1 {

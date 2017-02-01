@@ -10,6 +10,7 @@ const DELETE_URL 				= API_URL 	+ 'user/delete';
 const RESET_PASSWORD_URL 		= API_URL 	+ 'reset-user-password';
 const CREATE_NEW_PASSWORD_URL 	= API_URL 	+ 'create-new-password';
 const CREATE_DEVICE_URL 		= API_URL 	+ 'device/create';
+const UPDATE_DEVICE_URL 		= API_URL 	+ 'device/update';
 const DELETE_DEVICE_URL 		= API_URL 	+ 'device/delete';
 const GET_DEVICES_URL 			= API_URL 	+ 'devices';
 const GET_CATEGORIES_URL 		= API_URL 	+ 'categories';
@@ -156,6 +157,23 @@ export default {
 	createDevice(context, data, redirect)
   	{
 	    context.$http.post(CREATE_DEVICE_URL, data).then((response) => {
+        var responseBody = JSON.parse(response.body);
+        context.selected_device_id = responseBody.id;
+        console.log(context.selected_device_id);
+
+	      if(redirect)
+	      {
+	        router.push(redirect)
+	      }
+
+	    }, (err) => {
+	      context.error = err
+	    });
+  	},
+
+	updateDevice(context, data, redirect)
+  	{
+	    context.$http.post(UPDATE_DEVICE_URL, data).then((response) => {
 
 	      if(redirect)
 	      {
@@ -276,7 +294,6 @@ export default {
   {
     context.$http.get(GET_CATEGORIES_URL).then((response) => {
       context.categories = JSON.parse(response.body);
-      console.log(context.categories);
     }, (err) => {
       context.error = err;
     });

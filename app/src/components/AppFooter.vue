@@ -17,14 +17,15 @@
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
             </button>
           </div>
           <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
-              <li><router-link to="/datenschutz"><strong>{{$t("privacy_policy")}}</strong></router-link></li>
-              <li><router-link to="/terms-of-use"><strong>{{$t("site_policy")}}</strong></router-link></li>
-              <li><router-link to="/impressum"><strong>{{$t("legal_disclosure")}}</strong></router-link></li>
-              <li><router-link to="/aktionsbedingungen"><strong>{{$t("terms_of_warranty")}}</strong></router-link></li>
+              <li data-toggle="collapse" data-target="#myNavbar"><router-link to="/datenschutz"><strong>{{$t("privacy_policy")}}</strong></router-link></li>
+              <li data-toggle="collapse" data-target="#myNavbar"><router-link to="/terms-of-use"><strong>{{$t("site_policy")}}</strong></router-link></li>
+              <li data-toggle="collapse" data-target="#myNavbar"><router-link to="/impressum"><strong>{{$t("legal_disclosure")}}</strong></router-link></li>
+              <li data-toggle="collapse" data-target="#myNavbar"><router-link to="/aktionsbedingungen"><strong>{{$t("terms_of_warranty")}}</strong></router-link></li>
             </ul>
           </div>
         </div>
@@ -111,8 +112,8 @@
                 border-color: $primary-bg-color;
                 border-bottom-left-radius: 0px;
                 border-bottom-right-radius: 0px;
-                border-top-left-radius: 10px;
-                border-top-right-radius: 10px;
+                border-top-left-radius: 80px;
+                border-top-right-radius: 80px;
                 .icon-bar {
                   display: block;
                   margin: 2px 3px auto;

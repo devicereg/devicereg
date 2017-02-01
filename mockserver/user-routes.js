@@ -186,9 +186,46 @@ app.post('/device/create', function (req, res)
         $cInterval: req.body.cInterval,
         $calibrationMsg: req.body.calibrationMsg,
         $cBeginning: req.body.cBeginning,
-        $category: req.body.category,
+        $category: req.body.category_id,
         $user: 1 //@TODO
-      }
+      },
+        function (err) {
+          res.status(201).send({
+            message: "Gerät wurde angelegt!",
+            id: this.lastID
+          });
+        }
+    );
+  });
+});
+
+app.post('/device/update', function (req, res)
+{
+  db.serialize(function()
+  {
+    db.run(
+      "UPDATE device " +
+      "SET technology=?, devicelabel=?, serialnumber=?, procmedium=?, comment=?, mInterval=?, mBeginning=?, " +
+      "calibration=?, maintenance=?, maintenanceMsg=?, cInterval=?, calibrationMsg=?, cBeginning=?, category_id=?, user_id=?)" +
+      "WHERE id=?",
+      [
+        req.body.technology,
+        req.body.devicelabel,
+        req.body.serialnumber,
+        req.body.procmedium,
+        req.body.comment,
+        req.body.mInterval,
+        req.body.mBeginning,
+        req.body.calibration,
+        req.body.maintenance,
+        req.body.maintenanceMsg,
+        req.body.cInterval,
+        req.body.calibrationMsg,
+        req.body.cBeginning,
+        req.body.category,
+        1, //TODO
+        req.body.id
+      ]
     );
   });
 });
@@ -294,7 +331,7 @@ app.post('/device/delete', function(req, res)
 
 app.get('/devices', function (req, res)
 {
-  exporter.json('SELECT d.*, c.name AS `category_name` from device d LEFT JOIN category AS c ON d.category_id = c.id WHERE d.user_id = 1', function (err, json) {
+  exporter.json('SELECT d.*, c.name AS `category` from device d LEFT JOIN category AS c ON d.category_id = c.id WHERE d.user_id = 1', function (err, json) {
     console.log(json);
     res.status(200).send(json);
   });
