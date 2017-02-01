@@ -1,12 +1,10 @@
 <template>
 	<div id="homepage">
-	  <div class="row">
 	    <div class="col-xs-offset-2 col-lg-offset-4 col-sm-offset-3 col-lg-4 col-sm-6 col-xs-8">
         <img src="../assets/home-logo-transparent-bg-v1.png" class="img img-responsive">
 	    </div>
-	  </div>
 
-	  <div class="row text-left">
+	  <div class="text-left">
        <div class="col-md-6">
          <div class="texte">
           <h1>{{ $t("Home.welcome") }}</h1>

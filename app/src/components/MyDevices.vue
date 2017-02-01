@@ -1,11 +1,9 @@
 <template>
   <div id="my-devices-component">
     <device-registration-modal></device-registration-modal>
-    <div class="row">
       <div class="col-sm-8">
         <h1> {{$t("MyDevices.title")}} </h1>
       </div>
-    </div>
     <div class="row pull-right">
         <div class="col-xs-6 col-sm-6 form-group-sm" id="cat_filter">
           <select class="form-control" v-model="cat_filter">
@@ -24,7 +22,6 @@
           </router-link-->
         </div>
     </div>
-    <div class="row">
       <div class="col-sm-12">
         <table class="table table-striped">
           <thead>
@@ -58,7 +55,6 @@
           </tbody>
         </table>
       </div>
-    </div>
   </div>
 </template>
 <style lang="scss">
