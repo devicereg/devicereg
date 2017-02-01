@@ -113,11 +113,12 @@
                 <div class="form-group col-sm-6">
                   <div class="form-group">
                     <label name="maintenance" class="control-label" for="maintenance">{{$t("DeviceRegForm.maintenance")}}?</label>
-                    <input name="maintenance_desired" type="checkbox" id="maintenance" v-model="device.maintenance"> {{$t("DeviceRegForm.yes")}}
+                    <input data-toggle="collapse" data-target="#desired" name="maintenance_desired" type="radio" id="maintenance" v-model="device.maintenance" aria-expanded="true"> {{$t("DeviceRegForm.yes")}}
+                    <input name="maintenance_desired" type="radio" id="no_maintenance" aria-expanded="false"> {{$t("DeviceRegForm.no")}}
                   </div>
-                  <div class="form-group">
+                  <div class="form-group collapse" id="desired">
                     <label class="control-label" for="mInterval">{{$t("DeviceRegForm.interval")}}:</label>
-                    <select name="maintenance_interval" class="form-control" id="mInterval" v-model="device.mInterval" :disabled="!device.maintenance"
+                    <select name="maintenance_interval" class="form-control" id="mInterval" v-model="device.mInterval"
                             :required="device.maintenance">
                       <option value="1">1 {{$t("DeviceRegForm.month")}}</option>
                       <option value="3">3 {{$t("DeviceRegForm.months")}}</option>
@@ -147,7 +148,8 @@
                 <div class="form-group col-sm-6">
                   <div class="form-group">
                     <label name="calibration" class="control-label" for="calibration">{{$t("DeviceRegForm.calibration")}}?</label>
-                    <input name="calibration_desired" type="checkbox" id="calibration" v-model="device.calibration"> {{$t("DeviceRegForm.yes")}}
+                    <input name="calibration_desired" type="radio" id="calibration" v-model="device.calibration"> {{$t("DeviceRegForm.yes")}}
+                    <input name="calibration_desired" type="radio" id="no_calibration"> {{$t("DeviceRegForm.no")}}
                   </div>
                   <div class="form-group">
                     <label class="control-label" for="cInterval">{{$t("DeviceRegForm.interval")}}:</label>

@@ -1,4 +1,4 @@
-<template>
+<template xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml">
   <div id="user-registration-component">
     <div class="row">
       <div class="col-sm-12">
@@ -7,13 +7,14 @@
         </div>
       </div>
     </div>
-    <div class="row">
       <div class="col-sm-12 text-left">
         <h1 class="registration-header-title">{{$t("RegistrationForm.title")}}</h1>
-        <form id="user-registration-form" role="form" v-on:submit.prevent="submit">
+        <p><b>{{$t("RegistrationForm.hint")}}</b> {{$t("RegistrationForm.hint_message")}}</p>
+        <br/>
+        <form  id="user-registration-form" role="form" v-on:submit.prevent="submit">
           <legend>{{$t("RegistrationForm.personal_details")}}</legend>
           <div class="form-group row">
-            <div class="col-sm-4 control-label">
+            <div class="col-sm-4 con  trol-label">
               <label for="register_gender">{{$t("RegistrationForm.gender")}}</label>
             </div>
             <div class="col-sm-6">
@@ -21,7 +22,7 @@
                 class="form-control"
                 id="register_gender"
                 v-model="credentials.gender" required>
-                <option value="">{{$t("RegistrationForm.choose")}}</option>
+                <option value="" :disabled="true">{{$t("RegistrationForm.choose")}}</option>
                 <option>{{$t("RegistrationForm.mr")}}</option>
                 <option>{{$t("RegistrationForm.mrs")}}</option>
               </select>
@@ -57,7 +58,7 @@
             </div>
             <div class="col-sm-6">
               <select name="language" class="form-control" id="register_language" v-model="credentials.language" required>
-                <option value="">{{$t("RegistrationForm.choose")}}</option>
+                <option value="" :disabled="true">{{$t("RegistrationForm.choose")}}</option>
                 <option>{{$t("RegistrationForm.german")}}</option>
                 <option>{{$t("RegistrationForm.english")}}</option>
               </select>
@@ -67,12 +68,19 @@
             <div class="col-sm-4 control-label">
               <label for="register_phone">{{$t("phone")}}</label>
             </div>
-            <div class="col-sm-6">
+            <div class="col-sm-2">
+              <input name="phone_prefix"
+                     type="tel"
+                     class="form-control"
+                     id="register_phone_prefix"
+                     v-model="credentials.phone" required>
+            </div>
+            <div class="col-sm-4">
               <input name="phone"
-                type="tel"
-                class="form-control"
-                id="register_phone"
-                v-model="credentials.phone" required>
+                     type="tel"
+                     class="form-control"
+                     id="register_phone"
+                     v-model="credentials.phone" required>
             </div>
           </div>
           <legend>{{$t("RegistrationForm.company_details")}}</legend>
@@ -82,27 +90,45 @@
             </div>
             <div class="col-sm-6">
               <select name="industry_family"
-              class="form-control"
-              id="register_industry_family"
-              v-model="credentials.industry_family" required>
-              <option value="">{{$t("RegistrationForm.choose")}}</option>
-              <option>Elektro</option>
-              <option>Strom</option>
-            </select>
+                      class="form-control"
+                      id="register_industry_family"
+                      v-model="credentials.industry_family"
+                      required>
+                <option value="" :disabled="true">{{$t("RegistrationForm.choose")}}</option>
+                <option v-bind:value="item.id" v-for="item in industry_family" > {{ $t(item.name) }}</option>
+              </select>
+            </div>
           </div>
-        </div>
-        <div class="form-group row">
-          <div class="col-sm-4 control-label">
-            <label for="register_industry_type">{{$t("RegistrationForm.industry_type")}}</label>
+          <!-- Industry type should be a select field when the industry family field is filled, except the option 'Andere(Eingabe erforderlich) is selected, then it should be normal input field'-->
+          <div v-if="credentials.industry_family == 0" class="form-group row">
+            <div class="col-sm-4 control-label">
+              <label for="register_industry_type">{{$t("RegistrationForm.industry_type_other")}}</label>
+            </div>
+            <div class="col-sm-6">
+              <input name="industry_type"
+                     type="text"
+                     class="form-control"
+                     id="register_industry_type"
+                     v-model="credentials.industry_type"
+                     :required="credentials.industry_family">
+            </div>
           </div>
-          <div class="col-sm-6">
-            <input name="industry_type"
-            type="text"
-            class="form-control"
-            id="register_industry_type"
-            v-model="credentials.industry_type" required>
+          <!--             Industry type block starts             -->
+          <div v-else-if="credentials.industry_family != 0" class="form-group row">
+            <div class="col-sm-4 control-label">
+              <label for="register_industry_type">{{$t("RegistrationForm.industry_type")}}</label>
+            </div>
+            <div class="col-sm-6">
+              <select name="industry_type"
+                      class="form-control"
+                      id="register_industry_type"
+                      v-model="credentials.industry_type"
+                      :disabled="credentials.industry_family == -1" :required="credentials.industry_family">
+                <option>bla</option>
+              </select>
+            </div>
           </div>
-        </div>
+          <!--              Incorrect block ends here              -->
           <div class="form-group row">
             <div class="col-sm-4 control-label">
               <label for="register_company">{{$t("RegistrationForm.company")}}</label>
@@ -166,13 +192,13 @@
             </div>
             <div class="col-sm-6">
               <select name="country" class="form-control" id="register_country" v-model="credentials.country" required>
-                <option value="">{{$t("RegistrationForm.choose")}}</option>
-                <option>Deutschland</option>
-                <option>Österreich</option>
-                <option>Schweiz</option>
+                <option value="" :disabled="true">{{$t("RegistrationForm.choose")}}</option>
+                <option  v-for="item in country" > {{ $t(item.name) }}</option>
+
               </select>
             </div>
           </div>
+
           <legend>{{$t("RegistrationForm.system_access")}}</legend>
           <div class="form-group row">
             <div class="col-sm-4 control-label">
@@ -180,6 +206,14 @@
             </div>
             <div class="col-sm-6">
               <input name="user" type="email" class="form-control" id="register_user" v-model="credentials.email" required>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-sm-4 control-label">
+              <label for="register_user_repeat">{{$t("RegistrationForm.user_repeat")}}</label>
+            </div>
+            <div class="col-sm-6">
+              <input name="user_repeat" type="email" class="form-control" id="register_user_repeat" v-model="credentials.email_repeat" required>
             </div>
           </div>
           <div class="form-group row">
@@ -193,6 +227,19 @@
                 class="form-control"
                 id="register_password"
                 v-model="credentials.password" required>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-sm-4 control-label">
+              <label for="register_password_repeat">{{$t("RegistrationForm.password_repeat")}}</label>
+            </div>
+            <div class="col-sm-6">
+              <input name="password_repeat"
+                     type="password"
+                     data-minlength="6"
+                     class="form-control"
+                     id="register_password_repeat"
+                     v-model="credentials.password_repeat" required>
             </div>
           </div>
           <div class="form-group row">
@@ -246,7 +293,6 @@
           </div>
         </form>
       </div>
-    </div>
   </div>
 </template>
 
@@ -256,6 +302,7 @@
 	export default {
 	  name: 'registration-form',
 	  data () {
+
 	    return {
 	    	credentials: {
 					gender: '',
@@ -263,7 +310,8 @@
 					surname: '',
 					language: '',
 					phone: '',
-					industry_family: '',
+					industry_family: '-1',
+					//industry_family_other: '',
 					industry_type: '',
 					company: '',
 					street: '',
@@ -272,11 +320,91 @@
 					city: '',
 					country: '',
 	    		email: '',
+	    		email_repeat: '',
 	    		password: '',
+					password_repeat: '',
 					question: '',
 					answer: '',
 					agreement:''
 	    	},
+	    	industry_family: [
+          {id: 0, name: 'Andere (Eingabe erforderlich)'},
+          {id: 1, name: 'Metall Minen'},
+          {id: 2, name: 'Öl und Gas'},
+          {id: 3, name: 'Allgemein Hoch- und Tiefbau'},
+          {id: 4, name: 'Elektrische Arbeitsmittel'},
+          {id: 5, name: 'Lebensmittel-/Getränkeindustrie'},
+          {id: 6, name: 'Textilien'},
+          {id: 7, name: 'Zellstoff Papier'},
+          {id: 8, name: 'Pharmazeutika'},
+          {id: 9, name: 'Raffinierung'},
+          {id: 10, name: 'Chemie oder Petrochemie'},
+          {id: 11, name: 'Reifenhersteller und indust. Schläuche'},
+          {id: 12, name: 'Zement, Glas'},
+          {id: 13, name: 'Eisen, Stahl'},
+          {id: 14, name: 'Automotive'},
+          {id: 15, name: 'Maschinen'},
+          {id: 16, name: 'Herst. Elektr. und Ind. App.'},
+          {id: 17, name: 'Elektronik'},
+          {id: 18, name: 'Semicon'},
+          {id: 19, name: 'Elektrisch'},
+          {id: 20, name: 'Luft- und Raumfahrt'},
+          {id: 21, name: 'Strom'},
+          {id: 22, name: 'Wasser, Abwasser'},
+          {id: 23, name: 'Fernmeldewesen'},
+          {id: 24, name: 'Ges. allg. Handelswaren Maschinen'},
+          {id: 25, name: 'Gesamte Handelwaren Sonstiges'},
+          {id: 26, name: 'Sonstige Ges. Handelsver. und Branchen'},
+          {id: 27, name: 'Ingenieur und Architekt'},
+          {id: 28, name: 'Gebäudeautomatisierung'},
+          {id: 29, name: 'Abfallwirtschaft'},
+          {id: 30, name: 'Medizin'},
+          {id: 31, name: 'Bildung'},
+          ],
+
+          country: [
+          {name: "Countries.GB"},
+          {name: "Countries.DE"},
+          {name: "Countries.FR"},
+          {name: "Countries.PL"},
+          {name: "Countries.AT"},
+          {name: "Countries.ES"},
+          {name: "Countries.SE"},
+          {name: "Countries.CH"},
+          {name: "Countries.IT"},
+          {name: "Countries.BE"},
+          {name: "Countries.BG"},
+          {name: "Countries.HR"},
+          {name: "Countries.CY"},
+          {name: "Countries.ZC"},
+          {name: "Countries.DK"},
+          {name: "Countries.EE"},
+          {name: "Countries.GR"},
+          {name: "Countries.HU"},
+          {name: "Countries.LV"},
+          {name: "Countries.LT"},
+          {name: "Countries.LU"},
+          {name: "Countries.MT"},
+          {name: "Countries.NL"},
+          {name: "Countries.PT"},
+          {name: "Countries.IE"},
+          {name: "Countries.RO"},
+          {name: "Countries.SK"},
+          {name: "Countries.SI"},
+          {name: "Countries.AL"},
+          {name: "Countries.AD"},
+          {name: "Countries.BA"},
+          {name: "Countries.IS"},
+          {name: "Countries.LIE"},
+          {name: "Countries.MD"},
+          {name: "Countries.MC"},
+          {name: "Countries.ME"},
+          {name: "Countries.MK"},
+          {name: "Countries.SM"},
+          {name: "Countries.RS"},
+          {name: "Countries.TR"},
+          {name: "Countries.FI"},
+          ],
 	    	error: ''
 	    }
 	  },
@@ -289,6 +417,7 @@
           language: this.credentials.language,
           phone: this.credentials.phone,
           industry_family: this.credentials.industry_family,
+          //industry_family_other: this.credentials.industry_family_other,
           industry_type: this.credentials.industry_type,
           company: this.credentials.company,
           street: this.credentials.street,
@@ -297,16 +426,32 @@
           city: this.credentials.city,
           country: this.credentials.country,
           email: this.credentials.email,
+          email_repeat: this.credentials.email_repeat,
           password: this.credentials.password,
+          password_repeat: this.credentials.password_repeat,
           question: this.credentials.question,
           answer: this.credentials.answer,
           agreement: this.credentials.agreement
+
         }
 
-        auth.signup(this, credentials, '/my-devices')
-	  	}
+        if(this.credentials.password != this.credentials.password_repeat){
+          this.$parent.$refs.toastr.Add({
+              msg: this.$t("Passwörter stimmen nicht überein!"),
+              title: this.$t("Passwort"),
+              clickClose: false,
+              timeout: 8000,
+              position: "toast-top-right",
+              type: "error"
+          });
+        }
+        else{
+          auth.signup(this, credentials, '/my-devices')
+        }
+
+      }
 	  }
-	}
+  }
 </script>
 
 <style lang="scss">
@@ -326,6 +471,13 @@
     h1 {
       font-size: 1.5em;
     }
+    #register_phone_prefix{
+
+    }
+    #register_phone{
+
+    }
+
   }
 
 

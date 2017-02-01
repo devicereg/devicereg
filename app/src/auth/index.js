@@ -51,9 +51,9 @@ export default {
 	 * @param      {JSON}  	 creds     The creds
 	 * @param      {string}  redirect  The redirect
 	 */
-	signup(context, creds, redirect)
+	signup(context, creds, redirect, toastr)
 	{
-	    context.$http.post(SIGNUP_URL, creds).then((response) => {
+	    context.$http.post(SIGNUP_URL, creds, data).then((response) => {
 
 			localStorage.setItem('id_token', response.data.id_token);
 	      	this.user.authenticated = true;
@@ -64,7 +64,15 @@ export default {
 			}
 
 	    }, (err) => {
-	    	context.error = err
+	    	context.error = err;
+        toastr.Add({
+          msg: err.data.message,
+          title: "Passwort",
+          clickClose: false,
+          timeout: 8000,
+          position: "toast-top-right",
+          type: "error"
+        });
 	    })
   	},
 
