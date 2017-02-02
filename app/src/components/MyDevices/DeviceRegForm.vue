@@ -1,4 +1,4 @@
-<template>
+<template xmlns:v-if="http://www.w3.org/1999/xhtml">
   <div id="device-registration-modal" class="modal inmodal fade" tabindex="-1" role="dialog"  aria-hidden="true">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
@@ -21,6 +21,7 @@
                 <div class="col-sm-6  text-left">
                   <label class="control-label" for="technology">{{$t("DeviceRegForm.technology")}}:</label>
                   <select name="technology" class="form-control" id="technology" v-model="device.technology" required>
+                    <option value="" :disabled="true">{{$t("DeviceRegForm.choose")}}</option>
                     <option v-bind:value="item.id" v-for="item in technologies">{{item.name}}</option>
                   </select>
                 </div>
@@ -48,6 +49,7 @@
                 </div>
                 <div class="col-sm-6">
                   <select name="category" class="form-control" id="category_id" required v-model="device.category_id">
+                    <option value="" :disabled="true">{{$t("DeviceRegForm.choose")}}</option>
                     <option v-bind:value="item.id" v-for="item in categories">{{item.name}}</option>
                   </select>
                 </div>
@@ -84,6 +86,7 @@
                   <div class="text-left">
                     <label class="control-label" for="procmedium">{{$t("DeviceRegForm.process_fluid")}}:</label>
                     <select name="process_fluid" class="form-control" id="procmedium" v-model="device.procmedium" required>
+                      <option value="" :disabled="true">{{$t("DeviceRegForm.choose")}}</option>
                       <option v-bind:value="item.id" v-for="item in procmedia">{{item.name}}</option>
                     </select>
                   </div>
@@ -109,35 +112,58 @@
                   <legend class="modal-form-legend">{{$t("DeviceRegForm.maintenance")}}</legend>
                 </div>
               </div>
+
+
+
+
+
+
               <div class="row">
                 <div class="form-group col-sm-6">
-                  <div class="form-group">
-                    <label name="maintenance" class="control-label" for="maintenance">{{$t("DeviceRegForm.maintenance")}}?</label>
-                    <input data-toggle="collapse" data-target="#desired" name="maintenance_desired" type="radio" id="maintenance" v-model="device.maintenance" aria-expanded="true"> {{$t("DeviceRegForm.yes")}}
-                    <input name="maintenance_desired" type="radio" id="no_maintenance" aria-expanded="false"> {{$t("DeviceRegForm.no")}}
+                  <div  class="form-group">
+                    <label name="maintenance" class="control-label" for="maintenance">{{$t("DeviceRegForm.maintenance")}}</label>
+                    <input name="maintenance_desired" type="radio" id="maintenance" v-model="device.maintenance" value="true"> {{$t("DeviceRegForm.yes")}}
+                    <input name="maintenance_desired" type="radio" id="no_maintenance" v-model="device.maintenance" value="false"> {{$t("DeviceRegForm.no")}}
                   </div>
-                  <div class="form-group collapse" id="desired">
-                    <label class="control-label" for="mInterval">{{$t("DeviceRegForm.interval")}}:</label>
+
+                  <div v-if="device.maintenance == 'true'" class="form-group" id="desired">
+                    <label class="control-label" for="mInterval">{{$t("DeviceRegForm.main_interval")}}</label>
                     <select name="maintenance_interval" class="form-control" id="mInterval" v-model="device.mInterval"
                             :required="device.maintenance">
-                      <option value="1">1 {{$t("DeviceRegForm.month")}}</option>
-                      <option value="3">3 {{$t("DeviceRegForm.months")}}</option>
-                      <option value="6">6 {{$t("DeviceRegForm.months")}}</option>
+                      <option value="" :disabled="true">{{$t("DeviceRegForm.choose")}}</option>
+                      <option value="6">6 {{$t("DeviceRegForm.month")}}</option>
+                      <option value="12">12 {{$t("DeviceRegForm.months")}}</option>
+                      <option value="18">18 {{$t("DeviceRegForm.months")}}</option>
+                      <option value="24">24 {{$t("DeviceRegForm.months")}}</option>
                     </select>
                   </div>
                 </div>
-                <div class="form-group col-sm-6">
+
+                <div v-if="device.maintenance == 'true'" class="form-group col-sm-6">
                   <div class="form-group">
-                    <label class="control-label" for="maintenanceMsg">{{$t("DeviceRegForm.notification")}}?</label>
-                    <input name="maintenance_notification_desired" type="checkbox" id="maintenanceMsg" v-model="device.maintenanceMsg"/> {{$t("DeviceRegForm.yes")}}
+                    <label class="control-label" for="maintenanceMsg">{{$t("DeviceRegForm.notification")}}:</label>
+                    <input name="maintenance_notification_desired" type="radio" id="maintenanceMsg" value="true" v-model="device.maintenanceMsg"/> {{$t("DeviceRegForm.yes")}}
+                    <input name="maintenance_notification_desired" type="radio" id="maintenanceMsg_none" value="false" v-model="device.maintenanceMsg"/> {{$t("DeviceRegForm.no")}}
                   </div>
-                  <div class="form-group">
+                  <div v-if="device.maintenanceMsg == 'true'" class="form-group">
                     <label name="maintenance_start" class="control-label" for="mBeginning">{{$t("DeviceRegForm.start")}}:</label>
                     <input type="date" class="form-control" id="mBeginning" v-model="device.mBeginning"
                            :disabled="!device.maintenanceMsg" :required="device.maintenanceMsg" :min="today">
                   </div>
+                  <div  v-if="device.maintenanceMsg == 'true'" class="form-group">
+                    <label name="email_address_maintenance" class="control-label" for="email_address_maintenance">{{$t("DeviceRegForm.email")}}</label>
+                    <input class="form-control" id="email_address_maintenance" v-model="device.email_address_maintenance">
+                  </div>
+                  <div v-if="device.maintenanceMsg == 'true'" class="form-group">
+                    <label class="control-label" for="remind_intervall">{{$t("DeviceRegForm.remind")}}</label>
+                    <select name="remind" class="form-control" id="remind_intervall" v-model="device.remind_intervall">
+                      <option value="" :disabled="true">{{$t("DeviceRegForm.choose")}}</option>
+                      <option value="6">1 {{$t("DeviceRegForm.month_before")}}</option>
+                      <option value="12">2 {{$t("DeviceRegForm.months_before")}}</option>
+                      <option value="18">3 {{$t("DeviceRegForm.months_before")}}</option>
+                    </select>
+                  </div>
                 </div>
-
               </div>
               <div class="form-group row">
                 <div class="col-sm-12  text-left">
@@ -147,29 +173,45 @@
               <div class="row">
                 <div class="form-group col-sm-6">
                   <div class="form-group">
-                    <label name="calibration" class="control-label" for="calibration">{{$t("DeviceRegForm.calibration")}}?</label>
-                    <input name="calibration_desired" type="radio" id="calibration" v-model="device.calibration"> {{$t("DeviceRegForm.yes")}}
-                    <input name="calibration_desired" type="radio" id="no_calibration"> {{$t("DeviceRegForm.no")}}
+                    <label name="calibration" class="control-label" for="calibration">{{$t("DeviceRegForm.calibration")}}</label>
+                    <input name="calibration_desired" type="radio" id="calibration" value="true" v-model="device.calibration"> {{$t("DeviceRegForm.yes")}}
+                    <input name="calibration_desired" type="radio" id="no_calibration" value="false" v-model="device.calibration"> {{$t("DeviceRegForm.no")}}
                   </div>
-                  <div class="form-group">
-                    <label class="control-label" for="cInterval">{{$t("DeviceRegForm.interval")}}:</label>
+                  <div v-if="device.calibration == 'true'" class="form-group">
+                    <label class="control-label" for="cInterval">{{$t("DeviceRegForm.cali_interval")}}</label>
                     <select name="calibration_interval" class="form-control" id="cInterval" v-model="device.cInterval" :disabled="!device.calibration"
                             :required="device.calibration">
-                      <option value="1">1 {{$t("DeviceRegForm.month")}}</option>
-                      <option value="3">3 {{$t("DeviceRegForm.months")}}</option>
-                      <option value="6">6 {{$t("DeviceRegForm.months")}}</option>
+                      <option value="" :disabled="true">{{$t("DeviceRegForm.choose")}}</option>
+                      <option value="6">6 {{$t("DeviceRegForm.month")}}</option>
+                      <option value="12">12 {{$t("DeviceRegForm.months")}}</option>
+                      <option value="18">18 {{$t("DeviceRegForm.months")}}</option>
+                      <option value="24">24 {{$t("DeviceRegForm.months")}}</option>
                     </select>
                   </div>
                 </div>
-                <div class="form-group col-sm-6">
+                <div v-if="device.calibration == 'true'" class="form-group col-sm-6">
                   <div class="form-group">
-                    <label class="control-label" for="calibrationMsg">{{$t("DeviceRegForm.notification")}}?</label>
-                    <input name="calibration_notification_desired" type="checkbox" id="calibrationMsg" v-model="device.calibrationMsg" value="1"> {{$t("DeviceRegForm.yes")}}
+                    <label class="control-label" for="calibrationMsg">{{$t("DeviceRegForm.notification")}}</label>
+                    <input name="calibration_notification_desired" type="radio" id="calibrationMsg" v-model="device.calibrationMsg" value="true"> {{$t("DeviceRegForm.yes")}}
+                    <input name="calibration_notification_desired" type="radio" id="calibrationMsg_none" v-model="device.calibrationMsg" value="false" > {{$t("DeviceRegForm.no")}}
                   </div>
-                  <div class="form-group">
+                  <div v-if="device.calibrationMsg == 'true'" class="form-group">
                     <label class="control-label" for="cBeginning">{{$t("DeviceRegForm.start")}}:</label>
                     <input name="calibration_start" type="date" class="form-control" id="cBeginning" v-model="device.cBeginning"
                            :disabled="!device.calibrationMsg" :required="device.calibrationMsg" :min="today">
+                  </div>
+                  <div v-if="device.calibrationMsg == 'true'" class="form-group">
+                    <label class="control-label" for="email_address_calibration">{{$t("DeviceRegForm.email")}}</label>
+                    <input name="email_address_calibration" type="date" class="form-control" id="email_address_calibration" v-model="device.email_address_calibration">
+                  </div>
+                  <div v-if="device.calibrationMsg == 'true'" class="form-group">
+                    <label class="control-label" for="remind_intervall">{{$t("DeviceRegForm.remind")}}:</label>
+                    <select name="remind" class="form-control" id="remind_intervall" v-model="device.remind_intervall">
+                      <option value="" :disabled="true">{{$t("DeviceRegForm.choose")}}</option>
+                      <option value="6">1 {{$t("DeviceRegForm.month_before")}}</option>
+                      <option value="12">2 {{$t("DeviceRegForm.months_before")}}</option>
+                      <option value="18">3 {{$t("DeviceRegForm.months_before")}}</option>
+                    </select>
                   </div>
                 </div>
               </div>

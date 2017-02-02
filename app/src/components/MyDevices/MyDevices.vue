@@ -1,7 +1,6 @@
 <template>
   <div id="my-devices-component">
     <device-registration-modal :device="device" :categories="categories"></device-registration-modal>
-    <div class="row">
       <div class="col-sm-8">
         <h1> {{$t("MyDevices.title")}} </h1>
       </div>
@@ -10,15 +9,10 @@
           <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> &nbsp; {{ $t("MyDevices.add_button") }}
         </a>
       </div>
-    </div>
-    <div class="row">
       <filter-input-elements :categories="categories"></filter-input-elements>
-    </div>
-    <div class="row">
       <div class="col-sm-12">
         <sortable-devices :devices="devices" :categories="categories" :filterKey="filter" :categoryFilter="cat_filter"></sortable-devices>
       </div>
-    </div>
   </div>
 </template>
 

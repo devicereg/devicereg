@@ -1,5 +1,6 @@
 {
   "de": {
+    "choose": "Bitte wählen Sie",
     "title": "Gerät registrieren",
     "categorization": "Gerätekategorisierung",
     "technology": "Technologie",
@@ -12,18 +13,24 @@
     "tag_number": "Tagnummer",
     "comment": "Kommentar",
     "maintenance_and_calibration": "Wartung und Kalibrierung",
-    "maintenance": "Wartung",
-    "calibration": "Kalibrierung",
+    "maintenance": "Regelmäßige Wartung erforderlich?",
+    "calibration": "Regelmäßige Kalibrierung erforderlich?",
     "notification": "Benachrichtigung",
     "yes": "Ja",
     "no": "Nein",
-    "interval": "Intervall",
+    "main_interval": "Wartungsintervall:",
+    "cali_interval": "Kalibrierungsintervall:",
     "start": "Beginn",
     "month": "Monat",
     "months": "Monate",
-    "create_category": "Erstellen"
+    "create_category": "Erstellen",
+    "email": "E-Mail Adresse:",
+    "remind": "Erinnerung",
+    "month_before": "Monat vor Intervallende",
+    "months_before": "Monate vor Intervallende"
   },
   "en": {
+    "choose": "Please choose",
     "title": "Register device",
     "categorization": "Categorization",
     "technology": "Technology",
@@ -36,15 +43,21 @@
     "tag_number": "Tag number",
     "comment": "Comment",
     "maintenance_and_calibration": "Maintenance and calibration",
-    "maintenance": "Maintenance",
-    "calibration": "Calibration",
+    "maintenance": "Regular maintenance required?",
+    "calibration": "Regular calibration required?",
     "notification": "Notification",
     "yes": "Yes",
     "no": "No",
-    "interval": "Interval",
-    "start": "Start",
+    "main_interval": " Maintenance interval:",
+    "cali_interval": " Calibration interval:",
+    "start": " Period start",
     "month": "Month",
     "months": "Months",
-    "create_category": "Create"
+    "create_category": "Create",
+    "email": "E-Mail address:",
+    "remind": "Reminder",
+    "month_before": "month before end of interval",
+    "months_before": "months before end of interval"
+
   }
 }

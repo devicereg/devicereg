@@ -99,7 +99,6 @@
               </select>
             </div>
           </div>
-          <!-- Industry type should be a select field when the industry family field is filled, except the option 'Andere(Eingabe erforderlich) is selected, then it should be normal input field'-->
           <div v-if="credentials.industry_family == 0" class="form-group row">
             <div class="col-sm-4 control-label">
               <label for="register_industry_type">{{$t("RegistrationForm.industry_type_other")}}</label>
@@ -113,7 +112,6 @@
                      :required="credentials.industry_family">
             </div>
           </div>
-          <!--             Industry type block starts             -->
           <div v-else-if="credentials.industry_family != 0" class="form-group row">
             <div class="col-sm-4 control-label">
               <label for="register_industry_type">{{$t("RegistrationForm.industry_type")}}</label>
@@ -124,11 +122,11 @@
                       id="register_industry_type"
                       v-model="credentials.industry_type"
                       :disabled="credentials.industry_family == -1" :required="credentials.industry_family">
-                <option>bla</option>
+                <option v-bind:value="item.name" v-for="item in industry_types" v-if="credentials.industry_family == item.id">{{item.name}}</option>
               </select>
             </div>
           </div>
-          <!--              Incorrect block ends here              -->
+
           <div class="form-group row">
             <div class="col-sm-4 control-label">
               <label for="register_company">{{$t("RegistrationForm.company")}}</label>
@@ -360,6 +358,15 @@
           {id: 29, name: 'Abfallwirtschaft'},
           {id: 30, name: 'Medizin'},
           {id: 31, name: 'Bildung'},
+          ],
+
+        industry_types: [
+          {family_id: '-1', name: 'blabla'},
+          {family_id: '1', name: 'blabla'},
+          {family_id: '1', name: 'blabla'},
+          {family_id: '1', name: 'blabla'},
+          {family_id: '1', name: 'blabla'},
+          {family_id: '1', name: 'blabla'}
           ],
 
           country: [

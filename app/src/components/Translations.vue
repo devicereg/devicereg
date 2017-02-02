@@ -89,6 +89,8 @@
       },
 
       DeviceRegForm: {
+        choose: 'Bitte wählen Sie',
+        email: 'E-Mail Adresse:',
         title: 'Gerät registrieren',
         categorization: 'Gerätekategorisierung',
         technology: 'Technologie',
@@ -99,16 +101,18 @@
         label: 'Gerätebezeichnung',
         process_fluid: 'Prozessmedium',
         tag_number: 'Tagnummer',
-        comment: 'Kommentar',
+        comment: 'Standort / Serviceinformation / Kommentar',
         maintenance_and_calibration: 'Wartung und Kalibrierung',
-        maintenance: 'Wartung',
-        calibration: 'Kalibrierung',
+        maintenance: 'Regelmäßige Wartung erfoderlich?',
+        calibration: 'Regelmäßige Kalibrierung erforderlich?',
         notification: 'Benachrichtigung',
         yes: 'Ja',
-        interval: 'Intervall',
+        main_interval: 'Wartungsintervall:',
+        cali_interval: 'Calibrierungintervall:',
         start: 'Beginn',
         month: 'Monat',
-        months: 'Monate'
+        months: 'Monate',
+        remind: 'Erinnerung'
       },
       ResetPassword: {
         reset_password: 'Passwort zurücksetzen',
@@ -267,6 +271,8 @@
       },
 
       DeviceRegForm: {
+        choose: 'Please choose',
+        email: 'E-Mail address:',
         title: 'Register device',
         categorization: 'Categorization',
         technology: 'Technology',
@@ -279,14 +285,18 @@
         tag_number: 'Tag number',
         comment: 'Comment',
         maintenance_and_calibration: 'Maintenance and calibration',
-        maintenance: 'Maintenance',
-        calibration: 'Calibration',
+        maintenance: 'Regular maintenance required?',
+        calibration: 'Regular calibration required?',
         notification: 'Notification',
         yes: 'Yes',
-        interval: 'Interval',
-        start: 'Start',
+        main_interval: 'Maintenance interval:',
+        cali_interval: 'Calibration interval:',
+        start: 'Period start',
         month: 'Month',
-        months: 'Months'
+        months: 'Months',
+        remind: 'Reminder',
+        month_before: 'month before end of interval',
+        months_before: 'months before end of interval'
       },
 
       ResetPassword: {
