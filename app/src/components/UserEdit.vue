@@ -1,16 +1,15 @@
 <template>
   <div id="user-edit-component">
-    <div class="row">
-      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        <div class="alert alert-danger fade in" v-if="error">
-          <p>{{ error }}</p>
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="alert alert-danger fade in" v-if="error">
+            <p>{{ error }}</p>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="row">
       <form id="user-edit-form" role="form">
         <div class="col-sm-12 text-left">
-          <h2 class="registration-header-title">{{$t("edit_profile")}}</h2>
+          <h1 class="registration-header-title">{{$t("edit_profile")}}</h1>
           <input type="hidden" v-model="credentials.id">
 
           <legend>{{$t("RegistrationForm.personal_details")}}</legend>
@@ -18,7 +17,7 @@
             <div class="col-sm-4 control-label">
               <label for="register_gender">{{$t("RegistrationForm.gender")}}</label>
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-6">
               <select
                 class="form-control"
                 id="register_gender"
@@ -33,7 +32,7 @@
             <div class="col-sm-4 control-label">
               <label for="register_prename">{{$t("RegistrationForm.prename")}}</label>
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-6">
               <input
                 type="text"
                 class="form-control"
@@ -45,7 +44,7 @@
             <div class="col-sm-4 control-label">
               <label for="register_surname">{{$t("RegistrationForm.surname")}}</label>
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-6">
               <input
                 type="text"
                 class="form-control"
@@ -57,7 +56,7 @@
             <div class="col-sm-4 control-label">
               <label for="register_language">{{$t("language")}}</label>
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-6">
               <select class="form-control" id="register_language" v-model="credentials.language" required>
                 <option value="">{{$t("RegistrationForm.choose")}}</option>
                 <option>{{$t("RegistrationForm.german")}}</option>
@@ -69,7 +68,7 @@
             <div class="col-sm-4 control-label">
               <label for="register_phone">{{$t("phone")}}</label>
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-6">
               <input
                 type="tel"
                 class="form-control"
@@ -80,36 +79,9 @@
           <legend>{{$t("RegistrationForm.company_details")}}</legend>
           <div class="form-group row">
             <div class="col-sm-4 control-label">
-              <label for="register_industry_family">{{$t("RegistrationForm.industry_family")}}</label>
-            </div>
-            <div class="col-sm-4">
-              <select
-                class="form-control"
-                id="register_industry_family"
-                v-model="credentials.industry_family" required>
-                <option value="">{{$t("RegistrationForm.choose")}}</option>
-                <option>Elektro</option>
-                <option>Strom</option>
-              </select>
-            </div>
-          </div>
-          <div class="form-group row">
-            <div class="col-sm-4 control-label">
-              <label for="register_industry_type">{{$t("RegistrationForm.industry_type")}}</label>
-            </div>
-            <div class="col-sm-4">
-              <input
-                type="text"
-                class="form-control"
-                id="register_industry_type"
-                v-model="credentials.industry_type" required>
-            </div>
-          </div>
-          <div class="form-group row">
-            <div class="col-sm-4 control-label">
               <label for="register_company">{{$t("RegistrationForm.company")}}</label>
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-6">
               <input type="text" class="form-control" id="register_company" v-model="credentials.company" required>
             </div>
           </div>
@@ -117,7 +89,7 @@
             <div class="col-sm-4 control-label">
               <label for="register_street">{{$t("RegistrationForm.street")}}</label>
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-6">
               <input
                 type="text"
                 class="form-control"
@@ -129,7 +101,7 @@
             <div class="col-sm-4 control-label">
               <label for="register_number">{{$t("RegistrationForm.number")}}</label>
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-6">
               <input
                 type="text"
                 class="form-control"
@@ -141,7 +113,7 @@
             <div class="col-sm-4 control-label">
               <label for="register_zip">{{$t("RegistrationForm.zip")}}</label>
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-6">
               <input
                 type="number"
                 class="form-control"
@@ -153,7 +125,7 @@
             <div class="col-sm-4 control-label">
               <label for="register_city">{{$t("city")}}</label>
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-6">
               <input
                 type="text"
                 class="form-control"
@@ -165,7 +137,7 @@
             <div class="col-sm-4 control-label">
               <label for="register_country">{{$t("country")}}</label>
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-6">
               <select class="form-control" id="register_country" v-model="credentials.country" required>
                 <option value="">{{$t("RegistrationForm.choose")}}</option>
                 <option>Deutschland</option>
@@ -174,12 +146,14 @@
               </select>
             </div>
           </div>
+
+          <!--
           <legend>{{$t("RegistrationForm.system_access")}}</legend>
           <div class="form-group row">
             <div class="col-sm-4 control-label">
               <label for="register_user">{{$t("RegistrationForm.user")}}</label>
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-6">
               <input type="email" class="form-control" id="register_user" v-model="credentials.email" required>
             </div>
           </div>
@@ -187,7 +161,7 @@
             <div class="col-sm-4 control-label">
               <label for="register_password">{{$t("RegistrationForm.password")}}</label>
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-6">
               <input
                 type="password"
                 data-minlength="6"
@@ -195,43 +169,18 @@
                 id="register_password"
                 v-model="credentials.password" required>
             </div>
-          </div>
-          <div class="form-group row">
-            <div class="col-sm-4 control-label">
-              <label for="register_question">{{$t("RegistrationForm.question")}}</label>
-            </div>
-            <div class="col-sm-4">
-              <input
-                type="text"
-                class="form-control"
-                id="register_question"
-                v-model="credentials.question" required>
-            </div>
-          </div>
-          <div class="form-group row">
-            <div class="col-sm-4 control-label">
-              <label for="register_answer">{{$t("RegistrationForm.answer")}}</label>
-            </div>
-            <div class="col-sm-4">
-              <input
-                type="text"
-                class="form-control"
-                id="register_answer"
-                v-model="credentials.answer" required>
-            </div>
-          </div>
+          </div>-->
           <br />
           <div class="form-group row">
-            <div class="col-sm-offset-4 col-sm-2">
+            <div class="col-sm-offset-4 col-xs-6 col-sm-3">
               <button class="btn btn-block btn-lg btn-cancel">{{$t("cancel")}}</button>
             </div>
-            <div class="col-sm-2">
+            <div class="col-xs-6 col-sm-3">
               <button class="btn btn-block btn-lg btn-primary" @click="submit()">Aktualisieren</button>
             </div>
           </div>
         </div>
       </form>
-    </div>
   </div>
 </template>
 

@@ -14,7 +14,7 @@
         <form  id="user-registration-form" role="form" v-on:submit.prevent="submit">
           <legend>{{$t("RegistrationForm.personal_details")}}</legend>
           <div class="form-group row">
-            <div class="col-sm-4 con  trol-label">
+            <div class="col-sm-4 control-label">
               <label for="register_gender">{{$t("RegistrationForm.gender")}}</label>
             </div>
             <div class="col-sm-6">
@@ -68,6 +68,15 @@
             <div class="col-sm-4 control-label">
               <label for="register_phone">{{$t("phone")}}</label>
             </div>
+            <div class="col-sm-6">
+              <input name="phone_prefix"
+                     type="tel"
+                     class="form-control"
+                     id="register_phone_prefix"
+                     v-model="credentials.phone" required>
+            </div>
+            <!--
+            Two input forms are not responisve yet!
             <div class="col-sm-2">
               <input name="phone_prefix"
                      type="tel"
@@ -81,7 +90,7 @@
                      class="form-control"
                      id="register_phone"
                      v-model="credentials.phone" required>
-            </div>
+            </div>-->
           </div>
           <legend>{{$t("RegistrationForm.company_details")}}</legend>
           <div class="form-group row">
@@ -122,6 +131,7 @@
                       id="register_industry_type"
                       v-model="credentials.industry_type"
                       :disabled="credentials.industry_family == -1" :required="credentials.industry_family">
+                <!-- industry type depands on industry family, not working yet-->
                 <option v-bind:value="item.name" v-for="item in industry_types" v-if="credentials.industry_family == item.id">{{item.name}}</option>
               </select>
             </div>
@@ -361,12 +371,10 @@
           ],
 
         industry_types: [
-          {family_id: '-1', name: 'blabla'},
-          {family_id: '1', name: 'blabla'},
-          {family_id: '1', name: 'blabla'},
-          {family_id: '1', name: 'blabla'},
-          {family_id: '1', name: 'blabla'},
-          {family_id: '1', name: 'blabla'}
+          {family_id: '-1', name: 'Mteall, Minen'},
+          {family_id: '1', name: 'Kohle'},
+          {family_id: '1', name: 'Diamanten'},
+          {family_id: '1', name: 'Gold'}
           ],
 
           country: [
