@@ -272,7 +272,7 @@ export default {
     categoryCreated() {
       this.customCat = 0;
       this.custom_category = "";
-      this.getCategories();
+      this.$parent.getCategories();
     }
   },
   computed: {

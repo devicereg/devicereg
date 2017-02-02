@@ -157,7 +157,7 @@ export default {
 	createDevice(context, data, redirect)
   	{
 	    context.$http.post(CREATE_DEVICE_URL, data).then((response) => {
-        var responseBody = JSON.parse(response.body);
+        var responseBody = response.body;
         context.selected_device_id = responseBody.id;
         console.log(context.selected_device_id);
 
@@ -284,7 +284,7 @@ export default {
   getDevices(context)
   {
     context.$http.get(GET_DEVICES_URL).then((response) => {
-      context.devices = JSON.parse(response.body);
+      context.devices = response.body;
     }, (err) => {
       context.error = err;
     });
@@ -293,7 +293,7 @@ export default {
   getCategories(context)
   {
     context.$http.get(GET_CATEGORIES_URL).then((response) => {
-      context.categories = JSON.parse(response.body);
+      context.categories = response.body;
     }, (err) => {
       context.error = err;
     });
