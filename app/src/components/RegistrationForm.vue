@@ -64,38 +64,33 @@
               </select>
             </div>
           </div>
-
-          <!-- PHONE WITH PREFIX -->
-          <!--div class="form-group row">
-            <div class="col-sm-4 control-label">
-              <label for="register_phone">{{$t("phone")}}</label>
-            </div>
-            <div class="col-sm-2">
-              <input name="phone_prefix"
-                     type="tel"
-                     class="form-control"
-                     id="register_phone_prefix"
-                     v-model="credentials.phone" required/>
-            </div>
-            <div class="col-sm-4">
-              <input name="phone"
-                     type="tel"
-                     class="form-control"
-                     id="register_phone"
-                     v-model="credentials.phone" required/>
-            </div>
-          </div-->
           <div class="form-group row">
             <div class="col-sm-4 control-label">
               <label for="register_phone">{{$t("phone")}}</label>
             </div>
             <div class="col-sm-6">
               <input name="phone"
-                 type="tel"
-                 class="form-control"
-                 id="register_phone"
-                 v-model="credentials.phone" required/>
+                     type="tel"
+                     class="form-control"
+                     id="register_phone"
+                     v-model="credentials.phone" required>
             </div>
+            <!--
+            Two input forms are not responisve yet!
+            <div class="col-sm-2">
+              <input name="phone_prefix"
+                     type="tel"
+                     class="form-control"
+                     id="register_phone_prefix"
+                     v-model="credentials.phone" required>
+            </div>
+            <div class="col-sm-4">
+              <input name="phone"
+                     type="tel"
+                     class="form-control"
+                     id="register_phone"
+                     v-model="credentials.phone" required>
+            </div>-->
           </div>
           <legend>{{$t("RegistrationForm.company_details")}}</legend>
           <div class="form-group row">
@@ -339,7 +334,6 @@
 					answer: '',
 					agreement:''
 	    	},
-
 	    	industry_family: [
           {id: 0, name: 'Andere (Eingabe erforderlich)'},
           {id: 1, name: 'Metall Minen'},
@@ -376,12 +370,10 @@
           ],
 
         industry_types: [
-          {family_id: '-1', name: 'blabla'},
-          {family_id: '1', name: 'blabla'},
-          {family_id: '1', name: 'blabla'},
-          {family_id: '1', name: 'blabla'},
-          {family_id: '1', name: 'blabla'},
-          {family_id: '1', name: 'blabla'}
+          {family_id: '-1', name: 'Mteall, Minen'},
+          {family_id: '1', name: 'Kohle'},
+          {family_id: '1', name: 'Diamanten'},
+          {family_id: '1', name: 'Gold'}
           ],
 
         country: [
@@ -425,7 +417,7 @@
           {name: "Countries.SM"},
           {name: "Countries.RS"},
           {name: "Countries.TR"},
-          {name: "Countries.FI"},
+          {name: "Countries.FI"}
         ],
 	    	error: ''
 	    }
@@ -468,7 +460,7 @@
           });
         }
         else{
-          auth.signup(this, this.credentials, '/my-devices')
+          auth.signup(this, credentials, '/my-devices')
         }
 
       }
