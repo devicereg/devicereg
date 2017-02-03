@@ -32,7 +32,7 @@
               v-on:click="toggleDetail(device.id)">
             <div class="col-sm-12">
               <div class="table-row-content row">
-                <div class="table-cell col-md-3">{{ device.devicelabel }}</div>
+                <div class="table-cell col-md-3 device-label">{{ device.devicelabel }}</div>
                 <div v-for="technology in technologies" v-if="technology.id==device.technology" class="table-cell col-md-2">
                   {{ technology.name }}
                 </div>
@@ -41,26 +41,29 @@
                 </div>
                 <div class="table-cell col-md-3">{{ device.comment }}</div>
                 <div class="table-cell col-md-2">
+                  <!--a @click="">
+                    <span class="glyphicon glyphicon-eye-open action-button" aria-hidden="true"></span>
+                  </a-->
                   <a v-on:click="editDevice(device)">
                     <span class="glyphicon glyphicon-edit action-button" aria-hidden="true"></span>
                   </a>
                   <delete-device :device="device"></delete-device>
                 </div>
-                <div id="device-detail-view" class="row">
+                <!--div id="device-detail-view" class="row">
                   <div class="col-sm-12 hide" v-bind:id="'details_' + device.id">
                     <td colspan="5">
                       <div class="row">
                         <div class="col-xs-12">
-						<li>{{ $t("DeviceRegForm.serial_number")}}: {{device.serialnumber}}</li>						 						 
-						 <li>{{ $t("DeviceRegForm.process_fluid")}}: {{device.procmedium}}</li>
-						 <li>{{ $t("DeviceRegForm.comment")}}: {{device.comment}}</li>
-						 <li>{{ $t("DeviceRegForm.maintenance")}}:{{device.mBeginning}}, {{device.mInterval}}, {{device.maintenanceMsg}} </li>
-						 <li>{{ $t("DeviceRegForm.calibration")}}: {{device.cBeginning}}, {{device.cIntervall}}, {{device.calibrationMsg}}</li>
+                          <li>{{ $t("DeviceRegForm.serial_number")}}: {{device.serialnumber}}</li>
+                             <li>{{ $t("DeviceRegForm.process_fluid")}}: {{device.procmedium}}</li>
+                             <li>{{ $t("DeviceRegForm.comment")}}: {{device.comment}}</li>
+                             <li>{{ $t("DeviceRegForm.maintenance")}}:{{device.mBeginning}}, {{device.mInterval}}, {{device.maintenanceMsg}} </li>
+                          <li>{{ $t("DeviceRegForm.calibration")}}: {{device.cBeginning}}, {{device.cIntervall}}, {{device.calibrationMsg}}</li>
                         </div>
                       </div>
                     </td>
                   </div>
-                </div>
+                </div-->
               </div>
             </div>
           </div>
@@ -186,7 +189,7 @@
       font-weight: bold;
     }
   }
-  
+
 
   .active {
     color: $primary-link-color;
@@ -225,6 +228,10 @@
 
   .table-row-content:hover {
     background: $table-row-hover-color;
+  }
+
+  .device-label {
+    font-weight: bold;
   }
 
   /*th {*/

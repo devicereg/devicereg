@@ -1,7 +1,8 @@
 {
   "de": {
     "choose": "Bitte wählen Sie",
-    "title": "Gerät registrieren",
+    "title_create": "Gerät registrieren",
+    "title_edit": "Gerät editieren",
     "categorization": "Gerätekategorisierung",
     "technology": "Technologie",
     "category": "Gerätekategorie",
@@ -27,11 +28,13 @@
     "email": "E-Mail Adresse:",
     "remind": "Erinnerung",
     "month_before": "Monat vor Intervallende",
-    "months_before": "Monate vor Intervallende"
+    "months_before": "Monate vor Intervallende",
+    "type_in_category": "Bitte Kategorie eingeben"
   },
   "en": {
     "choose": "Please choose",
-    "title": "Register device",
+    "title_create": "Register device",
+    "title_edit": "Edit device",
     "categorization": "Categorization",
     "technology": "Technology",
     "category": "Category",
@@ -57,7 +60,7 @@
     "email": "E-Mail address:",
     "remind": "Reminder",
     "month_before": "month before end of interval",
-    "months_before": "months before end of interval"
-
+    "months_before": "months before end of interval",
+    "type_in_category": "Please type in category"
   }
 }

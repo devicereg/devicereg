@@ -7,7 +7,8 @@
             <span aria-hidden="true">×</span>
             <span class="sr-only">Schließen</span>
           </button>
-          <h1 class="modal-title">{{$t("DeviceRegForm.title")}}</h1>
+          <h1 v-if="device.id == -1" class="modal-title">{{$t("DeviceRegForm.title_create")}}</h1>
+          <h1 v-else class="modal-title">{{$t("DeviceRegForm.title_edit")}}</h1>
         </div>
         <form id="device-registration-form" class="ajax" role="form" v-on:submit.prevent="submit" >
           <div class="modal-body">
@@ -28,19 +29,22 @@
               </div>
               <div class="form-group row" v-if="customCat">
                 <div class="col-sm-12">
-                  <label class="control-label" for="category">{{$t("DeviceRegForm.category")}}:</label>
+                  <label class="control-label" for="custom_category">{{$t("DeviceRegForm.category")}}:</label>
                 </div>
                 <div class="col-xs-8 col-sm-6">
                   <input @keydown.enter="createCustomCategory" name="category" type="text" class="form-control"
-                         id="custom_category" v-model="custom_category" required>
+                         id="custom_category" v-model="custom_category" :placeholder="$t('DeviceRegForm.type_in_category')" required>
                 </div>
-                <div class="col-xs-4 col-sm-3">
+                <!--div class="col-xs-4 col-sm-3">
                   <button type="button" class="btn btn-block btn-primary" @click="createCustomCategory">
                     <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> &nbsp; {{ $t('DeviceRegForm.create_category') }}
                   </button>
-                </div>
-                <div class="col-xs-12 col-sm-3">
-                  <input class="input-control" name="category" type="checkbox" v-model="customCat"> {{$t("DeviceRegForm.custom")}}
+                </div-->
+                <div class="col-sm-3">
+                  <div class="checkbox">
+                    <label><input name="category" type="checkbox" v-model="customCat">
+                      {{$t("DeviceRegForm.custom")}}</label>
+                  </div>
                 </div>
               </div>
               <div class="form-group row" v-else>
@@ -94,7 +98,7 @@
                 <div class="form-group col-sm-6">
                   <div class="text-left">
                     <label class="control-label" for="tag">{{$t("DeviceRegForm.tag_number")}}:</label>
-                    <input name="tagnumber" type="number" class="form-control" id="tag" v-model="device.tagnumber" required>
+                    <input name="tag" type="number" class="form-control" id="tag" v-model="device.tag" required>
                   </div>
                 </div>
               </div>
@@ -221,11 +225,9 @@
             <div class="col-sm-offset-6 col-xs-6 col-sm-3">
               <button type="button" class="btn btn-block btn-md btn-cancel btn-modal" data-dismiss="modal">{{ $t('cancel') }}</button>
             </div>
-            <div v-if="device.id == -1" class="col-xs-6 col-sm-3">
-              <input type="submit" class="btn btn-block btn-md btn-primary btn-modal" v-bind:value="$t('register')">
-            </div>
-            <div v-else class="col-xs-6 col-sm-3">
-              <input type="submit" class="btn btn-block btn-md btn-primary btn-modal" v-bind:value="$t('save')">
+            <div class="col-xs-6 col-sm-3">
+              <input v-if="device.id == -1" type="submit" class="btn btn-block btn-md btn-primary btn-modal" v-bind:value="$t('register')">
+              <input v-else type="submit" class="btn btn-block btn-md btn-primary btn-modal" v-bind:value="$t('save')">
             </div>
           </div>
         </form>
@@ -240,6 +242,7 @@ export default {
   name: 'device-registration-modal',
   props: [
     'device',
+    'index',
     'categories'
   ],
   data () {
@@ -260,11 +263,18 @@ export default {
   methods: {
     submit() {
       $('#device-registration-modal').modal('hide');
-      if(this.device.id == -1) {
-        this.$parent.addDevice(this.device);
-      } else {
-        this.$parent.updateDevice(this.device);
+      if(this.customCat) {
+        this.createCustomCategory();
       }
+      if(this.device.id == -1) {
+        auth.createDevice(this, this.device);
+      } else {
+        auth.updateDevice(this. this.device);
+        this.$parent.updateDevice(this.device, this.index);
+      }
+    },
+    deviceCreated() {
+      this.$parent.addDevice(this.device);
     },
     createCustomCategory() {
       auth.createNewCategory(this, {name: this.custom_category});

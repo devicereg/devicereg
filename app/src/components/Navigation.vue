@@ -42,6 +42,19 @@ export default {
     logout(){
       auth.logout()
     },
+    handleBreakpoint() {
+      if ($(window).width() < 845) {
+        $("[data-target='#navbar']").attr("data-toggle", "collapse");
+        $(".dropdown-toggle").attr("data-toggle", "dropdown");
+      } else {
+        $("[data-target='#navbar']").attr("data-toggle", "");
+        $(".dropdown-toggle").attr("data-toggle", "");
+      }
+    }
+  },
+  mounted: function() {
+    this.handleBreakpoint();
+    window.addEventListener('resize', this.handleBreakpoint)
   }
 }
 

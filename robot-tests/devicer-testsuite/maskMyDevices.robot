@@ -29,15 +29,25 @@ Gebe die Daten des neuen Geraetes ein
     Sleep  1
 	Pruefe, dass das Geraeteregistrierungsformular angezeigt wird
     Click Element  id=technology
+    Sleep  1
     Click Element  xpath=//select[@id="technology"]/option[contains(text(), "&{Geraet}[Technologie]")]
+    Sleep  1
     Click Element  id=category_id
+    Sleep  1
     Click Element  xpath=//select[@id="category_id"]/option[contains(text(), "&{Geraet}[Geraetekategorie]")]
+    Sleep  1
 	Input Text  id=serialnumber  &{Geraet}[Seriennummer]
+    Sleep  1
 	Input Text  id=devicelabel  &{Geraet}[Geraetebezeichnung]
+    Sleep  1
 	Click Element  id=procmedium
+    Sleep  1
     Click Element  xpath=//select[@id="procmedium"]/option[contains(text(), "&{Geraet}[Prozessmedium]")]
+    Sleep  1
 	Input Text  id=tag  &{Geraet}[Tagnummer]
+    Sleep  1
 	Input Text  id=comment  &{Geraet}[Kommentar]
+    Sleep  3
 
 Sende das Geraeteregistrierungsformular ab
     [Documentation]  Das Geraeteregistrierungsformular wird abgeschickt und das Geraet wird angelegt
@@ -45,6 +55,7 @@ Sende das Geraeteregistrierungsformular ab
     #Sleep  0.5
 	#Click Button  xpath=//form[@id="user-registration-form"]//button[contains(@class, "btn-primary")]
 	Submit Form
+	Sleep  15
 
 Pruefe, dass das Geraet in der Geraeteuebersicht angezeigt wird
     [Documentation]  Es wird geprueft, ob das Geraet in der Geraeteuebersicht angezeigt wird

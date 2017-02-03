@@ -64,7 +64,9 @@
               </select>
             </div>
           </div>
-          <div class="form-group row">
+
+          <!-- PHONE WITH PREFIX -->
+          <!--div class="form-group row">
             <div class="col-sm-4 control-label">
               <label for="register_phone">{{$t("phone")}}</label>
             </div>
@@ -73,14 +75,26 @@
                      type="tel"
                      class="form-control"
                      id="register_phone_prefix"
-                     v-model="credentials.phone" required>
+                     v-model="credentials.phone" required/>
             </div>
             <div class="col-sm-4">
               <input name="phone"
                      type="tel"
                      class="form-control"
                      id="register_phone"
-                     v-model="credentials.phone" required>
+                     v-model="credentials.phone" required/>
+            </div>
+          </div-->
+          <div class="form-group row">
+            <div class="col-sm-4 control-label">
+              <label for="register_phone">{{$t("phone")}}</label>
+            </div>
+            <div class="col-sm-6">
+              <input name="phone"
+                 type="tel"
+                 class="form-control"
+                 id="register_phone"
+                 v-model="credentials.phone" required/>
             </div>
           </div>
           <legend>{{$t("RegistrationForm.company_details")}}</legend>
@@ -325,6 +339,7 @@
 					answer: '',
 					agreement:''
 	    	},
+
 	    	industry_family: [
           {id: 0, name: 'Andere (Eingabe erforderlich)'},
           {id: 1, name: 'Metall Minen'},
@@ -369,7 +384,7 @@
           {family_id: '1', name: 'blabla'}
           ],
 
-          country: [
+        country: [
           {name: "Countries.GB"},
           {name: "Countries.DE"},
           {name: "Countries.FR"},
@@ -411,7 +426,7 @@
           {name: "Countries.RS"},
           {name: "Countries.TR"},
           {name: "Countries.FI"},
-          ],
+        ],
 	    	error: ''
 	    }
 	  },
@@ -453,7 +468,7 @@
           });
         }
         else{
-          auth.signup(this, credentials, '/my-devices')
+          auth.signup(this, this.credentials, '/my-devices')
         }
 
       }

@@ -167,10 +167,10 @@ app.post('/device/create', function (req, res)
   {
     db.run(
       "INSERT INTO device " +
-      "('technology', 'devicelabel', 'serialnumber', 'procmedium', 'comment', 'mInterval', 'mBeginning'," +
+      "('technology', 'devicelabel', 'serialnumber', 'procmedium', 'comment', 'tag', 'mInterval', 'mBeginning'," +
       "'calibration', 'maintenance', 'maintenanceMsg', 'cInterval', 'calibrationMsg', 'cBeginning', 'category_id', 'user_id')" +
       "VALUES " +
-      "($technology, $devicelabel, $serialnumber, $procmedium, $comment, $mInterval, $mBeginning," +
+      "($technology, $devicelabel, $serialnumber, $procmedium, $comment, $tag, $mInterval, $mBeginning," +
       "$calibration, $maintenance, $maintenanceMsg, $cInterval, $calibrationMsg, $cBeginning, $category, $user)",
       {
         $technology: req.body.technology,
@@ -178,6 +178,7 @@ app.post('/device/create', function (req, res)
         $serialnumber: req.body.serialnumber,
         $procmedium: req.body.procmedium,
         $comment: req.body.comment,
+        $tag: req.body.tag,
         $mInterval: req.body.mInterval,
         $mBeginning: req.body.mBeginning,
         $calibration: req.body.calibration,
@@ -356,7 +357,7 @@ app.post('/category/create', function (req, res)
       },
       function(err)
       {
-        res.status(201).send({ message: "Kategorie wurde erfolgreich hinzugefügt." });
+        res.status(201).send({ message: "Kategorie wurde erfolgreich hinzugefügt.", id: this.lastID});
       });
   })
 });

@@ -40,6 +40,7 @@ db.serialize(function() {
         "serialnumber TEXT," +
         "procmedium TEXT," +
         "comment TEXT," +
+        "tag INTEGER," +
         "mInterval TEXT," +
         "mBeginning TEXT," +
         "calibration TEXT," +

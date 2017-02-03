@@ -51,9 +51,9 @@ export default {
 	 * @param      {JSON}  	 creds     The creds
 	 * @param      {string}  redirect  The redirect
 	 */
-	signup(context, creds, redirect, toastr)
+	signup(context, creds, redirect)
 	{
-	    context.$http.post(SIGNUP_URL, creds, data).then((response) => {
+	    context.$http.post(SIGNUP_URL, creds).then((response) => {
 
 			localStorage.setItem('id_token', response.data.id_token);
 	      	this.user.authenticated = true;
@@ -65,14 +65,6 @@ export default {
 
 	    }, (err) => {
 	    	context.error = err;
-        toastr.Add({
-          msg: err.data.message,
-          title: "Passwort",
-          clickClose: false,
-          timeout: 8000,
-          position: "toast-top-right",
-          type: "error"
-        });
 	    })
   	},
 
@@ -250,13 +242,11 @@ export default {
 	    })
   	},
 
-  	createDevice(context, data, redirect)
+  	createDevice(context, data)
     {
       context.$http.post(CREATE_DEVICE_URL, data).then((response) => {
-        if (redirect) {
-          router.push(redirect)
-        }
-
+        context.device.id = response.body.id;
+        context.deviceCreated();
         }, (err) => {
           context.error = err
       });
@@ -269,15 +259,19 @@ export default {
    * @param      {JSON}    data      The device- and user-id
    * @param      {string}  redirect  The redirect
    */
-  deleteDevice(context, data, redirect)
+  deleteDevice(context, data)
   {
     context.$http.post(DELETE_DEVICE_URL, data).then((response) => {
-      if (redirect) {
-        router.push(redirect)
-      }
 
     }, (err) => {
       context.error = err
+      toastr.Add({
+        msg: "SUCCESS",
+        clickClose: false,
+        timeout: 8000,
+        position: "toast-top-right",
+        type: "error"
+      });
     });
   },
 
@@ -302,7 +296,7 @@ export default {
   createNewCategory(context, data)
   {
 	context.$http.post(CREATE_CATEGORY_URL, data).then((response) => {
-	  console.log(response);
+    context.device.category_id = response.body.id;
 	  context.categoryCreated();
 	}, (err) => {
 	  context.error = err;

@@ -1,6 +1,6 @@
 <template>
   <div id="my-devices-component">
-    <device-registration-modal :device="device" :categories="categories"></device-registration-modal>
+    <device-registration-modal :device="device" :index="index" :categories="categories"></device-registration-modal>
       <div class="col-sm-8">
         <h1> {{$t("MyDevices.title")}} </h1>
       </div>
@@ -35,7 +35,8 @@
         cat_filter: 'all',
         categories: [],
         devices: [],
-        device: {}
+        device: {},
+        index: -1
       }
     },
     methods: {
@@ -48,6 +49,7 @@
           serialnumber: '',
           procmedium: '', //Process fluid, e.g.H2O
           comment: '',
+          tag: '',
           mInterval: '', //Interval for maintenance schedule
           mBeginning: '', //start date of recieving notifications about maintenance schedules
           calibration: 0, //boolean, true if calibration desired
@@ -59,17 +61,14 @@
         };
       },
       addDevice(device) {
-        auth.createDevice(this, device);
         device.id = this.device.id;
         this.devices.unshift(device);
       },
-      updateDevice(device) {
-        auth.updateDevice(this. device);
-        var index = this.devices.indexOf(device);
+      updateDevice(device, index) {
         this.devices.splice(index, 1, device);
       },
       editDevice(device) {
-        this.device = device;
+        this.device = JSON.parse(JSON.stringify(device));;
         $('#device-registration-modal').modal('show');
       },
       getDeviceData() {
