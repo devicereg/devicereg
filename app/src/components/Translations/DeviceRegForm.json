@@ -1,7 +1,8 @@
 {
   "de": {
     "choose": "Bitte wählen Sie",
-    "title": "Gerät registrieren",
+    "title_create": "Gerät registrieren",
+    "title_edit": "Gerät editieren",
     "categorization": "Gerätekategorisierung",
     "technology": "Technologie",
     "category": "Gerätekategorie",
