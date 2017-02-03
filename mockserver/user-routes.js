@@ -206,8 +206,8 @@ app.post('/device/update', function (req, res)
   {
     db.run(
       "UPDATE device " +
-      "SET technology=?, devicelabel=?, serialnumber=?, procmedium=?, comment=?, mInterval=?, mBeginning=?, " +
-      "calibration=?, maintenance=?, maintenanceMsg=?, cInterval=?, calibrationMsg=?, cBeginning=?, category_id=?, user_id=?)" +
+      "SET technology=?, devicelabel=?, serialnumber=?, procmedium=?, comment=?, tag=?, mInterval=?, mBeginning=?, " +
+      "calibration=?, maintenance=?, maintenanceMsg=?, cInterval=?, calibrationMsg=?, cBeginning=?, category_id=?, user_id=?" +
       "WHERE id=?",
       [
         req.body.technology,
@@ -215,6 +215,7 @@ app.post('/device/update', function (req, res)
         req.body.serialnumber,
         req.body.procmedium,
         req.body.comment,
+        req.body.tag,
         req.body.mInterval,
         req.body.mBeginning,
         req.body.calibration,
@@ -223,7 +224,7 @@ app.post('/device/update', function (req, res)
         req.body.cInterval,
         req.body.calibrationMsg,
         req.body.cBeginning,
-        req.body.category,
+        req.body.category_id,
         1, //TODO
         req.body.id
       ]
