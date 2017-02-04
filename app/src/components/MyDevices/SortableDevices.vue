@@ -49,21 +49,26 @@
                   </a>
                   <delete-device :device="device"></delete-device>
                 </div>
-                <!--div id="device-detail-view" class="row">
+				
+                <div id="device-detail-view" class="row">
+						
                   <div class="col-sm-12 hide" v-bind:id="'details_' + device.id">
-                    <td colspan="5">
-                      <div class="row">
-                        <div class="col-xs-12">
-                          <li>{{ $t("DeviceRegForm.serial_number")}}: {{device.serialnumber}}</li>
-                             <li>{{ $t("DeviceRegForm.process_fluid")}}: {{device.procmedium}}</li>
-                             <li>{{ $t("DeviceRegForm.comment")}}: {{device.comment}}</li>
-                             <li>{{ $t("DeviceRegForm.maintenance")}}:{{device.mBeginning}}, {{device.mInterval}}, {{device.maintenanceMsg}} </li>
-                          <li>{{ $t("DeviceRegForm.calibration")}}: {{device.cBeginning}}, {{device.cIntervall}}, {{device.calibrationMsg}}</li>
-                        </div>
+                    <div class="col-xs-1 detail-view">
+									<span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+							</div>
+					<td colspan="5">                      
+							
+								<div class="col-xs-11">
+								<b>{{ $t("DeviceRegForm.serial_number")}}:</b> {{device.serialnumber}} </br>
+								<b>{{ $t("DeviceRegForm.process_fluid")}}:</b> {{device.procmedium}} </br>
+								<b>{{ $t("DeviceRegForm.comment")}}:</b> {{device.comment}} </br>
+								<b>{{ $t("DeviceRegForm.maintenance")}}:</b><span id="emptyOne">{{device.mBeginning}}</span>, {{device.mInterval}}, {{device.maintenanceMsg}} </br>
+								<b>{{ $t("DeviceRegForm.calibration")}}:</b><span id="emptyTwo">{{device.cBeginning}}, {{device.cInterval}}, {{device.calibrationMsg}}</span>
+								</div>
                       </div>
                     </td>
                   </div>
-                </div-->
+                </div>
               </div>
             </div>
           </div>
@@ -169,7 +174,12 @@
     updated: function () {
       $( ".table-row-content" ).removeClass( "odd");
       $( ".table-row-content:odd" ).addClass( "odd");
-    }
+    }/*,
+	function isEmpty() {
+		if($("#device.mBeginning").is(':empty')) {
+			$("#device.mBeginning").hide();
+		}
+	}*/
   }
 </script>
 
@@ -282,5 +292,26 @@
     opacity: 0;
     transform: translateX(-30px);
   }
-
+  
+  div[id^=details_].col-sm-12{
+	border-bottom-style: solid;
+	border-color: #e3e3e3;
+	border-width: 2px;
+	}
+	
+	.detail-view {
+		text-align: center;
+		}
+		
+		.col-xs-11 {
+		width: 100%;
+		}
+	
+	span.glyphicon-info-sign {
+		font-size: 3em;
+		display: block;
+		position: inherit;
+		line-height: 105px;
+		}
+	 
 </style>
