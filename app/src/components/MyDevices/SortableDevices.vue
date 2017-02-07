@@ -25,8 +25,8 @@
       </div>
       <div class="table-body col-sm-12">
         <transition-group name="device-list" tag="div">
-          <div v-for="device in filteredData"
-              class="row table-row device-list-item"
+          <div v-for="(device, key) in filteredData"
+              v-bind:class="[key % 2 === 0 ? 'even' : 'odd','row table-row device-list-item']"
               v-bind:id="'device_' + device.id"
               v-bind:key="device.id"
               v-on:click="toggleDetail(device.id)">
