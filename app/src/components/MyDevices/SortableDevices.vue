@@ -15,10 +15,10 @@
             {{ $t("MyDevices." + "category") }}
             <span class="arrow" :class="sortOrders['category'] > 0 ? 'asc' : 'dsc'"></span>
           </div>
-          <div @click="sortBy('device_description')" class="table-cell col-md-3"
-               :class="{ active: sortKey == 'device_description' }">
+          <div @click="sortBy('comment')" class="table-cell col-md-3"
+               :class="{ active: sortKey == 'comment' }">
             {{ $t("MyDevices." + "device_description") }}
-            <span class="arrow" :class="sortOrders['device_description'] > 0 ? 'asc' : 'dsc'"></span>
+            <span class="arrow" :class="sortOrders['comment'] > 0 ? 'asc' : 'dsc'"></span>
           </div>
           <div class="table-cell col-md-2">&nbsp;</div>
         </div>
@@ -85,7 +85,7 @@
       'devices'
     ],
     data() {
-      var gridColumns = ['devicelabel', 'technology', 'category', 'device_description'];
+      var gridColumns = ['devicelabel', 'technology', 'category', 'comment'];
       var sortOrders = {}
 
       gridColumns.forEach(function (key) {

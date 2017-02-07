@@ -195,28 +195,29 @@ app.post('/device/update', function (req, res)
 {
   jwt.verify(getTokenFromRequest(req), config.secret, function(err, decoded) {
     db.run(
-        "UPDATE device " +
-        "SET technology=?, devicelabel=?, serialnumber=?, procmedium=?, comment=?, mInterval=?, mBeginning=?, " +
-        "calibration=?, maintenance=?, maintenanceMsg=?, cInterval=?, calibrationMsg=?, cBeginning=?, category_id=?, user_id=?)" +
-        "WHERE id=?",
-        [
-          req.body.technology,
-          req.body.devicelabel,
-          req.body.serialnumber,
-          req.body.procmedium,
-          req.body.comment,
-          req.body.mInterval,
-          req.body.mBeginning,
-          req.body.calibration,
-          req.body.maintenance,
-          req.body.maintenanceMsg,
-          req.body.cInterval,
-          req.body.calibrationMsg,
-          req.body.cBeginning,
-          req.body.category,
-          decoded.id,
-          req.body.id
-        ]
+      "UPDATE device " +
+      "SET technology=?, devicelabel=?, serialnumber=?, procmedium=?, comment=?, tag=?,mInterval=?, mBeginning=?, " +
+      "calibration=?, maintenance=?, maintenanceMsg=?, cInterval=?, calibrationMsg=?, cBeginning=?, category_id=?, user_id=?" +
+      "WHERE id=?",
+      [
+        req.body.technology,
+        req.body.devicelabel,
+        req.body.serialnumber,
+        req.body.procmedium,
+        req.body.comment,
+        req.body.tag,
+        req.body.mInterval,
+        req.body.mBeginning,
+        req.body.calibration,
+        req.body.maintenance,
+        req.body.maintenanceMsg,
+        req.body.cInterval,
+        req.body.calibrationMsg,
+        req.body.cBeginning,
+        req.body.category_id,
+        decoded.id,
+        req.body.id
+      ]
     );
   });
 });
@@ -363,5 +364,5 @@ app.post('/category/create', function (req, res)
       {
         res.status(201).send({ message: "Kategorie wurde erfolgreich hinzugefügt.", id: this.lastID});
       });
-  });
+  })
 });

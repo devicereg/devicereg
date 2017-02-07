@@ -27,13 +27,13 @@
                   </select>
                 </div>
               </div>
-              <div class="form-group row" v-if="customCat">
+              <div class="form-group row" v-if="custom_category">
                 <div class="col-sm-12">
                   <label class="control-label" for="custom_category">{{$t("DeviceRegForm.category")}}:</label>
                 </div>
                 <div class="col-xs-8 col-sm-6">
                   <input @keydown.enter="createCustomCategory" name="category" type="text" class="form-control"
-                         id="custom_category" v-model="custom_category" :placeholder="$t('DeviceRegForm.type_in_category')" required>
+                         id="custom_category" v-model="custom_category_name" :placeholder="$t('DeviceRegForm.type_in_category')" required>
                 </div>
                 <!--div class="col-xs-4 col-sm-3">
                   <button type="button" class="btn btn-block btn-primary" @click="createCustomCategory">
@@ -42,7 +42,7 @@
                 </div-->
                 <div class="col-sm-3">
                   <div class="checkbox">
-                    <label><input name="category" type="checkbox" v-model="customCat">
+                    <label><input name="category" type="checkbox" v-model="custom_category">
                       {{$t("DeviceRegForm.custom")}}</label>
                   </div>
                 </div>
@@ -59,7 +59,7 @@
                 </div>
                 <div class="col-sm-3">
                   <div class="checkbox">
-                    <label><input name="category" type="checkbox" v-model="customCat">
+                    <label><input name="category" type="checkbox" v-model="custom_category">
                       {{$t("DeviceRegForm.custom")}}</label>
                   </div>
                 </div>
@@ -242,17 +242,17 @@ export default {
   name: 'device-registration-modal',
   props: [
     'device',
-    'index',
+    'edit_index',
+    'custom_category',
+    'custom_category_name',
     'categories'
   ],
   data () {
     return {
-      custom_category: '',
       technologies: [
         {id: 1, name: 'Rotamass'},
         {id: 2, name: 'Flowmeter'}
       ],
-      customCat: 0, //boolean, if true can create own category
       procmedia: [
         {id: 1, name: 'Wasser'},
         {id: 2, name: 'Argon'},
@@ -263,25 +263,25 @@ export default {
   methods: {
     submit() {
       $('#device-registration-modal').modal('hide');
-      if(this.customCat) {
+      if(this.custom_category) {
+        this.device.category_id = this.custom_category;
         this.createCustomCategory();
       }
       if(this.device.id == -1) {
         auth.createDevice(this, this.device);
       } else {
-        auth.updateDevice(this. this.device);
-        this.$parent.updateDevice(this.device, this.index);
+        auth.updateDevice(this, this.device);
+        this.$parent.updateDevice(this.device, this.edit_index);
       }
     },
     deviceCreated() {
       this.$parent.addDevice(this.device);
     },
     createCustomCategory() {
-      auth.createNewCategory(this, {name: this.custom_category});
+      auth.createNewCategory(this, {name: this.custom_category_name});
     },
     categoryCreated() {
-      this.customCat = 0;
-      this.custom_category = "";
+      this.custom_category_name = "";
       this.$parent.getCategories();
     }
   },

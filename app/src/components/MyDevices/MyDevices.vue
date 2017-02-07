@@ -1,6 +1,6 @@
 <template>
   <div id="my-devices-component">
-    <device-registration-modal :device="device" :index="index" :categories="categories"></device-registration-modal>
+    <device-registration-modal :device="device" :edit_index="edit_index" :custom_category="custom_category" :categories="categories"></device-registration-modal>
       <div class="col-sm-8">
         <h1> {{$t("MyDevices.title")}} </h1>
       </div>
@@ -34,13 +34,17 @@
         filter: '',
         cat_filter: 'all',
         categories: [],
+        custom_category: false,
+        custom_category_name: "",
         devices: [],
         device: {},
-        index: -1
+        edit_index: -1
       }
     },
     methods: {
       clearDevice() {
+        this.custom_category = false;
+        this.custom_category_name = "";
         this.device = {
           id: -1,
           technology: '',
@@ -64,10 +68,15 @@
         device.id = this.device.id;
         this.devices.unshift(device);
       },
-      updateDevice(device, index) {
-        this.devices.splice(index, 1, device);
+      updateDevice(device) {
+        this.devices.splice(this.edit_index, 1);
+        this.devices.splice(this.edit_index, 1, device);
       },
       editDevice(device) {
+        this.custom_category = false;
+        this.custom_category_name = "";
+        this.edit_index = this.devices.indexOf(device);
+        console.log("Current INDEX of EDITED device: " + this.edit_index);
         this.device = JSON.parse(JSON.stringify(device));;
         $('#device-registration-modal').modal('show');
       },
