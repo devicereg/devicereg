@@ -33,8 +33,8 @@
             <div class="col-sm-12">
               <div class="table-row-content row">
                 <div class="table-cell col-md-3 device-label">{{ device.devicelabel }}</div>
-                <div v-for="technology in technologies" v-if="technology.id==device.technology" class="table-cell col-md-2">
-                  {{ technology.name }}
+                <div class="table-cell col-md-2">
+                  {{ device.technology }}
                 </div>
                 <div v-for="category in categories" v-if="category.id==device.category_id" class="table-cell col-md-2">
                   {{ category.name }}
@@ -99,10 +99,6 @@
         gridData: [
           this.devices
         ],
-        technologies: [
-          {id: 1, name: 'Rotamass'},
-          {id: 2, name: 'Flowmeter'}
-        ]
       }
     },
     components: {

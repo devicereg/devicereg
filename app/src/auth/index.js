@@ -16,6 +16,7 @@ const DELETE_DEVICE_URL 		= API_URL 	+ 'device/delete';
 const GET_DEVICES_URL 			= API_URL 	+ 'devices';
 const GET_CATEGORIES_URL 		= API_URL 	+ 'categories';
 const CREATE_CATEGORY_URL 		= API_URL 	+ 'category/create';
+const GET_TECHNOLOGIES_URL    = API_URL   + 'technologies';
 
 export default {
 	name: 'authentication',
@@ -283,11 +284,20 @@ export default {
 
   createNewCategory(context, data)
   {
-	context.$http.post(CREATE_CATEGORY_URL, data, { headers: this.getAuthHeader() }).then((response) => {
+	  context.$http.post(CREATE_CATEGORY_URL, data, { headers: this.getAuthHeader() }).then((response) => {
       context.device.category_id = response.body.id;
       context.categoryCreated();
 	  }, (err) => {
 	    context.error = err;
+    });
+  },
+
+  getTechnologies(context)
+  {
+    context.$http.get(GET_TECHNOLOGIES_URL).then((response) => {
+      context.technologies = JSON.parse(response.body);
+    }, (err) => {
+      context.error = err;
     });
   }
 }

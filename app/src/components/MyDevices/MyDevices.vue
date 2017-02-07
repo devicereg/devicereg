@@ -47,7 +47,7 @@
         this.custom_category_name = "";
         this.device = {
           id: -1,
-          technology: '',
+          technology_id: -1,
           category_id: '',
           devicelabel: '',
           serialnumber: '',

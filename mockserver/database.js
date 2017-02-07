@@ -30,12 +30,34 @@ db.serialize(function() {
         "UNIQUE(email))"
     );
 
+  console.log("user created");
+
+    db.run(
+      "CREATE TABLE IF NOT EXISTS category (" +
+        "id INTEGER PRIMARY KEY AUTOINCREMENT," +
+        "user_id INTEGER," +
+        "name TEXT," +
+        "FOREIGN KEY(user_id) REFERENCES user(id)" +
+        ")"
+    );
+
+  console.log("category created");
+
+    db.run(
+      "CREATE TABLE IF NOT EXISTS technology (" +
+      "id INTEGER PRIMARY KEY AUTOINCREMENT," +
+      "name TEXT NOT NULL" +
+      ")"
+    );
+
+  console.log("technology created");
+
     db.run(
         "CREATE TABLE IF NOT EXISTS device (" +
         "id INTEGER PRIMARY KEY AUTOINCREMENT," +
         "category_id INTEGER," +
         "user_id INTEGER," +
-        "technology TEXT," +
+        "technology_id INTEGER," +
         "devicelabel TEXT," +
         "serialnumber TEXT," +
         "procmedium TEXT," +
@@ -50,19 +72,12 @@ db.serialize(function() {
         "calibrationMsg TEXT," +
         "cBeginning TEXT," +
         "FOREIGN KEY(category_id) REFERENCES category(id)," +
-        "FOREIGN KEY(user_id) REFERENCES user(id))"
+        "FOREIGN KEY(user_id) REFERENCES user(id)," +
+        "FOREIGN KEY(technology_id) REFERENCES technology(id)" +
+        ")"
     );
 
-
-    db.run(
-        "CREATE TABLE IF NOT EXISTS category (" +
-        "id INTEGER PRIMARY KEY AUTOINCREMENT," +
-        "user_id INTEGER," +
-        "name TEXT," +
-        "FOREIGN KEY(user_id) REFERENCES user(id))"
-    );
-
-
+  console.log("device created");
 });
 
 console.log("created mock database for DeviceR");
