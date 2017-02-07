@@ -116,12 +116,6 @@
                   <legend class="modal-form-legend">{{$t("DeviceRegForm.maintenance")}}</legend>
                 </div>
               </div>
-
-
-
-
-
-
               <div class="row">
                 <div class="form-group col-sm-6">
                   <div  class="form-group">
@@ -265,12 +259,21 @@ export default {
         this.createCustomCategory();
       }
 
+      this.device.technology = this.findTechnologyName(this.device.technology_id);
+
       if(this.device.id == -1) {
         auth.createDevice(this, this.device);
       } else {
         auth.updateDevice(this, this.device);
         this.$parent.updateDevice(this.device, this.edit_index);
       }
+    },
+    findTechnologyName(id) {
+      var foundTechnology = this.technologies.filter(function (technology) {
+        return technology.id === id;
+      });
+
+      return foundTechnology[0].name;
     },
     deviceCreated() {
       this.$parent.addDevice(this.device);
