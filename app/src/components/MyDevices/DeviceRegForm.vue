@@ -21,7 +21,7 @@
               <div class="form-group row">
                 <div class="col-sm-6  text-left">
                   <label class="control-label" for="technology">{{$t("DeviceRegForm.technology")}}:</label>
-                  <select name="technology" class="form-control" id="technology" v-model="device.technology" required>
+                  <select name="technology" class="form-control" id="technology" v-model="device.technology_id" required>
                     <option value="" :disabled="true">{{$t("DeviceRegForm.choose")}}</option>
                     <option v-bind:value="item.id" v-for="item in technologies">{{item.name}}</option>
                   </select>
@@ -249,15 +249,12 @@ export default {
   ],
   data () {
     return {
-      technologies: [
-        {id: 1, name: 'Rotamass'},
-        {id: 2, name: 'Flowmeter'}
-      ],
       procmedia: [
         {id: 1, name: 'Wasser'},
         {id: 2, name: 'Argon'},
         {id: 3, name: 'Benzol'}
-      ]
+      ],
+      technologies: []
     }
   },
   methods: {
@@ -267,6 +264,7 @@ export default {
         this.device.category_id = this.custom_category;
         this.createCustomCategory();
       }
+
       if(this.device.id == -1) {
         auth.createDevice(this, this.device);
       } else {
@@ -289,6 +287,11 @@ export default {
     today: function() {
       var today = new Date().toISOString().slice(0, 10);
       return today.toString();
+    }
+  },
+  mounted: {
+    function() {
+      return auth.getTechnologies(this);
     }
   }
 

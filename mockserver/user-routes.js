@@ -158,13 +158,13 @@ app.post('/device/create', function (req, res)
   jwt.verify(getTokenFromRequest(req), config.secret, function(err, decoded) {
     db.run(
         "INSERT INTO device " +
-        "('technology', 'devicelabel', 'serialnumber', 'procmedium', 'comment', 'tag', 'mInterval', 'mBeginning'," +
+        "('technology_id', 'devicelabel', 'serialnumber', 'procmedium', 'comment', 'tag', 'mInterval', 'mBeginning'," +
         "'calibration', 'maintenance', 'maintenanceMsg', 'cInterval', 'calibrationMsg', 'cBeginning', 'category_id', 'user_id')" +
         "VALUES " +
-        "($technology, $devicelabel, $serialnumber, $procmedium, $comment, $tag, $mInterval, $mBeginning," +
+        "($technology_id, $devicelabel, $serialnumber, $procmedium, $comment, $tag, $mInterval, $mBeginning," +
         "$calibration, $maintenance, $maintenanceMsg, $cInterval, $calibrationMsg, $cBeginning, $category, $user)",
         {
-          $technology: req.body.technology,
+          $technology_id: req.body.technology_id,
           $devicelabel: req.body.devicelabel,
           $serialnumber: req.body.serialnumber,
           $procmedium: req.body.procmedium,
@@ -196,11 +196,11 @@ app.post('/device/update', function (req, res)
   jwt.verify(getTokenFromRequest(req), config.secret, function(err, decoded) {
     db.run(
       "UPDATE device " +
-      "SET technology=?, devicelabel=?, serialnumber=?, procmedium=?, comment=?, tag=?,mInterval=?, mBeginning=?, " +
+      "SET technology_id=?, devicelabel=?, serialnumber=?, procmedium=?, comment=?, tag=?,mInterval=?, mBeginning=?, " +
       "calibration=?, maintenance=?, maintenanceMsg=?, cInterval=?, calibrationMsg=?, cBeginning=?, category_id=?, user_id=?" +
       "WHERE id=?",
       [
-        req.body.technology,
+        req.body.technology_id,
         req.body.devicelabel,
         req.body.serialnumber,
         req.body.procmedium,
@@ -324,8 +324,9 @@ app.get('/devices', function (req, res)
 {
   jwt.verify(getTokenFromRequest(req), config.secret, function(err, decoded) {
     db.all(
-      'SELECT d.*, c.name AS `category` from device d ' +
+      'SELECT d.*, c.name AS `category`, t.name AS `technology` from device d ' +
       'LEFT JOIN category AS c ON d.category_id = c.id ' +
+      'LEFT JOIN technology AS t ON d.technology_id = t.id ' +
       'WHERE d.user_id = $user_id',
       {
         $user_id: decoded.id
@@ -365,4 +366,10 @@ app.post('/category/create', function (req, res)
         res.status(201).send({ message: "Kategorie wurde erfolgreich hinzugefügt.", id: this.lastID});
       });
   })
+});
+
+app.get('/technologies', function (req, res) {
+  db.all("SELECT id, name FROM technologies", function (err, row) {
+    res.status(200).send(JSON.stringify(row));
+  });
 });
