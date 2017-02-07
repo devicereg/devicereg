@@ -1,5 +1,5 @@
 <template>
-  <div class="row">
+  <div>
     <div class="col-sm-12">
 
         <h1>{{$t("TermsOfUse.title")}}</h1>

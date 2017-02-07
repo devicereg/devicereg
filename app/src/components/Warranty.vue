@@ -1,5 +1,5 @@
 <template>
-  <div class="row">
+  <div>
     <div class="col-sm-12">
       <div id="warranty-text">
         <h1>{{$t("Warranty.title")}}</h1>
