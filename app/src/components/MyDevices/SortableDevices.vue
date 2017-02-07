@@ -26,7 +26,7 @@
       <div class="table-body col-sm-12">
         <transition-group name="device-list" tag="div">
           <div v-for="(device, key) in filteredData"
-              v-bind:class="[key % 2 === 0 ? 'even' : 'odd','row table-row device-list-item']"
+              v-bind:class="[key % 2 === 0 ? '' : 'odd','row table-row device-list-item']"
               v-bind:id="'device_' + device.id"
               v-bind:key="device.id"
               v-on:click="toggleDetail(device.id)">
@@ -161,10 +161,6 @@
       capitalize: function (str) {
         return str.charAt(0).toUpperCase() + str.slice(1)
       }
-    },
-    updated: function () {
-      $( ".table-row-content" ).removeClass( "odd");
-      $( ".table-row-content:odd" ).addClass( "odd");
     }
   }
 </script>
@@ -217,9 +213,11 @@
       padding-top: 5px;
       padding-bottom: 5px;
     }
-    .odd {
-      background-color: $table-row-odd-bg-color;
-    }
+
+  }
+
+  .odd {
+    background-color: $table-row-odd-bg-color;
   }
 
   .table-row-content:hover {
