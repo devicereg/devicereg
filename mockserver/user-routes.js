@@ -341,7 +341,7 @@ app.get('/categories', function (req, res)
 {
   jwt.verify(getTokenFromRequest(req), config.secret, function(err, decoded) {
     db.all(
-        'SELECT id, name FROM category c WHERE c.user_id = $user_id',
+        'SELECT c.* FROM category c WHERE c.user_id = $user_id',
         {
           $user_id: decoded.id
         },
@@ -369,7 +369,7 @@ app.post('/category/create', function (req, res)
 });
 
 app.get('/technologies', function (req, res) {
-  db.all("SELECT id, name FROM technology", function (err, row) {
+  db.all("SELECT t.* FROM technology t", function (err, row) {
     res.status(200).send(row);
   });
 });
