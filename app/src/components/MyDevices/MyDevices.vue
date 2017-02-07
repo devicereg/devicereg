@@ -69,7 +69,7 @@
         this.devices.unshift(device);
       },
       updateDevice(device) {
-        this.devices.splice(this.edit_index, 1);
+        this.devices.splice(this.edit_index, 0);
         this.devices.splice(this.edit_index, 1, device);
       },
       editDevice(device) {
