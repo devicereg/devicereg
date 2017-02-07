@@ -281,6 +281,9 @@ export default {
     categoryCreated() {
       this.custom_category_name = "";
       this.$parent.getCategories();
+    },
+    getTechnologies() {
+      auth.getTechnologies(this);
     }
   },
   computed: {
@@ -289,12 +292,9 @@ export default {
       return today.toString();
     }
   },
-  mounted: {
-    function() {
-      return auth.getTechnologies(this);
-    }
+  mounted: function() {
+    this.getTechnologies();
   }
-
 }
 </script>
 <style lang="scss">
