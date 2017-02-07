@@ -26,9 +26,11 @@ export default {
 <style scoped lang="scss">
   @import '../../styles/_colors';
 
-  li.dropdown:hover ul.dropdown-menu {
-    display: block;
-    margin-top: 0;
+  @media all and (min-width: 845px) {
+    li.dropdown:hover ul.dropdown-menu {
+      display: block;
+      margin-top: 0;
+    }
   }
 
   ul.dropdown-menu {
