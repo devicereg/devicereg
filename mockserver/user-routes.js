@@ -369,7 +369,7 @@ app.post('/category/create', function (req, res)
 });
 
 app.get('/technologies', function (req, res) {
-  db.all("SELECT id, name FROM technologies", function (err, row) {
+  db.all("SELECT id, name FROM technology", function (err, row) {
     res.status(200).send(JSON.stringify(row));
   });
 });
