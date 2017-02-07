@@ -332,7 +332,7 @@ app.get('/devices', function (req, res)
         $user_id: decoded.id
       },
       function (err, row) {
-        res.status(200).send(JSON.stringify(row));
+        res.status(200).send(row);
       });
   });
 });
@@ -346,7 +346,7 @@ app.get('/categories', function (req, res)
           $user_id: decoded.id
         },
         function (err, row) {
-          res.status(200).send(JSON.stringify(row));
+          res.status(200).send(row);
         }
     );
   });
@@ -370,6 +370,6 @@ app.post('/category/create', function (req, res)
 
 app.get('/technologies', function (req, res) {
   db.all("SELECT id, name FROM technology", function (err, row) {
-    res.status(200).send(JSON.stringify(row));
+    res.status(200).send(row);
   });
 });

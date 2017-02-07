@@ -268,7 +268,7 @@ export default {
   {
     context.$http.get(GET_DEVICES_URL, { headers: this.getAuthHeader() }
     ).then((response) => {
-      context.devices = JSON.parse(response.body);
+      context.devices = response.body;
     });
   },
 
@@ -276,7 +276,7 @@ export default {
   {
     context.$http.get(GET_CATEGORIES_URL, { headers: this.getAuthHeader() }
     ).then((response) => {
-      context.categories = JSON.parse(response.body);
+      context.categories =response.body;
     }, (err) => {
       context.error = err;
     });
@@ -295,7 +295,7 @@ export default {
   getTechnologies(context)
   {
     context.$http.get(GET_TECHNOLOGIES_URL).then((response) => {
-      context.technologies = JSON.parse(response.body);
+      context.technologies = response.body;
     }, (err) => {
       context.error = err;
     });

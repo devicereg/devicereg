@@ -78,7 +78,7 @@
         this.custom_category_name = "";
         this.edit_index = this.devices.indexOf(device);
         console.log("Current INDEX of EDITED device: " + this.edit_index);
-        this.device = JSON.parse(JSON.stringify(device));;
+        this.device = JSON.parse(device);;
         $('#device-registration-modal').modal('show');
       },
       getDeviceData() {
