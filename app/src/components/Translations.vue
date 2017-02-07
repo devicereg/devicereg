@@ -9,6 +9,7 @@
   import Warranty from "./Translations/Warranty.json"
   import Home from "./Translations/Home.json"
   import LoginForm from "./Translations/LoginForm.json"
+  import UI from "./Translations/UI.json"
 
 
   var Vue = require('vue')
@@ -197,7 +198,8 @@
         Warranty: Warranty.de,
         Impressum: Impressum.de,
         Home: Home.de,
-        LoginForm: LoginForm.de
+        LoginForm: LoginForm.de,
+        UI: UI.de
       },
 
     en: {
@@ -382,7 +384,8 @@
         Warranty: Warranty.en,
         Impressum: Impressum.en,
         Home: Home.en,
-        LoginForm: LoginForm.en
+        LoginForm: LoginForm.en,
+        UI: UI.en
     }
   }
 

@@ -143,34 +143,21 @@ export default {
 		return { 'Authorization': 'Bearer ' + localStorage.getItem('id_token') }
 	},
 
-	createDevice(context, data, redirect)
+	updateDevice(context, data, toastr)
   	{
-	    context.$http.post(CREATE_DEVICE_URL, data).then((response) => {
-        let responseBody = response.body;
-        context.selected_device_id = responseBody.id;
-        console.log(context.selected_device_id);
+	    context.$http.post(UPDATE_DEVICE_URL, data,  { headers: this.getAuthHeader() }).then((response) => {
 
-	      if(redirect)
-	      {
-	        router.push(redirect)
-	      }
+        /*toastr.Add({
+          msg: context.$t("Passwörter stimmen nicht überein!"),
+          title: context.$t("Passwort"),
+          clickClose: context,
+          timeout: 8000,
+          position: "toast-top-right",
+          type: "success"
+        });*/
 
 	    }, (err) => {
-	      context.error = err
-	    });
-  	},
-
-	updateDevice(context, data, redirect)
-  	{
-	    context.$http.post(UPDATE_DEVICE_URL, data).then((response) => {
-
-	      if(redirect)
-	      {
-	        router.push(redirect)
-	      }
-
-	    }, (err) => {
-	      context.error = err
+	      context.error = err;
 	    });
   	},
 
@@ -239,13 +226,22 @@ export default {
 	    })
   	},
 
-  	createDevice(context, data)
+  	createDevice(context, data, toastr)
     {
       context.$http.post(CREATE_DEVICE_URL, data, { headers: this.getAuthHeader() }).then((response) => {
         context.device.id = response.body.id;
         context.deviceCreated();
+
+        /*toastr.Add({
+          msg: context.$t("Gerät erstellt!"),
+          title: context.$t("Das Gerät wurde erfolgreich erstellt."),
+          clickClose: false,
+          timeout: 8000,
+          position: "toast-top-right",
+          type: "success"
+        });*/
         }, (err) => {
-          context.error = err
+          context.error = err;
       });
     },
 
@@ -256,9 +252,17 @@ export default {
    * @param      {JSON}    data      The device- and user-id
    * @param      {string}  redirect  The redirect
    */
-  deleteDevice(context, data)
+  deleteDevice(context, data, toastr)
   {
     context.$http.post(DELETE_DEVICE_URL, data, { headers: this.getAuthHeader() }).then((response) => {
+      /*toastr.Add({
+        msg: context.$t("Gerät gelöscht"),
+        title: context.$t("Das Gerät wurde erfolgreich gelöscht."),
+        clickClose: false,
+        timeout: 8000,
+        position: "toast-top-right",
+        type: "error"
+      });*/
     }, (err) => {
       context.error = err;
     });

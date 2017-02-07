@@ -115,6 +115,15 @@
       removeDevice: function(device) {
         var index = this.devices.indexOf(device);
         this.devices.splice(index, 1);
+
+        this.$parent.$parent.$refs.toastr.Add({
+          title: this.$t("UI.delete_device_title"),
+          msg: this.$t("UI.delete_device_msg"),
+          clickClose: false,
+          timeout: 8000,
+          position: "toast-top-right",
+          type: "success"
+        });
       },
       sortBy: function (key) {
         this.sortKey = key

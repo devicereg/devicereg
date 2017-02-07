@@ -1,0 +1,20 @@
+{
+  "de": {
+    "delete_device_title": "Gerät gelöscht!",
+    "delete_device_msg": "Das Gerät wurde erfolgreich gelöscht.",
+    "update_device_title": "Änderungen gespeichert!",
+    "update_device_msg": "Das Gerät wurde erfolgreich aktualisiert.",
+    "create_device_title": "Gerät registriert!",
+    "create_device_msg": "Das Gerät wurde erfolgreich registriert.",
+    "create_device_title": "Benutzer ausgeloggt!",
+    "create_device_msg": "Sie haben sich erfolgreich ausgeloggt."
+  },
+  "en": {
+    "delete_device_title": "Device deleted!",
+    "delete_device_msg": "Deleted the device successfully.",
+    "update_device_title": "Device updated!",
+    "update_device_msg": "Updated the device successfully.",
+    "create_device_title": "Device registered!",
+    "create_device_msg": "Registered the device successfully."
+  }
+}
