@@ -48,6 +48,7 @@
         this.device = {
           id: -1,
           technology_id: -1,
+          technology: '',
           category_id: '',
           devicelabel: '',
           serialnumber: '',
