@@ -1,11 +1,11 @@
 <template>
-  <li class="dropdown">
+  <li id="lang-dropdown" class="dropdown">
     <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
       <strong>{{ $t('language') }} </strong><span class="caret"></span>
     </a>
     <ul class="dropdown-menu" role="menu">
-      <li @click='setLang("de")'><a><strong> {{ $t('german') }} </strong></a></li>
-      <li @click='setLang("en")'><a><strong> {{ $t('english') }} </strong></a></li>
+      <li data-toggle="dropdown" @click='setLang("de")'><a><strong> {{ $t('german') }} </strong></a></li>
+      <li data-toggle="dropdown" @click='setLang("en")'><a><strong> {{ $t('english') }} </strong></a></li>
     </ul>
   </li>
 </template>
@@ -26,9 +26,11 @@ export default {
 <style scoped lang="scss">
   @import '../../styles/_colors';
 
-  li.dropdown:hover ul.dropdown-menu {
-    display: block;
-    margin-top: 0;
+  @media all and (min-width: 845px) {
+    li.dropdown:hover ul.dropdown-menu {
+      display: block;
+      margin-top: 0;
+    }
   }
 
   ul.dropdown-menu {

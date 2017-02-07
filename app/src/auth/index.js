@@ -1,6 +1,7 @@
 import {router} from '../main'
 
 var os = require('os');
+var jwt = require('jsonwebtoken');
 
 const API_URL 					= 'http://' + os.hostname() + ':3001/';
 const LOGIN_URL 				= API_URL 	+ 'sessions/create/';
@@ -16,6 +17,7 @@ const GET_DEVICES_URL 			= API_URL 	+ 'devices';
 const GET_USERS_URL 			= API_URL 	+ 'users';
 const GET_CATEGORIES_URL 		= API_URL 	+ 'categories';
 const CREATE_CATEGORY_URL 		= API_URL 	+ 'category/create';
+const GET_TECHNOLOGIES_URL    = API_URL   + 'technologies';
 
 export default {
 	name: 'authentication',
@@ -65,7 +67,7 @@ export default {
 			}
 
 	    }, (err) => {
-	    	context.error = err
+	    	context.error = err;
 	    })
   	},
 
@@ -80,8 +82,6 @@ export default {
 	update(context, creds, redirect)
 	{
 	    context.$http.post(UPDATE_URL, creds).then((response) => {
-
-			//@TODO implement UPDATE method
 
 			if(redirect)
 			{
@@ -102,10 +102,7 @@ export default {
 	delete(context, id)
 	{
 	    context.$http.post(DELETE_URL, id).then((response) => {
-
-	    	console.log(response.data.message);
 	    	this.logout()
-
 	    }, (err) => {
 	    	context.error = err
 	    })
@@ -132,7 +129,7 @@ export default {
 	 */
 	checkAuth()
 	{
-		var jwt = localStorage.getItem('id_token');
+		let jwt = localStorage.getItem('id_token');
 
 		this.user.authenticated = !!jwt;
 	},
@@ -144,13 +141,13 @@ export default {
 	 */
 	getAuthHeader()
 	{
-		return { 'Authorization': 'Bearer' + localStorage.getItem('id_token') }
+		return { 'Authorization': 'Bearer ' + localStorage.getItem('id_token') }
 	},
 
 	createDevice(context, data, redirect)
   	{
 	    context.$http.post(CREATE_DEVICE_URL, data).then((response) => {
-        var responseBody = JSON.parse(response.body);
+        let responseBody = response.body;
         context.selected_device_id = responseBody.id;
         console.log(context.selected_device_id);
 
@@ -243,13 +240,11 @@ export default {
 	    })
   	},
 
-  	createDevice(context, data, redirect)
+  	createDevice(context, data)
     {
-      context.$http.post(CREATE_DEVICE_URL, data).then((response) => {
-        if (redirect) {
-          router.push(redirect)
-        }
-
+      context.$http.post(CREATE_DEVICE_URL, data, { headers: this.getAuthHeader() }).then((response) => {
+        context.device.id = response.body.id;
+        context.deviceCreated();
         }, (err) => {
           context.error = err
       });
@@ -262,31 +257,26 @@ export default {
    * @param      {JSON}    data      The device- and user-id
    * @param      {string}  redirect  The redirect
    */
-  deleteDevice(context, data, redirect)
+  deleteDevice(context, data)
   {
-    context.$http.post(DELETE_DEVICE_URL, data).then((response) => {
-      if (redirect) {
-        router.push(redirect)
-      }
-
+    context.$http.post(DELETE_DEVICE_URL, data, { headers: this.getAuthHeader() }).then((response) => {
     }, (err) => {
-      context.error = err
+      context.error = err;
     });
   },
 
   getDevices(context)
   {
-    context.$http.get(GET_DEVICES_URL).then((response) => {
-      context.devices = JSON.parse(response.body);
-    }, (err) => {
-      context.error = err;
+    context.$http.get(GET_DEVICES_URL, { headers: this.getAuthHeader() }
+    ).then((response) => {
+      context.devices = response.body;
     });
   },
 
   getUsers(context)
   {
     context.$http.get(GET_USERS_URL).then((response) => {
-      context.users = JSON.parse(response.body);
+      context.users = response.body;
     }, (err) => {
       context.error = err;
     });
@@ -294,8 +284,9 @@ export default {
 
   getCategories(context)
   {
-    context.$http.get(GET_CATEGORIES_URL).then((response) => {
-      context.categories = JSON.parse(response.body);
+    context.$http.get(GET_CATEGORIES_URL, { headers: this.getAuthHeader() }
+    ).then((response) => {
+      context.categories =response.body;
     }, (err) => {
       context.error = err;
     });
@@ -303,11 +294,20 @@ export default {
 
   createNewCategory(context, data)
   {
-	context.$http.post(CREATE_CATEGORY_URL, data).then((response) => {
-	  console.log(response);
-	  context.categoryCreated();
-	}, (err) => {
-	  context.error = err;
+	  context.$http.post(CREATE_CATEGORY_URL, data, { headers: this.getAuthHeader() }).then((response) => {
+      context.device.category_id = response.body.id;
+      context.categoryCreated();
+	  }, (err) => {
+	    context.error = err;
+    });
+  },
+
+  getTechnologies(context)
+  {
+    context.$http.get(GET_TECHNOLOGIES_URL).then((response) => {
+      context.technologies = response.body;
+    }, (err) => {
+      context.error = err;
     });
   }
 }

@@ -15,32 +15,35 @@
             {{ $t("MyDevices." + "category") }}
             <span class="arrow" :class="sortOrders['category'] > 0 ? 'asc' : 'dsc'"></span>
           </div>
-          <div @click="sortBy('device_description')" class="table-cell col-md-3"
-               :class="{ active: sortKey == 'device_description' }">
+          <div @click="sortBy('comment')" class="table-cell col-md-3"
+               :class="{ active: sortKey == 'comment' }">
             {{ $t("MyDevices." + "device_description") }}
-            <span class="arrow" :class="sortOrders['device_description'] > 0 ? 'asc' : 'dsc'"></span>
+            <span class="arrow" :class="sortOrders['comment'] > 0 ? 'asc' : 'dsc'"></span>
           </div>
           <div class="table-cell col-md-2">&nbsp;</div>
         </div>
       </div>
       <div class="table-body col-sm-12">
         <transition-group name="device-list" tag="div">
-          <div v-for="device in filteredData"
-              class="row table-row device-list-item"
+          <div v-for="(device, key) in filteredData"
+              v-bind:class="[key % 2 === 0 ? '' : 'odd','row table-row device-list-item']"
               v-bind:id="'device_' + device.id"
               v-bind:key="device.id"
               v-on:click="toggleDetail(device.id)">
             <div class="col-sm-12">
               <div class="table-row-content row">
-                <div class="table-cell col-md-3">{{ device.devicelabel }}</div>
-                <div v-for="technology in technologies" v-if="technology.id==device.technology" class="table-cell col-md-2">
-                  {{ technology.name }}
+                <div class="table-cell col-md-3 device-label">{{ device.devicelabel }}</div>
+                <div class="table-cell col-md-2">
+                  {{ device.technology }}
                 </div>
                 <div v-for="category in categories" v-if="category.id==device.category_id" class="table-cell col-md-2">
                   {{ category.name }}
                 </div>
                 <div class="table-cell col-md-3">{{ device.comment }}</div>
                 <div class="table-cell col-md-2">
+                  <!--a @click="">
+                    <span class="glyphicon glyphicon-eye-open action-button" aria-hidden="true"></span>
+                  </a-->
                   <a v-on:click="editDevice(device)">
                     <span class="glyphicon glyphicon-edit action-button" aria-hidden="true"></span>
                   </a>
@@ -51,7 +54,11 @@
                     <td colspan="5">
                       <div class="row">
                         <div class="col-xs-12">
-                          <pre>{{ device }}</pre>
+                          <li>{{ $t("DeviceRegForm.serial_number")}}: {{device.serialnumber}}</li>
+                             <li>{{ $t("DeviceRegForm.process_fluid")}}: {{device.procmedium}}</li>
+                             <li>{{ $t("DeviceRegForm.comment")}}: {{device.comment}}</li>
+                             <li>{{ $t("DeviceRegForm.maintenance")}}:{{device.mBeginning}}, {{device.mInterval}}, {{device.maintenanceMsg}} </li>
+                          <li>{{ $t("DeviceRegForm.calibration")}}: {{device.cBeginning}}, {{device.cIntervall}}, {{device.calibrationMsg}}</li>
                         </div>
                       </div>
                     </td>
@@ -78,7 +85,7 @@
       'devices'
     ],
     data() {
-      var gridColumns = ['devicelabel', 'technology', 'category', 'device_description'];
+      var gridColumns = ['devicelabel', 'technology', 'category', 'comment'];
       var sortOrders = {}
 
       gridColumns.forEach(function (key) {
@@ -92,10 +99,6 @@
         gridData: [
           this.devices
         ],
-        technologies: [
-          {id: 1, name: 'Rotamass'},
-          {id: 2, name: 'Flowmeter'}
-        ]
       }
     },
     components: {
@@ -158,9 +161,6 @@
       capitalize: function (str) {
         return str.charAt(0).toUpperCase() + str.slice(1)
       }
-    },
-    updated: function () {
-      this.$parent.stripeTable();
     }
   }
 </script>
@@ -181,6 +181,7 @@
       font-weight: bold;
     }
   }
+
 
   .active {
     color: $primary-link-color;
@@ -212,13 +213,19 @@
       padding-top: 5px;
       padding-bottom: 5px;
     }
-    .odd {
-      background-color: $table-row-odd-bg-color;
-    }
+
+  }
+
+  .odd {
+    background-color: $table-row-odd-bg-color;
   }
 
   .table-row-content:hover {
     background: $table-row-hover-color;
+  }
+
+  .device-label {
+    font-weight: bold;
   }
 
   /*th {*/

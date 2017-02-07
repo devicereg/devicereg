@@ -12,19 +12,18 @@
   <footer class="footer">
     <div class="container">
       <nav class="navbar navbar-inverse navbar-fixed-bottom">
-        <div class="container-fluid">
+        <div class="container-fluid row">
           <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
+              <img class="img img-responsive" src="../assets/footer-icon.png"/>
             </button>
           </div>
           <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
-              <li><router-link to="/datenschutz"><strong>{{$t("privacy_policy")}}</strong></router-link></li>
-              <li><router-link to="/terms-of-use"><strong>{{$t("site_policy")}}</strong></router-link></li>
-              <li><router-link to="/impressum"><strong>{{$t("legal_disclosure")}}</strong></router-link></li>
-              <li><router-link to="/aktionsbedingungen"><strong>{{$t("terms_of_warranty")}}</strong></router-link></li>
+              <li data-toggle="collapse" data-target="#myNavbar"><router-link to="/datenschutz"><strong>{{$t("privacy_policy")}}</strong></router-link></li>
+              <li data-toggle="collapse" data-target="#myNavbar"><router-link to="/terms-of-use"><strong>{{$t("site_policy")}}</strong></router-link></li>
+              <li data-toggle="collapse" data-target="#myNavbar"><router-link to="/impressum"><strong>{{$t("legal_disclosure")}}</strong></router-link></li>
+              <li data-toggle="collapse" data-target="#myNavbar"><router-link to="/aktionsbedingungen"><strong>{{$t("terms_of_warranty")}}</strong></router-link></li>
             </ul>
           </div>
         </div>
@@ -37,7 +36,22 @@
 
 <script>
   export default{
-    name: 'app-footer'
+    name: 'app-footer',
+    methods: {
+      handleBreakpoint() {
+        if ($(window).width() < 845) {
+          $("[data-target='#myNavbar']").attr("data-toggle", "collapse");
+          $(".dropdown-toggle").attr("data-toggle", "dropdown");
+        } else {
+          $("[data-target='#myNavbar']").attr("data-toggle", "");
+          $(".dropdown-toggle").attr("data-toggle", "");
+        }
+      }
+    },
+    mounted: function() {
+      this.handleBreakpoint();
+      window.addEventListener('resize', this.handleBreakpoint)
+    }
   }
 </script>
 
@@ -90,7 +104,7 @@
     }
   }
 
-  @media (max-width: 767px) {
+  @media (max-width: 845px) {
 
     .footer {
       .container {
@@ -102,22 +116,16 @@
             .navbar-header {
               background: transparent;
               .navbar-toggle {
-                background: $primary-bg-color;
-                width: 72px;
-                height: 27px;
-                bottom: -20px;
-                margin:20px;
+                background: transparent;
+                border-color: transparent;
+                bottom: -12px;
+                margin:0px;
                 position:relative;
-                border-color: $primary-bg-color;
-                border-bottom-left-radius: 0px;
-                border-bottom-right-radius: 0px;
-                border-top-left-radius: 10px;
-                border-top-right-radius: 10px;
-                .icon-bar {
-                  display: block;
-                  margin: 2px 3px auto;
-                  width: 45px;
-                  height: 2px;
+
+                img {
+                  width: 70%;
+                  height: auto;
+                  margin: 0 auto;
                 }
               }
             }

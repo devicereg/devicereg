@@ -1,4 +1,4 @@
-<template>
+<template xmlns:v-if="http://www.w3.org/1999/xhtml">
   <div id="device-registration-modal" class="modal inmodal fade" tabindex="-1" role="dialog"  aria-hidden="true">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
@@ -7,7 +7,8 @@
             <span aria-hidden="true">×</span>
             <span class="sr-only">Schließen</span>
           </button>
-          <h1 class="modal-title">{{$t("DeviceRegForm.title")}}</h1>
+          <h1 v-if="device.id == -1" class="modal-title">{{$t("DeviceRegForm.title_create")}}</h1>
+          <h1 v-else class="modal-title">{{$t("DeviceRegForm.title_edit")}}</h1>
         </div>
         <form id="device-registration-form" class="ajax" role="form" v-on:submit.prevent="submit" >
           <div class="modal-body">
@@ -20,26 +21,30 @@
               <div class="form-group row">
                 <div class="col-sm-6  text-left">
                   <label class="control-label" for="technology">{{$t("DeviceRegForm.technology")}}:</label>
-                  <select name="technology" class="form-control" id="technology" v-model="device.technology" required>
+                  <select name="technology" class="form-control" id="technology" v-model="device.technology_id" required>
+                    <option value="" :disabled="true">{{$t("DeviceRegForm.choose")}}</option>
                     <option v-bind:value="item.id" v-for="item in technologies">{{item.name}}</option>
                   </select>
                 </div>
               </div>
-              <div class="form-group row" v-if="customCat">
+              <div class="form-group row" v-if="custom_category">
                 <div class="col-sm-12">
-                  <label class="control-label" for="category">{{$t("DeviceRegForm.category")}}:</label>
+                  <label class="control-label" for="custom_category">{{$t("DeviceRegForm.category")}}:</label>
                 </div>
                 <div class="col-xs-8 col-sm-6">
                   <input @keydown.enter="createCustomCategory" name="category" type="text" class="form-control"
-                         id="custom_category" v-model="custom_category" required>
+                         id="custom_category" v-model="custom_category_name" :placeholder="$t('DeviceRegForm.type_in_category')" required>
                 </div>
-                <div class="col-xs-4 col-sm-3">
+                <!--div class="col-xs-4 col-sm-3">
                   <button type="button" class="btn btn-block btn-primary" @click="createCustomCategory">
                     <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> &nbsp; {{ $t('DeviceRegForm.create_category') }}
                   </button>
-                </div>
-                <div class="col-xs-12 col-sm-3">
-                  <input class="input-control" name="category" type="checkbox" v-model="customCat"> {{$t("DeviceRegForm.custom")}}
+                </div-->
+                <div class="col-sm-3">
+                  <div class="checkbox">
+                    <label><input name="category" type="checkbox" v-model="custom_category">
+                      {{$t("DeviceRegForm.custom")}}</label>
+                  </div>
                 </div>
               </div>
               <div class="form-group row" v-else>
@@ -48,12 +53,13 @@
                 </div>
                 <div class="col-sm-6">
                   <select name="category" class="form-control" id="category_id" required v-model="device.category_id">
+                    <option value="" :disabled="true">{{$t("DeviceRegForm.choose")}}</option>
                     <option v-bind:value="item.id" v-for="item in categories">{{item.name}}</option>
                   </select>
                 </div>
                 <div class="col-sm-3">
                   <div class="checkbox">
-                    <label><input name="category" type="checkbox" v-model="customCat">
+                    <label><input name="category" type="checkbox" v-model="custom_category">
                       {{$t("DeviceRegForm.custom")}}</label>
                   </div>
                 </div>
@@ -84,6 +90,7 @@
                   <div class="text-left">
                     <label class="control-label" for="procmedium">{{$t("DeviceRegForm.process_fluid")}}:</label>
                     <select name="process_fluid" class="form-control" id="procmedium" v-model="device.procmedium" required>
+                      <option value="" :disabled="true">{{$t("DeviceRegForm.choose")}}</option>
                       <option v-bind:value="item.id" v-for="item in procmedia">{{item.name}}</option>
                     </select>
                   </div>
@@ -91,7 +98,7 @@
                 <div class="form-group col-sm-6">
                   <div class="text-left">
                     <label class="control-label" for="tag">{{$t("DeviceRegForm.tag_number")}}:</label>
-                    <input name="tagnumber" type="number" class="form-control" id="tag" v-model="device.tagnumber" required>
+                    <input name="tag" type="number" class="form-control" id="tag" v-model="device.tag" required>
                   </div>
                 </div>
               </div>
@@ -111,32 +118,50 @@
               </div>
               <div class="row">
                 <div class="form-group col-sm-6">
-                  <div class="form-group">
-                    <label name="maintenance" class="control-label" for="maintenance">{{$t("DeviceRegForm.maintenance")}}?</label>
-                    <input name="maintenance_desired" type="checkbox" id="maintenance" v-model="device.maintenance"> {{$t("DeviceRegForm.yes")}}
+                  <div  class="form-group">
+                    <label name="maintenance" class="control-label" for="maintenance">{{$t("DeviceRegForm.maintenance")}}</label>
+                    <input name="maintenance_desired" type="radio" id="maintenance" v-model="device.maintenance" value="true"> {{$t("DeviceRegForm.yes")}}
+                    <input name="maintenance_desired" type="radio" id="no_maintenance" v-model="device.maintenance" value="false"> {{$t("DeviceRegForm.no")}}
                   </div>
-                  <div class="form-group">
-                    <label class="control-label" for="mInterval">{{$t("DeviceRegForm.interval")}}:</label>
-                    <select name="maintenance_interval" class="form-control" id="mInterval" v-model="device.mInterval" :disabled="!device.maintenance"
+
+                  <div v-if="device.maintenance == 'true'" class="form-group" id="desired">
+                    <label class="control-label" for="mInterval">{{$t("DeviceRegForm.main_interval")}}</label>
+                    <select name="maintenance_interval" class="form-control" id="mInterval" v-model="device.mInterval"
                             :required="device.maintenance">
-                      <option value="1">1 {{$t("DeviceRegForm.month")}}</option>
-                      <option value="3">3 {{$t("DeviceRegForm.months")}}</option>
-                      <option value="6">6 {{$t("DeviceRegForm.months")}}</option>
+                      <option value="" :disabled="true">{{$t("DeviceRegForm.choose")}}</option>
+                      <option value="6">6 {{$t("DeviceRegForm.month")}}</option>
+                      <option value="12">12 {{$t("DeviceRegForm.months")}}</option>
+                      <option value="18">18 {{$t("DeviceRegForm.months")}}</option>
+                      <option value="24">24 {{$t("DeviceRegForm.months")}}</option>
                     </select>
                   </div>
                 </div>
-                <div class="form-group col-sm-6">
+
+                <div v-if="device.maintenance == 'true'" class="form-group col-sm-6">
                   <div class="form-group">
-                    <label class="control-label" for="maintenanceMsg">{{$t("DeviceRegForm.notification")}}?</label>
-                    <input name="maintenance_notification_desired" type="checkbox" id="maintenanceMsg" v-model="device.maintenanceMsg"/> {{$t("DeviceRegForm.yes")}}
+                    <label class="control-label" for="maintenanceMsg">{{$t("DeviceRegForm.notification")}}:</label>
+                    <input name="maintenance_notification_desired" type="radio" id="maintenanceMsg" value="true" v-model="device.maintenanceMsg"/> {{$t("DeviceRegForm.yes")}}
+                    <input name="maintenance_notification_desired" type="radio" id="maintenanceMsg_none" value="false" v-model="device.maintenanceMsg"/> {{$t("DeviceRegForm.no")}}
                   </div>
-                  <div class="form-group">
+                  <div v-if="device.maintenanceMsg == 'true'" class="form-group">
                     <label name="maintenance_start" class="control-label" for="mBeginning">{{$t("DeviceRegForm.start")}}:</label>
                     <input type="date" class="form-control" id="mBeginning" v-model="device.mBeginning"
                            :disabled="!device.maintenanceMsg" :required="device.maintenanceMsg" :min="today">
                   </div>
+                  <div  v-if="device.maintenanceMsg == 'true'" class="form-group">
+                    <label name="email_address_maintenance" class="control-label" for="email_address_maintenance">{{$t("DeviceRegForm.email")}}</label>
+                    <input class="form-control" id="email_address_maintenance" v-model="device.email_address_maintenance">
+                  </div>
+                  <div v-if="device.maintenanceMsg == 'true'" class="form-group">
+                    <label class="control-label" for="remind_intervall">{{$t("DeviceRegForm.remind")}}</label>
+                    <select name="remind" class="form-control" id="remind_intervall" v-model="device.remind_intervall">
+                      <option value="" :disabled="true">{{$t("DeviceRegForm.choose")}}</option>
+                      <option value="6">1 {{$t("DeviceRegForm.month_before")}}</option>
+                      <option value="12">2 {{$t("DeviceRegForm.months_before")}}</option>
+                      <option value="18">3 {{$t("DeviceRegForm.months_before")}}</option>
+                    </select>
+                  </div>
                 </div>
-
               </div>
               <div class="form-group row">
                 <div class="col-sm-12  text-left">
@@ -146,28 +171,45 @@
               <div class="row">
                 <div class="form-group col-sm-6">
                   <div class="form-group">
-                    <label name="calibration" class="control-label" for="calibration">{{$t("DeviceRegForm.calibration")}}?</label>
-                    <input name="calibration_desired" type="checkbox" id="calibration" v-model="device.calibration"> {{$t("DeviceRegForm.yes")}}
+                    <label name="calibration" class="control-label" for="calibration">{{$t("DeviceRegForm.calibration")}}</label>
+                    <input name="calibration_desired" type="radio" id="calibration" value="true" v-model="device.calibration"> {{$t("DeviceRegForm.yes")}}
+                    <input name="calibration_desired" type="radio" id="no_calibration" value="false" v-model="device.calibration"> {{$t("DeviceRegForm.no")}}
                   </div>
-                  <div class="form-group">
-                    <label class="control-label" for="cInterval">{{$t("DeviceRegForm.interval")}}:</label>
+                  <div v-if="device.calibration == 'true'" class="form-group">
+                    <label class="control-label" for="cInterval">{{$t("DeviceRegForm.cali_interval")}}</label>
                     <select name="calibration_interval" class="form-control" id="cInterval" v-model="device.cInterval" :disabled="!device.calibration"
                             :required="device.calibration">
-                      <option value="1">1 {{$t("DeviceRegForm.month")}}</option>
-                      <option value="3">3 {{$t("DeviceRegForm.months")}}</option>
-                      <option value="6">6 {{$t("DeviceRegForm.months")}}</option>
+                      <option value="" :disabled="true">{{$t("DeviceRegForm.choose")}}</option>
+                      <option value="6">6 {{$t("DeviceRegForm.month")}}</option>
+                      <option value="12">12 {{$t("DeviceRegForm.months")}}</option>
+                      <option value="18">18 {{$t("DeviceRegForm.months")}}</option>
+                      <option value="24">24 {{$t("DeviceRegForm.months")}}</option>
                     </select>
                   </div>
                 </div>
-                <div class="form-group col-sm-6">
+                <div v-if="device.calibration == 'true'" class="form-group col-sm-6">
                   <div class="form-group">
-                    <label class="control-label" for="calibrationMsg">{{$t("DeviceRegForm.notification")}}?</label>
-                    <input name="calibration_notification_desired" type="checkbox" id="calibrationMsg" v-model="device.calibrationMsg" value="1"> {{$t("DeviceRegForm.yes")}}
+                    <label class="control-label" for="calibrationMsg">{{$t("DeviceRegForm.notification")}}</label>
+                    <input name="calibration_notification_desired" type="radio" id="calibrationMsg" v-model="device.calibrationMsg" value="true"> {{$t("DeviceRegForm.yes")}}
+                    <input name="calibration_notification_desired" type="radio" id="calibrationMsg_none" v-model="device.calibrationMsg" value="false" > {{$t("DeviceRegForm.no")}}
                   </div>
-                  <div class="form-group">
+                  <div v-if="device.calibrationMsg == 'true'" class="form-group">
                     <label class="control-label" for="cBeginning">{{$t("DeviceRegForm.start")}}:</label>
                     <input name="calibration_start" type="date" class="form-control" id="cBeginning" v-model="device.cBeginning"
                            :disabled="!device.calibrationMsg" :required="device.calibrationMsg" :min="today">
+                  </div>
+                  <div v-if="device.calibrationMsg == 'true'" class="form-group">
+                    <label class="control-label" for="email_address_calibration">{{$t("DeviceRegForm.email")}}</label>
+                    <input name="email_address_calibration" type="date" class="form-control" id="email_address_calibration" v-model="device.email_address_calibration">
+                  </div>
+                  <div v-if="device.calibrationMsg == 'true'" class="form-group">
+                    <label class="control-label" for="remind_intervall">{{$t("DeviceRegForm.remind")}}:</label>
+                    <select name="remind" class="form-control" id="remind_intervall" v-model="device.remind_intervall">
+                      <option value="" :disabled="true">{{$t("DeviceRegForm.choose")}}</option>
+                      <option value="6">1 {{$t("DeviceRegForm.month_before")}}</option>
+                      <option value="12">2 {{$t("DeviceRegForm.months_before")}}</option>
+                      <option value="18">3 {{$t("DeviceRegForm.months_before")}}</option>
+                    </select>
                   </div>
                 </div>
               </div>
@@ -177,11 +219,9 @@
             <div class="col-sm-offset-6 col-xs-6 col-sm-3">
               <button type="button" class="btn btn-block btn-md btn-cancel btn-modal" data-dismiss="modal">{{ $t('cancel') }}</button>
             </div>
-            <div v-if="device.id == -1" class="col-xs-6 col-sm-3">
-              <input type="submit" class="btn btn-block btn-md btn-primary btn-modal" v-bind:value="$t('register')">
-            </div>
-            <div v-else class="col-xs-6 col-sm-3">
-              <input type="submit" class="btn btn-block btn-md btn-primary btn-modal" v-bind:value="$t('save')">
+            <div class="col-xs-6 col-sm-3">
+              <input v-if="device.id == -1" type="submit" class="btn btn-block btn-md btn-primary btn-modal" v-bind:value="$t('register')">
+              <input v-else type="submit" class="btn btn-block btn-md btn-primary btn-modal" v-bind:value="$t('save')">
             </div>
           </div>
         </form>
@@ -196,39 +236,57 @@ export default {
   name: 'device-registration-modal',
   props: [
     'device',
+    'edit_index',
+    'custom_category',
+    'custom_category_name',
     'categories'
   ],
   data () {
     return {
-      custom_category: '',
-      technologies: [
-        {id: 1, name: 'Rotamass'},
-        {id: 2, name: 'Flowmeter'}
-      ],
-      customCat: 0, //boolean, if true can create own category
       procmedia: [
         {id: 1, name: 'Wasser'},
         {id: 2, name: 'Argon'},
         {id: 3, name: 'Benzol'}
-      ]
+      ],
+      technologies: []
     }
   },
   methods: {
     submit() {
       $('#device-registration-modal').modal('hide');
+      if(this.custom_category) {
+        this.device.category_id = this.custom_category;
+        this.createCustomCategory();
+      }
+
+      this.device.technology = this.findTechnologyName(this.device.technology_id);
+
       if(this.device.id == -1) {
-        this.$parent.addDevice(this.device);
+        auth.createDevice(this, this.device);
       } else {
-        this.$parent.updateDevice(this.device);
+        auth.updateDevice(this, this.device);
+        this.$parent.updateDevice(this.device, this.edit_index);
       }
     },
+    findTechnologyName(id) {
+      var foundTechnology = this.technologies.filter(function (technology) {
+        return technology.id === id;
+      });
+
+      return foundTechnology[0].name;
+    },
+    deviceCreated() {
+      this.$parent.addDevice(this.device);
+    },
     createCustomCategory() {
-      auth.createNewCategory(this, {name: this.custom_category});
+      auth.createNewCategory(this, {name: this.custom_category_name});
     },
     categoryCreated() {
-      this.customCat = 0;
-      this.custom_category = "";
-      this.getCategories();
+      this.custom_category_name = "";
+      this.$parent.getCategories();
+    },
+    getTechnologies() {
+      auth.getTechnologies(this);
     }
   },
   computed: {
@@ -236,8 +294,10 @@ export default {
       var today = new Date().toISOString().slice(0, 10);
       return today.toString();
     }
+  },
+  mounted: function() {
+    this.getTechnologies();
   }
-
 }
 </script>
 <style lang="scss">

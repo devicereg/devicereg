@@ -1,7 +1,6 @@
 <template>
   <div id="my-devices-component">
-    <device-registration-modal :device="device" :categories="categories"></device-registration-modal>
-    <div class="row">
+    <device-registration-modal :device="device" :edit_index="edit_index" :custom_category="custom_category" :categories="categories"></device-registration-modal>
       <div class="col-sm-8">
         <h1> {{$t("MyDevices.title")}} </h1>
       </div>
@@ -10,15 +9,10 @@
           <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> &nbsp; {{ $t("MyDevices.add_button") }}
         </a>
       </div>
-    </div>
-    <div class="row">
       <filter-input-elements :categories="categories"></filter-input-elements>
-    </div>
-    <div class="row">
       <div class="col-sm-12">
         <sortable-devices :devices="devices" :categories="categories" :filterKey="filter" :categoryFilter="cat_filter"></sortable-devices>
       </div>
-    </div>
   </div>
 </template>
 
@@ -40,20 +34,27 @@
         filter: '',
         cat_filter: 'all',
         categories: [],
+        custom_category: false,
+        custom_category_name: "",
         devices: [],
-        device: {}
+        device: {},
+        edit_index: -1
       }
     },
     methods: {
       clearDevice() {
+        this.custom_category = false;
+        this.custom_category_name = "";
         this.device = {
           id: -1,
+          technology_id: -1,
           technology: '',
           category_id: '',
           devicelabel: '',
           serialnumber: '',
           procmedium: '', //Process fluid, e.g.H2O
           comment: '',
+          tag: '',
           mInterval: '', //Interval for maintenance schedule
           mBeginning: '', //start date of recieving notifications about maintenance schedules
           calibration: 0, //boolean, true if calibration desired
@@ -65,17 +66,19 @@
         };
       },
       addDevice(device) {
-        auth.createDevice(this, device);
         device.id = this.device.id;
         this.devices.unshift(device);
       },
       updateDevice(device) {
-        auth.updateDevice(this. device);
-        var index = this.devices.indexOf(device);
-        this.devices.splice(index, 1, device);
+        this.devices.splice(this.edit_index, 0);
+        this.devices.splice(this.edit_index, 1, device);
       },
       editDevice(device) {
-        this.device = device;
+        this.custom_category = false;
+        this.custom_category_name = "";
+        this.edit_index = this.devices.indexOf(device);
+        console.log("Current INDEX of EDITED device: " + this.edit_index);
+        this.device = JSON.parse(device);
         $('#device-registration-modal').modal('show');
       },
       getDeviceData() {

@@ -42,6 +42,19 @@ export default {
     logout(){
       auth.logout()
     },
+    handleBreakpoint() {
+      if ($(window).width() < 845) {
+        $("[data-target='#navbar']").attr("data-toggle", "collapse");
+        $(".dropdown-toggle").attr("data-toggle", "dropdown");
+      } else {
+        $("[data-target='#navbar']").attr("data-toggle", "");
+        $(".dropdown-toggle").attr("data-toggle", "");
+      }
+    }
+  },
+  mounted: function() {
+    this.handleBreakpoint();
+    window.addEventListener('resize', this.handleBreakpoint)
   }
 }
 
@@ -96,13 +109,9 @@ export default {
           }
         }
         .nav {
-          padding-left: 0;
-          display: inline-block;
-          height: 100%;
-          float: none;
-
           li a {
             background-color: transparent;
+            font-weight: bold;
             color: #fff;
 
             &:hover {

@@ -1,4 +1,4 @@
-<template>
+<template xmlns:v-bind="http://www.w3.org/1999/xhtml">
     <div class="row">
       <div class="col-sm-8">
         <h1>{{ $t("CreateNewPassword.header") }}<span>( {{ credentials.prename }} {{ credentials.surname }} )</span></h1><form>
@@ -73,7 +73,7 @@
         }
         else
         {
-  	  		auth.createNewPassword(this, credentials, '/new-password-confirmed', this.$parent.$refs.toastr)
+  	  		auth.createNewPassword(this, credentials, '/reset-password/confirmed', this.$parent.$refs.toastr)
         }
 	  	}
 	  }

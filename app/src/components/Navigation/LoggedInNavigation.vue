@@ -1,36 +1,30 @@
 <template>
   <div id="navbar" class="navbar-collapse collapse">
     <ul class="nav navbar-nav navbar-left">
-      <li>
-        <router-link to="/my-devices"><strong> {{ $t('my_devices') }} </strong></router-link>
+      <li data-toggle="collapse" data-target="#navbar">
+        <router-link to="/my-devices">{{ $t('my_devices') }}</router-link>
       </li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
-      <!--li>
-        <router-link to="/my-devices"><strong> {{ $t('my_devices') }} </strong></router-link>
-      </li-->
-      <li>
-        <router-link to="/contact"><strong> {{ $t('contact') }} </strong></router-link>
+      <li data-toggle="collapse" data-target="#navbar">
+        <router-link to="/contact">{{ $t('contact') }}</router-link>
       </li>
       <language-switch></language-switch>
-      <li class="dropdown">
+      <li class="dropdown" data-toggle="collapse" data-target="#navbar">
         <a class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <span class="glyphicon glyphicon-user"></span>
           <span class="caret"></span>
         </a>
         <ul class="dropdown-menu" role="menu">
-          <li>
-            <router-link to="/user/edit"><strong> {{ $t('edit_profile') }} </strong></router-link>
+          <li data-toggle="collapse" data-target="#navbar">
+            <router-link to="/user/edit">{{ $t('edit_profile') }}</router-link>
           </li>
-          <li @click="deleteProfile()"><a><strong> {{ $t('delete_profile') }} </strong></a></li>
-          <li @click="logout()">
-            <router-link to="/login"><strong> {{ $t('logout') }} </strong></router-link>
+          <li data-toggle="collapse" data-target="#navbar" @click="deleteProfile()"><a>{{ $t('delete_profile') }}</a></li>
+          <li data-toggle="collapse" data-target="#navbar" @click="logout()">
+            <router-link to="/login">{{ $t('logout') }}</router-link>
           </li>
         </ul>
       </li>
-      <!--<li class="logout-user" @click="logout()">
-        <router-link to="/login"><strong> {{ $t('logout') }} </strong></router-link>
-      </li>-->
     </ul>
   </div>
 </template>
@@ -80,9 +74,11 @@ export default {
 <style scoped lang="scss">
   @import '../../styles/_colors';
 
-  li.dropdown:hover ul.dropdown-menu {
-    display: block;
-    margin-top: 0;
+  @media all and (min-width: 845px) {
+    li.dropdown:hover ul.dropdown-menu {
+      display: block;
+      margin-top: 0;
+    }
   }
 
   ul.dropdown-menu {
