@@ -26,7 +26,7 @@
       <div class="table-body col-sm-12">
         <transition-group name="device-list" tag="div">
           <div v-for="(device, key) in filteredData"
-              v-bind:class="[key % 2 === 0 ? '' : 'odd','row table-row device-list-item']"
+              v-bind:class="[key % 2 === 0 ? 'even-tr' : 'odd-tr','row table-row device-list-item']"
               v-bind:id="'device_' + device.id"
               v-bind:key="device.id"
               v-on:click="toggleDetail(device.id)">
@@ -119,7 +119,7 @@
         this.$parent.$parent.$refs.toastr.Add({
           title: this.$t("UI.delete_device_title"),
           msg: this.$t("UI.delete_device_msg"),
-          clickClose: false,
+          clickClose: true,
           timeout: 8000,
           position: "toast-top-right",
           type: "success"
@@ -222,12 +222,12 @@
       padding-top: 5px;
       padding-bottom: 5px;
     }
-
+    .odd-tr {
+      background-color: $table-row-odd-bg-color !important;
+    }
   }
 
-  .odd {
-    background-color: $table-row-odd-bg-color;
-  }
+
 
   .table-row-content:hover {
     background: $table-row-hover-color;

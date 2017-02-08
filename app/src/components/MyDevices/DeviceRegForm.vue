@@ -266,7 +266,7 @@ export default {
         this.$parent.$parent.$refs.toastr.Add({
           title: this.$t("UI.create_device_title"),
           msg: this.$t("UI.create_device_msg"),
-          clickClose: false,
+          clickClose: true,
           timeout: 8000,
           position: "toast-top-right",
           type: "success"
@@ -275,9 +275,9 @@ export default {
         auth.updateDevice(this, this.device, this.$parent.$parent.$refs.toastr);
         this.$parent.updateDevice(this.device, this.edit_index);
         this.$parent.$parent.$refs.toastr.Add({
-          title: this.$t("UI.create_device_title"),
-          msg: this.$t("UI.create_device_msg"),
-          clickClose: false,
+          title: this.$t("UI.update_device_title"),
+          msg: this.$t("UI.update_device_msg"),
+          clickClose: true,
           timeout: 8000,
           position: "toast-top-right",
           type: "success"

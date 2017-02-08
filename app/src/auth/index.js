@@ -29,7 +29,7 @@ export default {
 	 * @param      {JSON}    creds     The creds
 	 * @param      {string}  redirect  The redirect
 	 */
-	login(context, creds, redirect)
+	login(context, creds, redirect, toastr)
 	{
 		context.$http.post(LOGIN_URL, creds).then((response) => {
 
@@ -42,7 +42,15 @@ export default {
 			}
 
 		}, (err) => {
-			context.error = err.body.message
+			context.error = err.body.message;
+			toastr.Add({
+				title: context.$t("UI.login_error_title"),
+				msg: context.$t("UI.login_error_msg"),
+				clickClose: true,
+				timeout: 8000,
+				position: "toast-top-right",
+				type: "error"
+			});
 		})
 	},
 
