@@ -462,8 +462,8 @@
         else{
           auth.signup(this, credentials, '/my-devices')
           this.$parent.$refs.toastr.Add({
-              msg: this.$t("Benutzer registriert"),
-              title: this.$t("Sie haben sich erfolgreich als Benutzer registriert."),
+              title: this.$t("UI.register_user_title"),
+              msg: this.$t("UI.register_user_msg"),
               clickClose: false,
               timeout: 8000,
               position: "toast-top-right",
