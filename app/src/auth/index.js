@@ -3,6 +3,8 @@ import {router} from '../main'
 var os = require('os');
 var jwt = require('jsonwebtoken');
 
+var config = require('../../../mockserver/config.json');
+
 const API_URL 					= 'http://' + os.hostname() + ':3001/';
 const LOGIN_URL 				= API_URL 	+ 'sessions/create/';
 const SIGNUP_URL 				= API_URL 	+ 'user/create';
@@ -311,5 +313,12 @@ export default {
     }, (err) => {
       context.error = err;
     });
+  },
+
+  getRole()
+  {
+    const data = jwt.verify(localStorage.getItem('id_token'), config.secret);
+
+    return data.role;
   }
 }
