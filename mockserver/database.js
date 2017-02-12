@@ -27,6 +27,7 @@ db.serialize(function() {
         "question TEXT," +
         "answer TEXT,"+
         "email TEXT," +
+        "role TEXT," +
         "UNIQUE(email))"
     );
 
