@@ -145,8 +145,8 @@
                   </div>
                   <div v-if="device.maintenanceMsg == 'true'" class="form-group">
                     <label name="maintenance_start" class="control-label" for="mBeginning">{{$t("DeviceRegForm.start")}}:</label>
-                    <input type="date" class="form-control" id="mBeginning" v-model="device.mBeginning"
-                           :disabled="!device.maintenanceMsg" :required="device.maintenanceMsg" :min="today">
+                    <datepicker :language="lang" :disabled="state.disabled || !device.maintenanceMsg" :format="state.format" :placeholder="this.placeholder" :id="mBeginning" v-model="device.mBeginning"
+                                 class="form-control" :required="device.maintenanceMsg"></datepicker>
                   </div>
                   <div  v-if="device.maintenanceMsg == 'true'" class="form-group">
                     <label name="email_address_maintenance" class="control-label" for="email_address_maintenance">{{$t("DeviceRegForm.email")}}</label>
@@ -195,12 +195,12 @@
                   </div>
                   <div v-if="device.calibrationMsg == 'true'" class="form-group">
                     <label class="control-label" for="cBeginning">{{$t("DeviceRegForm.start")}}:</label>
-                    <input name="calibration_start" type="date" class="form-control" id="cBeginning" v-model="device.cBeginning"
-                           :disabled="!device.calibrationMsg" :required="device.calibrationMsg" :min="today">
+                    <datepicker name="calibration_start" :language="lang" :disabled="state.disabled || !device.calibrationMsg" :format="state.format" :placeholder="this.placeholder" :id="cBeginning" v-model="device.cBeginning"
+                                        class="form-control" :required="device.calibrationMsg"></datepicker>
                   </div>
                   <div v-if="device.calibrationMsg == 'true'" class="form-group">
                     <label class="control-label" for="email_address_calibration">{{$t("DeviceRegForm.email")}}</label>
-                    <input name="email_address_calibration" type="date" class="form-control" id="email_address_calibration" v-model="device.email_address_calibration">
+                    <input name="email_address_calibration" class="form-control" id="email_address_calibration" v-model="device.email_address_calibration">
                   </div>
                   <div v-if="device.calibrationMsg == 'true'" class="form-group">
                     <label class="control-label" for="remind_intervall">{{$t("DeviceRegForm.remind")}}:</label>
@@ -230,9 +230,16 @@
   </div>
 </template>
 <script>
+import Datepicker from 'vuejs-datepicker'
 import auth from '../../auth'
-
+var moment = require('moment')
+var Vue = require('vue')
+var limitDate = new Date();
+limitDate.setDate(limitDate.getDate()-1);
 export default {
+  components: {
+    Datepicker
+  },
   name: 'device-registration-modal',
   props: [
     'device',
@@ -248,7 +255,13 @@ export default {
         {id: 2, name: 'Argon'},
         {id: 3, name: 'Benzol'}
       ],
-      technologies: []
+      technologies: [],
+      state: {
+        disabled: {
+          to: limitDate
+        },
+        format: 'yyyy MM dd'
+      }
     }
   },
   methods: {
@@ -260,7 +273,8 @@ export default {
       }
 
       this.device.technology = this.findTechnologyName(this.device.technology_id);
-
+      this.device.mBeginning = moment(this.device.mBeginning).format().slice(0,10);//Datum ins richtige Format bringen
+      this.device.cBeginning = moment(this.device.cBeginning).format().slice(0,10);
       if(this.device.id == -1) {
         auth.createDevice(this, this.device, this.$parent.$parent.$refs.toastr);
         this.$parent.$parent.$refs.toastr.Add({
@@ -306,9 +320,11 @@ export default {
     }
   },
   computed: {
-    today: function() {
-      var today = new Date().toISOString().slice(0, 10);
-      return today.toString();
+    lang: function () {
+      return Vue.config.lang
+    },
+    placeholder: function () {
+      return this.$t("DeviceRegForm.choose");
     }
   },
   mounted: function() {

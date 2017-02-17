@@ -370,7 +370,7 @@
           ],
 
         industry_types: [
-          {family_id: '-1', name: 'Mteall, Minen'},
+          {family_id: '-1', name: 'Metall, Minen'},
           {family_id: '1', name: 'Kohle'},
           {family_id: '1', name: 'Diamanten'},
           {family_id: '1', name: 'Gold'}
