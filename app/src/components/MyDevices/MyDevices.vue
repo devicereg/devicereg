@@ -1,5 +1,8 @@
 <template>
   <div id="my-devices-component">
+    <div v-if="userRole === 'ROLE_USER'">Aktuelle Rolle: {{ userRole}}</div>
+    <!-- This is just an example. Feel free to remove that -->
+
     <device-registration-modal :device="device" :edit_index="edit_index" :custom_category="custom_category" :categories="categories"></device-registration-modal>
       <div class="col-sm-8">
         <h1> {{$t("MyDevices.title")}} </h1>
@@ -77,7 +80,6 @@
         this.custom_category = false;
         this.custom_category_name = "";
         this.edit_index = this.devices.indexOf(device);
-        console.log("Current INDEX of EDITED device: " + this.edit_index);
         this.device = JSON.parse(JSON.stringify(device));
         $('#device-registration-modal').modal('show');
       },
@@ -91,6 +93,11 @@
     mounted: function() {
       this.getDeviceData();
       this.getCategories();
+    },
+    computed: {
+      userRole: function() {
+        return auth.getRole();
+      }
     }
   }
 </script>
