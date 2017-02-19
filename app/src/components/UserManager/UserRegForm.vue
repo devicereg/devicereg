@@ -1,4 +1,4 @@
-<template>
+<template xmlns:v-if="http://www.w3.org/1999/xhtml">
   <div id="user-registration-modal" class="modal inmodal fade" tabindex="-1" role="dialog"  aria-hidden="true">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
@@ -7,7 +7,8 @@
             <span aria-hidden="true">×</span>
             <span class="sr-only">Schließen</span>
           </button>
-          <h1 class="modal-title">{{$t("UserRegForm.title")}}</h1>
+          <h1 v-if="user.id == -1" class="modal-title">{{$t("UserRegForm.title_create")}}</h1>
+          <h1 v-else class="modal-title">{{$t("UserRegForm.title_edit")}}</h1>
         </div>
         <form id="user-registration-form" class="ajax" role="form" v-on:submit.prevent="submit" >
           <div class="modal-body">
@@ -48,10 +49,30 @@ export default {
     submit() {
       $('#user-registration-modal').modal('hide');
       if(this.user.id == -1) {
-        // this.$parent.addUser(this.user); TODO: addUser auth.js
+        auth.createUser(this, this.user, this.$parent.$parent.$refs.toastr);
+        this.$parent.$parent.$refs.toastr.Add({
+          title: this.$t("UI.create_user_title"),
+          msg: this.$t("UI.create_user_msg"),
+          clickClose: true,
+          timeout: 8000,
+          position: "toast-top-right",
+          type: "success"
+        });
       } else {
-        // this.$parent.updateUser(this.user); TODO: updateUser auth.js
+        auth.updateDevice(this, this.user, this.$parent.$parent.$refs.toastr);
+        this.$parent.updateDevice(this.user, this.edit_index);
+        this.$parent.$parent.$refs.toastr.Add({
+          title: this.$t("UI.update_user_title"),
+          msg: this.$t("UI.update_user_msg"),
+          clickClose: true,
+          timeout: 8000,
+          position: "toast-top-right",
+          type: "success"
+        });
       }
+    },
+    userCreated() {
+      this.$parent.addUser(this.user);
     }
   },
   computed: {

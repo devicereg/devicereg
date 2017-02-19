@@ -1,6 +1,7 @@
 {
   "de": {
-    "title": "Benutzer registrieren",
+    "title_create": "Benutzer registrieren",
+    "title_edit": "Benutzer editieren",
     "categorization": "Gerätekategorisierung",
     "technology": "Technologie",
     "category": "Gerätekategorie",
@@ -23,7 +24,8 @@
     "create_category": "Erstellen"
   },
   "en": {
-    "title": "Register user",
+    "title_create": "Register user",
+    "title_edit": "Edit user",
     "categorization": "Categorization",
     "technology": "Technology",
     "category": "Category",

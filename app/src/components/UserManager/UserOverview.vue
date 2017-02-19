@@ -1,6 +1,6 @@
 <template>
   <div id="my-users-component">
-    <user-registration-modal :user="user"></user-registration-modal>
+    <user-registration-modal :user="user" :edit_index="edit_index"></user-registration-modal>
     <div class="col-sm-12">
       <h1> {{$t("UserOverview.title")}} </h1>
     </div>
@@ -64,7 +64,6 @@
         };
       },
       addUser(user) {
-        //auth.createUser(this, user); TODO: createUser auth.js
         user.id = this.user.id;
         this.users.unshift(user);
       },
@@ -73,7 +72,7 @@
         this.users.splice(this.edit_index, 1, device);
       },
       editUser(user) {
-        this.edit_index = this.devices.indexOf(user);
+        this.edit_index = this.users.indexOf(user);
         this.user = JSON.parse(JSON.stringify(user));
         $('#user-registration-modal').modal('show');
       },

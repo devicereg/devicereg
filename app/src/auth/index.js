@@ -79,6 +79,25 @@ export default {
 	    })
   	},
 
+	/**
+	 * Method for user registration
+	 *
+	 * @param      {object}  context   The context
+	 * @param      {JSON}  	 creds     The creds
+	 * @param      {string}  redirect  The redirect
+	 */
+	createUser(context, creds)
+	{
+    context.$http.post(SIGNUP_URL, creds).then((response) => {
+      context.user.id = response.body.id;
+      context.userCreated();
+
+    },
+      (err) => {
+        context.error = err;
+      })
+  },
+
 
   	/**
 	 * Method for user update
@@ -115,6 +134,21 @@ export default {
 	    	context.error = err
 	    })
   	},
+
+  	/**
+	 * Method for user delete
+	 *
+	 * @param      {object}  context   The context
+ 	 * @param      {int}   	 id     	The creds
+	 */
+	deleteUser(context, id)
+	{
+    context.$http.post(DELETE_URL, id).then((response) => {
+
+    }, (err) => {
+      context.error = err
+    })
+  },
 
 	/**
 	 * Method for user logout

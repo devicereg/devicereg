@@ -62,7 +62,10 @@ app.post('/user/create', function(req, res)
         console.log("User object: " + row);
         console.log("JWT Token: " + jwt_token);
 
-        res.status(201).send({ id_token: jwt_token });
+        res.status(201).send({
+          id_token: jwt_token,
+          id: this.lastID
+        });
       }
     );
   });
