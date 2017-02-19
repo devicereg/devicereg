@@ -42,7 +42,7 @@
     methods: {
       clearUser() {
         this.user = {
-          id: "",
+          id: -1,
           gender: "",
           prename: "",
           surname: "",
