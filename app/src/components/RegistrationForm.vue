@@ -18,14 +18,16 @@
               <label for="register_gender">{{$t("RegistrationForm.gender")}}</label>
             </div>
             <div class="col-sm-6">
-              <select name="gender"
+              <select v-validate="'required'" :class="{'input': true, 'is-danger': errors.has('gender') }"
+                name="gender"
                 class="form-control"
                 id="register_gender"
-                v-model="credentials.gender" required>
+                v-model="credentials.gender">
                 <option value="" :disabled="true">{{$t("RegistrationForm.choose")}}</option>
                 <option>{{$t("RegistrationForm.mr")}}</option>
                 <option>{{$t("RegistrationForm.mrs")}}</option>
               </select>
+              <span v-show="errors.has('gender')" class="text-danger">{{ errors.first('gender') }}</span>
             </div>
           </div>
           <div class="form-group row">
@@ -33,11 +35,13 @@
               <label for="register_prename">{{$t("RegistrationForm.prename")}}</label>
             </div>
             <div class="col-sm-6">
-              <input name="prename"
+              <input v-validate="'required|alpha'" :class="{'input': true, 'is-danger': errors.has('prename') }"
+                name="prename"
                 type="text"
                 class="form-control"
                 id="register_prename"
-                v-model="credentials.prename" required>
+                v-model="credentials.prename">
+                <span v-show="errors.has('prename')" class="text-danger">{{ errors.first('prename') }}</span>
             </div>
           </div>
           <div class="form-group row">
@@ -45,11 +49,13 @@
               <label for="register_surname">{{$t("RegistrationForm.surname")}}</label>
             </div>
             <div class="col-sm-6">
-              <input name="surname"
+              <input v-validate="'required|alpha'" :class="{'input': true, 'is-danger': errors.has('surname') }"
+                name="surname"
                 type="text"
                 class="form-control"
                 id="register_surname"
-                v-model="credentials.surname" required>
+                v-model="credentials.surname">
+                <span v-show="errors.has('surname')" class="text-danger">{{ errors.first('surname') }}</span>
             </div>
           </div>
           <div class="form-group row">
@@ -57,11 +63,13 @@
               <label for="register_language">{{$t("language")}}</label>
             </div>
             <div class="col-sm-6">
-              <select name="language" class="form-control" id="register_language" v-model="credentials.language" required>
+              <select v-validate="'required'" :class="{'input': true, 'is-danger': errors.has('language') }"
+                      name="language" class="form-control" id="register_language" v-model="credentials.language">
                 <option value="" :disabled="true">{{$t("RegistrationForm.choose")}}</option>
                 <option>{{$t("RegistrationForm.german")}}</option>
                 <option>{{$t("RegistrationForm.english")}}</option>
               </select>
+              <span v-show="errors.has('language')" class="text-danger">{{ errors.first('language') }}</span>
             </div>
           </div>
           <div class="form-group row">
@@ -69,11 +77,13 @@
               <label for="register_phone">{{$t("phone")}}</label>
             </div>
             <div class="col-sm-6">
-              <input name="phone"
+              <input v-validate="'required|numeric'" :class="{'input': true, 'is-danger': errors.has('phone') }"
+                     name="phone"
                      type="tel"
                      class="form-control"
                      id="register_phone"
-                     v-model="credentials.phone" required>
+                     v-model="credentials.phone">
+              <span v-show="errors.has('phone')" class="text-danger">{{ errors.first('phone') }}</span>
             </div>
             <!--
             Two input forms are not responisve yet!
@@ -98,14 +108,15 @@
               <label for="register_industry_family">{{$t("RegistrationForm.industry_family")}}</label>
             </div>
             <div class="col-sm-6">
-              <select name="industry_family"
+              <select v-validate="'required'" :class="{'input': true, 'is-danger': errors.has('industry_family') }"
+                      name="industry_family"
                       class="form-control"
                       id="register_industry_family"
-                      v-model="credentials.industry_family"
-                      required>
+                      v-model="credentials.industry_family">
                 <option value="" :disabled="true">{{$t("RegistrationForm.choose")}}</option>
                 <option v-bind:value="item.id" v-for="item in industry_family" > {{ $t(item.name) }}</option>
               </select>
+              <span v-show="errors.has('industry_family')" class="text-danger">{{ errors.first('industry_family') }}</span>
             </div>
           </div>
           <div v-if="credentials.industry_family == 0" class="form-group row">
@@ -113,12 +124,14 @@
               <label for="register_industry_type">{{$t("RegistrationForm.industry_type_other")}}</label>
             </div>
             <div class="col-sm-6">
-              <input name="industry_type"
+              <input v-validate="'required'" :class="{'input': true, 'is-danger': errors.has('industry_type') }"
+                     name="industry_type"
                      type="text"
                      class="form-control"
                      id="register_industry_type"
                      v-model="credentials.industry_type"
                      :required="credentials.industry_family">
+              <span v-show="errors.has('industry_type')" class="text-danger">{{ errors.first('industry_type') }}</span>
             </div>
           </div>
           <div v-else-if="credentials.industry_family != 0" class="form-group row">
@@ -305,7 +318,6 @@
 
 <script>
 	import auth from '../auth'
-
 	export default {
 	  name: 'registration-form',
 	  data () {
@@ -446,31 +458,22 @@
           question: this.credentials.question,
           answer: this.credentials.answer,
           agreement: this.credentials.agreement
-
         }
-
-        if(this.credentials.password != this.credentials.password_repeat){
-          this.$parent.$refs.toastr.Add({
-              msg: this.$t("Passwörter stimmen nicht überein!"),
-              title: this.$t("Passwort"),
-              clickClose: false,
-              timeout: 8000,
-              position: "toast-top-right",
-              type: "error"
-          });
-        }
-        else{
-          auth.signup(this, credentials, '/my-devices')
-          this.$parent.$refs.toastr.Add({
-              title: this.$t("UI.register_user_title"),
-              msg: this.$t("UI.register_user_msg"),
-              clickClose: false,
-              timeout: 8000,
-              position: "toast-top-right",
-              type: "success"
-          });
-        }
-
+        this.$validator.validateAll().then(success => {
+                if (! success) {
+                    // handle error
+                    return;
+                }
+                auth.signup(this, credentials, '/my-devices')
+                this.$parent.$refs.toastr.Add({
+                    title: this.$t("UI.register_user_title"),
+                    msg: this.$t("UI.register_user_msg"),
+                    clickClose: false,
+                    timeout: 8000,
+                    position: "toast-top-right",
+                    type: "success"
+                });
+            });
       }
 	  }
   }
