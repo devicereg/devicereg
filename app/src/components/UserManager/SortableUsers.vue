@@ -3,15 +3,7 @@
     <div id="users-table" class="table">
       <div class="table-header col-sm-12">
         <div class="row">
-          <div @click="sortBy('surname')" class="table-cell col-md-3" :class="{ active: sortKey == 'surname' }">
-            {{ $t("UserOverview." + "surname") }}
-            <span class="arrow" :class="sortOrders['surname'] > 0 ? 'asc' : 'dsc'"></span>
-          </div>
-          <div @click="sortBy('prename')" class="table-cell col-md-2" :class="{ active: sortKey == 'prename' }">
-            {{ $t("UserOverview." + "prename") }}
-            <span class="arrow" :class="sortOrders['prename'] > 0 ? 'asc' : 'dsc'"></span>
-          </div>
-          <div @click="sortBy('email')" class="table-cell col-md-2" :class="{ active: sortKey == 'email' }">
+          <div @click="sortBy('email')" class="table-cell col-md-3" :class="{ active: sortKey == 'email' }">
             {{ $t("UserOverview." + "email") }}
             <span class="arrow" :class="sortOrders['email'] > 0 ? 'asc' : 'dsc'"></span>
           </div>
@@ -20,39 +12,35 @@
             {{ $t("UserOverview." + "company") }}
             <span class="arrow" :class="sortOrders['company'] > 0 ? 'asc' : 'dsc'"></span>
           </div>
+          <div @click="sortBy('surname')" class="table-cell col-md-2" :class="{ active: sortKey == 'surname' }">
+            {{ $t("UserOverview." + "surname") }}
+            <span class="arrow" :class="sortOrders['surname'] > 0 ? 'asc' : 'dsc'"></span>
+          </div>
+          <div @click="sortBy('prename')" class="table-cell col-md-2" :class="{ active: sortKey == 'prename' }">
+            {{ $t("UserOverview." + "prename") }}
+            <span class="arrow" :class="sortOrders['prename'] > 0 ? 'asc' : 'dsc'"></span>
+          </div>
           <div class="table-cell col-md-2">&nbsp;</div>
         </div>
       </div>
       <div class="table-body col-sm-12">
         <transition-group name="user-list" tag="div">
-          <div v-for="user in filteredData"
-              class="row table-row user-list-item"
+          <div v-for="(user, key) in filteredData"
+              v-bind:class="[key % 2 === 0 ? 'even-tr' : 'odd-tr','row table-row user-list-item']"
               v-bind:id="'user_' + user.id"
-              v-bind:key="user.id"
-              v-on:click="toggleDetail(user.id)">
+              v-bind:key="users.indexOf(user)" >
             <div class="col-sm-12">
               <div class="table-row-content row">
-                <div class="table-cell col-md-3" v-on:click="router.push('/my-devices')">{{ user.surname }}</div>
-                <div class="table-cell col-md-2" v-on:click="router.push('/my-devices')">{{ user.prename }}</div>
-                <div class="table-cell col-md-2" v-on:click="router.push('/my-devices')">{{ user.email }}</div>
+                <div class="table-cell col-md-3" v-on:click="router.push('/my-devices')">{{ user.email }}</div>
                 <div class="table-cell col-md-3" v-on:click="router.push('/my-devices')">{{ user.company }}</div>
+                <div class="table-cell col-md-2" v-on:click="router.push('/my-devices')">{{ user.surname }}</div>
+                <div class="table-cell col-md-2" v-on:click="router.push('/my-devices')">{{ user.prename }}</div>
                 <div class="table-cell col-md-2">
                   <a v-on:click="editUser(user)">
                     <span class="glyphicon glyphicon-edit action-button" aria-hidden="true"></span>
                   </a>
                   <delete-user :user="user"></delete-user>
                 </div>
-                <!--div id="user-detail-view" class="row">
-                  <div class="col-sm-12 hide" v-bind:id="'details_' + user.id">
-                    <td colspan="5">
-                      <div class="row">
-                        <div class="col-xs-12">
-                          <pre>{{ user }}</pre>
-                        </div>
-                      </div>
-                    </td>
-                  </div>
-                </div-->
               </div>
             </div>
           </div>
@@ -96,16 +84,18 @@
       'delete-user': DeleteUser
     },
     methods: {
-      toggleDetail: function(id) {
-        var detailView = $("#details_" + id);
-        var parentRow = $("#user_" + id);
-
-        detailView.insertAfter(parentRow)
-        detailView.toggleClass('hide')
-      },
       removeUser: function(user) {
         var index = this.users.indexOf(user);
         this.users.splice(index, 1);
+
+        this.$parent.$parent.$refs.toastr.Add({
+          title: this.$t("UI.delete_user_title"),
+          msg: this.$t("UI.delete_user_msg"),
+          clickClose: true,
+          timeout: 8000,
+          position: "toast-top-right",
+          type: "success"
+        });
       },
       sortBy: function (key) {
         this.sortKey = key
@@ -132,8 +122,8 @@
 
         if (sortKey) {
           data = data.slice().sort(function (a, b) {
-            a = a[sortKey]
-            b = b[sortKey]
+            a = String(a[sortKey]).toLowerCase()
+            b = String(b[sortKey]).toLowerCase()
             return (a === b ? 0 : a > b ? 1 : -1) * order
           })
         }
@@ -145,9 +135,6 @@
       capitalize: function (str) {
         return str.charAt(0).toUpperCase() + str.slice(1)
       }
-    },
-    updated: function () {
-      this.$parent.stripeTable();
     }
   }
 </script>
@@ -199,8 +186,8 @@
       padding-top: 5px;
       padding-bottom: 5px;
     }
-    .odd {
-      background-color: $table-row-odd-bg-color;
+    .odd-tr {
+      background-color: $table-row-odd-bg-color !important;
     }
   }
 

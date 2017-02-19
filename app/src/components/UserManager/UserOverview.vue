@@ -1,25 +1,19 @@
 <template>
   <div id="my-users-component">
     <user-registration-modal :user="user"></user-registration-modal>
-    <div class="row">
-      <div class="col-sm-8">
-        <h1> {{$t("UserOverview.title")}} </h1>
-      </div>
+    <div class="col-sm-12">
+      <h1> {{$t("UserOverview.title")}} </h1>
     </div>
-    <div class="row">
-      <div class="col-sm-8">
-        <filter-users :categories="categories"></filter-users>
-      </div>
-      <div class="col-sm-4">
-        <a href="#" id="add-button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#user-registration-modal" v-on:click="clearUser()">
-          <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> &nbsp; {{ $t("UserOverview.add_button") }}
-        </a>
-      </div>
+    <div class="col-sm-8">
+      <filter-users :categories="categories"></filter-users>
     </div>
-    <div class="row">
-      <div class="col-sm-12">
-        <sortable-users :users="users" :categories="categories" :filterKey="filter" :categoryFilter="cat_filter"></sortable-users>
-      </div>
+    <div class="col-sm-4">
+      <a href="#" id="add-button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#user-registration-modal" v-on:click="clearUser()">
+        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> &nbsp; {{ $t("UserOverview.add_button") }}
+      </a>
+    </div>
+    <div class="col-sm-12">
+      <sortable-users :users="users" :filterKey="filter"></sortable-users>
     </div>
   </div>
 </template>
@@ -40,10 +34,9 @@
     data () {
       return {
         filter: '',
-        cat_filter: 'all',
-        categories: [],
         users: [],
-        user: {}
+        user: {},
+        edit_index: -1
       }
     },
     methods: {
@@ -76,20 +69,16 @@
         this.users.unshift(user);
       },
       updateUser(user) {
-        //auth.updateUser(this. user); TODO: updateUser auth.js
-        var index = this.users.indexOf(user);
-        this.users.splice(index, 1, user);
+        this.users.splice(this.edit_index, 0);
+        this.users.splice(this.edit_index, 1, device);
       },
       editUser(user) {
-        this.user = user;
+        this.edit_index = this.devices.indexOf(user);
+        this.user = JSON.parse(JSON.stringify(user));
         $('#user-registration-modal').modal('show');
       },
       getUserData() {
         auth.getUsers(this);
-      },
-      stripeTable: function () {
-        $( ".table-row-content" ).removeClass( "odd");
-        $( ".table-row-content:odd" ).addClass( "odd");
       }
     },
     mounted: function() {

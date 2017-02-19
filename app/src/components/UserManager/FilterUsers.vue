@@ -21,7 +21,6 @@
     watch: {
       'filterKey': function(value) {
         this.$parent.filter = value;
-        this.$parent.stripeTable();
       }
     }
   }

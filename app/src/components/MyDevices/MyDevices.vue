@@ -77,7 +77,6 @@
         this.custom_category = false;
         this.custom_category_name = "";
         this.edit_index = this.devices.indexOf(device);
-        console.log("Current INDEX of EDITED device: " + this.edit_index);
         this.device = JSON.parse(JSON.stringify(device));
         $('#device-registration-modal').modal('show');
       },
@@ -86,10 +85,6 @@
       },
       getCategories() {
         auth.getCategories(this);
-      },
-      stripeTable: function () {
-        $( ".table-row-content" ).removeClass( "odd");
-        $( ".table-row-content:odd" ).addClass( "odd");
       }
     },
     mounted: function() {

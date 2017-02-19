@@ -26,7 +26,6 @@
           cancelButtonColor: "#9c9c9c"
         }).then(function() {
           auth.deleteUser(self, {id: user.id});
-
           self.$parent.$parent.removeUser(user); // dirty but only way without vuex
         })
       }
