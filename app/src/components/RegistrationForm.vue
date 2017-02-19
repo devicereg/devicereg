@@ -35,7 +35,7 @@
               <label for="register_prename">{{$t("RegistrationForm.prename")}}</label>
             </div>
             <div class="col-sm-6">
-              <input v-validate="'required|alpha'" :class="{'input': true, 'is-danger': errors.has('prename') }"
+              <input v-validate="'required|alpha'" :class="{'input': true, 'has-error': errors.has('prename') }"
                 name="prename"
                 type="text"
                 class="form-control"
@@ -431,7 +431,8 @@
           {name: "Countries.TR"},
           {name: "Countries.FI"}
         ],
-	    	error: ''
+	    	error: '',
+        langu: lang
 	    }
 	  },
 	  methods: {
@@ -460,10 +461,16 @@
           agreement: this.credentials.agreement
         }
         this.$validator.validateAll().then(success => {
-                if (! success) {
-                    // handle error
-                    return;
-                }
+                if (!success) {
+                    this.$parent.$refs.toastr.Add({
+                        msg: this.$t("UI.check_input_msg"),
+                        title: this.$t("UI.check_input_title"),
+                        clickClose: false,
+                        timeout: 8000,
+                        position: "toast-top-right",
+                        type: "error"
+                    });
+                } else {
                 auth.signup(this, credentials, '/my-devices')
                 this.$parent.$refs.toastr.Add({
                     title: this.$t("UI.register_user_title"),
@@ -473,10 +480,19 @@
                     position: "toast-top-right",
                     type: "success"
                 });
+              }
             });
-      }
 	  }
+  },
+  computed: {
+    lang: function() {
+      return this.config.lang;
+    }
+  },
+  mounted: function() {
+    this.$validator.setLocale('de');
   }
+}
 </script>
 
 <style lang="scss">

@@ -9,7 +9,9 @@
     "login_error_title": "Login fehlgeschlagen!",
     "login_error_msg": "Benutzername oder Passwort falsch eingegeben.",
     "register_user_title": "Benutzerkonto aktiviert!",
-    "register_user_msg": "Sie haben sich erfolgreich bei DeviceR angemeldet."
+    "register_user_msg": "Sie haben sich erfolgreich bei DeviceR angemeldet.",
+    "check_input_msg": "Bitte überprüfen Sie Ihre Eingaben.",
+    "check_input_title": "Registrierung fehlgeschlagen!"
   },
   "en": {
     "delete_device_title": "Device deleted!",
@@ -21,6 +23,8 @@
     "login_error_title": "Login failed!",
     "login_error_msg": "Wrong password or username",
     "register_user_title": "User account activated!",
-    "register_user_msg": "Successfully signed up to DeviceR."
+    "register_user_msg": "Successfully signed up to DeviceR.",
+    "check_input_msg": "Please verify the data you have entered.",
+    "check_input_title": "Registration failed!"
   }
 }
