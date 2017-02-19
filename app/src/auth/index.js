@@ -32,17 +32,15 @@ export default {
 	 * @param      {JSON}    creds     The creds
 	 * @param      {string}  redirect  The redirect
 	 */
-	login(context, creds, redirect, toastr)
+	login(context, creds, toastr)
 	{
 		context.$http.post(LOGIN_URL, creds).then((response) => {
-
-			localStorage.setItem('id_token', response.data.id_token);
+      const token = response.data.id_token;
+			localStorage.setItem('id_token', token);
 			this.user.authenticated = true;
-
-			if(redirect)
-			{
-				router.push(redirect)
-			}
+      const data = jwt.verify(localStorage.getItem('id_token'), config.secret);
+      var redirect = (data.role !== "ROLE_USER") ? 'user-overview' : 'my-devices';
+      router.push(redirect);
 
 		}, (err) => {
 			context.error = err.body.message;
@@ -362,7 +360,6 @@ export default {
   getRole()
   {
     const data = jwt.verify(localStorage.getItem('id_token'), config.secret);
-
     return data.role;
   }
 }

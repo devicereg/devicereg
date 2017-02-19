@@ -425,6 +425,7 @@
 	  methods: {
 	  	submit() {
         var credentials = {
+          role: "ROLE_USER",
           gender: this.credentials.gender,
           prename: this.credentials.prename,
           surname: this.credentials.surname,

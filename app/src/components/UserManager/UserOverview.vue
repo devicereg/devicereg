@@ -1,5 +1,5 @@
 <template>
-  <div id="my-users-component">
+  <div id="my-users-component" v-if="userRole === 'ROLE_ADMIN' ^ userRole === 'ROLE_SUPPORT'">
     <user-registration-modal :user="user" :edit_index="edit_index"></user-registration-modal>
     <div class="col-sm-12">
       <h1> {{$t("UserOverview.title")}} </h1>
@@ -82,6 +82,11 @@
     },
     mounted: function() {
       this.getUserData();
+    },
+    computed: {
+      userRole: function() {
+        return auth.getRole();
+      }
     }
   }
 </script>

@@ -29,11 +29,12 @@ app.post('/user/create', function(req, res)
   {
     db.run(
       "INSERT INTO user " +
-      "('id', 'gender', 'surname', 'prename', 'language', 'phone', 'industry_family', 'industry_type', 'company', 'street', 'number', 'zip', 'city', 'country', 'password', 'question', 'answer', 'email') " +
+      "('id', 'role', 'gender', 'surname', 'prename', 'language', 'phone', 'industry_family', 'industry_type', 'company', 'street', 'number', 'zip', 'city', 'country', 'password', 'question', 'answer', 'email') " +
       "VALUES " +
-      "($id, $gender, $surname, $prename, $language, $phone, $industry_family, $industry_type, $company, $street, $number, $zip, $city, $country, $password, $question, $answer, $email)",
+      "($id, 'role', $gender, $surname, $prename, $language, $phone, $industry_family, $industry_type, $company, $street, $number, $zip, $city, $country, $password, $question, $answer, $email)",
       {
         $id: null,
+        $role: req.body.role,
         $gender: req.body.gender,
         $surname: req.body.surname,
         $prename: req.body.prename,
