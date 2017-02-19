@@ -28,7 +28,7 @@
           <div v-for="(device, key) in filteredData"
               v-bind:class="[key % 2 === 0 ? 'even-tr' : 'odd-tr','row table-row device-list-item']"
               v-bind:id="'device_' + device.id"
-              v-bind:key="device.id"
+              v-bind:key="devices.indexOf(device)"
               v-on:click="toggleDetail(device.id)">
             <div class="col-sm-12">
               <div class="table-row-content row">
@@ -98,7 +98,7 @@
         sortKey: '',
         gridData: [
           this.devices
-        ],
+        ]
       }
     },
     components: {
@@ -157,8 +157,8 @@
 
         if (sortKey) {
           data = data.slice().sort(function (a, b) {
-            a = a[sortKey]
-            b = b[sortKey]
+            a = String(a[sortKey]).toLowerCase()
+            b = String(b[sortKey]).toLowerCase()
             return (a === b ? 0 : a > b ? 1 : -1) * order
           })
         }
@@ -226,8 +226,6 @@
       background-color: $table-row-odd-bg-color !important;
     }
   }
-
-
 
   .table-row-content:hover {
     background: $table-row-hover-color;

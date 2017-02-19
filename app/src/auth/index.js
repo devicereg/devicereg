@@ -16,6 +16,7 @@ const CREATE_DEVICE_URL 		= API_URL 	+ 'device/create';
 const UPDATE_DEVICE_URL 		= API_URL 	+ 'device/update';
 const DELETE_DEVICE_URL 		= API_URL 	+ 'device/delete';
 const GET_DEVICES_URL 			= API_URL 	+ 'devices';
+const GET_USERS_URL 			= API_URL 	+ 'users';
 const GET_CATEGORIES_URL 		= API_URL 	+ 'categories';
 const CREATE_CATEGORY_URL 		= API_URL 	+ 'category/create';
 const GET_TECHNOLOGIES_URL    = API_URL   + 'technologies';
@@ -80,6 +81,25 @@ export default {
 	    })
   	},
 
+	/**
+	 * Method for user registration
+	 *
+	 * @param      {object}  context   The context
+	 * @param      {JSON}  	 creds     The creds
+	 * @param      {string}  redirect  The redirect
+	 */
+	createUser(context, creds)
+	{
+    context.$http.post(SIGNUP_URL, creds).then((response) => {
+      context.user.id = response.body.id;
+      context.userCreated();
+
+    },
+      (err) => {
+        context.error = err;
+      })
+  },
+
 
   	/**
 	 * Method for user update
@@ -116,6 +136,21 @@ export default {
 	    	context.error = err
 	    })
   	},
+
+  	/**
+	 * Method for user delete
+	 *
+	 * @param      {object}  context   The context
+ 	 * @param      {int}   	 id     	The creds
+	 */
+	deleteUser(context, id)
+	{
+    context.$http.post(DELETE_URL, id).then((response) => {
+
+    }, (err) => {
+      context.error = err
+    })
+  },
 
 	/**
 	 * Method for user logout
@@ -283,6 +318,15 @@ export default {
     context.$http.get(GET_DEVICES_URL, { headers: this.getAuthHeader() }
     ).then((response) => {
       context.devices = response.body;
+    });
+  },
+
+  getUsers(context)
+  {
+    context.$http.get(GET_USERS_URL).then((response) => {
+      context.users = response.body;
+    }, (err) => {
+      context.error = err;
     });
   },
 

@@ -29,6 +29,7 @@ Gebe die Daten des neuen Geraetes ein
 	Pruefe, dass das Geraeteregistrierungsformular angezeigt wird
     Click Element  id=technology
     Click Element  xpath=//select[@id="technology"]/option[contains(text(), "&{Geraet}[Technologie]")]
+    Click Element  id=technology
     Click Element  id=category_id
     #Click Element  xpath=//select[@id="category_id"]/option[contains(text(), "&{Geraet}[Geraetekategorie]")]
     Click Element  xpath=//input[@name="category" and @type="checkbox"]
@@ -37,6 +38,7 @@ Gebe die Daten des neuen Geraetes ein
 	Input Text  id=devicelabel  &{Geraet}[Geraetebezeichnung]
 	Click Element  id=procmedium
     Click Element  xpath=//select[@id="procmedium"]/option[contains(text(), "&{Geraet}[Prozessmedium]")]
+	Click Element  id=procmedium
 	Input Text  id=tag  &{Geraet}[Tagnummer]
 	Input Text  id=comment  &{Geraet}[Kommentar]
     Sleep  3

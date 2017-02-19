@@ -22,8 +22,10 @@ import Impressum from './components/Impressum'
 import Translations from './components/Translations'
 import UserEdit from './components/UserEdit'
 import DeviceRegForm from './components/MyDevices/DeviceRegForm'
+import UserRegForm from './components/UserManager/UserRegForm'
 import DeleteProfileModal from './components/UserDeleteModal'
 import MyDevices from './components/MyDevices/MyDevices'
+import UserOverview from './components/UserManager/UserOverview'
 import Toastr from 'vue-toastr'
 
 export default {
@@ -43,6 +45,8 @@ export default {
     UserEdit,
     DeviceRegForm,
     MyDevices,
+    UserRegForm,
+    UserOverview,
     'vue-toastr': Toastr
   },
   data() {
