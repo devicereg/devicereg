@@ -3,7 +3,7 @@
     <div id="devices-table" class="table">
       <div class="table-header col-sm-12">
         <div class="row">
-          <div @click="sortBy('devicelabel')" class="table-cell col-md-3" :class="{ active: sortKey == 'devicelabel' }">
+          <div @click="sortBy('devicelabel')" class="table-cell col-md-2" :class="{ active: sortKey == 'devicelabel' }">
             {{ $t("MyDevices." + "devicelabel") }}
             <span class="arrow" :class="sortOrders['devicelabel'] > 0 ? 'asc' : 'dsc'"></span>
           </div>
@@ -15,7 +15,7 @@
             {{ $t("MyDevices." + "category") }}
             <span class="arrow" :class="sortOrders['category'] > 0 ? 'asc' : 'dsc'"></span>
           </div>
-          <div @click="sortBy('comment')" class="table-cell col-md-3"
+          <div @click="sortBy('comment')" class="table-cell col-md-4"
                :class="{ active: sortKey == 'comment' }">
             {{ $t("MyDevices." + "device_description") }}
             <span class="arrow" :class="sortOrders['comment'] > 0 ? 'asc' : 'dsc'"></span>
@@ -26,20 +26,20 @@
       <div class="table-body col-sm-12">
         <transition-group name="device-list" tag="div">
           <div v-for="(device, key) in filteredData"
-              v-bind:class="[key % 2 === 0 ? '' : 'odd','row table-row device-list-item']"
+              v-bind:class="[key % 2 === 0 ? 'even-tr' : 'odd-tr','row table-row device-list-item']"
               v-bind:id="'device_' + device.id"
               v-bind:key="device.id"
               v-on:click="toggleDetail(device.id)">
             <div class="col-sm-12">
               <div class="table-row-content row">
-                <div class="table-cell col-md-3 device-label">{{ device.devicelabel }}</div>
+                <div class="table-cell col-md-2 device-label">{{ device.devicelabel }}</div>
                 <div class="table-cell col-md-2">
                   {{ device.technology }}
                 </div>
                 <div v-for="category in categories" v-if="category.id==device.category_id" class="table-cell col-md-2">
                   {{ category.name }}
                 </div>
-                <div class="table-cell col-md-3">{{ device.comment }}</div>
+                <div class="table-cell col-md-4">{{ device.comment }}</div>
                 <div class="table-cell col-md-2">
                   <!--a @click="">
                     <span class="glyphicon glyphicon-eye-open action-button" aria-hidden="true"></span>
@@ -115,6 +115,15 @@
       removeDevice: function(device) {
         var index = this.devices.indexOf(device);
         this.devices.splice(index, 1);
+
+        this.$parent.$parent.$refs.toastr.Add({
+          title: this.$t("UI.delete_device_title"),
+          msg: this.$t("UI.delete_device_msg"),
+          clickClose: true,
+          timeout: 8000,
+          position: "toast-top-right",
+          type: "success"
+        });
       },
       sortBy: function (key) {
         this.sortKey = key
@@ -213,12 +222,12 @@
       padding-top: 5px;
       padding-bottom: 5px;
     }
-
+    .odd-tr {
+      background-color: $table-row-odd-bg-color !important;
+    }
   }
 
-  .odd {
-    background-color: $table-row-odd-bg-color;
-  }
+
 
   .table-row-content:hover {
     background: $table-row-hover-color;

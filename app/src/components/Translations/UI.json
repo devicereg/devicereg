@@ -1,0 +1,26 @@
+{
+  "de": {
+    "delete_device_title": "Gerät gelöscht!",
+    "delete_device_msg": "Das Gerät wurde erfolgreich gelöscht.",
+    "update_device_title": "Änderungen gespeichert!",
+    "update_device_msg": "Das Gerät wurde erfolgreich aktualisiert.",
+    "create_device_title": "Gerät registriert!",
+    "create_device_msg": "Das Gerät wurde erfolgreich registriert.",
+    "login_error_title": "Login fehlgeschlagen!",
+    "login_error_msg": "Benutzername oder Passwort falsch eingegeben.",
+    "register_user_title": "Benutzerkonto aktiviert!",
+    "register_user_msg": "Sie haben sich erfolgreich bei DeviceR angemeldet."
+  },
+  "en": {
+    "delete_device_title": "Device deleted!",
+    "delete_device_msg": "Deleted the device successfully.",
+    "update_device_title": "Device updated!",
+    "update_device_msg": "Updated the device successfully.",
+    "create_device_title": "Device registered!",
+    "create_device_msg": "Registered the device successfully.",
+    "login_error_title": "Login failed!",
+    "login_error_msg": "Wrong password or username",
+    "register_user_title": "User account activated!",
+    "register_user_msg": "Successfully signed up to DeviceR."
+  }
+}

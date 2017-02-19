@@ -262,10 +262,26 @@ export default {
       this.device.technology = this.findTechnologyName(this.device.technology_id);
 
       if(this.device.id == -1) {
-        auth.createDevice(this, this.device);
+        auth.createDevice(this, this.device, this.$parent.$parent.$refs.toastr);
+        this.$parent.$parent.$refs.toastr.Add({
+          title: this.$t("UI.create_device_title"),
+          msg: this.$t("UI.create_device_msg"),
+          clickClose: true,
+          timeout: 8000,
+          position: "toast-top-right",
+          type: "success"
+        });
       } else {
-        auth.updateDevice(this, this.device);
+        auth.updateDevice(this, this.device, this.$parent.$parent.$refs.toastr);
         this.$parent.updateDevice(this.device, this.edit_index);
+        this.$parent.$parent.$refs.toastr.Add({
+          title: this.$t("UI.update_device_title"),
+          msg: this.$t("UI.update_device_msg"),
+          clickClose: true,
+          timeout: 8000,
+          position: "toast-top-right",
+          type: "success"
+        });
       }
     },
     findTechnologyName(id) {

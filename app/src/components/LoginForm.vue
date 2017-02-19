@@ -94,7 +94,7 @@
           password: this.credentials.password
         }
 
-        auth.login(this, credentials, 'my-devices')
+        auth.login(this, credentials, 'my-devices', this.$parent.$parent.$refs.toastr)
 	  	},
 
 	  	logout() {

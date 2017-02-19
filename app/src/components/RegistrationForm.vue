@@ -461,6 +461,14 @@
         }
         else{
           auth.signup(this, credentials, '/my-devices')
+          this.$parent.$refs.toastr.Add({
+              title: this.$t("UI.register_user_title"),
+              msg: this.$t("UI.register_user_msg"),
+              clickClose: false,
+              timeout: 8000,
+              position: "toast-top-right",
+              type: "success"
+          });
         }
 
       }

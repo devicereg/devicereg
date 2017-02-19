@@ -11,6 +11,7 @@
   import Warranty from "./Translations/Warranty.json"
   import Home from "./Translations/Home.json"
   import LoginForm from "./Translations/LoginForm.json"
+  import UI from "./Translations/UI.json"
 
 
   var Vue = require('vue')
@@ -91,6 +92,8 @@
       },
 
       DeviceRegForm: {
+        choose: 'Bitte wählen Sie',
+        email: 'E-Mail Adresse:',
         title: 'Gerät registrieren',
         categorization: 'Gerätekategorisierung',
         technology: 'Technologie',
@@ -189,17 +192,18 @@
       },
 
       Contact: Contact.de,
-      MyDevices: MyDevices.de,
-      UserOverview: UserOverview.de,
-      RegistrationForm: RegistrationForm.de,
-      DeviceRegForm: DeviceRegForm.de,
-      UserRegForm: UserRegForm.de,
-      TermsOfUse: TermsOfUse.de,
-      Datenschutz: Datenschutz.de,
-      Warranty: Warranty.de,
-      Impressum: Impressum.de,
-      Home: Home.de,
-      LoginForm: LoginForm.de
+        MyDevices: MyDevices.de,
+        UserOverview: UserOverview.de,
+        RegistrationForm: RegistrationForm.de,
+        DeviceRegForm: DeviceRegForm.de,
+        UserRegForm: UserRegForm.de,
+        TermsOfUse: TermsOfUse.de,
+        Datenschutz: Datenschutz.de,
+        Warranty: Warranty.de,
+        Impressum: Impressum.de,
+        Home: Home.de,
+        LoginForm: LoginForm.de,
+        UI: UI.de
       },
 
     en: {
@@ -330,12 +334,6 @@
         confirm: 'Yes',
         cancel: 'No'
       },
-      DeleteUserAlert: {
-        title: 'Delete Profile?',
-        text: 'You are about to delete your profile. <br> Are you sure?',
-        confirm: 'Yes',
-        cancel: 'No'
-      },
 
       Countries: {
         GB: ' United Kingdom',
@@ -392,8 +390,9 @@
         Warranty: Warranty.en,
         Impressum: Impressum.en,
         Home: Home.en,
-        LoginForm: LoginForm.en
-    }
+        LoginForm: LoginForm.en,
+        UI: UI.en
+      },
   }
 
   // install plugin
