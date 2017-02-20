@@ -62,4 +62,3 @@ Sende das Benutzerregistrierungsformular ab
     #Sleep  0.5
 	#Click Button  xpath=//form[@id="user-registration-form"]//button[contains(@class, "btn-primary")]
 	Submit Form
-	Sleep  10

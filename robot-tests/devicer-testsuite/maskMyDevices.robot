@@ -22,6 +22,7 @@ Pruefe, dass das Geraeteregistrierungsformular angezeigt wird
 Rufe die Funktion Geraete hinzufuegen auf
     [Documentation]  Das Gerateformular wird eingeblendet
     Click Element  xpath=//a[@data-toggle="modal" and @data-target="#device-registration-modal" and @id="add-button"]
+    Sleep  2
 
 Gebe die Daten des neuen Geraetes ein
     [Documentation]  Ein neues Geraet wird angelegt.
@@ -41,7 +42,6 @@ Gebe die Daten des neuen Geraetes ein
 	Click Element  id=procmedium
 	Input Text  id=tag  &{Geraet}[Tagnummer]
 	Input Text  id=comment  &{Geraet}[Kommentar]
-    Sleep  3
 
 Sende das Geraeteregistrierungsformular ab
     [Documentation]  Das Geraeteregistrierungsformular wird abgeschickt und das Geraet wird angelegt
@@ -49,7 +49,6 @@ Sende das Geraeteregistrierungsformular ab
     #Sleep  0.5
 	#Click Button  xpath=//form[@id="user-registration-form"]//button[contains(@class, "btn-primary")]
 	Submit Form
-	Sleep  10
 
 Pruefe, dass das Geraet in der Geraeteuebersicht angezeigt wird
     [Documentation]  Es wird geprueft, ob das Geraet in der Geraeteuebersicht angezeigt wird
