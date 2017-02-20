@@ -93,7 +93,7 @@
           email: this.credentials.email,
           password: this.credentials.password
         }
-        auth.login(this, credentials, 'my-devices', this.$parent.$parent.$refs.toastr)
+        auth.login(this, credentials, this.$parent.$parent.$refs.toastr)
 	  	},
 
 	  	logout() {

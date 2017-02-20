@@ -67,7 +67,7 @@ export default {
 	    context.$http.post(SIGNUP_URL, creds).then((response) => {
 
 			localStorage.setItem('id_token', response.data.id_token);
-	      	this.user.authenticated = true;
+      this.user.authenticated = true;
 
 			if(redirect)
 			{

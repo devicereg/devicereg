@@ -10,7 +10,6 @@ db.serialize(function() {
     db.run(
         "CREATE TABLE if not exists user (" +
         "id INTEGER PRIMARY KEY AUTOINCREMENT," +
-        "role TEXT," +
         "gender TEXT," +
         "surname TEXT," +
         "prename TEXT," +

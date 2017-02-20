@@ -312,6 +312,7 @@
 
 	    return {
 	    	credentials: {
+          role: "ROLE_USER",
 					gender: '',
 					prename: '',
 					surname: '',

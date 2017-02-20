@@ -15,7 +15,7 @@ ${user}  mustermax@htw-berlin.de
 Initialisiere Test
     Open Browser  ${url}  ${browser}
     Maximize Browser Window
-    Set Selenium Speed  0.334
+    #Set Selenium Speed  0.334
 
 Schliesse Browser
     Close Browser
