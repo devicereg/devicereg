@@ -9,14 +9,17 @@
                 <span class="input-group-addon">
                   <i class="glyphicon glyphicon-envelope"></i>
                 </span>
-                <input
-                  type="email"
-                  class="form-control"
-                  id="login_email"
-                  v-model="credentials.email"
-                  v-bind:placeholder="$t('email')"
-                  required
+								<div :class="{'has-error': errors.has('login_email') }">
+                	<input
+										name="login_email"
+                  	v-validate="'required|email'"
+                  	class="form-control"
+                  	id="login_email"
+                  	v-model="credentials.email"
+                  	v-bind:placeholder="$t('email')"
                   />
+								</div>
+								<span v-show="errors.has('login_email')" class="text-danger">{{ errors.first('login_email') }}</span>
               </div>
             </div>
           </div>
@@ -26,14 +29,18 @@
                 <span class="input-group-addon">
                   <i class="glyphicon glyphicon-lock" aria-hidden="true"></i>
                 </span>
-                <input
-                  type="password"
-                  class="form-control"
-                  id="login_password"
-                  v-model="credentials.password"
-                  v-bind:placeholder="$t('password')"
-                  required
-                 />
+								<div :class="{'has-error': errors.has('password') }">
+                	<input
+										name="password"
+										v-validate="'required'"
+                  	type="password"
+                  	class="form-control"
+                  	id="login_password"
+                  	v-model="credentials.password"
+                  	v-bind:placeholder="$t('password')"
+                 	/>
+							 </div>
+							 <span v-show="errors.has('password')" class="text-danger">{{ errors.first('password') }}</span>
               </div>
             </div>
           </div>
@@ -74,6 +81,7 @@
 </style>
 <script>
 	import auth from '../auth'
+	import Vue from 'vue'
 
 	export default {
 	  name: 'login-form',
@@ -93,13 +101,27 @@
           email: this.credentials.email,
           password: this.credentials.password
         }
+				this.$validator.validateAll().then(success => {
+								if (!success) {
+										//Jump to the first incorrect field. No idea how to implement, need help :/
+								} else {
+									auth.login(this, credentials, 'my-devices', this.$parent.$parent.$refs.toastr)
+								}
+						});
 
-        auth.login(this, credentials, 'my-devices', this.$parent.$parent.$refs.toastr)
 	  	},
 
 	  	logout() {
 	  		auth.logout()
 	  	}
+	  },
+	  computed: {
+	    lang: function () {
+	      return Vue.config.lang;
+	    }
+	  },
+	  mounted: function() {
+	    this.$validator.setLocale(this.lang);
 	  }
 	}
 </script>

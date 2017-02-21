@@ -14,11 +14,11 @@
         <form  id="user-registration-form" role="form" v-on:submit.prevent="submit">
           <legend>{{$t("RegistrationForm.personal_details")}}</legend>
           <div class="form-group row">
-            <div class="col-sm-4 con  trol-label">
+            <div class="col-sm-4 control-label">
               <label for="register_gender">{{$t("RegistrationForm.gender")}}</label>
             </div>
-            <div class="col-sm-6">
-              <select v-validate="'required'" :class="{'input': true, 'is-danger': errors.has('gender') }"
+            <div class="col-sm-6" :class="{'has-error': errors.has('gender') }">
+              <select v-validate="'required'"
                 name="gender"
                 class="form-control"
                 id="register_gender"
@@ -34,8 +34,8 @@
             <div class="col-sm-4 control-label">
               <label for="register_prename">{{$t("RegistrationForm.prename")}}</label>
             </div>
-            <div class="col-sm-6">
-              <input v-validate="'required|alpha'" :class="{'input': true, 'has-error': errors.has('prename') }"
+            <div class="col-sm-6" :class="{'has-error': errors.has('prename') }">
+              <input v-validate="'required|alpha'"
                 name="prename"
                 type="text"
                 class="form-control"
@@ -48,8 +48,8 @@
             <div class="col-sm-4 control-label">
               <label for="register_surname">{{$t("RegistrationForm.surname")}}</label>
             </div>
-            <div class="col-sm-6">
-              <input v-validate="'required|alpha'" :class="{'input': true, 'is-danger': errors.has('surname') }"
+            <div class="col-sm-6" :class="{'has-error': errors.has('surname') }">
+              <input v-validate="'required|alpha'"
                 name="surname"
                 type="text"
                 class="form-control"
@@ -62,8 +62,8 @@
             <div class="col-sm-4 control-label">
               <label for="register_language">{{$t("language")}}</label>
             </div>
-            <div class="col-sm-6">
-              <select v-validate="'required'" :class="{'input': true, 'is-danger': errors.has('language') }"
+            <div class="col-sm-6" :class="{'has-error': errors.has('language') }">
+              <select v-validate="'required'"
                       name="language" class="form-control" id="register_language" v-model="credentials.language">
                 <option value="" :disabled="true">{{$t("RegistrationForm.choose")}}</option>
                 <option>{{$t("RegistrationForm.german")}}</option>
@@ -76,8 +76,8 @@
             <div class="col-sm-4 control-label">
               <label for="register_phone">{{$t("phone")}}</label>
             </div>
-            <div class="col-sm-6">
-              <input v-validate="'required|numeric'" :class="{'input': true, 'is-danger': errors.has('phone') }"
+            <div class="col-sm-6" :class="{'has-error': errors.has('phone') }">
+              <input v-validate="'required|numeric'"
                      name="phone"
                      type="tel"
                      class="form-control"
@@ -107,14 +107,14 @@
             <div class="col-sm-4 control-label">
               <label for="register_industry_family">{{$t("RegistrationForm.industry_family")}}</label>
             </div>
-            <div class="col-sm-6">
-              <select v-validate="'required'" :class="{'input': true, 'is-danger': errors.has('industry_family') }"
+            <div class="col-sm-6" :class="{'has-error': errors.has('industry_family') }">
+              <select v-validate="'required'"
                       name="industry_family"
                       class="form-control"
                       id="register_industry_family"
                       v-model="credentials.industry_family">
                 <option value="" :disabled="true">{{$t("RegistrationForm.choose")}}</option>
-                <option v-bind:value="item.id" v-for="item in industry_family" > {{ $t(item.name) }}</option>
+                <option v-bind:value="item.id" v-for="item in industry_family">{{ $t(item.name) }}</option>
               </select>
               <span v-show="errors.has('industry_family')" class="text-danger">{{ errors.first('industry_family') }}</span>
             </div>
@@ -123,8 +123,8 @@
             <div class="col-sm-4 control-label">
               <label for="register_industry_type">{{$t("RegistrationForm.industry_type_other")}}</label>
             </div>
-            <div class="col-sm-6">
-              <input v-validate="'required'" :class="{'input': true, 'is-danger': errors.has('industry_type') }"
+            <div class="col-sm-6" :class="{'has-error': errors.has('industry_type') }">
+              <input v-validate="'required'"
                      name="industry_type"
                      type="text"
                      class="form-control"
@@ -138,14 +138,16 @@
             <div class="col-sm-4 control-label">
               <label for="register_industry_type">{{$t("RegistrationForm.industry_type")}}</label>
             </div>
-            <div class="col-sm-6">
-              <select name="industry_type"
+            <div class="col-sm-6" :class="{'has-error': errors.has('industry_type') }">
+              <select v-validate="'required'"
+                      name="industry_type"
                       class="form-control"
                       id="register_industry_type"
                       v-model="credentials.industry_type"
                       :disabled="credentials.industry_family == -1" :required="credentials.industry_family">
-                <option v-bind:value="item.name" v-for="item in industry_types" v-if="credentials.industry_family == item.id">{{item.name}}</option>
+                <option v-bind:value="item.name" v-for="item in industry_types" v-if="item.family_id === credentials.industry_family">{{item.name}}</option>
               </select>
+              <span v-show="errors.has('industry_type')" class="text-danger">{{ errors.first('industry_type') }}</span>
             </div>
           </div>
 
@@ -153,69 +155,77 @@
             <div class="col-sm-4 control-label">
               <label for="register_company">{{$t("RegistrationForm.company")}}</label>
             </div>
-            <div class="col-sm-6">
-              <input name="company" type="text" class="form-control" id="register_company" v-model="credentials.company" required>
+            <div class="col-sm-6" :class="{'has-error': errors.has('company') }">
+              <input v-validate="'required'" name="company" type="text" class="form-control" id="register_company" v-model="credentials.company">
+              <span v-show="errors.has('company')" class="text-danger">{{ errors.first('company') }}</span>
             </div>
           </div>
           <div class="form-group row">
             <div class="col-sm-4 control-label">
               <label for="register_street">{{$t("RegistrationForm.street")}}</label>
             </div>
-            <div class="col-sm-6">
-              <input name="street"
+            <div class="col-sm-6" :class="{'has-error': errors.has('street') }">
+              <input v-validate="'required'"
+              name="street"
               type="text"
               class="form-control"
               id="register_street"
-              v-model="credentials.street" required>
+              v-model="credentials.street">
+              <span v-show="errors.has('street')" class="text-danger">{{ errors.first('street') }}</span>
             </div>
           </div>
           <div class="form-group row">
             <div class="col-sm-4 control-label">
               <label for="register_number">{{$t("RegistrationForm.number")}}</label>
             </div>
-            <div class="col-sm-6">
-              <input name="number"
+            <div class="col-sm-6" :class="{'has-error': errors.has('number') }">
+              <input v-validate="'required'"
+              name="number"
               type="text"
               class="form-control"
               id="register_number"
-              v-model="credentials.number" required>
+              v-model="credentials.number">
+              <span v-show="errors.has('number')" class="text-danger">{{ errors.first('number') }}</span>
             </div>
           </div>
           <div class="form-group row">
             <div class="col-sm-4 control-label">
               <label for="register_zip">{{$t("RegistrationForm.zip")}}</label>
             </div>
-            <div class="col-sm-6">
-              <input name="zip"
+            <div class="col-sm-6" :class="{'has-error': errors.has('zip') }">
+              <input v-validate="'required'"
+              name="zip"
               type="text"
-              pattern="[0-9]{5}"
               class="form-control"
               id="register_zip"
-              v-model="credentials.zip" required>
+              v-model="credentials.zip">
+              <span v-show="errors.has('zip')" class="text-danger">{{ errors.first('zip') }}</span>
             </div>
           </div>
           <div class="form-group row">
             <div class="col-sm-4 control-label">
               <label for="register_city">{{$t("city")}}</label>
             </div>
-            <div class="col-sm-6">
-              <input name="city"
+            <div class="col-sm-6" :class="{'has-error': errors.has('city') }">
+              <input v-validate="'required|alpha'"
+              name="city"
               type="text"
               class="form-control"
               id="register_city"
-              v-model="credentials.city" required>
+              v-model="credentials.city">
+              <span v-show="errors.has('city')" class="text-danger">{{ errors.first('city') }}</span>
             </div>
           </div>
           <div class="form-group row">
             <div class="col-sm-4 control-label">
               <label for="register_country">{{$t("country")}}</label>
             </div>
-            <div class="col-sm-6">
-              <select name="country" class="form-control" id="register_country" v-model="credentials.country" required>
+            <div class="col-sm-6" :class="{'has-error': errors.has('country') }">
+              <select v-validate="'required'" name="country" class="form-control" id="register_country" v-model="credentials.country">
                 <option value="" :disabled="true">{{$t("RegistrationForm.choose")}}</option>
                 <option  v-for="item in country" > {{ $t(item.name) }}</option>
-
               </select>
+              <span v-show="errors.has('country')" class="text-danger">{{ errors.first('country') }}</span>
             </div>
           </div>
 
@@ -224,81 +234,90 @@
             <div class="col-sm-4 control-label">
               <label for="register_user">{{$t("RegistrationForm.user")}}</label>
             </div>
-            <div class="col-sm-6">
-              <input name="user" type="email" class="form-control" id="register_user" v-model="credentials.email" required>
+            <div class="col-sm-6" :class="{'has-error': errors.has('user') }">
+              <input v-validate="'required|email|confirmed:user_repeat'" name="user" class="form-control" id="register_user" v-model="credentials.email">
+              <span v-show="errors.has('user')" class="text-danger">{{ errors.first('user') }}</span>
             </div>
           </div>
           <div class="form-group row">
             <div class="col-sm-4 control-label">
               <label for="register_user_repeat">{{$t("RegistrationForm.user_repeat")}}</label>
             </div>
-            <div class="col-sm-6">
-              <input name="user_repeat" type="email" class="form-control" id="register_user_repeat" v-model="credentials.email_repeat" required>
+            <div class="col-sm-6" :class="{'has-error': errors.has('user_repeat') }">
+              <input v-validate="'required|email'" name="user_repeat" class="form-control" id="register_user_repeat" v-model="credentials.email_repeat">
+              <span v-show="errors.has('user_repeat')" class="text-danger">{{ errors.first('user_repeat') }}</span>
             </div>
           </div>
           <div class="form-group row">
             <div class="col-sm-4 control-label">
               <label for="register_password">{{$t("RegistrationForm.password")}}</label>
             </div>
-            <div class="col-sm-6">
-              <input name="password"
+            <div class="col-sm-6" :class="{'has-error': errors.has('password') }">
+              <input v-validate="'required|min:6|confirmed:password_repeat'"
+                name="password"
                 type="password"
-                data-minlength="6"
                 class="form-control"
                 id="register_password"
-                v-model="credentials.password" required>
+                v-model="credentials.password">
+                <span v-show="errors.has('password')" class="text-danger">{{ errors.first('password') }}</span>
             </div>
           </div>
           <div class="form-group row">
             <div class="col-sm-4 control-label">
               <label for="register_password_repeat">{{$t("RegistrationForm.password_repeat")}}</label>
             </div>
-            <div class="col-sm-6">
-              <input name="password_repeat"
+            <div class="col-sm-6" :class="{'has-error': errors.has('password_repeat') }">
+              <input v-validate="'required|min:6'"
+                     name="password_repeat"
                      type="password"
-                     data-minlength="6"
                      class="form-control"
                      id="register_password_repeat"
-                     v-model="credentials.password_repeat" required>
+                     v-model="credentials.password_repeat">
+              <span v-show="errors.has('password_repeat')" class="text-danger">{{ errors.first('password_repeat') }}</span>
             </div>
           </div>
           <div class="form-group row">
             <div class="col-sm-4 control-label">
               <label for="register_question">{{$t("RegistrationForm.question")}}</label>
             </div>
-            <div class="col-sm-6">
-              <input name="question"
+            <div class="col-sm-6" :class="{'has-error': errors.has('question') }">
+              <input v-validate="'required'"
+                name="question"
                 type="text"
                 class="form-control"
                 id="register_question"
-                v-model="credentials.question" required>
+                v-model="credentials.question">
+              <span v-show="errors.has('question')" class="text-danger">{{ errors.first('question') }}</span>
             </div>
           </div>
           <div class="form-group row">
             <div class="col-sm-4 control-label">
               <label for="register_answer">{{$t("RegistrationForm.answer")}}</label>
             </div>
-            <div class="col-sm-6">
-              <input name="answer"
+            <div class="col-sm-6" :class="{'has-error': errors.has('answer') }">
+              <input v-validate="'required'"
+                name="answer"
                 type="text"
                 class="form-control"
                 id="register_answer"
-                v-model="credentials.answer" required>
+                v-model="credentials.answer">
+              <span v-show="errors.has('answer')" class="text-danger">{{ errors.first('answer') }}</span>
             </div>
           </div>
           <legend>{{$t("RegistrationForm.agreement")}}</legend>
           <div class="form-group row">
             <div class="form-check">
               <div class="col-sm-12 control-label">
-                <input name="terms_of_agreement"
+                <input v-validate="'required'"
+                  name="terms_of_agreement"
                   type="checkbox"
                   class="form-check-input"
                   id="register_agreement"
-                  v-model="credentials.agreement"
-                  required>
+                  v-model="credentials.agreement">
                 <label for="register_agreement" class="form-check-label">
                   {{$t("RegistrationForm.terms_of_agreement")}}
-                </label>
+                </label></br>
+                <span v-show="errors.has('terms_of_agreement')" class="text-danger">{{ errors.first('terms_of_agreement') }}</span>
               </div>
             </div>
           </div>
@@ -318,10 +337,10 @@
 
 <script>
 	import auth from '../auth'
+  import Vue from 'vue'
 	export default {
 	  name: 'registration-form',
 	  data () {
-
 	    return {
 	    	credentials: {
 					gender: '',
@@ -382,10 +401,10 @@
           ],
 
         industry_types: [
-          {family_id: '-1', name: 'Metall, Minen'},
-          {family_id: '1', name: 'Kohle'},
-          {family_id: '1', name: 'Diamanten'},
-          {family_id: '1', name: 'Gold'}
+          {family_id: 1, name: 'Metall, Minen'},
+          {family_id: 1, name: 'Kohle'},
+          {family_id: 1, name: 'Diamanten'},
+          {family_id: 1, name: 'Gold'}
           ],
 
         country: [
@@ -431,8 +450,7 @@
           {name: "Countries.TR"},
           {name: "Countries.FI"}
         ],
-	    	error: '',
-        langu: lang
+	    	error: ''
 	    }
 	  },
 	  methods: {
@@ -462,14 +480,7 @@
         }
         this.$validator.validateAll().then(success => {
                 if (!success) {
-                    this.$parent.$refs.toastr.Add({
-                        msg: this.$t("UI.check_input_msg"),
-                        title: this.$t("UI.check_input_title"),
-                        clickClose: false,
-                        timeout: 8000,
-                        position: "toast-top-right",
-                        type: "error"
-                    });
+                    //Jump to the first incorrect field. No idea how to implement, need help :/
                 } else {
                 auth.signup(this, credentials, '/my-devices')
                 this.$parent.$refs.toastr.Add({
@@ -485,12 +496,12 @@
 	  }
   },
   computed: {
-    lang: function() {
-      return this.config.lang;
+    lang: function () {
+      return Vue.config.lang;
     }
   },
   mounted: function() {
-    this.$validator.setLocale('de');
+    this.$validator.setLocale(this.lang);
   }
 }
 </script>
