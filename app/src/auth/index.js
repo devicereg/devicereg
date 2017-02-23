@@ -21,6 +21,8 @@ const GET_CATEGORIES_URL 		= API_URL 	+ 'categories';
 const CREATE_CATEGORY_URL 		= API_URL 	+ 'category/create';
 const GET_TECHNOLOGIES_URL    = API_URL   + 'technologies';
 
+var Vue = require('vue')
+
 export default {
 	name: 'authentication',
 	user: { authenticated: false },
@@ -39,6 +41,9 @@ export default {
 			localStorage.setItem('id_token', token);
 			this.user.authenticated = true;
       const data = jwt.verify(localStorage.getItem('id_token'), config.secret);
+      if (data.language === "en" || data.language === "de") {
+        Vue.config.lang = data.language;
+      }
       var redirect = (data.role !== "ROLE_USER") ? 'user-overview' : 'my-devices';
       router.push(redirect);
 
@@ -68,6 +73,9 @@ export default {
 
 			localStorage.setItem('id_token', response.data.id_token);
       this.user.authenticated = true;
+      if (data.language === "en" || data.language === "de") {
+        Vue.config.lang = data.language;
+      }
 
 			if(redirect)
 			{
