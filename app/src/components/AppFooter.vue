@@ -1,14 +1,4 @@
 <template>
-  <!--footer class="footer">
-    <div class="container">
-      <ul class="nav navbar-nav">
-        <li><router-link to="/datenschutz"><strong>{{$t("privacy_policy")}}</strong></router-link></li>
-        <li><router-link to="/terms-of-use"><strong>{{$t("site_policy")}}</strong></router-link></li>
-        <li><router-link to="/impressum"><strong>{{$t("legal_disclosure")}}</strong></router-link></li>
-        <li><router-link to="/aktionsbedingungen"><strong>{{$t("terms_of_warranty")}}</strong></router-link></li>
-      </ul>
-    </div>
-  </footer-->
   <footer class="footer">
     <div class="container">
       <nav class="navbar navbar-inverse navbar-fixed-bottom">
@@ -31,8 +21,6 @@
     </div>
   </footer>
 </template>
-
-
 
 <script>
   export default{

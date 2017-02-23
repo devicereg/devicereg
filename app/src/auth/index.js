@@ -80,7 +80,7 @@ export default {
 	{
 	    context.$http.post(UPDATE_URL, creds).then((response) => {
 
-			//@TODO implement UPDATE method
+        localStorage.setItem('id_token', response.data.id_token);
 
 			if(redirect)
 			{

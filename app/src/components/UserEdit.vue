@@ -1,207 +1,188 @@
 <template>
   <div id="user-edit-component">
-      <div class="row">
-        <div class="col-sm-12">
-          <div class="alert alert-danger fade in" v-if="error">
-            <p>{{ error }}</p>
-          </div>
-        </div>
-      </div>
-      <form id="user-edit-form" role="form">
-        <div class="col-sm-12 text-left">
-          <h1 class="registration-header-title">{{$t("edit_profile")}}</h1>
+    <div class="col-sm-12">
+     <div class="row">
+       <div class="col-sm-8">
+         <h1 class="registration-header-title">{{$t("UserEdit.user_management")}}</h1>
+       </div>
+     </div>
+      <form id="user-edit-form" role="form" v-on:submit.prevent="submit">
           <input type="hidden" v-model="credentials.id">
-
-          <legend>{{$t("RegistrationForm.personal_details")}}</legend>
+          <legend>{{$t("UserEdit.personal_details")}}</legend>
           <div class="form-group row">
             <div class="col-sm-4 control-label">
-              <label for="register_gender">{{$t("RegistrationForm.gender")}}</label>
+              <label for="register_prename">{{$t("UserEdit.prename")}}</label>
             </div>
-            <div class="col-sm-6">
-              <select
-                class="form-control"
-                id="register_gender"
-                v-model="credentials.gender" required>
-                <option value="">{{$t("RegistrationForm.choose")}}</option>
-                <option>{{$t("RegistrationForm.mr")}}</option>
-                <option>{{$t("RegistrationForm.mrs")}}</option>
-              </select>
-            </div>
-          </div>
-          <div class="form-group row">
-            <div class="col-sm-4 control-label">
-              <label for="register_prename">{{$t("RegistrationForm.prename")}}</label>
-            </div>
-            <div class="col-sm-6">
+            <div class="col-sm-6 input-group">
               <input
                 type="text"
                 class="form-control"
                 id="register_prename"
-                v-model="credentials.prename" required>
-            </div>
+                v-model="credentials.prename" required disabled>
+              <span class="input-group-btn">
+                <button class="btn btn-default glyphicon glyphicon-edit btn-primary" type="button" v-on:click="toggle('register_prename')"></button>
+              </span>
+             </div>
           </div>
           <div class="form-group row">
             <div class="col-sm-4 control-label">
-              <label for="register_surname">{{$t("RegistrationForm.surname")}}</label>
+              <label for="register_surname">{{$t("UserEdit.surname")}}</label>
             </div>
-            <div class="col-sm-6">
+            <div class="col-sm-6 input-group">
               <input
                 type="text"
                 class="form-control"
                 id="register_surname"
-                v-model="credentials.surname" required>
+                v-model="credentials.surname" required disabled>
+              <span class="input-group-btn">
+                <button class="btn btn-default glyphicon glyphicon-edit btn-primary" type="button" v-on:click="toggle('register_surname')"></button>
+              </span>
             </div>
           </div>
           <div class="form-group row">
             <div class="col-sm-4 control-label">
-              <label for="register_language">{{$t("language")}}</label>
+              <label for="register_user">{{$t("UserEdit.user")}}</label>
             </div>
-            <div class="col-sm-6">
-              <select class="form-control" id="register_language" v-model="credentials.language" required>
-                <option value="">{{$t("RegistrationForm.choose")}}</option>
-                <option>{{$t("RegistrationForm.german")}}</option>
-                <option>{{$t("RegistrationForm.english")}}</option>
-              </select>
+            <div class="col-sm-6 input-group">
+              <input name="user" type="email" class="form-control" id="register_user" v-model="credentials.email" required disabled>
+              <span class="input-group-btn">
+                <button class="btn btn-default glyphicon glyphicon-edit btn-primary" type="button" v-on:click="toggle('register_user')"></button>
+              </span>
             </div>
           </div>
           <div class="form-group row">
             <div class="col-sm-4 control-label">
               <label for="register_phone">{{$t("phone")}}</label>
             </div>
-            <div class="col-sm-6">
+            <div class="col-sm-6 input-group">
               <input
                 type="tel"
                 class="form-control"
                 id="register_phone"
-                v-model="credentials.phone" required>
+                v-model="credentials.phone" required disabled>
+              <span class="input-group-btn">
+                <button class="btn btn-default glyphicon glyphicon-edit btn-primary" type="button" v-on:click="toggle('register_phone')"></button>
+              </span>
             </div>
           </div>
-          <legend>{{$t("RegistrationForm.company_details")}}</legend>
+          <legend>{{$t("UserEdit.company_details")}}</legend>
           <div class="form-group row">
             <div class="col-sm-4 control-label">
-              <label for="register_company">{{$t("RegistrationForm.company")}}</label>
+              <label for="register_company">{{$t("UserEdit.company")}}</label>
             </div>
-            <div class="col-sm-6">
-              <input type="text" class="form-control" id="register_company" v-model="credentials.company" required>
+            <div class="col-sm-6 input-group">
+              <input type="text" class="form-control" id="register_company" v-model="credentials.company" required disabled>
+              <span class="input-group-btn">
+                <button class="btn btn-default glyphicon glyphicon-edit btn-primary" type="button"v-on:click="toggle('register_company')"></button>
+              </span>
             </div>
           </div>
           <div class="form-group row">
             <div class="col-sm-4 control-label">
-              <label for="register_street">{{$t("RegistrationForm.street")}}</label>
+              <label for="register_street">{{$t("UserEdit.street")}}</label>
             </div>
-            <div class="col-sm-6">
+            <div class="col-sm-6 input-group">
               <input
                 type="text"
                 class="form-control"
                 id="register_street"
-                v-model="credentials.street" required>
+                v-model="credentials.street" required disabled>
+              <span class="input-group-btn">
+                <button class="btn btn-default glyphicon glyphicon-edit btn-primary" type="button" v-on:click="toggle('register_street')"></button>
+              </span>
             </div>
           </div>
           <div class="form-group row">
             <div class="col-sm-4 control-label">
-              <label for="register_number">{{$t("RegistrationForm.number")}}</label>
+              <label for="register_number">{{$t("UserEdit.number")}}</label>
             </div>
-            <div class="col-sm-6">
+            <div class="col-sm-6 input-group">
               <input
                 type="text"
                 class="form-control"
                 id="register_number"
-                v-model="credentials.number" required>
+                v-model="credentials.number" required disabled>
+              <span class="input-group-btn">
+                <button class="btn btn-default glyphicon glyphicon-edit btn-primary" type="button" v-on:click="toggle('register_number')"></button>
+              </span>
             </div>
           </div>
           <div class="form-group row">
             <div class="col-sm-4 control-label">
-              <label for="register_zip">{{$t("RegistrationForm.zip")}}</label>
+              <label for="register_zip">{{$t("UserEdit.zip")}}</label>
             </div>
-            <div class="col-sm-6">
+            <div class="col-sm-6 input-group">
               <input
                 type="number"
                 class="form-control"
                 id="register_zip"
-                v-model="credentials.zip" required>
+                v-model="credentials.zip" required disabled>
+              <span class="input-group-btn">
+                <button class="btn btn-default glyphicon glyphicon-edit btn-primary" type="button" v-on:click="toggle('register_zip')"></button>
+              </span>
             </div>
           </div>
           <div class="form-group row">
             <div class="col-sm-4 control-label">
               <label for="register_city">{{$t("city")}}</label>
             </div>
-            <div class="col-sm-6">
+            <div class="col-sm-6 input-group">
               <input
                 type="text"
                 class="form-control"
                 id="register_city"
-                v-model="credentials.city" required>
+                v-model="credentials.city" required disabled>
+              <span class="input-group-btn">
+                <button class="btn btn-default glyphicon glyphicon-edit btn-primary" type="button" v-on:click="toggle('register_city')"></button>
+              </span>
             </div>
           </div>
           <div class="form-group row">
             <div class="col-sm-4 control-label">
               <label for="register_country">{{$t("country")}}</label>
             </div>
-            <div class="col-sm-6">
-              <select class="form-control" id="register_country" v-model="credentials.country" required>
+            <div class="col-sm-6 input-group">
+              <select class="form-control" id="register_country" v-model="credentials.country" required disabled>
                 <option value="">{{$t("RegistrationForm.choose")}}</option>
                 <option>Deutschland</option>
                 <option>Österreich</option>
                 <option>Schweiz</option>
               </select>
+              <span class="input-group-btn">
+                <button class="btn btn-default glyphicon glyphicon-edit btn-primary" type="button" v-on:click="toggle('register_country')"></button>
+              </span>
             </div>
           </div>
-
-          <!--
-          <legend>{{$t("RegistrationForm.system_access")}}</legend>
-          <div class="form-group row">
-            <div class="col-sm-4 control-label">
-              <label for="register_user">{{$t("RegistrationForm.user")}}</label>
-            </div>
-            <div class="col-sm-6">
-              <input type="email" class="form-control" id="register_user" v-model="credentials.email" required>
-            </div>
-          </div>
-          <div class="form-group row">
-            <div class="col-sm-4 control-label">
-              <label for="register_password">{{$t("RegistrationForm.password")}}</label>
-            </div>
-            <div class="col-sm-6">
-              <input
-                type="password"
-                data-minlength="6"
-                class="form-control"
-                id="register_password"
-                v-model="credentials.password" required>
-            </div>
-          </div>-->
-          <br />
-          <div class="form-group row">
+          <br/>
+          <div class="row">
             <div class="col-sm-offset-4 col-xs-6 col-sm-3">
               <button class="btn btn-block btn-lg btn-cancel">{{$t("cancel")}}</button>
             </div>
             <div class="col-xs-6 col-sm-3">
-              <button class="btn btn-block btn-lg btn-primary" @click="submit()">Aktualisieren</button>
+              <input class="btn btn-block btn-lg btn-primary" value="Aktualisieren"/>
             </div>
           </div>
-        </div>
       </form>
+    </div>
   </div>
 </template>
 
 <script>
-
 	import auth from '../auth'
 	import jwt from 'jsonwebtoken'
 
 	export default {
-	  name: 'user-edit-form',
+	  name: 'user-view',
 	  data () {
 	    return {
-	    	credentials: jwt.verify(localStorage.getItem('id_token'), 'DeviceR rocks as well!'),
-	    	error: ''
+	    	credentials: jwt.verify(localStorage.getItem('id_token'), 'DeviceR rocks as well!')
 	    }
 	  },
 	  methods: {
 	  	submit() {
-        if ($("#user-edit-form").valid()) {
           var credentials = {
             id: this.credentials.id,
+            role: this.credentials.role,
             gender: this.credentials.gender,
             prename: this.credentials.prename,
             surname: this.credentials.surname,
@@ -221,9 +202,10 @@
             answer: this.credentials.answer,
             agreement: this.credentials.agreement
           }
-
-          auth.update(this, credentials, '/dashboard')
-        }
+          auth.update(this, credentials, '/user/edit')
+	  	},
+	  	toggle(inputID){
+	  	   $("#" + inputID).attr('disabled', function(_, attr){ return !attr});
 	  	}
 	  }
 	}

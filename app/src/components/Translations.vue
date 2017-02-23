@@ -188,6 +188,23 @@
         FI: 'Finnland',
       },
 
+      UserEdit: {
+        user_management : 'Nutzerverwaltung',
+        edit_button : 'Profil editieren',
+        choose: 'Bitte wählen Sie',
+        personal_details: 'Personenangaben',
+        prename: 'Vorname',
+        surname: 'Nachname',
+        user: 'Benutzer (E-Mail Adresse)',
+        phone: 'Telefon',
+        company_details: 'Firmenangaben',
+        company: 'Firmenname',
+        street: 'Straße',
+        number: 'Hausnummer',
+        zip: 'Postleitzahl',
+      },
+
+
       Contact: Contact.de,
         MyDevices: MyDevices.de,
         RegistrationForm: RegistrationForm.de,
@@ -371,6 +388,22 @@
         RS: 'Serbia',
         TR: 'Turkey',
         FI: 'Finland',
+      },
+
+      UserEdit: {
+        user_management : 'User management',
+        edit_button : 'Edit profil',
+        choose: 'Please choose',
+        personal_details: 'Personal Details',
+        prename: 'Prename',
+        surname: 'Surname',
+        user: 'User (E-Mail)',
+        phone: 'Phone',
+        company_details: 'Company Details',
+        company: 'Company',
+        street: 'Street',
+        number: 'Number',
+        zip: 'Zip',
       },
 
       Contact: Contact.en,
