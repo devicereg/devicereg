@@ -59,8 +59,8 @@
             <div class="col-sm-6">
               <select name="language" class="form-control" id="register_language" v-model="credentials.language" required>
                 <option value="" :disabled="true">{{$t("RegistrationForm.choose")}}</option>
-                <option>{{$t("RegistrationForm.german")}}</option>
-                <option>{{$t("RegistrationForm.english")}}</option>
+                <option value="de">{{$t("RegistrationForm.german")}}</option>
+                <option value="en">{{$t("RegistrationForm.english")}}</option>
               </select>
             </div>
           </div>

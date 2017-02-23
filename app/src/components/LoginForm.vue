@@ -93,7 +93,7 @@
           email: this.credentials.email,
           password: this.credentials.password
         }
-        auth.login(this, credentials, this.$parent.$parent.$refs.toastr)
+        auth.login(this, credentials, this.$parent.$parent.$refs.toastr) //, this.$parent.$refs.config.lang)
 	  	},
 
 	  	logout() {
