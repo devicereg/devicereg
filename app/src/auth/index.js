@@ -73,6 +73,8 @@ export default {
 
 			localStorage.setItem('id_token', response.data.id_token);
       this.user.authenticated = true;
+
+      const data = jwt.verify(localStorage.getItem('id_token'), config.secret);
       if (data.language === "en" || data.language === "de") {
         Vue.config.lang = data.language;
       }

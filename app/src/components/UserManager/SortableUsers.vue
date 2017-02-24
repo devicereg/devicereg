@@ -12,15 +12,17 @@
             {{ $t("UserOverview." + "company") }}
             <span class="arrow" :class="sortOrders['company'] > 0 ? 'asc' : 'dsc'"></span>
           </div>
-          <div @click="sortBy('surname')" class="table-cell col-md-2" :class="{ active: sortKey == 'surname' }">
+          <div @click="sortBy('surname')" class="table-cell" :class="{ active: sortKey == 'surname',
+              'col-md-2': role == 'ROLE_ADMIN', 'col-md-3': role == 'ROLE_SUPPORT' }">
             {{ $t("UserOverview." + "surname") }}
             <span class="arrow" :class="sortOrders['surname'] > 0 ? 'asc' : 'dsc'"></span>
           </div>
-          <div @click="sortBy('prename')" class="table-cell col-md-2" :class="{ active: sortKey == 'prename' }">
+          <div @click="sortBy('prename')" class="table-cell col-md-2" :class="{ active: sortKey == 'prename' ,
+              'col-md-2': role == 'ROLE_ADMIN', 'col-md-3': role == 'ROLE_SUPPORT' }">
             {{ $t("UserOverview." + "prename") }}
             <span class="arrow" :class="sortOrders['prename'] > 0 ? 'asc' : 'dsc'"></span>
           </div>
-          <div class="table-cell col-md-2">&nbsp;</div>
+          <div v-if="role === 'ROLE_ADMIN'" class="table-cell col-md-2">&nbsp;</div>
         </div>
       </div>
       <div class="table-body col-sm-12">
@@ -33,15 +35,15 @@
               <div class="table-row-content row">
                 <div class="table-cell col-md-3" v-on:click="router.push('/my-devices')">{{ user.email }}</div>
                 <div class="table-cell col-md-3" v-on:click="router.push('/my-devices')">{{ user.company }}</div>
-                <div class="table-cell col-md-2" v-on:click="router.push('/my-devices')">{{ user.surname }}</div>
-                <div class="table-cell col-md-2" v-on:click="router.push('/my-devices')">{{ user.prename }}</div>
-                <div class="table-cell col-md-2">
-                  <div v-if="role === ROLE_ADMIN">
-                    <a v-on:click="editUser(user)">
-                      <span class="glyphicon glyphicon-edit action-button" aria-hidden="true"></span>
-                    </a>
-                    <delete-user :user="user"></delete-user>
-                  </div>
+                <div class="table-cell" :class="{ 'col-md-2': role == 'ROLE_ADMIN', 'col-md-3': role == 'ROLE_SUPPORT' }"
+                     v-on:click="router.push('/my-devices')">{{ user.surname }}</div>
+                <div class="table-cell" :class="{ 'col-md-2': role == 'ROLE_ADMIN', 'col-md-3': role == 'ROLE_SUPPORT' }"
+                     v-on:click="router.push('/my-devices')">{{ user.prename }}</div>
+                <div  v-if="role === 'ROLE_ADMIN'" class="table-cell col-md-2">
+                  <a v-on:click="editUser(user)">
+                    <span class="glyphicon glyphicon-edit action-button" aria-hidden="true"></span>
+                  </a>
+                  <delete-user :user="user"></delete-user>
                 </div>
               </div>
             </div>
