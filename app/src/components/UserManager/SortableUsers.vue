@@ -36,10 +36,12 @@
                 <div class="table-cell col-md-2" v-on:click="router.push('/my-devices')">{{ user.surname }}</div>
                 <div class="table-cell col-md-2" v-on:click="router.push('/my-devices')">{{ user.prename }}</div>
                 <div class="table-cell col-md-2">
-                  <a v-on:click="editUser(user)">
-                    <span class="glyphicon glyphicon-edit action-button" aria-hidden="true"></span>
-                  </a>
-                  <delete-user :user="user"></delete-user>
+                  <div v-if="role === ROLE_ADMIN">
+                    <a v-on:click="editUser(user)">
+                      <span class="glyphicon glyphicon-edit action-button" aria-hidden="true"></span>
+                    </a>
+                    <delete-user :user="user"></delete-user>
+                  </div>
                 </div>
               </div>
             </div>
@@ -68,6 +70,7 @@
       })
 
       return {
+        role: this.$parent.userRole,
         sortOrders: sortOrders,
         gridColumns: gridColumns,
         sortKey: '',
