@@ -65,7 +65,7 @@ app.post('/user/create', function(req, res)
 
         res.status(201).send({
           id_token: jwt_token,
-          id: this.lastID
+          id: row.id
         });
       }
     );

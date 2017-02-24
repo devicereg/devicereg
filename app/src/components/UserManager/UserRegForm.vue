@@ -19,7 +19,7 @@
                 </div>
               </div>
               <div class="form-group row">
-                <div class="col-sm-6  text-left">
+                <div class="col-sm-6">
                   <label class="control-label" for="register_gender">{{$t("RegistrationForm.gender")}}:</label>
                   <select name="gender" class="form-control" id="register_gender" v-model="user.gender" required>
                     <option value="" :disabled="true">{{$t("RegistrationForm.choose")}}</option>
@@ -29,17 +29,17 @@
                 </div>
               </div>
               <div class="form-group row">
-                <div class="col-sm-6  text-left">
+                <div class="col-sm-6">
                   <label class="control-label" for="register_prename">{{$t("RegistrationForm.prename")}}:</label>
                   <input name="prename" type="text" class="form-control" id="register_prename" v-model="user.prename" required>
                 </div>
-                <div class="col-sm-6  text-left">
+                <div class="col-sm-6">
                   <label class="control-label" for="register_surname">{{$t("RegistrationForm.surname")}}:</label>
                   <input name="surname" type="text" class="form-control" id="register_surname" v-model="user.surname" required>
                 </div>
               </div>
               <div class="form-group row">
-                <div class="col-sm-6  text-left">
+                <div class="col-sm-6">
                   <label class="control-label" for="register_language">{{$t("language")}}:</label>
                   <select name="language" class="form-control" id="register_language" v-model="user.language" required>
                     <option value="" :disabled="true">{{$t("RegistrationForm.choose")}}</option>
@@ -47,7 +47,7 @@
                     <option value="en">{{$t("RegistrationForm.english")}}</option>
                   </select>
                 </div>
-                <div class="col-sm-6  text-left">
+                <div class="col-sm-6">
                   <label class="control-label" for="register_phone">{{$t("phone")}}:</label>
                   <input name="phone" type="text" class="form-control" id="register_phone" v-model="user.phone" required>
                 </div>
@@ -58,7 +58,7 @@
                 </div>
               </div>
               <div class="form-group row">
-                <div class="col-sm-6  text-left">
+                <div class="col-sm-6">
                   <label class="control-label" for="register_industry_family">{{$t("RegistrationForm.industry_family")}}:</label>
                   <select name="industry_family"
                           class="form-control"
@@ -66,14 +66,14 @@
                           v-model="user.industry_family"
                           required>
                     <option value="" :disabled="true">{{$t("RegistrationForm.choose")}}</option>
-                    <option v-bind:value="item.id" v-for="item in industry_family" > {{ $t(item.name) }}</option>
+                    <option v-bind:value="item.id" v-for="item in industry_family" > {{ item.name }}</option>
                   </select>
                 </div>
-                <div v-if="user.industry_family == 0"  class="col-sm-6  text-left">
+                <div v-if="user.industry_family == 0"  class="col-sm-6">
                   <label class="control-label" for="register_industry_type">{{$t("RegistrationForm.industry_type_other")}}:</label>
                   <input name="industry_type" type="text" class="form-control" id="register_industry_type" v-model="user.industry_type" :required="user.industry_family">
                 </div>
-                <div v-else-if="user.industry_family != 0"  class="col-sm-6  text-left">
+                <div v-else-if="user.industry_family != 0"  class="col-sm-6">
                   <label class="control-label" for="register_industry_type">{{$t("RegistrationForm.industry_type")}}:</label>
                   <select name="industry_type" class="form-control" id="register_industry_type" v-model="user.industry_type" :required="user.industry_family">
                     <option v-bind:value="item.name" v-for="item in industry_types" v-if="user.industry_family == item.id">{{item.name}}</option>
@@ -81,31 +81,31 @@
                 </div>
               </div>
               <div class="form-group row">
-                <div class="col-sm-6  text-left">
+                <div class="col-sm-6">
                   <label class="control-label" for="register_company">{{$t("RegistrationForm.company")}}:</label>
                   <input name="company" type="text" class="form-control" id="register_company" v-model="user.company" required>
                 </div>
-                <div class="col-sm-6  text-left">
+                <div class="col-sm-6">
                   <label class="control-label" for="register_country">{{$t("country")}}:</label>
                   <input name="country" type="text" class="form-control" id="register_country" v-model="user.country" required>
                 </div>
               </div>
               <div class="form-group row">
-                <div class="col-sm-6  text-left">
+                <div class="col-sm-6">
                   <label class="control-label" for="register_street">{{$t("RegistrationForm.street")}}:</label>
                   <input name="street" type="text" class="form-control" id="register_street" v-model="user.street" required>
                 </div>
-                <div class="col-sm-6  text-left">
+                <div class="col-sm-6">
                   <label class="control-label" for="register_number">{{$t("RegistrationForm.number")}}:</label>
                   <input name="number" type="text" class="form-control" id="register_number" v-model="user.number" required>
                 </div>
               </div>
               <div class="form-group row">
-                <div class="col-sm-6  text-left">
+                <div class="col-sm-6">
                   <label class="control-label" for="register_city">{{$t("city")}}:</label>
                   <input name="city" type="text" class="form-control" id="register_city" v-model="user.city" required>
                 </div>
-                <div class="col-sm-6  text-left">
+                <div class="col-sm-6">
                   <label class="control-label" for="register_zip">{{$t("RegistrationForm.zip")}}:</label>
                   <input name="zip" type="text" class="form-control" id="register_zip" v-model="user.zip" required>
                 </div>
@@ -116,31 +116,72 @@
                 </div>
               </div>
               <div class="form-group row">
-                <div class="col-sm-6  text-left">
-                  <label class="control-label" for="register_email">{{$t("RegistrationForm.user")}}:</label>
-                  <input name="email" type="text" class="form-control" id="register_user" v-model="user.email" required>
-                </div>
-                <div class="col-sm-6  text-left">
-                  <label class="control-label" for="register_user_repeat">{{$t("RegistrationForm.user_repeat")}}:</label>
-                  <input name="user_repeat" type="text" class="form-control" id="register_user_repeat" v-model="user.email_repeat" required>
+                <div class="col-sm-6">
+                  <label class="control-label" for="register_role">{{$t("RegistrationForm.role")}}:</label>
+                  <select name="role" class="form-control" id="register_role" v-model="user.role" required>
+                    <option value="" :disabled="true">{{$t("RegistrationForm.choose")}}</option>
+                    <option value="ROLE_ADMIN">{{$t("RegistrationForm.admin")}}</option>
+                    <option value="ROLE_SUPPORT">{{$t("RegistrationForm.support")}}</option>
+                    <option value="ROLE_USER">{{$t("RegistrationForm.customer")}}</option>
+                  </select>
                 </div>
               </div>
-              <div class="form-group row">
-                <div class="col-sm-6  text-left">
+              <div v-if="user.id == -1" class="form-group row">
+                <div class="col-sm-6">
+                  <label class="control-label" for="register_user">{{$t("RegistrationForm.user")}}:</label>
+                  <input name="email" type="text" class="form-control" id="register_user" v-model="user.email" required>
+                </div>
+                <div class="col-sm-6">
+                  <label class="control-label" for="register_user_repeat">{{$t("RegistrationForm.user_repeat")}}:</label>
+                  <input name="user_repeat" type="text" class="form-control" id="register_user_repeat" v-model="repeatedEmail" required>
+                </div>
+              </div>
+              <div v-else class="form-group row">
+                <div class="col-sm-6">
+                  <label class="control-label" for="register_user">{{$t("RegistrationForm.user")}}:</label>
+                  <div class="input-group">
+                    <input name="email" type="text" class="form-control" id="register_user" v-model="user.email" required :disabled="!changeEmail">
+                    <span class="input-group-btn">
+                       <button class="btn btn-default glyphicon glyphicon-edit btn-primary" type="button" v-on:click="toggleEmailEdit()"></button>
+                     </span>
+                  </div>
+                </div>
+                <div v-if="changeEmail" class="col-sm-6">
+                  <label class="control-label" for="register_user_repeat">{{$t("RegistrationForm.new_email_repeat")}}:</label>
+                  <input name="user_repeat" type="text" class="form-control" id="register_user_repeat" v-model="repeatedEmail" required>
+                </div>
+              </div>
+              <div v-if="user.id == -1" class="form-group row">
+                <div class="col-sm-6">
                   <label class="control-label" for="register_password">{{$t("RegistrationForm.password")}}:</label>
                   <input name="password" type="password" class="form-control" id="register_password" v-model="user.password" required>
                 </div>
-                <div class="col-sm-6  text-left">
-                  <label class="control-label" for="register_password_repeat">{{$t("RegistrationForm.password_repeat")}}:</label>
-                  <input name="password_repeat" type="password" class="form-control" id="register_password_repeat" v-model="user.password_repeat" required>
+                <div class="col-sm-6">
+                  <label class="control-label" for="register_user_repeat">{{$t("RegistrationForm.new_password_repeat")}}:</label>
+                  <input name="user_repeat" type="text" class="form-control" id="register_password_repeat" v-model="repeatedPassword" required>
+                </div>
+              </div>
+              <div v-else class="form-group row">
+                <div class="col-sm-6">
+                  <label class="control-label" for="register_password">{{$t("RegistrationForm.password")}}:</label>
+                  <div class="input-group">
+                    <input name="password" type="password" class="form-control" id="register_password" v-model="user.password" required :disabled="!changePassword">
+                    <span class="input-group-btn">
+                       <button class="btn btn-default glyphicon glyphicon-edit btn-primary" type="button" v-on:click="togglePasswordEdit()"></button>
+                     </span>
+                  </div>
+                </div>
+                <div v-if="changePassword" class="col-sm-6">
+                  <label class="control-label" for="register_password_repeat">{{$t("RegistrationForm.new_password_repeat")}}:</label>
+                  <input name="password_repeat" type="password" class="form-control" id="register_password_repeat" v-model="repeatedPassword" required hidden>
                 </div>
               </div>
               <div class="form-group row">
-                <div class="col-sm-6  text-left">
+                <div class="col-sm-6">
                   <label class="control-label" for="register_question">{{$t("RegistrationForm.question")}}:</label>
                   <input name="question" type="text" class="form-control" id="register_question" v-model="user.question" required>
                 </div>
-                <div class="col-sm-6  text-left">
+                <div class="col-sm-6">
                   <label class="control-label" for="register_answer">{{$t("RegistrationForm.answer")}}:</label>
                   <input name="answer" type="text" class="form-control" id="register_answer" v-model="user.answer" required>
                 </div>
@@ -169,10 +210,15 @@ import auth from '../../auth'
 export default {
   name: 'user-registration-modal',
   props: [
-    'user'
+    'user',
+    'edit_index',
+    'changeEmail',
+    'changePassword'
   ],
   data () {
     return {
+      repeatedEmail: "",
+      repeatedPassword: "",
       industry_family: [
         {id: 0, name: 'Andere (Eingabe erforderlich)'},
         {id: 1, name: 'Metall Minen'},
@@ -255,32 +301,132 @@ export default {
   },
   methods: {
     submit() {
-      $('#user-registration-modal').modal('hide');
       if(this.user.id == -1) {
-        auth.createUser(this, this.user, this.$parent.$parent.$refs.toastr);
-        this.$parent.$parent.$refs.toastr.Add({
-          title: this.$t("UI.create_user_title"),
-          msg: this.$t("UI.create_user_msg"),
-          clickClose: true,
-          timeout: 8000,
-          position: "toast-top-right",
-          type: "success"
-        });
+        if(this.user.password != this.repeatedPassword || this.user.email != this.repeatedEmail){
+          this.$parent.$parent.$refs.toastr.Add({
+              title: this.$t("UI.password_or_email_mismatch_title"),
+              msg: this.$t("UI.password_or_email_mismatch_msg"),
+              clickClose: false,
+              timeout: 8000,
+              position: "toast-top-right",
+              type: "error"
+          });
+        }
+        else{
+          $('#user-registration-modal').modal('hide');
+          this.repeatedEmail = "";
+          this.repeatedPassword = "";
+          auth.createUser(this, this.user, this.$parent.$parent.$refs.toastr);
+          this.$parent.$parent.$refs.toastr.Add({
+            title: this.$t("UI.create_user_title"),
+            msg: this.$t("UI.create_user_msg"),
+            clickClose: true,
+            timeout: 8000,
+            position: "toast-top-right",
+            type: "success"
+          });
+        }
       } else {
-        auth.updateDevice(this, this.user, this.$parent.$parent.$refs.toastr);
-        this.$parent.updateDevice(this.user, this.edit_index);
-        this.$parent.$parent.$refs.toastr.Add({
-          title: this.$t("UI.update_user_title"),
-          msg: this.$t("UI.update_user_msg"),
-          clickClose: true,
-          timeout: 8000,
-          position: "toast-top-right",
-          type: "success"
-        });
+        if(this.changeEmail && !this.changePassword) {
+          if(this.user.email != this.repeatedEmail) {
+            this.$parent.$parent.$refs.toastr.Add({
+              title: this.$t("UI.password_or_email_mismatch_title"),
+              msg: this.$t("UI.password_or_email_mismatch_msg"),
+              clickClose: false,
+              timeout: 8000,
+              position: "toast-top-right",
+              type: "error"
+            });
+          }
+          else {
+            $('#user-registration-modal').modal('hide');
+            auth.update(this, this.user);
+            this.$parent.updateUser(this.user, this.edit_index);
+            this.$parent.$parent.$refs.toastr.Add({
+              title: this.$t("UI.update_user_title"),
+              msg: this.$t("UI.update_user_msg"),
+              clickClose: true,
+              timeout: 8000,
+              position: "toast-top-right",
+              type: "success"
+            });
+          }
+        }
+        if(!this.changeEmail && this.changePassword) {
+          if(this.user.password != this.repeatedPassword) {
+            this.$parent.$parent.$refs.toastr.Add({
+              title: this.$t("UI.password_or_email_mismatch_title"),
+              msg: this.$t("UI.password_or_email_mismatch_msg"),
+              clickClose: false,
+              timeout: 8000,
+              position: "toast-top-right",
+              type: "error"
+            });
+          }
+          else {
+            $('#user-registration-modal').modal('hide');
+            auth.update(this, this.user);
+            this.$parent.updateUser(this.user, this.edit_index);
+            this.$parent.$parent.$refs.toastr.Add({
+              title: this.$t("UI.update_user_title"),
+              msg: this.$t("UI.update_user_msg"),
+              clickClose: true,
+              timeout: 8000,
+              position: "toast-top-right",
+              type: "success"
+            });
+          }
+        }
+        if(this.changeEmail && this.changePassword) {
+          if(this.user.email != this.repeatedEmail || this.user.password != this.repeatedPassword) {
+            this.$parent.$parent.$refs.toastr.Add({
+              title: this.$t("UI.password_or_email_mismatch_title"),
+              msg: this.$t("UI.password_or_email_mismatch_msg"),
+              clickClose: false,
+              timeout: 8000,
+              position: "toast-top-right",
+              type: "error"
+            });
+          }
+          else {
+            $('#user-registration-modal').modal('hide');
+            auth.update(this, this.user);
+            this.$parent.updateUser(this.user, this.edit_index);
+            this.$parent.$parent.$refs.toastr.Add({
+              title: this.$t("UI.update_user_title"),
+              msg: this.$t("UI.update_user_msg"),
+              clickClose: true,
+              timeout: 8000,
+              position: "toast-top-right",
+              type: "success"
+            });
+          }
+        }
+        if(!this.changeEmail && !this.changePassword) {
+          $('#user-registration-modal').modal('hide');
+          auth.update(this, this.user);
+          this.$parent.updateUser(this.user, this.edit_index);
+          this.$parent.$parent.$refs.toastr.Add({
+            title: this.$t("UI.update_user_title"),
+            msg: this.$t("UI.update_user_msg"),
+            clickClose: true,
+            timeout: 8000,
+            position: "toast-top-right",
+            type: "success"
+          });
+        }
       }
     },
     userCreated() {
       this.$parent.addUser(this.user);
+    },
+    toggleEmailEdit() {
+      $("#register_user").attr('disabled', function(_, attr){ return !attr});
+      this.changeEmail = !this.changeEmail;
+    },
+    togglePasswordEdit() {
+      $("#register_password").attr('disabled', function(_, attr){ return !attr});
+      this.changePassword = !this.changePassword;
     }
   },
   computed: {
@@ -289,7 +435,6 @@ export default {
       return today.toString();
     }
   }
-
 }
 </script>
 <style lang="scss">

@@ -1,6 +1,6 @@
 <template>
   <div id="my-users-component" v-if="userRole === 'ROLE_ADMIN' ^ userRole === 'ROLE_SUPPORT'">
-    <user-registration-modal :user="user" :edit_index="edit_index"></user-registration-modal>
+    <user-registration-modal :user="user" :edit_index="edit_index" :changeEmail="changeEmail" :changePassword="changePassword"></user-registration-modal>
     <div class="col-sm-12">
       <h1> {{$t("UserOverview.title")}} </h1>
     </div>
@@ -36,13 +36,16 @@
         filter: '',
         users: [],
         user: {},
-        edit_index: -1
+        edit_index: -1,
+        changeEmail: false,
+        changePassword: false
       }
     },
     methods: {
       clearUser() {
         this.user = {
           id: -1,
+          role: "",
           gender: "",
           prename: "",
           surname: "",
@@ -69,9 +72,11 @@
       },
       updateUser(user) {
         this.users.splice(this.edit_index, 0);
-        this.users.splice(this.edit_index, 1, device);
+        this.users.splice(this.edit_index, 1, user);
       },
       editUser(user) {
+        this.changeEmail = false;
+        this.changePassword = false;
         this.edit_index = this.users.indexOf(user);
         this.user = JSON.parse(JSON.stringify(user));
         $('#user-registration-modal').modal('show');

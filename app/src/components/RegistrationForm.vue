@@ -104,7 +104,7 @@
                       v-model="credentials.industry_family"
                       required>
                 <option value="" :disabled="true">{{$t("RegistrationForm.choose")}}</option>
-                <option v-bind:value="item.id" v-for="item in industry_family" > {{ $t(item.name) }}</option>
+                <option v-bind:value="item.id" v-for="item in industry_family" > {{ item.name }}</option>
               </select>
             </div>
           </div>
@@ -451,10 +451,10 @@
 
         }
 
-        if(this.credentials.password != this.credentials.password_repeat){
+        if(this.credentials.password != this.credentials.password_repeat || this.credentials.email != this.credentials.email_repeat){
           this.$parent.$refs.toastr.Add({
-              msg: this.$t("Passwörter stimmen nicht überein!"),
-              title: this.$t("Passwort"),
+              title: this.$t("UI.password_or_email_mismatch_title"),
+              msg: this.$t("UI.password_or_email_mismatch_msg"),
               clickClose: false,
               timeout: 8000,
               position: "toast-top-right",

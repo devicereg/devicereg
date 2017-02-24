@@ -28,7 +28,7 @@
           <div v-for="(user, key) in filteredData"
               v-bind:class="[key % 2 === 0 ? 'even-tr' : 'odd-tr','row table-row user-list-item']"
               v-bind:id="'user_' + user.id"
-              v-bind:key="users.indexOf(user)" >
+              v-bind:key="user.id" >
             <div class="col-sm-12">
               <div class="table-row-content row">
                 <div class="table-cell col-md-3" v-on:click="router.push('/my-devices')">{{ user.email }}</div>

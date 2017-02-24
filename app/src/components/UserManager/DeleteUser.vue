@@ -14,7 +14,6 @@
     methods: {
       deleteUser(user) {
         var self = this;
-
         this.$swal({
           title: this.$t("UserOverview.delete.title"),
           text: this.$t("UserOverview.delete.text"),
@@ -26,6 +25,7 @@
           cancelButtonColor: "#9c9c9c"
         }).then(function() {
           auth.deleteUser(self, {id: user.id});
+          console.log(user);
           self.$parent.$parent.removeUser(user); // dirty but only way without vuex
         })
       }

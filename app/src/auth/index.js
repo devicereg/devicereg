@@ -98,6 +98,7 @@ export default {
 	{
     context.$http.post(SIGNUP_URL, creds).then((response) => {
       context.user.id = response.body.id;
+      console.log("USER ID:   ", response.body.id);
       context.userCreated();
 
     },
