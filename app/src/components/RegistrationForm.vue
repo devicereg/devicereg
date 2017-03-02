@@ -228,7 +228,6 @@
               <span v-show="errors.has('country')" class="text-danger">{{ errors.first('country') }}</span>
             </div>
           </div>
-
           <legend>{{$t("RegistrationForm.system_access")}}</legend>
           <div class="form-group row">
             <div class="col-sm-4 control-label">
