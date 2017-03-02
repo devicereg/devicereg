@@ -1,11 +1,11 @@
 <template>
-  <li id="lang-dropdown" class="dropdown">
+  <li id="lang-dropdown" class="dropdown" data-toggle="collapse" data-target="#navbar">
     <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
       <strong>{{ $t('language') }} </strong><span class="caret"></span>
     </a>
     <ul class="dropdown-menu" role="menu">
-      <li data-toggle="dropdown" @click='setLang("de")'><a><strong> {{ $t('german') }} </strong></a></li>
-      <li data-toggle="dropdown" @click='setLang("en")'><a><strong> {{ $t('english') }} </strong></a></li>
+      <li data-toggle="collapse" @click='setLang("de")'><a><strong> {{ $t('german') }} </strong></a></li>
+      <li data-toggle="collapse" @click='setLang("en")'><a><strong> {{ $t('english') }} </strong></a></li>
     </ul>
   </li>
 </template>

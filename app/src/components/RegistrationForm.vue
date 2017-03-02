@@ -66,8 +66,8 @@
               <select v-validate="'required'"
                       name="language" class="form-control" id="register_language" v-model="credentials.language">
                 <option value="" :disabled="true">{{$t("RegistrationForm.choose")}}</option>
-                <option>{{$t("RegistrationForm.german")}}</option>
-                <option>{{$t("RegistrationForm.english")}}</option>
+                <option value="de">{{$t("RegistrationForm.german")}}</option>
+                <option value="en">{{$t("RegistrationForm.english")}}</option>
               </select>
               <span v-show="errors.has('language')" class="text-danger">{{ errors.first('language') }}</span>
             </div>
@@ -114,7 +114,7 @@
                       id="register_industry_family"
                       v-model="credentials.industry_family">
                 <option value="" :disabled="true">{{$t("RegistrationForm.choose")}}</option>
-                <option v-bind:value="item.id" v-for="item in industry_family">{{ $t(item.name) }}</option>
+                <option v-bind:value="item.id" v-for="item in industry_family" > {{ item.name }}</option>
               </select>
               <span v-show="errors.has('industry_family')" class="text-danger">{{ errors.first('industry_family') }}</span>
             </div>
@@ -343,6 +343,7 @@
 	  data () {
 	    return {
 	    	credentials: {
+          role: "ROLE_USER",
 					gender: '',
 					prename: '',
 					surname: '',
@@ -456,6 +457,7 @@
 	  methods: {
 	  	submit() {
         var credentials = {
+          role: "ROLE_USER",
           gender: this.credentials.gender,
           prename: this.credentials.prename,
           surname: this.credentials.surname,

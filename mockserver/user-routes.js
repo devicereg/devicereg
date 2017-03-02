@@ -29,11 +29,12 @@ app.post('/user/create', function(req, res)
   {
     db.run(
       "INSERT INTO user " +
-      "('id', 'gender', 'surname', 'prename', 'language', 'phone', 'industry_family', 'industry_type', 'company', 'street', 'number', 'zip', 'city', 'country', 'password', 'question', 'answer', 'email') " +
+      "('id', 'role', 'gender', 'surname', 'prename', 'language', 'phone', 'industry_family', 'industry_type', 'company', 'street', 'number', 'zip', 'city', 'country', 'password', 'question', 'answer', 'email') " +
       "VALUES " +
-      "($id, $gender, $surname, $prename, $language, $phone, $industry_family, $industry_type, $company, $street, $number, $zip, $city, $country, $password, $question, $answer, $email)",
+      "($id, $role, $gender, $surname, $prename, $language, $phone, $industry_family, $industry_type, $company, $street, $number, $zip, $city, $country, $password, $question, $answer, $email)",
       {
         $id: null,
+        $role: req.body.role,
         $gender: req.body.gender,
         $surname: req.body.surname,
         $prename: req.body.prename,
@@ -62,7 +63,10 @@ app.post('/user/create', function(req, res)
         console.log("User object: " + row);
         console.log("JWT Token: " + jwt_token);
 
-        res.status(201).send({ id_token: jwt_token });
+        res.status(201).send({
+          id_token: jwt_token,
+          id: row.id
+        });
       }
     );
   });
@@ -349,6 +353,22 @@ app.get('/categories', function (req, res)
           res.status(200).send(row);
         }
     );
+  });
+});
+
+app.get('/users', function (req, res)
+{
+  exporter.json('SELECT * from user', function (err, json) {
+    console.log(json);
+    res.status(200).send(json);
+  });
+});
+
+app.get('/categories', function (req, res)
+{
+  exporter.json('SELECT id, name FROM category c WHERE c.user_id = 1', function (err, json) {
+    console.log(json);
+    res.status(200).send(json);
   });
 });
 

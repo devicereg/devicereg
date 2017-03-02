@@ -1,6 +1,15 @@
 *** Settings ***
 Resource  ucDeviceR.robot
 
+*** Keywords ***
+Initialisiere Test
+    Open Browser  ${url}  ${browser}
+    Maximize Browser Window
+    #Set Selenium Speed  0.334
+
+Schliesse Browser
+    Close Browser
+
 *** Test Cases ***
 Registriere den Benutzer Max Musterman
     Initialisiere Test

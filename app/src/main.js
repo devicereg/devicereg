@@ -108,6 +108,18 @@ const routes = [
     component: require('./components/NewPasswordConfirmed'),
     meta: { authenticated: false }
   },
+  {
+    path: '/user-overview',
+    name: '/user-overview',
+    component: require('./components/UserManager/UserOverview'),
+    meta: { authenticated: false }
+  },
+  {
+    path: '/user-create',
+    name: '/user-create',
+    component: require('./components/UserManager/UserRegForm'),
+    meta: { authenticated: false }
+  }
 ]
 
 export const router = new VueRouter({
