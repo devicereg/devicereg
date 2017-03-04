@@ -16,9 +16,12 @@ const CREATE_DEVICE_URL 		= API_URL 	+ 'device/create';
 const UPDATE_DEVICE_URL 		= API_URL 	+ 'device/update';
 const DELETE_DEVICE_URL 		= API_URL 	+ 'device/delete';
 const GET_DEVICES_URL 			= API_URL 	+ 'devices';
+const GET_USERS_URL 			= API_URL 	+ 'users';
 const GET_CATEGORIES_URL 		= API_URL 	+ 'categories';
 const CREATE_CATEGORY_URL 		= API_URL 	+ 'category/create';
 const GET_TECHNOLOGIES_URL    = API_URL   + 'technologies';
+
+var Vue = require('vue')
 
 export default {
 	name: 'authentication',
@@ -31,17 +34,18 @@ export default {
 	 * @param      {JSON}    creds     The creds
 	 * @param      {string}  redirect  The redirect
 	 */
-	login(context, creds, redirect, toastr)
+	login(context, creds, toastr)
 	{
 		context.$http.post(LOGIN_URL, creds).then((response) => {
-
-			localStorage.setItem('id_token', response.data.id_token);
+      const token = response.data.id_token;
+			localStorage.setItem('id_token', token);
 			this.user.authenticated = true;
-
-			if(redirect)
-			{
-				router.push(redirect)
-			}
+      const data = jwt.verify(localStorage.getItem('id_token'), config.secret);
+      if (data.language === "en" || data.language === "de") {
+        Vue.config.lang = data.language;
+      }
+      var redirect = (data.role !== "ROLE_USER") ? 'user-overview' : 'my-devices';
+      router.push(redirect);
 
 		}, (err) => {
 			context.error = err.body.message;
@@ -68,7 +72,12 @@ export default {
 	    context.$http.post(SIGNUP_URL, creds).then((response) => {
 
 			localStorage.setItem('id_token', response.data.id_token);
-	      	this.user.authenticated = true;
+      this.user.authenticated = true;
+
+      const data = jwt.verify(localStorage.getItem('id_token'), config.secret);
+      if (data.language === "en" || data.language === "de") {
+        Vue.config.lang = data.language;
+      }
 
 			if(redirect)
 			{
@@ -79,6 +88,26 @@ export default {
 	    	context.error = err;
 	    })
   	},
+
+	/**
+	 * Method for user registration
+	 *
+	 * @param      {object}  context   The context
+	 * @param      {JSON}  	 creds     The creds
+	 * @param      {string}  redirect  The redirect
+	 */
+	createUser(context, creds)
+	{
+    context.$http.post(SIGNUP_URL, creds).then((response) => {
+      context.user.id = response.body.id;
+      console.log("USER ID:   ", response.body.id);
+      context.userCreated();
+
+    },
+      (err) => {
+        context.error = err;
+      })
+  },
 
 
   	/**
@@ -116,6 +145,21 @@ export default {
 	    	context.error = err
 	    })
   	},
+
+  	/**
+	 * Method for user delete
+	 *
+	 * @param      {object}  context   The context
+ 	 * @param      {int}   	 id     	The creds
+	 */
+	deleteUser(context, id)
+	{
+    context.$http.post(DELETE_URL, id).then((response) => {
+
+    }, (err) => {
+      context.error = err
+    })
+  },
 
 	/**
 	 * Method for user logout
@@ -286,6 +330,15 @@ export default {
     });
   },
 
+  getUsers(context)
+  {
+    context.$http.get(GET_USERS_URL).then((response) => {
+      context.users = response.body;
+    }, (err) => {
+      context.error = err;
+    });
+  },
+
   getCategories(context)
   {
     context.$http.get(GET_CATEGORIES_URL, { headers: this.getAuthHeader() }
@@ -318,7 +371,6 @@ export default {
   getRole()
   {
     const data = jwt.verify(localStorage.getItem('id_token'), config.secret);
-
     return data.role;
   }
 }

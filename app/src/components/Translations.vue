@@ -2,8 +2,10 @@
   import Contact from "./Translations/Contact.json"
   import Datenschutz from "./Translations/Datenschutz.json"
   import DeviceRegForm from "./Translations/DeviceRegForm.json"
+  import UserRegForm from "./Translations/UserRegForm.json"
   import Impressum from "./Translations/Impressum.json"
   import MyDevices from "./Translations/MyDevices.json"
+  import UserOverview from "./Translations/UserOverview.json"
   import RegistrationForm from "./Translations/RegistrationForm.json"
   import TermsOfUse from "./Translations/TermsOfUse.json"
   import Warranty from "./Translations/Warranty.json"
@@ -31,6 +33,7 @@
       english: 'Englisch',
       logout: 'Abmelden',
       my_devices: 'Meine Geräte',
+      user_overview: 'Benutzerübersicht',
       home: 'Startseite',
       register: 'Registrieren',
       contact: 'Kontakt',
@@ -191,8 +194,10 @@
 
       Contact: Contact.de,
         MyDevices: MyDevices.de,
+        UserOverview: UserOverview.de,
         RegistrationForm: RegistrationForm.de,
         DeviceRegForm: DeviceRegForm.de,
+        UserRegForm: UserRegForm.de,
         TermsOfUse: TermsOfUse.de,
         Datenschutz: Datenschutz.de,
         Warranty: Warranty.de,
@@ -217,6 +222,7 @@
       english: 'English',
       logout: 'Logout',
       my_devices: 'My Devices',
+      user_overview: 'User Manager',
       home: 'Home',
       register: 'Sign up',
       contact: 'Contact',
@@ -377,8 +383,10 @@
 
       Contact: Contact.en,
         MyDevices: MyDevices.en,
+        UserOverview: UserOverview.en,
         RegistrationForm: RegistrationForm.en,
         DeviceRegForm: DeviceRegForm.en,
+        UserRegForm: UserRegForm.en,
         TermsOfUse: TermsOfUse.en,
         Datenschutz: Datenschutz.en,
         Warranty: Warranty.en,
@@ -386,7 +394,7 @@
         Home: Home.en,
         LoginForm: LoginForm.en,
         UI: UI.en
-    }
+      },
   }
 
   // install plugin
