@@ -78,10 +78,6 @@
         sortKey: '',
         gridData: [
           this.users
-        ],
-        technologies: [
-          {id: 1, name: 'Rotamass'},
-          {id: 2, name: 'Flowmeter'}
         ]
       }
     },
