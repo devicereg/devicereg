@@ -10,7 +10,7 @@ DEFAULT_WEB_IMAGE_HOST_NAME="web"
 DEFAULT_WEB_IMAGE_PORT="8080"
 
 DEFAULT_ROBOT_LOG_LEVEL="INFO" # Available levels: TRACE, DEBUG, INFO (default), WARN, NONE (no logging)
-DEFAULT_ROBOT_TESTS="/robot-tests/devicer-testsuite/"
+DEFAULT_ROBOT_TESTS="/robot-tests"
 DEFAULT_ROBOT_USER="mustermax@htw-berlin.de"
 DEFAULT_ROBOT_BROWSER="firefox"
 DEFAULT_ROBOT_OUTPUTDIR="/robot-test-output"
