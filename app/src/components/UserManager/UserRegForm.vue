@@ -1,4 +1,4 @@
-<template xmlns:v-if="http://www.w3.org/1999/xhtml">
+<template>
   <div id="user-registration-modal" class="modal inmodal fade" tabindex="-1" role="dialog"  aria-hidden="true">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
@@ -93,7 +93,7 @@
                   </div>
                   <span v-show="errors.has('industry_type')" class="text-danger">{{ errors.first('industry_type') }}</span>
                 </div>
-                <div v-else-if="user.industry_family != 0"  class="col-sm-6">
+                <div v-else class="col-sm-6">
                   <label class="control-label" for="register_industry_type">{{$t("RegistrationForm.industry_type")}}:</label>
                   <div :class="{'has-error': errors.has('industry_type_s') }">
                     <select v-validate="'required'" name="industry_type_s" class="form-control" id="register_industry_type" v-model="user.industry_type" :required="user.industry_family">
@@ -296,6 +296,7 @@ export default {
     return {
       repeatedEmail: "",
       repeatedPassword: "",
+      industry_types: [],
       industry_family: [
         {id: 0, name: 'Andere (Eingabe erforderlich)'},
         {id: 1, name: 'Metall Minen'},

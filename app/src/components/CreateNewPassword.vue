@@ -1,4 +1,4 @@
-<template xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<template>
     <div class="row">
       <div class="col-sm-8">
         <h1>{{ $t("CreateNewPassword.header") }}<span>( {{ credentials.prename }} {{ credentials.surname }} )</span></h1><form>
