@@ -1,4 +1,4 @@
-<template xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<template>
   <div id="user-registration-component">
     <div class="row">
       <div class="col-sm-12">

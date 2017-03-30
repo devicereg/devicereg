@@ -5,7 +5,7 @@
       <h1> {{$t("UserOverview.title")}} </h1>
     </div>
     <div :class="userRole == 'ROLE_ADMIN' ? 'col-sm-4' : 'col-sm-4'">
-      <filter-users :categories="categories"></filter-users>
+      <filter-users></filter-users>
     </div>
     <div v-if="userRole == 'ROLE_ADMIN'" class="col-sm-4 pull-right">
       <label> &nbsp; </label>

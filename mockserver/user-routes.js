@@ -14,7 +14,7 @@ var app = module.exports = express.Router();
 
 function createToken(user) 
 {
-  return jwt.sign(_.omit(user, 'password'), config.secret, { expiresIn: 60*60*5 });
+  return jwt.sign(_.omit(user, 'password'), config.secret, { expiresIn: '48h' });
 }
 
 function getTokenFromRequest(request)

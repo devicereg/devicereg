@@ -201,15 +201,6 @@ export default {
   	{
 	    context.$http.post(UPDATE_DEVICE_URL, data,  { headers: this.getAuthHeader() }).then((response) => {
 
-        /*toastr.Add({
-          msg: context.$t("Passwörter stimmen nicht überein!"),
-          title: context.$t("Passwort"),
-          clickClose: context,
-          timeout: 8000,
-          position: "toast-top-right",
-          type: "success"
-        });*/
-
 	    }, (err) => {
 	      context.error = err;
 	    });
@@ -286,15 +277,7 @@ export default {
         context.device.id = response.body.id;
         context.deviceCreated();
 
-        /*toastr.Add({
-          msg: context.$t("Gerät erstellt!"),
-          title: context.$t("Das Gerät wurde erfolgreich erstellt."),
-          clickClose: false,
-          timeout: 8000,
-          position: "toast-top-right",
-          type: "success"
-        });*/
-        }, (err) => {
+       }, (err) => {
           context.error = err;
       });
     },
@@ -309,14 +292,6 @@ export default {
   deleteDevice(context, data, toastr)
   {
     context.$http.post(DELETE_DEVICE_URL, data, { headers: this.getAuthHeader() }).then((response) => {
-      /*toastr.Add({
-        msg: context.$t("Gerät gelöscht"),
-        title: context.$t("Das Gerät wurde erfolgreich gelöscht."),
-        clickClose: false,
-        timeout: 8000,
-        position: "toast-top-right",
-        type: "error"
-      });*/
     }, (err) => {
       context.error = err;
     });
