@@ -5,11 +5,11 @@
           <h1>{{ $t("LoginForm.registration") }}</h1>
           <div class="form-group row">
             <div class="col-xs-12">
-              <div class="input-group">
+              <div class="input-group" :class="{'has-error': errors.has('login_email') }">
                 <span class="input-group-addon">
                   <i class="glyphicon glyphicon-envelope"></i>
                 </span>
-								<div :class="{'has-error': errors.has('login_email') }">
+								<div>
                 	<input
 										name="login_email"
                   	v-validate="'required|email'"
@@ -19,17 +19,17 @@
                   	v-bind:placeholder="$t('email')"
                   />
 								</div>
-								<span v-show="errors.has('login_email')" class="text-danger">{{ errors.first('login_email') }}</span>
               </div>
+							<span v-show="errors.has('login_email')" class="text-danger">{{ errors.first('login_email') }}</span>
             </div>
           </div>
           <div class="form-group row">
             <div class="col-xs-12">
-              <div class="input-group ">
+              <div class="input-group " :class="{'has-error': errors.has('password') }">
                 <span class="input-group-addon">
                   <i class="glyphicon glyphicon-lock" aria-hidden="true"></i>
                 </span>
-								<div :class="{'has-error': errors.has('password') }">
+								<div>
                 	<input
 										name="password"
 										v-validate="'required'"
@@ -40,8 +40,8 @@
                   	v-bind:placeholder="$t('password')"
                  	/>
 							 </div>
-							 <span v-show="errors.has('password')" class="text-danger">{{ errors.first('password') }}</span>
               </div>
+							<span v-show="errors.has('password')" class="text-danger">{{ errors.first('password') }}</span>
             </div>
           </div>
           <div class="form-group row">
