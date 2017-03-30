@@ -12,5 +12,14 @@ services:
   #test:
   #  image: "htw-berlin/devicer-robot"
   #  build: ./robot-tests/
+  #  volumes:
+  #    - "./robot-tests/devicer-testsuite/:/robot-tests/"
+  #    - "./app/static/test-output/:/robot-test-output/"
+  #  environment:
+  #    - ROBOT_BROWSER=firefox
+  #    - ROBOT_DISPLAY_RESOLUTION=1920x1080x24
+  #    - ROBOT_USER=maxmustermaennchen@mail.de
   #  links:
+  #    - web
+  #  depends_on:
   #    - "web"

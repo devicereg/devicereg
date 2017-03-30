@@ -1,21 +1,20 @@
 <template>
   <div id="my-devices-component">
     <device-registration-modal :device="device" :edit_index="edit_index" :custom_category="custom_category" :categories="categories"></device-registration-modal>
-      <div class="col-sm-12">
-        <h1> {{$t("MyDevices.title")}} </h1>
-      </div>
-      <div class="col-sm-8">
-        <filter-input-elements :categories="categories"></filter-input-elements>
-      </div>
-      <div class="col-sm-4">
-        <label> &nbsp; </label>
-        <a href="#" id="add-button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#device-registration-modal" v-on:click="clearDevice()">
-          <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> &nbsp; {{ $t("MyDevices.add_button") }}
-        </a>
-      </div>
-      <div class="col-sm-12">
-        <sortable-devices :devices="devices" :categories="categories" :filterKey="filter" :categoryFilter="cat_filter"></sortable-devices>
-      </div>
+    <div class="col-sm-12">
+      <h1> {{$t("MyDevices.title")}} </h1>
+    </div>
+    <div class="col-sm-8">
+      <filter-input-elements :categories="categories"></filter-input-elements>
+    </div>
+    <div class="col-sm-4">
+      <label> &nbsp; </label>
+      <a href="#" id="add-button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#device-registration-modal" v-on:click="clearDevice()">
+        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> &nbsp; {{ $t("MyDevices.add_button") }}
+      </a>
+    </div>
+    <div class="col-sm-12">
+      <sortable-devices :devices="devices" :categories="categories" :filterKey="filter" :categoryFilter="cat_filter"></sortable-devices>
     </div>
   </div>
 </template>

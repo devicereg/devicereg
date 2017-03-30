@@ -1,4 +1,4 @@
-<template xmlns:v-if="http://www.w3.org/1999/xhtml">
+<template>
   <div id="user-registration-modal" class="modal inmodal fade" tabindex="-1" role="dialog"  aria-hidden="true">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
@@ -73,7 +73,7 @@
                   <label class="control-label" for="register_industry_type">{{$t("RegistrationForm.industry_type_other")}}:</label>
                   <input name="industry_type" type="text" class="form-control" id="register_industry_type" v-model="user.industry_type" :required="user.industry_family">
                 </div>
-                <div v-else-if="user.industry_family != 0"  class="col-sm-6">
+                <div v-else class="col-sm-6">
                   <label class="control-label" for="register_industry_type">{{$t("RegistrationForm.industry_type")}}:</label>
                   <select name="industry_type" class="form-control" id="register_industry_type" v-model="user.industry_type" :required="user.industry_family">
                     <option v-bind:value="item.name" v-for="item in industry_types" v-if="user.industry_family == item.id">{{item.name}}</option>
@@ -219,6 +219,7 @@ export default {
     return {
       repeatedEmail: "",
       repeatedPassword: "",
+      industry_types: [],
       industry_family: [
         {id: 0, name: 'Andere (Eingabe erforderlich)'},
         {id: 1, name: 'Metall Minen'},

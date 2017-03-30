@@ -1,4 +1,4 @@
-<template xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<template>
   <div>
     <div class="col-md-9 col-sm-9 col-xs-12">
       <h1>{{ $t("Contact.header") }}</h1>
