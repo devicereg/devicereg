@@ -21,7 +21,7 @@ export default {
     max: (field, [length]) => `The ${field} may not be greater than ${length} characters.`,
     max_value: (field, [max]) => `The ${field} must be ${max} or less.`,
     mimes: (field) => `The ${field} must have a valid file type.`,
-    min: (field, [length]) => `The ${field} must be at least ${length} characters.`,
+    min: (field, [length]) => `The password must be at least ${length} characters.`,
     min_value: (field, [min]) => `The ${field} must be ${min} or more.`,
     not_in: (field) => `The ${field} must be a valid value.`,
     numeric: (field) => `May only contain numeric characters.`,

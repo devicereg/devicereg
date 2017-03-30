@@ -18,7 +18,7 @@ export default {
     ip: (field) => `${field} muss eine gültige IP-Adresse sein.`,
     max: (field, [length]) => `${field} darf nicht länger als ${length} Zeichen sein.`,
     mimes: (field) => `${field} muss einen gültigen Dateityp haben.`,
-    min: (field, [length]) => `${field} muss mindestens ${length} Zeichen lang sein.`,
+    min: (field, [length]) => `Das Password muss mindestens ${length} Zeichen lang sein.`,
     not_in: (field) => `${field} muss ein gültiger Wert sein.`,
     numeric: (field) => `Die Eingabe darf nur numerische Zeichen enthalten.`,
     regex: (field) => `Das Format ist ungültig.`,
