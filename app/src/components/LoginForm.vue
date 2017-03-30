@@ -103,9 +103,8 @@
         }
 				this.$validator.validateAll().then(success => {
 								if (!success) {
-										//Jump to the first incorrect field. No idea how to implement, need help :/
 								} else {
-									auth.login(this, credentials, 'my-devices', this.$parent.$parent.$refs.toastr)
+									auth.login(this, credentials, this.$parent.$parent.$refs.toastr)
 								}
 						});
 	  	},
