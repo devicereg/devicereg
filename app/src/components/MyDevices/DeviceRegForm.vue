@@ -26,6 +26,7 @@
                   <select v-validate="'required'" name="technology" class="form-control" id="technology" v-model="device.technology_id">
                     <option value="" :disabled="true">{{$t("DeviceRegForm.choose")}}</option>
                     <option v-bind:value="item.id" v-for="item in technologies">{{item.name}}</option>
+                    <option value="1">Example Technology</option>
                   </select>
                   <span v-show="errors.has('technology')" class="text-danger">{{ errors.first('technology') }}</span>
                 </div>
@@ -146,7 +147,7 @@
                     </div>
                     <div :class="{'has-error': errors.has('maintenance_interval') }">
                       <select v-validate="'required'" name="maintenance_interval" class="form-control" id="mInterval" v-model="device.mInterval"
-                              :required="device.maintenance">
+                              >
                         <option value="" :disabled="true">{{$t("DeviceRegForm.choose")}}</option>
                         <option value="6">6 {{$t("DeviceRegForm.month")}}</option>
                         <option value="12">12 {{$t("DeviceRegForm.months")}}</option>
@@ -217,7 +218,7 @@
                     </div>
                     <div :class="{'has-error': errors.has('calibration_interval') }">
                       <select v-validate="'required'" name="calibration_interval" class="form-control" id="cInterval" v-model="device.cInterval" :disabled="!device.calibration"
-                            :required="device.calibration">
+                            >
                             <option value="" :disabled="true">{{$t("DeviceRegForm.choose")}}</option>
                             <option value="6">6 {{$t("DeviceRegForm.month")}}</option>
                             <option value="12">12 {{$t("DeviceRegForm.months")}}</option>
@@ -311,7 +312,11 @@ export default {
         {id: 2, name: 'Argon'},
         {id: 3, name: 'Benzol'}
       ],
-      technologies: [],
+      technologies: [
+        {id: 1, name: 'Technology 1'},
+        {id: 2, name: 'Technology 2'},
+        {id: 3, name: 'Technology 3'}
+      ],
       state: {
         disabled: {
           to: limitDate
