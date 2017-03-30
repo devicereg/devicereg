@@ -32,13 +32,13 @@
               v-bind:id="'user_' + user.id"
               v-bind:key="user.id" >
             <div class="col-sm-12">
-              <div class="table-row-content row" v-on:click="goToDevicesOfUser(user)">
-                <div class="table-cell col-md-3">{{ user.email }}</div>
-                <div class="table-cell col-md-3">{{ user.company }}</div>
+              <div class="table-row-content row">
+                <div class="table-cell col-md-3" v-on:click="goToDevicesOfUser(user)">{{ user.email }}</div>
+                <div class="table-cell col-md-3" v-on:click="goToDevicesOfUser(user)">{{ user.company }}</div>
                 <div class="table-cell" :class="{ 'col-md-2': role == 'ROLE_ADMIN', 'col-md-3': role == 'ROLE_SUPPORT' }"
-                     v-on:click="router.push('/my-devices')">{{ user.surname }}</div>
+                     v-on:click="goToDevicesOfUser(user)">{{ user.surname }}</div>
                 <div class="table-cell" :class="{ 'col-md-2': role == 'ROLE_ADMIN', 'col-md-3': role == 'ROLE_SUPPORT' }"
-                     v-on:click="router.push('/my-devices')">{{ user.prename }}</div>
+                     v-on:click="goToDevicesOfUser(user)"">{{ user.prename }}</div>
                 <div  v-if="role === 'ROLE_ADMIN'" class="table-cell col-md-2">
                   <a v-on:click="editUser(user)">
                     <span class="glyphicon glyphicon-edit action-button" aria-hidden="true"></span>
