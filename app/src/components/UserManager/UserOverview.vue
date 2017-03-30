@@ -1,5 +1,5 @@
 <template>
-  <div id="my-users-component" v-if="userRole === 'ROLE_ADMIN' ^ userRole === 'ROLE_SUPPORT'">
+  <div id="my-users-component" v-if="(userRole === 'ROLE_ADMIN' ^ userRole === 'ROLE_SUPPORT') && !onUsersDeviceList">
     <user-registration-modal :user="user" :edit_index="edit_index" :changeEmail="changeEmail" :changePassword="changePassword"></user-registration-modal>
     <div class="col-sm-12">
       <h1> {{$t("UserOverview.title")}} </h1>
@@ -17,6 +17,7 @@
       <sortable-users :users="users" :filterKey="filter"></sortable-users>
     </div>
   </div>
+  <users-devices :selectedUser="selectedUser" v-else></users-devices>
 </template>
 
 <script>
@@ -24,14 +25,19 @@
   import UserRegForm from "./UserRegForm"
   import SortableUsers from "./SortableUsers"
   import FilterUsers from "./FilterUsers"
+  import MyDevices from "../MyDevices/MyDevices"
 
   export default{
     components: {
       'user-registration-modal': UserRegForm,
       'sortable-users': SortableUsers,
-      'filter-users': FilterUsers
+      'filter-users': FilterUsers,
+      'users-devices': MyDevices
     },
     name: 'user-overview',
+    props: [
+      'onUsersDeviceList'
+    ],
     data () {
       return {
         filter: '',
@@ -39,7 +45,8 @@
         user: {},
         edit_index: -1,
         changeEmail: false,
-        changePassword: false
+        changePassword: false,
+        selectedUserId: -1
       }
     },
     methods: {
@@ -84,6 +91,14 @@
       },
       getUserData() {
         auth.getUsers(this);
+      },
+      showDevicesOfUser(user) {
+        this.selectedUser = user;
+        this.onUsersDeviceList = true;
+      },
+      leaveUsersDeviceList() {
+        this.selectedUser.id = -1;
+        this.onUsersDeviceList = false;
       }
     },
     mounted: function() {
@@ -104,9 +119,15 @@
     margin-left: 1em;
   }
 
+  .breadcrumb {
+    background: $body-background;
+    margin-left: -2em;
+  }
+
   a {
     color: $primary-link-color;
   }
+
   #option_placeholder {
     display: none;
   }

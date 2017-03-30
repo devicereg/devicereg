@@ -1,7 +1,11 @@
 <template>
   <div id="my-devices-component">
     <device-registration-modal :device="device" :edit_index="edit_index" :custom_category="custom_category" :categories="categories"></device-registration-modal>
-    <div class="col-sm-12">
+    <div v-if="selectedUser.id != -1" class="col-sm-12">
+      <a v-on:click="goBackToUserOverview()"> {{$t("back")}} </a>
+      <h1> {{ this.selectedUser.prename + $t("MyDevices.title_sufix")}} </h1>
+    </div>
+    <div v-else class="col-sm-12">
       <h1> {{$t("MyDevices.title")}} </h1>
     </div>
     <div class="col-sm-8">
@@ -32,6 +36,13 @@
       'filter-input-elements': FilterInputElements
     },
     name: 'my-devices',
+    props: {
+      selectedUser: {
+        default: {
+          id: -1
+        }
+      }
+    },
     data () {
       return {
         filter: '',
@@ -85,10 +96,23 @@
         $('#device-registration-modal').modal('show');
       },
       getDeviceData() {
-        auth.getDevices(this);
+        if (this.selectedUser.id != -1) {
+          auth.getDevicesOfUser(this, this.selectedUser.id);
+        } else {
+          auth.getDevices(this);
+        }
+
       },
       getCategories() {
-        auth.getCategories(this);
+        if (this.selectedUser.id != -1) {
+          console.log("SELECTED ID:    ", this.selectedUser.id);
+          auth.getCategoriesOfUser(this, this.selectedUser.id);
+        } else {
+          auth.getCategories(this);
+        }
+      },
+      goBackToUserOverview() {
+        this.$parent.leaveUsersDeviceList();
       }
     },
     mounted: function() {

@@ -32,9 +32,9 @@
               v-bind:id="'user_' + user.id"
               v-bind:key="user.id" >
             <div class="col-sm-12">
-              <div class="table-row-content row">
-                <div class="table-cell col-md-3" v-on:click="router.push('/my-devices')">{{ user.email }}</div>
-                <div class="table-cell col-md-3" v-on:click="router.push('/my-devices')">{{ user.company }}</div>
+              <div class="table-row-content row" v-on:click="goToDevicesOfUser(user)">
+                <div class="table-cell col-md-3">{{ user.email }}</div>
+                <div class="table-cell col-md-3">{{ user.company }}</div>
                 <div class="table-cell" :class="{ 'col-md-2': role == 'ROLE_ADMIN', 'col-md-3': role == 'ROLE_SUPPORT' }"
                      v-on:click="router.push('/my-devices')">{{ user.surname }}</div>
                 <div class="table-cell" :class="{ 'col-md-2': role == 'ROLE_ADMIN', 'col-md-3': role == 'ROLE_SUPPORT' }"
@@ -104,6 +104,9 @@
       },
       editUser: function(user) {
         this.$parent.editUser(user);
+      },
+      goToDevicesOfUser(user) {
+        this.$parent.showDevicesOfUser(user);
       }
     },
     computed: {
@@ -194,6 +197,7 @@
 
   .table-row-content:hover {
     background: $table-row-hover-color;
+    cursor: pointer;
   }
 
   /*th {*/
