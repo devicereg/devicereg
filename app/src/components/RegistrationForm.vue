@@ -1,4 +1,4 @@
-<template xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<template>
   <div id="user-registration-component">
     <div class="row">
       <div class="col-sm-12">
@@ -59,8 +59,8 @@
             <div class="col-sm-6">
               <select name="language" class="form-control" id="register_language" v-model="credentials.language" required>
                 <option value="" :disabled="true">{{$t("RegistrationForm.choose")}}</option>
-                <option>{{$t("RegistrationForm.german")}}</option>
-                <option>{{$t("RegistrationForm.english")}}</option>
+                <option value="de">{{$t("RegistrationForm.german")}}</option>
+                <option value="en">{{$t("RegistrationForm.english")}}</option>
               </select>
             </div>
           </div>
@@ -88,7 +88,7 @@
                       v-model="credentials.industry_family"
                       required>
                 <option value="" :disabled="true">{{$t("RegistrationForm.choose")}}</option>
-                <option v-bind:value="item.id" v-for="item in industry_family" > {{ $t(item.name) }}</option>
+                <option v-bind:value="item.id" v-for="item in industry_family" > {{ item.name }}</option>
               </select>
             </div>
           </div>
@@ -294,6 +294,7 @@
 
 	    return {
 	    	credentials: {
+          role: "ROLE_USER",
 					gender: '',
 					prename: '',
 					surname: '',
@@ -406,6 +407,7 @@
 	  methods: {
 	  	submit() {
         var credentials = {
+          role: "ROLE_USER",
           gender: this.credentials.gender,
           prename: this.credentials.prename,
           surname: this.credentials.surname,
@@ -429,10 +431,10 @@
 
         }
 
-        if(this.credentials.password != this.credentials.password_repeat){
+        if(this.credentials.password != this.credentials.password_repeat || this.credentials.email != this.credentials.email_repeat){
           this.$parent.$refs.toastr.Add({
-              msg: this.$t("Passwörter stimmen nicht überein!"),
-              title: this.$t("Passwort"),
+              title: this.$t("UI.password_or_email_mismatch_title"),
+              msg: this.$t("UI.password_or_email_mismatch_msg"),
               clickClose: false,
               timeout: 8000,
               position: "toast-top-right",
@@ -441,6 +443,14 @@
         }
         else{
           auth.signup(this, credentials, '/my-devices')
+          this.$parent.$refs.toastr.Add({
+              title: this.$t("UI.register_user_title"),
+              msg: this.$t("UI.register_user_msg"),
+              clickClose: false,
+              timeout: 8000,
+              position: "toast-top-right",
+              type: "success"
+          });
         }
 
       }

@@ -1,7 +1,10 @@
 <template>
   <div id="navbar" class="navbar-collapse collapse">
     <ul class="nav navbar-nav navbar-left">
-      <li data-toggle="collapse" data-target="#navbar">
+      <li data-toggle="collapse" data-target="#navbar" v-if="userRole === 'ROLE_ADMIN' ^ userRole === 'ROLE_SUPPORT'">
+        <router-link id="goToUserOverview" to="/user-overview">{{ $t('user_overview') }}</router-link>
+      </li>
+      <li data-toggle="collapse" data-target="#navbar" v-if="userRole === 'ROLE_USER'">
         <router-link to="/my-devices">{{ $t('my_devices') }}</router-link>
       </li>
     </ul>
@@ -68,15 +71,22 @@ export default {
       })
 
     }
+  },
+  computed: {
+    userRole: function() {
+      return auth.getRole();
+    }
   }
 }
 </script>
 <style scoped lang="scss">
   @import '../../styles/_colors';
 
-  li.dropdown:hover ul.dropdown-menu {
-    display: block;
-    margin-top: 0;
+  @media all and (min-width: 845px) {
+    li.dropdown:hover ul.dropdown-menu {
+      display: block;
+      margin-top: 0;
+    }
   }
 
   ul.dropdown-menu {

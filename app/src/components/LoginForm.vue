@@ -1,4 +1,4 @@
-<template xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<template>
 	<div class="login-form">
       <!-- UI Message no User -->
       <form id="user-login-form" class="form-horizontal" role="form" v-if="!user.authenticated" v-on:submit.prevent="submitForm">
@@ -93,8 +93,7 @@
           email: this.credentials.email,
           password: this.credentials.password
         }
-
-        auth.login(this, credentials, 'my-devices')
+        auth.login(this, credentials, this.$parent.$parent.$refs.toastr) //, this.$parent.$refs.config.lang)
 	  	},
 
 	  	logout() {

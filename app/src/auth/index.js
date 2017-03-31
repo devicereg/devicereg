@@ -1,20 +1,29 @@
 import {router} from '../main'
 
 var os = require('os');
+var jwt = require('jsonwebtoken');
 
-const API_URL 					= 'http://' + os.hostname() + ':3001/';
-const LOGIN_URL 				= API_URL 	+ 'sessions/create/';
-const SIGNUP_URL 				= API_URL 	+ 'user/create';
-const UPDATE_URL 				= API_URL 	+ 'user/update';
-const DELETE_URL 				= API_URL 	+ 'user/delete';
-const RESET_PASSWORD_URL 		= API_URL 	+ 'reset-user-password';
-const CREATE_NEW_PASSWORD_URL 	= API_URL 	+ 'create-new-password';
-const CREATE_DEVICE_URL 		= API_URL 	+ 'device/create';
-const UPDATE_DEVICE_URL 		= API_URL 	+ 'device/update';
-const DELETE_DEVICE_URL 		= API_URL 	+ 'device/delete';
-const GET_DEVICES_URL 			= API_URL 	+ 'devices';
-const GET_CATEGORIES_URL 		= API_URL 	+ 'categories';
-const CREATE_CATEGORY_URL 		= API_URL 	+ 'category/create';
+var config = require('../../../mockserver/config.json');
+
+const API_URL 					          = 'http://' + os.hostname() + ':3001/';
+const LOGIN_URL 				          = API_URL 	+ 'sessions/create/';
+const SIGNUP_URL 				          = API_URL 	+ 'user/create';
+const UPDATE_URL 				          = API_URL 	+ 'user/update';
+const DELETE_URL 				          = API_URL 	+ 'user/delete';
+const RESET_PASSWORD_URL 		      = API_URL 	+ 'reset-user-password';
+const CREATE_NEW_PASSWORD_URL 	  = API_URL 	+ 'create-new-password';
+const CREATE_DEVICE_URL 		      = API_URL 	+ 'device/create';
+const UPDATE_DEVICE_URL 		      = API_URL 	+ 'device/update';
+const DELETE_DEVICE_URL 		      = API_URL 	+ 'device/delete';
+const GET_DEVICES_URL 			      = API_URL 	+ 'devices';
+const GET_DEVICES_OF_USER_URL		  = API_URL 	+ 'user/devices';
+const GET_USERS_URL 			        = API_URL 	+ 'users';
+const GET_CATEGORIES_URL 		      = API_URL 	+ 'categories';
+const GET_CATEGORIES_OF_USER_URL  = API_URL 	+ 'user/categories';
+const CREATE_CATEGORY_URL 		    = API_URL 	+ 'category/create';
+const GET_TECHNOLOGIES_URL        = API_URL   + 'technologies';
+
+var Vue = require('vue')
 
 export default {
 	name: 'authentication',
@@ -27,20 +36,29 @@ export default {
 	 * @param      {JSON}    creds     The creds
 	 * @param      {string}  redirect  The redirect
 	 */
-	login(context, creds, redirect)
+	login(context, creds, toastr)
 	{
 		context.$http.post(LOGIN_URL, creds).then((response) => {
-
-			localStorage.setItem('id_token', response.data.id_token);
+      const token = response.data.id_token;
+			localStorage.setItem('id_token', token);
 			this.user.authenticated = true;
-
-			if(redirect)
-			{
-				router.push(redirect)
-			}
+      const data = jwt.verify(localStorage.getItem('id_token'), config.secret);
+      if (data.language === "en" || data.language === "de") {
+        Vue.config.lang = data.language;
+      }
+      var redirect = (data.role !== "ROLE_USER") ? 'user-overview' : 'my-devices';
+      router.push(redirect);
 
 		}, (err) => {
-			context.error = err.body.message
+			context.error = err.body.message;
+			toastr.Add({
+				title: context.$t("UI.login_error_title"),
+				msg: context.$t("UI.login_error_msg"),
+				clickClose: true,
+				timeout: 8000,
+				position: "toast-top-right",
+				type: "error"
+			});
 		})
 	},
 
@@ -56,7 +74,12 @@ export default {
 	    context.$http.post(SIGNUP_URL, creds).then((response) => {
 
 			localStorage.setItem('id_token', response.data.id_token);
-	      	this.user.authenticated = true;
+      this.user.authenticated = true;
+
+      const data = jwt.verify(localStorage.getItem('id_token'), config.secret);
+      if (data.language === "en" || data.language === "de") {
+        Vue.config.lang = data.language;
+      }
 
 			if(redirect)
 			{
@@ -67,6 +90,26 @@ export default {
 	    	context.error = err;
 	    })
   	},
+
+	/**
+	 * Method for user registration
+	 *
+	 * @param      {object}  context   The context
+	 * @param      {JSON}  	 creds     The creds
+	 * @param      {string}  redirect  The redirect
+	 */
+	createUser(context, creds)
+	{
+    context.$http.post(SIGNUP_URL, creds).then((response) => {
+      context.user.id = response.body.id;
+      console.log("USER ID:   ", response.body.id);
+      context.userCreated();
+
+    },
+      (err) => {
+        context.error = err;
+      })
+  },
 
 
   	/**
@@ -79,8 +122,6 @@ export default {
 	update(context, creds, redirect)
 	{
 	    context.$http.post(UPDATE_URL, creds).then((response) => {
-
-        localStorage.setItem('id_token', response.data.id_token);
 
 			if(redirect)
 			{
@@ -101,14 +142,26 @@ export default {
 	delete(context, id)
 	{
 	    context.$http.post(DELETE_URL, id).then((response) => {
-
-	    	console.log(response.data.message);
 	    	this.logout()
-
 	    }, (err) => {
 	    	context.error = err
 	    })
   	},
+
+  	/**
+	 * Method for user delete
+	 *
+	 * @param      {object}  context   The context
+ 	 * @param      {int}   	 id     	The creds
+	 */
+	deleteUser(context, id)
+	{
+    context.$http.post(DELETE_URL, id).then((response) => {
+
+    }, (err) => {
+      context.error = err
+    })
+  },
 
 	/**
 	 * Method for user logout
@@ -131,7 +184,7 @@ export default {
 	 */
 	checkAuth()
 	{
-		var jwt = localStorage.getItem('id_token');
+		let jwt = localStorage.getItem('id_token');
 
 		this.user.authenticated = !!jwt;
 	},
@@ -143,37 +196,15 @@ export default {
 	 */
 	getAuthHeader()
 	{
-		return { 'Authorization': 'Bearer' + localStorage.getItem('id_token') }
+		return { 'Authorization': 'Bearer ' + localStorage.getItem('id_token') }
 	},
 
-	createDevice(context, data, redirect)
+	updateDevice(context, data, toastr)
   	{
-	    context.$http.post(CREATE_DEVICE_URL, data).then((response) => {
-        var responseBody = response.body;
-        context.selected_device_id = responseBody.id;
-        console.log(context.selected_device_id);
-
-	      if(redirect)
-	      {
-	        router.push(redirect)
-	      }
+	    context.$http.post(UPDATE_DEVICE_URL, data,  { headers: this.getAuthHeader() }).then((response) => {
 
 	    }, (err) => {
-	      context.error = err
-	    });
-  	},
-
-	updateDevice(context, data, redirect)
-  	{
-	    context.$http.post(UPDATE_DEVICE_URL, data).then((response) => {
-
-	      if(redirect)
-	      {
-	        router.push(redirect)
-	      }
-
-	    }, (err) => {
-	      context.error = err
+	      context.error = err;
 	    });
   	},
 
@@ -242,13 +273,14 @@ export default {
 	    })
   	},
 
-  	createDevice(context, data)
+  	createDevice(context, data, toastr)
     {
-      context.$http.post(CREATE_DEVICE_URL, data).then((response) => {
+      context.$http.post(CREATE_DEVICE_URL, data, { headers: this.getAuthHeader() }).then((response) => {
         context.device.id = response.body.id;
         context.deviceCreated();
-        }, (err) => {
-          context.error = err
+
+       }, (err) => {
+          context.error = err;
       });
     },
 
@@ -259,26 +291,35 @@ export default {
    * @param      {JSON}    data      The device- and user-id
    * @param      {string}  redirect  The redirect
    */
-  deleteDevice(context, data)
+  deleteDevice(context, data, toastr)
   {
-    context.$http.post(DELETE_DEVICE_URL, data).then((response) => {
-
+    context.$http.post(DELETE_DEVICE_URL, data, { headers: this.getAuthHeader() }).then((response) => {
     }, (err) => {
-      context.error = err
-      toastr.Add({
-        msg: "SUCCESS",
-        clickClose: false,
-        timeout: 8000,
-        position: "toast-top-right",
-        type: "error"
-      });
+      context.error = err;
     });
   },
 
   getDevices(context)
   {
-    context.$http.get(GET_DEVICES_URL).then((response) => {
+    context.$http.get(GET_DEVICES_URL, { headers: this.getAuthHeader() }
+    ).then((response) => {
       context.devices = response.body;
+    });
+  },
+
+  getDevicesOfUser(context, userId)
+  {
+    var data = {id: userId};
+    context.$http.post(GET_DEVICES_OF_USER_URL, data, { headers: this.getAuthHeader() }).then((response) => {
+      console.log("Users devices:   ", response.body);
+      context.devices = response.body;
+    });
+  },
+
+  getUsers(context)
+  {
+    context.$http.get(GET_USERS_URL).then((response) => {
+      context.users = response.body;
     }, (err) => {
       context.error = err;
     });
@@ -286,7 +327,19 @@ export default {
 
   getCategories(context)
   {
-    context.$http.get(GET_CATEGORIES_URL).then((response) => {
+    context.$http.get(GET_CATEGORIES_URL, { headers: this.getAuthHeader() }
+    ).then((response) => {
+      context.categories =response.body;
+    }, (err) => {
+      context.error = err;
+    });
+  },
+
+  getCategoriesOfUser(context, userId)
+  {
+    var data = {id: userId};
+    context.$http.post(GET_CATEGORIES_OF_USER_URL, data, { headers: this.getAuthHeader() }).then((response) => {
+      console.log("Users categories:   ", response.body);
       context.categories = response.body;
     }, (err) => {
       context.error = err;
@@ -295,11 +348,26 @@ export default {
 
   createNewCategory(context, data)
   {
-	context.$http.post(CREATE_CATEGORY_URL, data).then((response) => {
-    context.device.category_id = response.body.id;
-	  context.categoryCreated();
-	}, (err) => {
-	  context.error = err;
+	  context.$http.post(CREATE_CATEGORY_URL, data, { headers: this.getAuthHeader() }).then((response) => {
+      context.device.category_id = response.body.id;
+      context.categoryCreated();
+	  }, (err) => {
+	    context.error = err;
     });
+  },
+
+  getTechnologies(context)
+  {
+    context.$http.get(GET_TECHNOLOGIES_URL).then((response) => {
+      context.technologies = response.body;
+    }, (err) => {
+      context.error = err;
+    });
+  },
+
+  getRole()
+  {
+    const data = jwt.verify(localStorage.getItem('id_token'), config.secret);
+    return data.role;
   }
 }
