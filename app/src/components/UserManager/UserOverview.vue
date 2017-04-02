@@ -35,9 +35,6 @@
       'users-devices': MyDevices
     },
     name: 'user-overview',
-    props: [
-      'onUsersDeviceList'
-    ],
     data () {
       return {
         filter: '',
@@ -46,7 +43,8 @@
         edit_index: -1,
         changeEmail: false,
         changePassword: false,
-        selectedUserId: -1
+        selectedUserId: -1,
+        onUsersDeviceList: false
       }
     },
     methods: {
@@ -97,7 +95,7 @@
         this.onUsersDeviceList = true;
       },
       leaveUsersDeviceList() {
-        this.selectedUser.id = -1;
+        this.selectedUser = null;
         this.onUsersDeviceList = false;
       }
     },
