@@ -38,7 +38,7 @@
                 <div class="table-cell" :class="{ 'col-md-2': role == 'ROLE_ADMIN', 'col-md-3': role == 'ROLE_SUPPORT' }"
                      v-on:click="goToDevicesOfUser(user)">{{ user.surname }}</div>
                 <div class="table-cell" :class="{ 'col-md-2': role == 'ROLE_ADMIN', 'col-md-3': role == 'ROLE_SUPPORT' }"
-                     v-on:click="goToDevicesOfUser(user)"">{{ user.prename }}</div>
+                     v-on:click="goToDevicesOfUser(user)">{{ user.prename }}</div>
                 <div  v-if="role === 'ROLE_ADMIN'" class="table-cell col-md-2">
                   <a v-on:click="editUser(user)">
                     <span class="glyphicon glyphicon-edit action-button" aria-hidden="true"></span>
