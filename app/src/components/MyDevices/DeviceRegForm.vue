@@ -260,7 +260,7 @@ export default {
         disabled: {
           to: limitDate
         },
-        format: 'yyyy MM dd'
+        format: 'dd.MM.yyyy'
       }
     }
   },
