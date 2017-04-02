@@ -32,3 +32,14 @@
     }
   }
 </script>
+
+<style lang="scss" scoped>
+  @import '../../styles/colors';
+
+  @media (max-width: 767px) {
+    .action-button {
+      font-size: 1.5em;
+    }
+  }
+
+</style>
