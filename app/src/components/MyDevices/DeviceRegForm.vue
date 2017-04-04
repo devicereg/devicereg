@@ -112,7 +112,7 @@
                     <label for="tag">{{$t("DeviceRegForm.tag_number")}}:</label>
                   </div>
                   <div :class="{'has-error': errors.has('tag') }">
-                    <input v-validate="'required|numeric'" name="tag" class="form-control" id="tag" v-model="device.tag">
+                    <input v-validate="'required'" name="tag" class="form-control" id="tag" v-model="device.tag">
                   </div>
                   <span v-show="errors.has('tag')" class="text-danger">{{ errors.first('tag') }}</span>
                 </div>

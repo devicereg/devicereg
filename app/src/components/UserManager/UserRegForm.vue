@@ -149,7 +149,7 @@
                 <div class="col-sm-6">
                   <label class="control-label" for="register_zip">{{$t("RegistrationForm.zip")}}:</label>
                   <div :class="{'has-error': errors.has('zip') }">
-                    <input v-validate="'required'" name="zip" class="form-control" id="register_zip" v-model="user.zip">
+                    <input v-validate="'required|numeric'" name="zip" class="form-control" id="register_zip" v-model="user.zip">
                   </div>
                   <span v-show="errors.has('zip')" class="text-danger">{{ errors.first('zip') }}</span>
                 </div>
@@ -177,14 +177,14 @@
                 <div class="col-sm-6">
                   <label class="control-label" for="register_user">{{$t("RegistrationForm.user")}}:</label>
                   <div :class="{'has-error': errors.has('email') }">
-                    <input v-validate="'required|email|confirmed:user_repeat'" name="email" class="form-control" id="register_user" v-model="user.email">
+                    <input v-validate="'required|email'" name="email" class="form-control" id="register_user" v-model="user.email">
                   </div>
                   <span v-show="errors.has('email')" class="text-danger">{{ errors.first('email') }}</span>
                 </div>
                 <div class="col-sm-6">
                   <label class="control-label" for="register_user_repeat">{{$t("RegistrationForm.user_repeat")}}:</label>
                   <div :class="{'has-error': errors.has('user_repeat') }">
-                    <input v-validate="'required|email'" name="user_repeat" class="form-control" id="register_user_repeat" v-model="repeatedEmail">
+                    <input v-validate="'required|email|confirmed:email'" name="user_repeat" class="form-control" id="register_user_repeat" v-model="repeatedEmail">
                   </div>
                   <span v-show="errors.has('user_repeat')" class="text-danger">{{ errors.first('user_repeat') }}</span>
                 </div>
@@ -193,35 +193,35 @@
                 <div class="col-sm-6">
                   <label class="control-label" for="register_user">{{$t("RegistrationForm.user")}}:</label>
                   <div class="input-group">
-                    <div :class="{'has-error': errors.has('email_d') }">
-                      <input v-validate="'required|email|confirmed:user_repeat_d'" name="email_d" class="form-control" id="register_user" v-model="user.email" :disabled="!changeEmail">
+                    <div :class="{'has-error': errors.has('email') }">
+                      <input v-validate="'required|email'" name="email" class="form-control" id="register_user" v-model="user.email" :disabled="!changeEmail">
                     </div>
-                    <span v-show="errors.has('email_d')" class="text-danger">{{ errors.first('email_d') }}</span>
                     <span class="input-group-btn">
                        <button class="btn btn-default glyphicon glyphicon-edit btn-primary" type="button" v-on:click="toggleEmailEdit()"></button>
                      </span>
-                  </div>
+                    </div>
+                  <span v-show="errors.has('email')" class="text-danger">{{ errors.first('email') }}</span>
                 </div>
                 <div v-if="changeEmail" class="col-sm-6">
                   <label class="control-label" for="register_user_repeat">{{$t("RegistrationForm.new_email_repeat")}}:</label>
-                  <div :class="{'has-error': errors.has('user_repeat_d') }">
-                    <input v-validate="'required|email'" name="user_repeat_d" class="form-control" id="register_user_repeat" v-model="repeatedEmail">
+                  <div :class="{'has-error': errors.has('user_repeat') }">
+                    <input v-validate="'required|email|confirmed:email'" name="user_repeat" class="form-control" id="register_user_repeat" v-model="repeatedEmail">
                   </div>
-                  <span v-show="errors.has('user_repeat_d')" class="text-danger">{{ errors.first('user_repeat_d') }}</span>
+                  <span v-show="errors.has('user_repeat')" class="text-danger">{{ errors.first('user_repeat') }}</span>
                 </div>
               </div>
               <div v-if="user.id == -1" class="form-group row">
                 <div class="col-sm-6">
                   <label class="control-label" for="register_password">{{$t("RegistrationForm.password")}}:</label>
                   <div :class="{'has-error': errors.has('password') }">
-                    <input v-validate="'required|confirmed:password_repeat'" name="password" type="password" class="form-control" id="register_password" v-model="user.password">
+                    <input v-validate="'required'" name="password" type="password" class="form-control" id="register_password" v-model="user.password">
                   </div>
                   <span v-show="errors.has('password')" class="text-danger">{{ errors.first('password') }}</span>
                 </div>
                 <div class="col-sm-6">
-                  <label class="control-label" for="register_user_repeat">{{$t("RegistrationForm.new_password_repeat")}}:</label>
+                  <label class="control-label" for="register_password_repeat">{{$t("RegistrationForm.new_password_repeat")}}:</label>
                   <div :class="{'has-error': errors.has('password_repeat') }">
-                    <input v-validate="'required'" type="password" name="password_repeat" class="form-control" id="register_password_repeat" v-model="repeatedPassword">
+                    <input v-validate="'required|confirmed:password'" type="password" name="password_repeat" class="form-control" id="register_password_repeat" v-model="repeatedPassword">
                   </div>
                   <span v-show="errors.has('password_repeat')" class="text-danger">{{ errors.first('password_repeat') }}</span>
                 </div>
@@ -230,21 +230,21 @@
                 <div class="col-sm-6">
                   <label class="control-label" for="register_password">{{$t("RegistrationForm.password")}}:</label>
                   <div class="input-group">
-                    <div :class="{'has-error': errors.has('password_1') }">
-                      <input v-validate="'required|confirmed:password_1_repeat'" name="password_1" type="password" class="form-control" id="register_password" v-model="user.password" :disabled="!changePassword">
+                    <div :class="{'has-error': errors.has('password') }">
+                      <input v-validate="'required'" name="password" type="password" class="form-control" id="register_password" v-model="user.password" :disabled="!changePassword">
                     </div>
-                    <span v-show="errors.has('password_1')" class="text-danger">{{ errors.first('password_1') }}</span>
                     <span class="input-group-btn">
-                       <button class="btn btn-default glyphicon glyphicon-edit btn-primary" type="button" v-on:click="togglePasswordEdit()"></button>
-                     </span>
+                      <button class="btn btn-default glyphicon glyphicon-edit btn-primary" type="button" v-on:click="togglePasswordEdit()"></button>
+                    </span>
                   </div>
+                  <span v-show="errors.has('password')" class="text-danger">{{ errors.first('password') }}</span>
                 </div>
                 <div v-if="changePassword" class="col-sm-6">
                   <label class="control-label" for="register_password_repeat">{{$t("RegistrationForm.new_password_repeat")}}:</label>
-                  <div :class="{'has-error': errors.has('password_1_repeat') }">
-                    <input v-validate="'required'" name="password_1_repeat" type="password" class="form-control" id="register_password_repeat" v-model="repeatedPassword" hidden>
+                  <div :class="{'has-error': errors.has('password_repeat') }">
+                    <input v-validate="'required|confirmed:password'" name="password_repeat" type="password" class="form-control" id="register_password_repeat" v-model="repeatedPassword" hidden>
                   </div>
-                  <span v-show="errors.has('password_1_repeat')" class="text-danger">{{ errors.first('password_1_repeat') }}</span>
+                  <span v-show="errors.has('password_repeat')" class="text-danger">{{ errors.first('password_repeat') }}</span>
                 </div>
               </div>
               <div class="form-group row">

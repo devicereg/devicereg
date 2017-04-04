@@ -193,7 +193,7 @@
               <label for="register_zip">{{$t("RegistrationForm.zip")}}</label>
             </div>
             <div class="col-sm-6" :class="{'has-error': errors.has('zip') }">
-              <input v-validate="'required'"
+              <input v-validate="'required|numeric'"
               name="zip"
               type="text"
               class="form-control"
