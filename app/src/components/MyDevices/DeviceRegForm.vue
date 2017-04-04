@@ -197,7 +197,7 @@
                     <label class="control-label" for="cBeginning">{{$t("DeviceRegForm.start")}}:</label>
                     <datepicker name="calibration_start" input-class="form-control" :required="device.calibrationMsg" :language="lang"
                                 :disabled="state.disabled || !device.calibrationMsg" :format="state.format" :placeholder="this.placeholder"
-                                :id="cBeginning" :readonly="false" v-model="device.cBeginning"></datepicker>
+                                id="cBeginning" :readonly="false" v-model="device.cBeginning"></datepicker>
                   </div>
                   <div v-if="device.calibrationMsg == 'true'" class="form-group">
                     <label class="control-label" for="email_address_calibration">{{$t("DeviceRegForm.email")}}</label>
