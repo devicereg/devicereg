@@ -70,8 +70,8 @@
           tag: '',
           mInterval: '', //Interval for maintenance schedule
           mBeginning: '', //start date of recieving notifications about maintenance schedules
-          calibration: 0, //boolean, true if calibration desired
-          maintenance: 0, //boolean, true if maintenance desired
+          calibration: false, //boolean, true if calibration desired
+          maintenance: false, //boolean, true if maintenance desired
           maintenanceMsg: 0, //boolean, true if notifications about maintenance schedule desired
           cInterval: '', //Interval for calibration schedule
           calibrationMsg: 0, //boolean, true if notifications about calibration schedule desired

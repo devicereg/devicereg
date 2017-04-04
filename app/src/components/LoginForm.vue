@@ -5,36 +5,43 @@
           <h1>{{ $t("LoginForm.registration") }}</h1>
           <div class="form-group row">
             <div class="col-xs-12">
-              <div class="input-group">
+              <div class="input-group" :class="{'has-error': errors.has('login_email') }">
                 <span class="input-group-addon">
                   <i class="glyphicon glyphicon-envelope"></i>
                 </span>
-                <input
-                  type="email"
-                  class="form-control"
-                  id="login_email"
-                  v-model="credentials.email"
-                  v-bind:placeholder="$t('email')"
-                  required
+								<div>
+                	<input
+										name="login_email"
+                  	v-validate="'required|email'"
+                  	class="form-control"
+                  	id="login_email"
+                  	v-model="credentials.email"
+                  	v-bind:placeholder="$t('email')"
                   />
+								</div>
               </div>
+							<span v-show="errors.has('login_email')" class="text-danger">{{ errors.first('login_email') }}</span>
             </div>
           </div>
           <div class="form-group row">
             <div class="col-xs-12">
-              <div class="input-group ">
+              <div class="input-group " :class="{'has-error': errors.has('password') }">
                 <span class="input-group-addon">
                   <i class="glyphicon glyphicon-lock" aria-hidden="true"></i>
                 </span>
-                <input
-                  type="password"
-                  class="form-control"
-                  id="login_password"
-                  v-model="credentials.password"
-                  v-bind:placeholder="$t('password')"
-                  required
-                 />
+								<div>
+                	<input
+										name="password"
+										v-validate="'required'"
+                  	type="password"
+                  	class="form-control"
+                  	id="login_password"
+                  	v-model="credentials.password"
+                  	v-bind:placeholder="$t('password')"
+                 	/>
+							 </div>
               </div>
+							<span v-show="errors.has('password')" class="text-danger">{{ errors.first('password') }}</span>
             </div>
           </div>
           <div class="form-group row">
@@ -74,6 +81,7 @@
 </style>
 <script>
 	import auth from '../auth'
+	import Vue from 'vue'
 
 	export default {
 	  name: 'login-form',
@@ -93,12 +101,25 @@
           email: this.credentials.email,
           password: this.credentials.password
         }
-        auth.login(this, credentials, this.$parent.$parent.$refs.toastr) //, this.$parent.$refs.config.lang)
+				this.$validator.validateAll().then(success => {
+								if (!success) {
+								} else {
+									auth.login(this, credentials, this.$parent.$parent.$refs.toastr)
+								}
+						});
 	  	},
 
 	  	logout() {
 	  		auth.logout()
 	  	}
+	  },
+	  computed: {
+	    lang: function () {
+	      return Vue.config.lang;
+	    }
+	  },
+	  mounted: function() {
+	    this.$validator.setLocale(this.lang);
 	  }
 	}
 </script>
