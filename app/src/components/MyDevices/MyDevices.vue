@@ -38,10 +38,9 @@
     name: 'my-devices',
     props: {
       selectedUser: {
-        default: {
-          id: -1
+        type: Object,
+        default: function () { return { id: -1 } }
         }
-      }
     },
     data () {
       return {
