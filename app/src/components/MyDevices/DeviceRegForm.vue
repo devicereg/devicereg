@@ -26,9 +26,7 @@
                   <select v-validate="'required'" name="technology" class="form-control" id="technology" v-model="device.technology_id">
                     <option value="" :disabled="true">{{$t("DeviceRegForm.choose")}}</option>
                     <option v-bind:value="item.id" v-for="item in technologies">{{item.name}}</option>
-                    <option value="1">Example Technology</option>
                   </select>
-                  <span v-show="errors.has('technology')" class="text-danger">{{ errors.first('technology') }}</span>
                 </div>
               </div>
               <div class="form-group row" v-if="custom_category">
@@ -170,8 +168,8 @@
                       <label name="maintenance_start" for="mBeginning">{{$t("DeviceRegForm.start")}}:</label>
                     </div>
                     <div :class="{'has-error': errors.has('maintenance_start') }">
-                      <datepicker v-validate="'required'" name="maintenance_start" :language="lang" :disabled="state.disabled || !device.maintenanceMsg" :format="state.format" :placeholder="this.placeholder" :id="mBeginning" v-model="device.mBeginning"
-                                 class="form-control" :required="device.maintenanceMsg"></datepicker>
+                      <datepicker v-validate="'required'" name="maintenance_start" :language="lang" :disabled="state.disabled || !device.maintenanceMsg" :format="state.format" :placeholder="this.placeholder" id="mBeginning"
+                                  v-model="device.mBeginning" input-class="form-control"  required="device.maintenanceMsg"></datepicker>
                     </div>
                     <span v-show="errors.has('maintenance_start')" class="text-danger">{{ errors.first('maintenance_start') }}</span>
                   </div>
@@ -180,7 +178,7 @@
                       <label name="email_address_maintenance" for="email_address_maintenance">{{$t("DeviceRegForm.email")}}</label>
                     </div>
                     <div :class="{'has-error': errors.has('email_address_maintenance') }">
-                      <input v-validate="'required|email'" class="form-control" name="email_address_maintenance" id="email_address_maintenance" v-model="device.email_address_maintenance">
+                      <input v-validate="'required|email'" type="email" class="form-control" name="email_address_maintenance" id="email_address_maintenance" v-model="device.email_address_maintenance">
                     </div>
                     <span v-show="errors.has('email_address_maintenance')" class="text-danger">{{ errors.first('email_address_maintenance') }}</span>
                   </div>
@@ -240,8 +238,9 @@
                       <label for="cBeginning">{{$t("DeviceRegForm.start")}}:</label>
                     </div>
                     <div :class="{'has-error': errors.has('calibration_start') }">
-                      <datepicker v-validate="'required'" name="calibration_start" :language="lang" :disabled="state.disabled || !device.calibrationMsg" :format="state.format" :placeholder="this.placeholder" :id="cBeginning" v-model="device.cBeginning"
-                                        class="form-control" :required="device.calibrationMsg"></datepicker>
+                      <datepicker v-validate="'required'" name="calibration_start" input-class="form-control" :required="device.calibrationMsg" :language="lang"
+                                  :disabled="state.disabled || !device.calibrationMsg" :format="state.format" :placeholder="this.placeholder"
+                                  id="cBeginning" v-model="device.cBeginning"></datepicker>
                     </div>
                     <span v-show="errors.has('calibration_start')" class="text-danger">{{ errors.first('calibration_start') }}</span>
                   </div>
@@ -250,7 +249,7 @@
                       <label for="email_address_calibration">{{$t("DeviceRegForm.email")}}</label>
                     </div>
                     <div :class="{'has-error': errors.has('email_address_calibration') }">
-                      <input v-validate="'required|email'" name="email_address_calibration" class="form-control" id="email_address_calibration" v-model="device.email_address_calibration">
+                      <input v-validate="'required|email'" type="email" name="email_address_calibration" class="form-control" id="email_address_calibration" v-model="device.email_address_calibration">
                     </div>
                     <span v-show="errors.has('email_address_calibration')" class="text-danger">{{ errors.first('email_address_calibration') }}</span>
                   </div>
@@ -312,16 +311,12 @@ export default {
         {id: 2, name: 'Argon'},
         {id: 3, name: 'Benzol'}
       ],
-      technologies: [
-        {id: 1, name: 'Technology 1'},
-        {id: 2, name: 'Technology 2'},
-        {id: 3, name: 'Technology 3'}
-      ],
+      technologies: [],
       state: {
         disabled: {
           to: limitDate
         },
-        format: 'yyyy MM dd'
+        format: 'dd.MM.yyyy'
       }
     }
   },
@@ -473,6 +468,11 @@ export default {
 
   #maintenance, #calibration, #maintenanceMsg, #calibrationMsg {
     margin-left: 1em;
+  }
+
+  .form-control[readonly], fieldset[disabled] .form-control {
+    background-color: #fff;
+    opacity: 1;
   }
 
   @media (max-width: 767px) {

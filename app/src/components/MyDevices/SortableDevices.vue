@@ -115,8 +115,8 @@
       removeDevice: function(device) {
         var index = this.devices.indexOf(device);
         this.devices.splice(index, 1);
-
-        this.$parent.$parent.$refs.toastr.Add({
+        var taostr = (this.$parent.selectedUser.id == -1) ? this.$parent.$parent.$refs.toastr : this.$parent.$parent.$parent.$refs.toastr
+        taostr.Add({
           title: this.$t("UI.delete_device_title"),
           msg: this.$t("UI.delete_device_msg"),
           clickClose: true,

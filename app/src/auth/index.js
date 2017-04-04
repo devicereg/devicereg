@@ -5,21 +5,23 @@ var jwt = require('jsonwebtoken');
 
 var config = require('../../../mockserver/config.json');
 
-const API_URL 					= 'http://' + os.hostname() + ':3001/';
-const LOGIN_URL 				= API_URL 	+ 'sessions/create/';
-const SIGNUP_URL 				= API_URL 	+ 'user/create';
-const UPDATE_URL 				= API_URL 	+ 'user/update';
-const DELETE_URL 				= API_URL 	+ 'user/delete';
-const RESET_PASSWORD_URL 		= API_URL 	+ 'reset-user-password';
-const CREATE_NEW_PASSWORD_URL 	= API_URL 	+ 'create-new-password';
-const CREATE_DEVICE_URL 		= API_URL 	+ 'device/create';
-const UPDATE_DEVICE_URL 		= API_URL 	+ 'device/update';
-const DELETE_DEVICE_URL 		= API_URL 	+ 'device/delete';
-const GET_DEVICES_URL 			= API_URL 	+ 'devices';
-const GET_USERS_URL 			= API_URL 	+ 'users';
-const GET_CATEGORIES_URL 		= API_URL 	+ 'categories';
-const CREATE_CATEGORY_URL 		= API_URL 	+ 'category/create';
-const GET_TECHNOLOGIES_URL    = API_URL   + 'technologies';
+const API_URL 					          = 'http://' + os.hostname() + ':3001/';
+const LOGIN_URL 				          = API_URL 	+ 'sessions/create/';
+const SIGNUP_URL 				          = API_URL 	+ 'user/create';
+const UPDATE_URL 				          = API_URL 	+ 'user/update';
+const DELETE_URL 				          = API_URL 	+ 'user/delete';
+const RESET_PASSWORD_URL 		      = API_URL 	+ 'reset-user-password';
+const CREATE_NEW_PASSWORD_URL 	  = API_URL 	+ 'create-new-password';
+const CREATE_DEVICE_URL 		      = API_URL 	+ 'device/create';
+const UPDATE_DEVICE_URL 		      = API_URL 	+ 'device/update';
+const DELETE_DEVICE_URL 		      = API_URL 	+ 'device/delete';
+const GET_DEVICES_URL 			      = API_URL 	+ 'devices';
+const GET_DEVICES_OF_USER_URL		  = API_URL 	+ 'user/devices';
+const GET_USERS_URL 			        = API_URL 	+ 'users';
+const GET_CATEGORIES_URL 		      = API_URL 	+ 'categories';
+const GET_CATEGORIES_OF_USER_URL  = API_URL 	+ 'user/categories';
+const CREATE_CATEGORY_URL 		    = API_URL 	+ 'category/create';
+const GET_TECHNOLOGIES_URL        = API_URL   + 'technologies';
 
 var Vue = require('vue')
 
@@ -305,6 +307,15 @@ export default {
     });
   },
 
+  getDevicesOfUser(context, userId)
+  {
+    var data = {id: userId};
+    context.$http.post(GET_DEVICES_OF_USER_URL, data, { headers: this.getAuthHeader() }).then((response) => {
+      console.log("Users devices:   ", response.body);
+      context.devices = response.body;
+    });
+  },
+
   getUsers(context)
   {
     context.$http.get(GET_USERS_URL).then((response) => {
@@ -319,6 +330,17 @@ export default {
     context.$http.get(GET_CATEGORIES_URL, { headers: this.getAuthHeader() }
     ).then((response) => {
       context.categories =response.body;
+    }, (err) => {
+      context.error = err;
+    });
+  },
+
+  getCategoriesOfUser(context, userId)
+  {
+    var data = {id: userId};
+    context.$http.post(GET_CATEGORIES_OF_USER_URL, data, { headers: this.getAuthHeader() }).then((response) => {
+      console.log("Users categories:   ", response.body);
+      context.categories = response.body;
     }, (err) => {
       context.error = err;
     });
