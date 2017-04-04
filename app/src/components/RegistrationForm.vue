@@ -77,7 +77,7 @@
               <label for="register_phone">{{$t("phone")}}</label>
             </div>
             <div class="col-sm-6" :class="{'has-error': errors.has('phone') }">
-              <input v-validate="'required|numeric'"
+              <input v-validate="'required'"
                      name="phone"
                      type="tel"
                      class="form-control"
@@ -234,7 +234,7 @@
               <label for="register_user">{{$t("RegistrationForm.user")}}</label>
             </div>
             <div class="col-sm-6" :class="{'has-error': errors.has('user') }">
-              <input v-validate="'required|email|confirmed:user_repeat'" name="user" class="form-control" id="register_user" v-model="credentials.email">
+              <input v-validate="'required|email'" name="user" class="form-control" id="register_user" v-model="credentials.email">
               <span v-show="errors.has('user')" class="text-danger">{{ errors.first('user') }}</span>
             </div>
           </div>
@@ -243,7 +243,7 @@
               <label for="register_user_repeat">{{$t("RegistrationForm.user_repeat")}}</label>
             </div>
             <div class="col-sm-6" :class="{'has-error': errors.has('user_repeat') }">
-              <input v-validate="'required|email'" name="user_repeat" class="form-control" id="register_user_repeat" v-model="credentials.email_repeat">
+              <input v-validate="'required|email|confirmed:user'" name="user_repeat" class="form-control" id="register_user_repeat" v-model="credentials.email_repeat">
               <span v-show="errors.has('user_repeat')" class="text-danger">{{ errors.first('user_repeat') }}</span>
             </div>
           </div>
