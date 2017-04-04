@@ -60,7 +60,7 @@
         this.custom_category_name = "";
         this.device = {
           id: -1,
-          technology_id: -1,
+          technology_id: '',
           technology: '',
           category_id: '',
           devicelabel: '',
@@ -72,9 +72,9 @@
           mBeginning: '', //start date of recieving notifications about maintenance schedules
           calibration: false, //boolean, true if calibration desired
           maintenance: false, //boolean, true if maintenance desired
-          maintenanceMsg: 0, //boolean, true if notifications about maintenance schedule desired
+          maintenanceMsg: false, //boolean, true if notifications about maintenance schedule desired
           cInterval: '', //Interval for calibration schedule
-          calibrationMsg: 0, //boolean, true if notifications about calibration schedule desired
+          calibrationMsg: false, //boolean, true if notifications about calibration schedule desired
           cBeginning: '' //start date of recieving notifications about calibration schedules
         };
       },
