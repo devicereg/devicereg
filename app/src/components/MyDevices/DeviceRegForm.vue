@@ -150,7 +150,7 @@
                   </div>
                   <div  v-if="device.maintenanceMsg == 'true'" class="form-group">
                     <label name="email_address_maintenance" class="control-label" for="email_address_maintenance">{{$t("DeviceRegForm.email")}}</label>
-                    <input class="form-control" id="email_address_maintenance" v-model="device.email_address_maintenance">
+                    <input type="email" class="form-control" id="email_address_maintenance" v-model="device.email_address_maintenance">
                   </div>
                   <div v-if="device.maintenanceMsg == 'true'" class="form-group">
                     <label class="control-label" for="remind_intervall">{{$t("DeviceRegForm.remind")}}</label>
@@ -201,7 +201,7 @@
                   </div>
                   <div v-if="device.calibrationMsg == 'true'" class="form-group">
                     <label class="control-label" for="email_address_calibration">{{$t("DeviceRegForm.email")}}</label>
-                    <input name="email_address_calibration" class="form-control" id="email_address_calibration" v-model="device.email_address_calibration">
+                    <input type="email" name="email_address_calibration" class="form-control" id="email_address_calibration" v-model="device.email_address_calibration">
                   </div>
                   <div v-if="device.calibrationMsg == 'true'" class="form-group">
                     <label class="control-label" for="remind_intervall">{{$t("DeviceRegForm.remind")}}:</label>
