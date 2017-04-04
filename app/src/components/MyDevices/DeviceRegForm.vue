@@ -145,8 +145,8 @@
                   </div>
                   <div v-if="device.maintenanceMsg == 'true'" class="form-group">
                     <label name="maintenance_start" class="control-label" for="mBeginning">{{$t("DeviceRegForm.start")}}:</label>
-                    <datepicker :language="lang" :disabled="state.disabled || !device.maintenanceMsg" :format="state.format" :placeholder="this.placeholder" :id="mBeginning" v-model="device.mBeginning"
-                                 class="form-control" :required="device.maintenanceMsg"></datepicker>
+                    <datepicker :language="lang" :disabled="state.disabled || !device.maintenanceMsg" :format="state.format" :placeholder="this.placeholder" id="mBeginning"
+                                v-model="device.mBeginning" :readonly="false" input-class="form-control"  required="device.maintenanceMsg"></datepicker>
                   </div>
                   <div  v-if="device.maintenanceMsg == 'true'" class="form-group">
                     <label name="email_address_maintenance" class="control-label" for="email_address_maintenance">{{$t("DeviceRegForm.email")}}</label>
@@ -195,8 +195,9 @@
                   </div>
                   <div v-if="device.calibrationMsg == 'true'" class="form-group">
                     <label class="control-label" for="cBeginning">{{$t("DeviceRegForm.start")}}:</label>
-                    <datepicker name="calibration_start" :language="lang" :disabled="state.disabled || !device.calibrationMsg" :format="state.format" :placeholder="this.placeholder" :id="cBeginning" v-model="device.cBeginning"
-                                        class="form-control" :required="device.calibrationMsg"></datepicker>
+                    <datepicker name="calibration_start" input-class="form-control" :required="device.calibrationMsg" :language="lang"
+                                :disabled="state.disabled || !device.calibrationMsg" :format="state.format" :placeholder="this.placeholder"
+                                :id="cBeginning" :readonly="false" v-model="device.cBeginning"></datepicker>
                   </div>
                   <div v-if="device.calibrationMsg == 'true'" class="form-group">
                     <label class="control-label" for="email_address_calibration">{{$t("DeviceRegForm.email")}}</label>
@@ -405,6 +406,11 @@ export default {
 
   #maintenance, #calibration, #maintenanceMsg, #calibrationMsg {
     margin-left: 1em;
+  }
+
+  .form-control[readonly], fieldset[disabled] .form-control {
+    background-color: #fff;
+    opacity: 1;
   }
 
   @media (max-width: 767px) {
