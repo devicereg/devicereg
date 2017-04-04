@@ -1,28 +1,26 @@
 <template>
   <div>
-    <div id="users-table" class="table">
+    <div id="users-table" class="table desktop-table">
       <div class="table-header col-sm-12">
         <div class="row">
-          <div @click="sortBy('email')" class="table-cell col-md-3" :class="{ active: sortKey == 'email' }">
+          <div @click="sortBy('email')" class="table-cell col-md-4" :class="{ active: sortKey == 'email' }">
             {{ $t("UserOverview." + "email") }}
             <span class="arrow" :class="sortOrders['email'] > 0 ? 'asc' : 'dsc'"></span>
           </div>
-          <div @click="sortBy('company')" class="table-cell col-md-3"
+          <div @click="sortBy('company')" class="table-cell col-md-2"
                :class="{ active: sortKey == 'company' }">
             {{ $t("UserOverview." + "company") }}
             <span class="arrow" :class="sortOrders['company'] > 0 ? 'asc' : 'dsc'"></span>
           </div>
-          <div @click="sortBy('surname')" class="table-cell" :class="{ active: sortKey == 'surname',
-              'col-md-2': role == 'ROLE_ADMIN', 'col-md-3': role == 'ROLE_SUPPORT' }">
+          <div @click="sortBy('surname')" class="table-cell col-md-2" :class="{ active: sortKey == 'surname' }">
             {{ $t("UserOverview." + "surname") }}
             <span class="arrow" :class="sortOrders['surname'] > 0 ? 'asc' : 'dsc'"></span>
           </div>
-          <div @click="sortBy('prename')" class="table-cell col-md-2" :class="{ active: sortKey == 'prename' ,
-              'col-md-2': role == 'ROLE_ADMIN', 'col-md-3': role == 'ROLE_SUPPORT' }">
+          <div @click="sortBy('prename')" class="table-cell col-md-2" :class="{ active: sortKey == 'prename' }">
             {{ $t("UserOverview." + "prename") }}
             <span class="arrow" :class="sortOrders['prename'] > 0 ? 'asc' : 'dsc'"></span>
           </div>
-          <div v-if="role === 'ROLE_ADMIN'" class="table-cell col-md-2">&nbsp;</div>
+          <div class="table-cell col-md-2">&nbsp;</div>
         </div>
       </div>
       <div class="table-body col-sm-12">
@@ -33,17 +31,46 @@
               v-bind:key="user.id" >
             <div class="col-sm-12">
               <div class="table-row-content row">
-                <div class="table-cell col-md-3" v-on:click="goToDevicesOfUser(user)">{{ user.email }}</div>
-                <div class="table-cell col-md-3" v-on:click="goToDevicesOfUser(user)">{{ user.company }}</div>
-                <div class="table-cell" :class="{ 'col-md-2': role == 'ROLE_ADMIN', 'col-md-3': role == 'ROLE_SUPPORT' }"
-                     v-on:click="goToDevicesOfUser(user)">{{ user.surname }}</div>
-                <div class="table-cell" :class="{ 'col-md-2': role == 'ROLE_ADMIN', 'col-md-3': role == 'ROLE_SUPPORT' }"
-                     v-on:click="goToDevicesOfUser(user)">{{ user.prename }}</div>
-                <div  v-if="role === 'ROLE_ADMIN'" class="table-cell col-md-2">
-                  <a v-on:click="editUser(user)">
+                <div class="table-cell col-md-4" v-on:click="goToDevicesOfUser(user)">{{ user.email }}</div>
+                <div class="table-cell col-md-2" v-on:click="goToDevicesOfUser(user)">{{ user.company }}</div>
+                <div class="table-cell col-md-2" v-on:click="goToDevicesOfUser(user)">{{ user.surname }}</div>
+                <div class="table-cell col-md-2" v-on:click="goToDevicesOfUser(user)">{{ user.prename }}</div>
+                <div class="table-cell col-md-2">
+                  <a v-if="role === 'ROLE_ADMIN'" v-on:click="editUser(user)">
                     <span class="glyphicon glyphicon-edit action-button" aria-hidden="true"></span>
                   </a>
-                  <delete-user :user="user"></delete-user>
+                  <delete-user v-if="role === 'ROLE_ADMIN'" :user="user"></delete-user>
+                </div>
+              </div>
+            </div>
+          </div>
+        </transition-group>
+      </div>
+    </div>
+    <div id="users-table-mobile" class="table mobile-table">
+      <div class="table-header col-sm-12">
+        <div class="row">
+          <div @click="sortBy('email')" class="table-cell col-xs-6 col-sm-8" :class="{ active: sortKey == 'email' }">
+            {{ $t("UserOverview." + "email") }}
+            <span class="arrow" :class="sortOrders['email'] > 0 ? 'asc' : 'dsc'"></span>
+          </div>
+          <div class="table-cell col-xs-6 col-sm-4">&nbsp;</div>
+        </div>
+      </div>
+      <div class="table-body col-sm-12 col-xs-12">
+        <transition-group name="user-list" tag="div">
+          <div v-for="(user, key) in filteredData"
+               v-bind:class="[key % 2 === 0 ? 'even-tr' : 'odd-tr','row table-row user-list-item']"
+               v-bind:id="'user_' + user.id"
+               v-bind:key="user.id" >
+            <div class="col-xs-12 col-sm-12">
+              <div class="table-row-content row">
+                <div class="table-cell col-sm-8 col-xs-6" v-on:click="goToDevicesOfUser(user)">{{ user.email }}</div>
+                <div class="table-cell col-sm-4 col-xs-6">
+                  <a v-if="role === 'ROLE_ADMIN'" v-on:click="editUser(user)">
+                    <span class="glyphicon glyphicon-edit action-button" aria-hidden="true"></span>
+                  </a>
+                  <delete-user v-if="role === 'ROLE_ADMIN'" :user="user"></delete-user>
                 </div>
               </div>
             </div>
@@ -247,6 +274,24 @@
   .user-list-leave-to /* .user-list-leave-active for <2.1.8 */ {
     opacity: 0;
     transform: translateX(-30px);
+  }
+
+  .mobile-table {
+    display: none;
+  }
+
+  @media (max-width: 991px) {
+    .desktop-table {
+      display: none;
+    }
+
+    .mobile-table {
+      display: block;
+    }
+
+    .action-button {
+      font-size: 1.5em;
+    }
   }
 
 </style>
