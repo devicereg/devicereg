@@ -1,13 +1,13 @@
 <template>
     <div class="filter">
-      <div class="form-group row">
-        <div class="col-sm-6">
+      <div class="row">
+        <div class="col-sm-6 col-xs-6">
           <form id="search">
             <label for="search-query">{{ $t("MyDevices.search_by") }}:</label>
             <input id="search-query" name="query" v-model="filterKey" class="form-control">
           </form>
         </div>
-        <div class="col-sm-6" id="cat_filter">
+        <div class="col-sm-6 col-xs-6" id="cat_filter">
           <label for="category-filter">{{ $t("MyDevices.filter_by") }}:</label>
           <select id="category-filter" class="form-control col-xs-6" v-model="cat_filter">
             <option value="all">{{ $t("MyDevices.all_categories") }}</option>

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div id="users-table" class="table">
+    <div id="users-table" class="table desktop-table">
       <div class="table-header col-sm-12">
         <div class="row">
           <div @click="sortBy('email')" class="table-cell col-md-4" :class="{ active: sortKey == 'email' }">
@@ -36,6 +36,37 @@
                 <div class="table-cell col-md-2" v-on:click="goToDevicesOfUser(user)">{{ user.surname }}</div>
                 <div class="table-cell col-md-2" v-on:click="goToDevicesOfUser(user)">{{ user.prename }}</div>
                 <div class="table-cell col-md-2">
+                  <a v-if="role === 'ROLE_ADMIN'" v-on:click="editUser(user)">
+                    <span class="glyphicon glyphicon-edit action-button" aria-hidden="true"></span>
+                  </a>
+                  <delete-user v-if="role === 'ROLE_ADMIN'" :user="user"></delete-user>
+                </div>
+              </div>
+            </div>
+          </div>
+        </transition-group>
+      </div>
+    </div>
+    <div id="users-table-mobile" class="table mobile-table">
+      <div class="table-header col-sm-12">
+        <div class="row">
+          <div @click="sortBy('email')" class="table-cell col-xs-6 col-sm-8" :class="{ active: sortKey == 'email' }">
+            {{ $t("UserOverview." + "email") }}
+            <span class="arrow" :class="sortOrders['email'] > 0 ? 'asc' : 'dsc'"></span>
+          </div>
+          <div class="table-cell col-xs-6 col-sm-4">&nbsp;</div>
+        </div>
+      </div>
+      <div class="table-body col-sm-12 col-xs-12">
+        <transition-group name="user-list" tag="div">
+          <div v-for="(user, key) in filteredData"
+               v-bind:class="[key % 2 === 0 ? 'even-tr' : 'odd-tr','row table-row user-list-item']"
+               v-bind:id="'user_' + user.id"
+               v-bind:key="user.id" >
+            <div class="col-xs-12 col-sm-12">
+              <div class="table-row-content row">
+                <div class="table-cell col-sm-8 col-xs-6" v-on:click="goToDevicesOfUser(user)">{{ user.email }}</div>
+                <div class="table-cell col-sm-4 col-xs-6">
                   <a v-if="role === 'ROLE_ADMIN'" v-on:click="editUser(user)">
                     <span class="glyphicon glyphicon-edit action-button" aria-hidden="true"></span>
                   </a>
@@ -243,6 +274,24 @@
   .user-list-leave-to /* .user-list-leave-active for <2.1.8 */ {
     opacity: 0;
     transform: translateX(-30px);
+  }
+
+  .mobile-table {
+    display: none;
+  }
+
+  @media (max-width: 991px) {
+    .desktop-table {
+      display: none;
+    }
+
+    .mobile-table {
+      display: block;
+    }
+
+    .action-button {
+      font-size: 1.5em;
+    }
   }
 
 </style>

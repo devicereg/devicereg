@@ -4,16 +4,16 @@
     <div class="col-sm-12">
       <h1> {{$t("UserOverview.title")}} </h1>
     </div>
-    <div :class="userRole == 'ROLE_ADMIN' ? 'col-sm-4' : 'col-sm-4'">
+    <div class="col-sm-4 col-xs-6">
       <filter-users></filter-users>
     </div>
-    <div v-if="userRole == 'ROLE_ADMIN'" class="col-sm-4 pull-right">
+    <div v-if="userRole == 'ROLE_ADMIN'" class="col-sm-4 col-xs-6 pull-right">
       <label> &nbsp; </label>
       <a href="#" id="add-button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#user-registration-modal" v-on:click="clearUser()">
         <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> &nbsp; {{ $t("UserOverview.add_button") }}
       </a>
     </div>
-    <div class="col-sm-12">
+    <div class="col-sm-12 col-xs-12">
       <sortable-users :users="users" :filterKey="filter"></sortable-users>
     </div>
   </div>
