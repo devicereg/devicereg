@@ -1,6 +1,7 @@
 {
   "de": {
     "title": "Meine Geräte",
+    "title_sufix": "'s Geräte",
     "label": "Bezeichnung",
     "devicelabel": "Bezeichnung",
     "technology": "Technologie",
@@ -20,6 +21,7 @@
   },
   "en": {
     "title": "My Devices",
+    "title_sufix": "'s Devices",
     "label": "Label",
     "devicelabel": "Label",
     "technology": "Technology",

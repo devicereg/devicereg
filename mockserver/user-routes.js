@@ -14,7 +14,7 @@ var app = module.exports = express.Router();
 
 function createToken(user) 
 {
-  return jwt.sign(_.omit(user, 'password'), config.secret, { expiresIn: '48h' });
+  return jwt.sign(_.omit(user, 'password'), config.secret, { expiresIn: '240h' });
 }
 
 function getTokenFromRequest(request)
@@ -341,6 +341,23 @@ app.get('/devices', function (req, res)
   });
 });
 
+app.post('/user/devices', function (req, res)
+{
+  jwt.verify(getTokenFromRequest(req), config.secret, function(err, decoded) {
+    db.all(
+        'SELECT d.*, c.name AS `category`, t.name AS `technology` from device d ' +
+        'LEFT JOIN category AS c ON d.category_id = c.id ' +
+        'LEFT JOIN technology AS t ON d.technology_id = t.id ' +
+        'WHERE d.user_id = $user_id',
+        {
+          $user_id: req.body.id
+        },
+        function (err, row) {
+          res.status(200).send(row);
+        });
+  });
+});
+
 app.get('/categories', function (req, res)
 {
   jwt.verify(getTokenFromRequest(req), config.secret, function(err, decoded) {
@@ -348,6 +365,21 @@ app.get('/categories', function (req, res)
         'SELECT c.* FROM category c WHERE c.user_id = $user_id',
         {
           $user_id: decoded.id
+        },
+        function (err, row) {
+          res.status(200).send(row);
+        }
+    );
+  });
+});
+
+app.post('/user/categories', function (req, res)
+{
+  jwt.verify(getTokenFromRequest(req), config.secret, function(err, decoded) {
+    db.all(
+        'SELECT c.* FROM category c WHERE c.user_id = $user_id',
+        {
+          $user_id: req.body.id
         },
         function (err, row) {
           res.status(200).send(row);

@@ -2,7 +2,7 @@
   <div id="navbar" class="navbar-collapse collapse">
     <ul class="nav navbar-nav navbar-left">
       <li data-toggle="collapse" data-target="#navbar" v-if="userRole === 'ROLE_ADMIN' ^ userRole === 'ROLE_SUPPORT'">
-        <router-link to="/user-overview">{{ $t('user_overview') }}</router-link>
+        <router-link id="goToUserOverview" to="/user-overview">{{ $t('user_overview') }}</router-link>
       </li>
       <li data-toggle="collapse" data-target="#navbar" v-if="userRole === 'ROLE_USER'">
         <router-link to="/my-devices">{{ $t('my_devices') }}</router-link>

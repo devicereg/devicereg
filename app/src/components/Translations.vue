@@ -43,6 +43,7 @@
       terms_of_warranty: 'Aktionsbedingungen',
       edit_profile: 'Profil editieren',
       delete_profile: 'Profil löschen',
+      back: 'Zurück',
 
 
 
@@ -232,6 +233,7 @@
       terms_of_warranty: 'Terms of warranty',
       edit_profile: 'Edit profile',
       delete_profile: 'Delete profile',
+      back: 'Go Back',
 
       Contact: {
         box_address: 'Mailbox',
