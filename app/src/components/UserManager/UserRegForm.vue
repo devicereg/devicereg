@@ -196,11 +196,11 @@
                     <div :class="{'has-error': errors.has('email_d') }">
                       <input v-validate="'required|email|confirmed:user_repeat_d'" name="email_d" class="form-control" id="register_user" v-model="user.email" :disabled="!changeEmail">
                     </div>
-                    <span v-show="errors.has('email_d')" class="text-danger">{{ errors.first('email_d') }}</span>
                     <span class="input-group-btn">
                        <button class="btn btn-default glyphicon glyphicon-edit btn-primary" type="button" v-on:click="toggleEmailEdit()"></button>
                      </span>
                   </div>
+                  <span v-show="errors.has('email_d')" class="text-danger">{{ errors.first('email_d') }}</span>
                 </div>
                 <div v-if="changeEmail" class="col-sm-6">
                   <label class="control-label" for="register_user_repeat">{{$t("RegistrationForm.new_email_repeat")}}:</label>
@@ -233,11 +233,11 @@
                     <div :class="{'has-error': errors.has('password_1') }">
                       <input v-validate="'required|confirmed:password_1_repeat'" name="password_1" type="password" class="form-control" id="register_password" v-model="user.password" :disabled="!changePassword">
                     </div>
-                    <span v-show="errors.has('password_1')" class="text-danger">{{ errors.first('password_1') }}</span>
                     <span class="input-group-btn">
                        <button class="btn btn-default glyphicon glyphicon-edit btn-primary" type="button" v-on:click="togglePasswordEdit()"></button>
                      </span>
                   </div>
+                  <span v-show="errors.has('password_1')" class="text-danger">{{ errors.first('password_1') }}</span>
                 </div>
                 <div v-if="changePassword" class="col-sm-6">
                   <label class="control-label" for="register_password_repeat">{{$t("RegistrationForm.new_password_repeat")}}:</label>
