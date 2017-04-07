@@ -5,12 +5,23 @@ import jwt from 'jsonwebtoken'
 import App from './App'
 import auth from './auth'
 import VueSweetAlert from 'vue-sweetalert'
+import VeeValidate from 'vee-validate'
+import messages_de from './static/vee-locale/de'
+import messages_en from './static/vee-locale/en'
 
 
 Vue.use(VueRouter)
 Vue.use(VueResource)
 Vue.use(VueSweetAlert)
 auth.checkAuth()
+Vue.use(VeeValidate, {
+    dictionary: {
+        de: { messages: messages_de },
+        en: { messages: messages_en }
+    }
+});
+
+
 
 const routes = [
   {

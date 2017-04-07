@@ -15,6 +15,8 @@
             </div>
             <div class="col-sm-6 input-group">
               <input
+                v-validate="'required'"
+                name="prename"
                 type="text"
                 class="form-control"
                 id="register_prename"
@@ -22,6 +24,7 @@
               <span class="input-group-btn">
                 <button class="btn btn-default glyphicon glyphicon-edit btn-primary" type="button" v-on:click="toggle('register_prename')"></button>
               </span>
+              <span v-show="errors.has('prename')" class="text-danger">{{ errors.first('prename') }}</span>
              </div>
           </div>
           <div class="form-group row">
@@ -30,7 +33,8 @@
             </div>
             <div class="col-sm-6 input-group">
               <input
-                type="text"
+                v-validate="'required'"
+                name="surname"
                 class="form-control"
                 id="register_surname"
                 v-model="credentials.surname" required disabled>
@@ -38,6 +42,7 @@
                 <button class="btn btn-default glyphicon glyphicon-edit btn-primary" type="button" v-on:click="toggle('register_surname')"></button>
               </span>
             </div>
+            <span v-show="errors.has('surname')" class="text-danger">{{ errors.first('surname') }}</span>
           </div>
           <div class="form-group row">
             <div class="col-sm-4 control-label">
@@ -49,6 +54,7 @@
                 <button class="btn btn-default glyphicon glyphicon-edit btn-primary" type="button" v-on:click="toggle('register_user')"></button>
               </span>
             </div>
+            <span v-show="errors.has('language')" class="text-danger">{{ errors.first('language') }}</span>
           </div>
           <div class="form-group row">
             <div class="col-sm-4 control-label">
@@ -56,7 +62,8 @@
             </div>
             <div class="col-sm-6 input-group">
               <input
-                type="tel"
+                v-validate="'required|numeric'"
+                name="phone"
                 class="form-control"
                 id="register_phone"
                 v-model="credentials.phone" required disabled>
@@ -64,6 +71,7 @@
                 <button class="btn btn-default glyphicon glyphicon-edit btn-primary" type="button" v-on:click="toggle('register_phone')"></button>
               </span>
             </div>
+            <span v-show="errors.has('phone')" class="text-danger">{{ errors.first('phone') }}</span>
           </div>
           <legend>{{$t("UserEdit.company_details")}}</legend>
           <div class="form-group row">
@@ -76,6 +84,7 @@
                 <button class="btn btn-default glyphicon glyphicon-edit btn-primary" type="button"v-on:click="toggle('register_company')"></button>
               </span>
             </div>
+            <span v-show="errors.has('company')" class="text-danger">{{ errors.first('company') }}</span>
           </div>
           <div class="form-group row">
             <div class="col-sm-4 control-label">
@@ -83,7 +92,8 @@
             </div>
             <div class="col-sm-6 input-group">
               <input
-                type="text"
+                v-validate="'required'"
+                name="street"
                 class="form-control"
                 id="register_street"
                 v-model="credentials.street" required disabled>
@@ -91,6 +101,7 @@
                 <button class="btn btn-default glyphicon glyphicon-edit btn-primary" type="button" v-on:click="toggle('register_street')"></button>
               </span>
             </div>
+            <span v-show="errors.has('street')" class="text-danger">{{ errors.first('street') }}</span>
           </div>
           <div class="form-group row">
             <div class="col-sm-4 control-label">
@@ -98,7 +109,8 @@
             </div>
             <div class="col-sm-6 input-group">
               <input
-                type="text"
+                v-validate="'required'"
+                name="number"
                 class="form-control"
                 id="register_number"
                 v-model="credentials.number" required disabled>
@@ -106,6 +118,7 @@
                 <button class="btn btn-default glyphicon glyphicon-edit btn-primary" type="button" v-on:click="toggle('register_number')"></button>
               </span>
             </div>
+            <span v-show="errors.has('number')" class="text-danger">{{ errors.first('number') }}</span>
           </div>
           <div class="form-group row">
             <div class="col-sm-4 control-label">
@@ -113,7 +126,8 @@
             </div>
             <div class="col-sm-6 input-group">
               <input
-                type="number"
+                v-validate="'required'"
+                name="zip"
                 class="form-control"
                 id="register_zip"
                 v-model="credentials.zip" required disabled>
@@ -121,6 +135,7 @@
                 <button class="btn btn-default glyphicon glyphicon-edit btn-primary" type="button" v-on:click="toggle('register_zip')"></button>
               </span>
             </div>
+            <span v-show="errors.has('zip')" class="text-danger">{{ errors.first('zip') }}</span>
           </div>
           <div class="form-group row">
             <div class="col-sm-4 control-label">
@@ -128,7 +143,8 @@
             </div>
             <div class="col-sm-6 input-group">
               <input
-                type="text"
+                v-validate="'required|alpha'"
+                name="city"
                 class="form-control"
                 id="register_city"
                 v-model="credentials.city" required disabled>
@@ -136,6 +152,7 @@
                 <button class="btn btn-default glyphicon glyphicon-edit btn-primary" type="button" v-on:click="toggle('register_city')"></button>
               </span>
             </div>
+            <span v-show="errors.has('city')" class="text-danger">{{ errors.first('city') }}</span>
           </div>
           <div class="form-group row">
             <div class="col-sm-4 control-label">
@@ -152,6 +169,7 @@
                 <button class="btn btn-default glyphicon glyphicon-edit btn-primary" type="button" v-on:click="toggle('register_country')"></button>
               </span>
             </div>
+            <span v-show="errors.has('country')" class="text-danger">{{ errors.first('country') }}</span>
           </div>
           <br/>
           <div class="row">
@@ -162,15 +180,17 @@
               <input class="btn btn-block btn-lg btn-primary" value="Aktualisieren"/>
             </div>
           </div>
+        </div>
       </form>
     </div>
   </div>
 </template>
 
 <script>
+
 	import auth from '../auth'
 	import jwt from 'jsonwebtoken'
-
+  import Vue from 'vue'
 	export default {
 	  name: 'user-view',
 	  data () {
@@ -206,8 +226,24 @@
 	  	},
 	  	toggle(inputID){
 	  	   $("#" + inputID).attr('disabled', function(_, attr){ return !attr});
+          this.$validator.validateAll().then(success => {
+                  if (!success) {
+                      //Jump to the first incorrect field. No idea how to implement, need help :/
+                  }
+                  else {
+                    auth.update(this, credentials, '/dashboard')
+                  }
+          });
 	  	}
-	  }
+	  },
+    computed: {
+      lang: function () {
+        return Vue.config.lang;
+      }
+    },
+    mounted: function() {
+      this.$validator.setLocale(this.lang);
+    }
 	}
 </script>
 

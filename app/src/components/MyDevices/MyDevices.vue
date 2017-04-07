@@ -8,16 +8,16 @@
     <div v-else class="col-sm-12">
       <h1> {{$t("MyDevices.title")}} </h1>
     </div>
-    <div class="col-sm-8">
+    <div class="col-sm-8 col-xs-12">
       <filter-input-elements :categories="categories"></filter-input-elements>
     </div>
-    <div class="col-sm-4">
+    <div class="col-sm-4 col-xs-12">
       <label> &nbsp; </label>
       <a href="#" id="add-button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#device-registration-modal" v-on:click="clearDevice()">
         <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> &nbsp; {{ $t("MyDevices.add_button") }}
       </a>
     </div>
-    <div class="col-sm-12">
+    <div class="col-sm-12 col-xs-12">
       <sortable-devices :devices="devices" :categories="categories" :filterKey="filter" :categoryFilter="cat_filter"></sortable-devices>
     </div>
   </div>
@@ -38,10 +38,9 @@
     name: 'my-devices',
     props: {
       selectedUser: {
-        default: {
-          id: -1
+        type: Object,
+        default: function () { return { id: -1 } }
         }
-      }
     },
     data () {
       return {
@@ -61,7 +60,7 @@
         this.custom_category_name = "";
         this.device = {
           id: -1,
-          technology_id: -1,
+          technology_id: '',
           technology: '',
           category_id: '',
           devicelabel: '',
@@ -71,11 +70,11 @@
           tag: '',
           mInterval: '', //Interval for maintenance schedule
           mBeginning: '', //start date of recieving notifications about maintenance schedules
-          calibration: 0, //boolean, true if calibration desired
-          maintenance: 0, //boolean, true if maintenance desired
-          maintenanceMsg: 0, //boolean, true if notifications about maintenance schedule desired
+          calibration: false, //boolean, true if calibration desired
+          maintenance: false, //boolean, true if maintenance desired
+          maintenanceMsg: false, //boolean, true if notifications about maintenance schedule desired
           cInterval: '', //Interval for calibration schedule
-          calibrationMsg: 0, //boolean, true if notifications about calibration schedule desired
+          calibrationMsg: false, //boolean, true if notifications about calibration schedule desired
           cBeginning: '' //start date of recieving notifications about calibration schedules
         };
       },

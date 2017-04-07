@@ -1,5 +1,6 @@
 {
   "de": {
+    "nav_title": "Benutzermanager",
     "title": "Benutzerübersicht",
     "label": "Bezeichnung",
     "devicelabel": "Bezeichnung",
@@ -18,6 +19,7 @@
     }
   },
   "en": {
+    "nav_title": "User Manager",
     "title": "User Overview",
     "label": "Label",
     "devicelabel": "Label",
