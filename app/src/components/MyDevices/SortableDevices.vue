@@ -95,21 +95,6 @@
                   </a>
                   <delete-device :device="device"></delete-device>
                 </div>
-                <!--div id="device-detail-view" class="row">
-                  <div class="col-sm-12 hide" v-bind:id="'details_' + device.id">
-                    <td colspan="5">
-                      <div class="row">
-                        <div class="col-xs-12">
-                          <li>{{ $t("DeviceRegForm.serial_number")}}: {{device.serialnumber}}</li>
-                             <li>{{ $t("DeviceRegForm.process_fluid")}}: {{device.procmedium}}</li>
-                             <li>{{ $t("DeviceRegForm.comment")}}: {{device.comment}}</li>
-                             <li>{{ $t("DeviceRegForm.maintenance")}}:{{device.mBeginning}}, {{device.mInterval}}, {{device.maintenanceMsg}} </li>
-                          <li>{{ $t("DeviceRegForm.calibration")}}: {{device.cBeginning}}, {{device.cIntervall}}, {{device.calibrationMsg}}</li>
-                        </div>
-                      </div>
-                    </td>
-                  </div>
-                </div-->
               </div>
             </div>
           </div>
@@ -123,7 +108,7 @@
   import DeleteDevice from "./DeleteDevice"
   import auth from "../../auth/index.js"
 
-  export default{
+  export default{git
     props: [
       'filterKey',
       'categoryFilter',
@@ -155,8 +140,8 @@
         var detailView = $("#details_" + id);
         var parentRow = $("#device_" + id);
 
-        detailView.insertAfter(parentRow)
-        detailView.toggleClass('hide')
+        detailView.insertAfter(parentRow);
+        detailView.toggleClass('hide');
       },
       removeDevice: function(device) {
         var index = this.devices.indexOf(device);
