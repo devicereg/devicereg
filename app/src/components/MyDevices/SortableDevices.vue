@@ -108,7 +108,7 @@
   import DeleteDevice from "./DeleteDevice"
   import auth from "../../auth/index.js"
 
-  export default{git
+  export default{
     props: [
       'filterKey',
       'categoryFilter',
