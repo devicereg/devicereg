@@ -192,7 +192,7 @@
           <br/>
           <div class="row">
             <div class="col-sm-offset-4 col-xs-6 col-sm-3">
-              <button class="btn btn-block btn-lg btn-cancel" v-on:click="getUserData()">{{$t("cancel")}}</button>
+              <button id="cancel-button" type="button" class="btn btn-block btn-lg btn-cancel" v-on:click="cancel()">{{$t("cancel")}}</button>
             </div>
             <div class="col-xs-6 col-sm-3">
               <input type="submit" class="btn btn-block btn-lg btn-primary" value="Aktualisieren"/>
@@ -212,8 +212,7 @@
 	  name: 'user-view',
 	  data () {
 	    return {
-	    	credentials: jwt.verify(localStorage.getItem('id_token'), 'DeviceR rocks as well!'),
-        users: [],
+	    	credentials: {},
 	    	country: [
          {name: "Countries.GB"},
          {name: "Countries.DE"},
@@ -286,34 +285,43 @@
         }
         this.$validator.validateAll().then(success => {
           if (success) {
-            auth.update(self, credentials, '/user/edit')
+            auth.update(self, credentials, '/user/edit');
+            this.$parent.$refs.toastr.Add({
+                    title: this.$t("UI.update_user_title"),
+                    msg: this.$t("UI.update_user_msg"),
+                    clickClose: false,
+                    timeout: 8000,
+                    position: "toast-top-right",
+                    type: "success"
+                });
           }
         });
 	  	},
 	  	toggle(inputID){
-	  	   $("#" + inputID).attr('disabled', function(_, attr){ return !attr});
+	  	  $("#" + inputID).attr('disabled', function(_, attr){ return !attr});
 	  	},
+	    cancel() {
+	      var inputs = $(".form-control");
+	      for (var i = 0; i < inputs.length; i++) {
+	        $(inputs[i]).attr('disabled', true);
+	      }
+	      this.getUserData();
+	    },
 	  	getUserData() {
-	  	  auth.getUsers(this);
-	  	  var user;
-	  	  for (user in this.users) {
-	  	    console.log("user id: ", user.id);
-	  	    if (user.id == this.credentials.id) {
-	  	      this.credentials = user;
-	  	    }
-	  	  }
-	  	}
-	  },
-    computed: {
-      lang: function () {
-        return Vue.config.lang;
-      }
-    },
-    mounted: function() {
-      this.$validator.setLocale(this.lang);
-      this.getUserData();
+	  	  var userId = jwt.verify(localStorage.getItem('id_token'), 'DeviceR rocks as well!').id;
+	  	  auth.getUser(this, userId);
+	  }
+  },
+  computed: {
+    lang: function () {
+      return Vue.config.lang;
     }
-	}
+  },
+  mounted: function() {
+    this.getUserData();
+    this.$validator.setLocale(this.lang);
+  }
+}
 </script>
 
 <style lang="scss">
