@@ -316,9 +316,24 @@ export default {
     });
   },
 
+  getUser(context, userId)
+  {
+    context.$http.get(GET_USERS_URL).then((response) => {
+      var users = response.body;
+      for (var i = 0; i < users.length; i++) {
+        if (users[i].id == userId) {
+          context.credentials = users[i];
+        }
+      }
+    }, (err) => {
+      context.error = err;
+    });
+  },
+
   getUsers(context)
   {
     context.$http.get(GET_USERS_URL).then((response) => {
+      console.log("context: ", context);
       context.users = response.body;
     }, (err) => {
       context.error = err;

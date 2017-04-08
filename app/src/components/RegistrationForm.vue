@@ -85,22 +85,6 @@
                      v-model="credentials.phone">
               <span v-show="errors.has('phone')" class="text-danger">{{ errors.first('phone') }}</span>
             </div>
-            <!--
-            Two input forms are not responisve yet!
-            <div class="col-sm-2">
-              <input name="phone_prefix"
-                     type="tel"
-                     class="form-control"
-                     id="register_phone_prefix"
-                     v-model="credentials.phone" required>
-            </div>
-            <div class="col-sm-4">
-              <input name="phone"
-                     type="tel"
-                     class="form-control"
-                     id="register_phone"
-                     v-model="credentials.phone" required>
-            </div>-->
           </div>
           <legend>{{$t("RegistrationForm.company_details")}}</legend>
           <div class="form-group row">
@@ -150,7 +134,6 @@
               <span v-show="errors.has('industry_type')" class="text-danger">{{ errors.first('industry_type') }}</span>
             </div>
           </div>
-
           <div class="form-group row">
             <div class="col-sm-4 control-label">
               <label for="register_company">{{$t("RegistrationForm.company")}}</label>
@@ -349,7 +332,6 @@
 					language: '',
 					phone: '',
 					industry_family: '-1',
-					//industry_family_other: '',
 					industry_type: '',
 					company: '',
 					street: '',
@@ -463,7 +445,6 @@
           language: this.credentials.language,
           phone: this.credentials.phone,
           industry_family: this.credentials.industry_family,
-          //industry_family_other: this.credentials.industry_family_other,
           industry_type: this.credentials.industry_type,
           company: this.credentials.company,
           street: this.credentials.street,
@@ -532,6 +513,4 @@
     }
 
   }
-
-
 </style>
