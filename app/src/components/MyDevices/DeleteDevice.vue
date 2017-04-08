@@ -27,16 +27,19 @@
         }).then(function() {
           auth.deleteDevice(self, {id: device.id});
           self.$parent.$parent.removeDevice(device); // dirty but only way without vuex
-          self.$parent.$parent.$refs.toastr.Add({
-              closeButton: true,
-              msg: this.$t("MyDevices.delete.success_msg"),
-              clickClose: false,
-              timeout: 8000,
-              position: "toast-top-right",
-              type: "success"
-          });
         })
       },
     }
   }
 </script>
+
+<style lang="scss" scoped>
+  @import '../../styles/colors';
+
+  @media (max-width: 767px) {
+    .action-button {
+      font-size: 1.5em;
+    }
+  }
+
+</style>

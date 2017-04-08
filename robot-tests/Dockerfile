@@ -1,7 +1,8 @@
 FROM ubuntu:latest
 
-RUN apt-get update
-RUN apt-get install -y \
+# Install robotframework, virtual framebuffer, ...
+RUN apt-get update && \
+    apt-get install -y \
         git \
         python-pip \
         python-dev \
@@ -11,12 +12,22 @@ RUN apt-get install -y \
         libfontconfig \
         wget \
         xvfb \
-        dbus \
-        firefox
-RUN pip install --upgrade pip
-RUN pip install \
+        firefox \
+        dbus && \
+    pip install --upgrade pip && \
+    pip install \
         robotframework \
-        robotframework-selenium2library
+        robotframework-selenium2library && \
+#### Clean up
+    apt-get remove -y git python-pip python-dev gcc && \
+    rm -rf /var/lib/apt/lists/*
+
+# Install Firefox 52 and Geckodriver 15
+COPY browsers/firefox-mozilla-build_52.0-0ubuntu1_amd64.deb /tmp/firefox52.deb
+RUN apt install /tmp/firefox52.deb && rm /tmp/firefox52.deb && apt remove -y firefox
+
+COPY webdrivers/geckodriver /usr/local/bin/geckodriver
+RUN chmod +x /usr/local/bin/geckodriver
 
 # Install phantomJS webdriver
 RUN wget -q https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-2.1.1-linux-x86_64.tar.bz2 && \
@@ -25,28 +36,14 @@ RUN wget -q https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-2.1.1-linu
         rm -rf phantomjs-2.1.1-linux-x86_64 && \
         rm phantomjs-2.1.1-linux-x86_64.tar.bz2
 
-# Install chrome
-RUN apt-get install -y \
-        libgconf-2-4 \
-        libnspr4 \
-        libnss3 \
-        libpango1.0-0 \
-        libxss1 \
-        fonts-liberation \
-        libappindicator1 \
-        xdg-utils
-
-RUN wget -q https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb && \
-        dpkg -i google-chrome-stable_current_amd64.deb && \
-        rm -rf google-chrome-stable_current_amd64.deb
-
-COPY webdriver-executables/chromedriver /usr/local/bin/chromedriver
-COPY webdriver-executables/geckodriver /usr/local/bin/geckodriver
-
-ADD env.sh /usr/local/bin/env.sh
-RUN chmod +x /usr/local/bin/env.sh
+RUN mkdir /robot-tests && \
+    mkdir /robot-test-output
 
 ADD run.sh /usr/local/bin/run.sh
 RUN chmod +x /usr/local/bin/run.sh
 
-CMD tail -f /dev/null
+ENTRYPOINT ["run.sh"]
+#CMD tail -f /dev/null
+
+
+

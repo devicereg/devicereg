@@ -5,12 +5,23 @@ import jwt from 'jsonwebtoken'
 import App from './App'
 import auth from './auth'
 import VueSweetAlert from 'vue-sweetalert'
+import VeeValidate from 'vee-validate'
+import messages_de from './static/vee-locale/de'
+import messages_en from './static/vee-locale/en'
 
 
 Vue.use(VueRouter)
 Vue.use(VueResource)
 Vue.use(VueSweetAlert)
 auth.checkAuth()
+Vue.use(VeeValidate, {
+    dictionary: {
+        de: { messages: messages_de },
+        en: { messages: messages_en }
+    }
+});
+
+
 
 const routes = [
   {
@@ -97,6 +108,18 @@ const routes = [
     component: require('./components/NewPasswordConfirmed'),
     meta: { authenticated: false }
   },
+  {
+    path: '/user-overview',
+    name: '/user-overview',
+    component: require('./components/UserManager/UserOverview'),
+    meta: { authenticated: false }
+  },
+  {
+    path: '/user-create',
+    name: '/user-create',
+    component: require('./components/UserManager/UserRegForm'),
+    meta: { authenticated: false }
+  }
 ]
 
 export const router = new VueRouter({

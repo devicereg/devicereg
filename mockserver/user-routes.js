@@ -14,7 +14,13 @@ var app = module.exports = express.Router();
 
 function createToken(user) 
 {
-  return jwt.sign(_.omit(user, 'password'), config.secret, { expiresIn: 60*60*5 });
+  return jwt.sign(_.omit(user, 'password'), config.secret, { expiresIn: '240h' });
+}
+
+function getTokenFromRequest(request)
+{
+  let authorisationHeader = request.headers.authorization;
+  return authorisationHeader.substr(7);
 }
 
 app.post('/user/create', function(req, res)
@@ -23,11 +29,12 @@ app.post('/user/create', function(req, res)
   {
     db.run(
       "INSERT INTO user " +
-      "('id', 'gender', 'surname', 'prename', 'language', 'phone', 'industry_family', 'industry_type', 'company', 'street', 'number', 'zip', 'city', 'country', 'password', 'question', 'answer', 'email') " +
+      "('id', 'role', 'gender', 'surname', 'prename', 'language', 'phone', 'industry_family', 'industry_type', 'company', 'street', 'number', 'zip', 'city', 'country', 'password', 'question', 'answer', 'email') " +
       "VALUES " +
-      "($id, $gender, $surname, $prename, $language, $phone, $industry_family, $industry_type, $company, $street, $number, $zip, $city, $country, $password, $question, $answer, $email)",
+      "($id, $role, $gender, $surname, $prename, $language, $phone, $industry_family, $industry_type, $company, $street, $number, $zip, $city, $country, $password, $question, $answer, $email)",
       {
         $id: null,
+        $role: req.body.role,
         $gender: req.body.gender,
         $surname: req.body.surname,
         $prename: req.body.prename,
@@ -56,7 +63,10 @@ app.post('/user/create', function(req, res)
         console.log("User object: " + row);
         console.log("JWT Token: " + jwt_token);
 
-        res.status(201).send({ id_token: jwt_token });
+        res.status(201).send({
+          id_token: jwt_token,
+          id: row.id
+        });
       }
     );
   });
@@ -130,25 +140,11 @@ app.post('/sessions/create', function(req, res)
         {
           console.log("User email: " + req.body.email);
 
-          if(typeof row != 'undefined')
-          {
-            jwt_token = createToken(row);
-            console.log("User object: " + row);
-            console.log("JWT Token: " + jwt_token);
+          jwt_token = createToken(row);
+          console.log("User object: " + JSON.stringify(row));
+          console.log("JWT Token: " + jwt_token);
 
-            res.status(201).send({id_token: jwt_token});
-          }
-          else
-          {
-            res.status(401).send({
-              message: "Der Benutzer mit der E-Mail Adresse '" + req.body.email + "' konnte nicht gefunden werden."
-            });
-          }
-          // jwt_token = createToken(row);
-          // console.log("User object: " + row);
-          // console.log("JWT Token: " + jwt_token);
-
-          // res.status(201).send({id_token: jwt_token});
+          res.status(201).send({id_token: jwt_token, user_id: row.id});
         }
         else
         {
@@ -163,33 +159,32 @@ app.post('/sessions/create', function(req, res)
 
 app.post('/device/create', function (req, res)
 {
-  db.serialize(function()
-  {
+  jwt.verify(getTokenFromRequest(req), config.secret, function(err, decoded) {
     db.run(
-      "INSERT INTO device " +
-      "('technology', 'devicelabel', 'serialnumber', 'procmedium', 'comment', 'tag', 'mInterval', 'mBeginning'," +
-      "'calibration', 'maintenance', 'maintenanceMsg', 'cInterval', 'calibrationMsg', 'cBeginning', 'category_id', 'user_id')" +
-      "VALUES " +
-      "($technology, $devicelabel, $serialnumber, $procmedium, $comment, $tag, $mInterval, $mBeginning," +
-      "$calibration, $maintenance, $maintenanceMsg, $cInterval, $calibrationMsg, $cBeginning, $category, $user)",
-      {
-        $technology: req.body.technology,
-        $devicelabel: req.body.devicelabel,
-        $serialnumber: req.body.serialnumber,
-        $procmedium: req.body.procmedium,
-        $comment: req.body.comment,
-        $tag: req.body.tag,
-        $mInterval: req.body.mInterval,
-        $mBeginning: req.body.mBeginning,
-        $calibration: req.body.calibration,
-        $maintenance: req.body.maintenance,
-        $maintenanceMsg: req.body.maintenanceMsg,
-        $cInterval: req.body.cInterval,
-        $calibrationMsg: req.body.calibrationMsg,
-        $cBeginning: req.body.cBeginning,
-        $category: req.body.category_id,
-        $user: 1 //@TODO
-      },
+        "INSERT INTO device " +
+        "('technology_id', 'devicelabel', 'serialnumber', 'procmedium', 'comment', 'tag', 'mInterval', 'mBeginning'," +
+        "'calibration', 'maintenance', 'maintenanceMsg', 'cInterval', 'calibrationMsg', 'cBeginning', 'category_id', 'user_id')" +
+        "VALUES " +
+        "($technology_id, $devicelabel, $serialnumber, $procmedium, $comment, $tag, $mInterval, $mBeginning," +
+        "$calibration, $maintenance, $maintenanceMsg, $cInterval, $calibrationMsg, $cBeginning, $category, $user)",
+        {
+          $technology_id: req.body.technology_id,
+          $devicelabel: req.body.devicelabel,
+          $serialnumber: req.body.serialnumber,
+          $procmedium: req.body.procmedium,
+          $comment: req.body.comment,
+          $tag: req.body.tag,
+          $mInterval: req.body.mInterval,
+          $mBeginning: req.body.mBeginning,
+          $calibration: req.body.calibration,
+          $maintenance: req.body.maintenance,
+          $maintenanceMsg: req.body.maintenanceMsg,
+          $cInterval: req.body.cInterval,
+          $calibrationMsg: req.body.calibrationMsg,
+          $cBeginning: req.body.cBeginning,
+          $category: req.body.category_id,
+          $user: decoded.id
+        },
         function (err) {
           res.status(201).send({
             message: "Gerät wurde angelegt!",
@@ -202,19 +197,19 @@ app.post('/device/create', function (req, res)
 
 app.post('/device/update', function (req, res)
 {
-  db.serialize(function()
-  {
+  jwt.verify(getTokenFromRequest(req), config.secret, function(err, decoded) {
     db.run(
       "UPDATE device " +
-      "SET technology=?, devicelabel=?, serialnumber=?, procmedium=?, comment=?, mInterval=?, mBeginning=?, " +
-      "calibration=?, maintenance=?, maintenanceMsg=?, cInterval=?, calibrationMsg=?, cBeginning=?, category_id=?, user_id=?)" +
+      "SET technology_id=?, devicelabel=?, serialnumber=?, procmedium=?, comment=?, tag=?,mInterval=?, mBeginning=?, " +
+      "calibration=?, maintenance=?, maintenanceMsg=?, cInterval=?, calibrationMsg=?, cBeginning=?, category_id=?, user_id=?" +
       "WHERE id=?",
       [
-        req.body.technology,
+        req.body.technology_id,
         req.body.devicelabel,
         req.body.serialnumber,
         req.body.procmedium,
         req.body.comment,
+        req.body.tag,
         req.body.mInterval,
         req.body.mBeginning,
         req.body.calibration,
@@ -223,8 +218,8 @@ app.post('/device/update', function (req, res)
         req.body.cInterval,
         req.body.calibrationMsg,
         req.body.cBeginning,
-        req.body.category,
-        1, //TODO
+        req.body.category_id,
+        decoded.id,
         req.body.id
       ]
     );
@@ -316,12 +311,11 @@ app.post('/create-new-password', function (req, res)
 
 app.post('/device/delete', function(req, res)
 {
-  db.serialize(function()
-  {
+  jwt.verify(getTokenFromRequest(req), config.secret, function(err, decoded) {
     db.run("DELETE FROM device WHERE id=$id AND user_id=$user_id",
       {
         $id: req.body.id,
-        $user_id: 1 //@TODO
+        $user_id: decoded.id
       },
       function(err)
       {
@@ -332,7 +326,71 @@ app.post('/device/delete', function(req, res)
 
 app.get('/devices', function (req, res)
 {
-  exporter.json('SELECT d.*, c.name AS `category` from device d LEFT JOIN category AS c ON d.category_id = c.id WHERE d.user_id = 1', function (err, json) {
+  jwt.verify(getTokenFromRequest(req), config.secret, function(err, decoded) {
+    db.all(
+      'SELECT d.*, c.name AS `category`, t.name AS `technology` from device d ' +
+      'LEFT JOIN category AS c ON d.category_id = c.id ' +
+      'LEFT JOIN technology AS t ON d.technology_id = t.id ' +
+      'WHERE d.user_id = $user_id',
+      {
+        $user_id: decoded.id
+      },
+      function (err, row) {
+        res.status(200).send(row);
+      });
+  });
+});
+
+app.post('/user/devices', function (req, res)
+{
+  jwt.verify(getTokenFromRequest(req), config.secret, function(err, decoded) {
+    db.all(
+        'SELECT d.*, c.name AS `category`, t.name AS `technology` from device d ' +
+        'LEFT JOIN category AS c ON d.category_id = c.id ' +
+        'LEFT JOIN technology AS t ON d.technology_id = t.id ' +
+        'WHERE d.user_id = $user_id',
+        {
+          $user_id: req.body.id
+        },
+        function (err, row) {
+          res.status(200).send(row);
+        });
+  });
+});
+
+app.get('/categories', function (req, res)
+{
+  jwt.verify(getTokenFromRequest(req), config.secret, function(err, decoded) {
+    db.all(
+        'SELECT c.* FROM category c WHERE c.user_id = $user_id',
+        {
+          $user_id: decoded.id
+        },
+        function (err, row) {
+          res.status(200).send(row);
+        }
+    );
+  });
+});
+
+app.post('/user/categories', function (req, res)
+{
+  jwt.verify(getTokenFromRequest(req), config.secret, function(err, decoded) {
+    db.all(
+        'SELECT c.* FROM category c WHERE c.user_id = $user_id',
+        {
+          $user_id: req.body.id
+        },
+        function (err, row) {
+          res.status(200).send(row);
+        }
+    );
+  });
+});
+
+app.get('/users', function (req, res)
+{
+  exporter.json('SELECT * from user', function (err, json) {
     console.log(json);
     res.status(200).send(json);
   });
@@ -349,15 +407,21 @@ app.get('/categories', function (req, res)
 
 app.post('/category/create', function (req, res)
 {
-  db.serialize(function() {
+  jwt.verify(getTokenFromRequest(req), config.secret, function(err, decoded) {
     db.run("INSERT INTO category (name, user_id) VALUES ($name, $user_id)",
       {
         $name: req.body.name,
-        $user_id: 1
+        $user_id: decoded.id
       },
       function(err)
       {
         res.status(201).send({ message: "Kategorie wurde erfolgreich hinzugefügt.", id: this.lastID});
       });
   })
+});
+
+app.get('/technologies', function (req, res) {
+  db.all("SELECT t.* FROM technology t", function (err, row) {
+    res.status(200).send(row);
+  });
 });

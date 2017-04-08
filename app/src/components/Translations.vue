@@ -2,13 +2,16 @@
   import Contact from "./Translations/Contact.json"
   import Datenschutz from "./Translations/Datenschutz.json"
   import DeviceRegForm from "./Translations/DeviceRegForm.json"
+  import UserRegForm from "./Translations/UserRegForm.json"
   import Impressum from "./Translations/Impressum.json"
   import MyDevices from "./Translations/MyDevices.json"
+  import UserOverview from "./Translations/UserOverview.json"
   import RegistrationForm from "./Translations/RegistrationForm.json"
   import TermsOfUse from "./Translations/TermsOfUse.json"
   import Warranty from "./Translations/Warranty.json"
   import Home from "./Translations/Home.json"
   import LoginForm from "./Translations/LoginForm.json"
+  import UI from "./Translations/UI.json"
 
 
   var Vue = require('vue')
@@ -30,6 +33,7 @@
       english: 'Englisch',
       logout: 'Abmelden',
       my_devices: 'Meine Geräte',
+      user_overview: 'Benutzerübersicht',
       home: 'Startseite',
       register: 'Registrieren',
       contact: 'Kontakt',
@@ -39,6 +43,7 @@
       terms_of_warranty: 'Aktionsbedingungen',
       edit_profile: 'Profil editieren',
       delete_profile: 'Profil löschen',
+      back: 'Zurück',
 
 
 
@@ -188,16 +193,36 @@
         FI: 'Finnland',
       },
 
+      UserEdit: {
+        user_management : 'Nutzerverwaltung',
+        edit_button : 'Profil editieren',
+        choose: 'Bitte wählen Sie',
+        personal_details: 'Personenangaben',
+        prename: 'Vorname',
+        surname: 'Nachname',
+        user: 'Benutzer (E-Mail Adresse)',
+        phone: 'Telefon',
+        company_details: 'Firmenangaben',
+        company: 'Firmenname',
+        street: 'Straße',
+        number: 'Hausnummer',
+        zip: 'Postleitzahl',
+      },
+
+
       Contact: Contact.de,
         MyDevices: MyDevices.de,
+        UserOverview: UserOverview.de,
         RegistrationForm: RegistrationForm.de,
         DeviceRegForm: DeviceRegForm.de,
+        UserRegForm: UserRegForm.de,
         TermsOfUse: TermsOfUse.de,
         Datenschutz: Datenschutz.de,
         Warranty: Warranty.de,
         Impressum: Impressum.de,
         Home: Home.de,
-        LoginForm: LoginForm.de
+        LoginForm: LoginForm.de,
+        UI: UI.de
       },
 
     en: {
@@ -215,6 +240,7 @@
       english: 'English',
       logout: 'Logout',
       my_devices: 'My Devices',
+      user_overview: 'User Manager',
       home: 'Home',
       register: 'Sign up',
       contact: 'Contact',
@@ -224,6 +250,7 @@
       terms_of_warranty: 'Terms of warranty',
       edit_profile: 'Edit profile',
       delete_profile: 'Delete profile',
+      back: 'Go Back',
 
       Contact: {
         box_address: 'Mailbox',
@@ -373,17 +400,36 @@
         FI: 'Finland',
       },
 
+      UserEdit: {
+        user_management : 'User management',
+        edit_button : 'Edit profil',
+        choose: 'Please choose',
+        personal_details: 'Personal Details',
+        prename: 'Prename',
+        surname: 'Surname',
+        user: 'User (E-Mail)',
+        phone: 'Phone',
+        company_details: 'Company Details',
+        company: 'Company',
+        street: 'Street',
+        number: 'Number',
+        zip: 'Zip',
+      },
+
       Contact: Contact.en,
         MyDevices: MyDevices.en,
+        UserOverview: UserOverview.en,
         RegistrationForm: RegistrationForm.en,
         DeviceRegForm: DeviceRegForm.en,
+        UserRegForm: UserRegForm.en,
         TermsOfUse: TermsOfUse.en,
         Datenschutz: Datenschutz.en,
         Warranty: Warranty.en,
         Impressum: Impressum.en,
         Home: Home.en,
-        LoginForm: LoginForm.en
-    }
+        LoginForm: LoginForm.en,
+        UI: UI.en
+      },
   }
 
   // install plugin

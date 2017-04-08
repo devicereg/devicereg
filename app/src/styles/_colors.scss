@@ -2,7 +2,7 @@ $dark-blue: #283158;
 $light-blue: #3e7d8b;
 $light-blue-transparent: rgba(62, 125, 139, 0.45);
 $light-blue-more-transparent: rgba(62, 125, 139, 0.15);
-$light-blue-most-transparent: rgba(62, 125, 139, 0.07);
+$light-blue-most-transparent: rgb(241, 246, 247);
 
 $darker-light-blue: #376774;
 $light-gray: #e3e3e3;
@@ -11,6 +11,9 @@ $darker-gray: #9c9c9c;
 $black: #000;
 $dark-blue-gray: #2c3e50;
 $darker-white: #d2d2d2;
+
+$error-red: rgb(104, 37, 65);
+$success-green: rgb(38, 109, 80);
 
 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700');
 
@@ -27,3 +30,5 @@ $primary-text-color: $dark-blue-gray;
 $table-borders-color: $light-blue-transparent;
 $table-row-hover-color: $light-blue-more-transparent;
 $table-row-odd-bg-color: $light-blue-most-transparent;
+$error-toast-color: $error-red;
+$success-toast-color: $success-green;

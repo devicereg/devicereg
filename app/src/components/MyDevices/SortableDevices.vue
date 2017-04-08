@@ -1,74 +1,115 @@
 <template>
   <div>
-    <div id="devices-table" class="table">
+    <div id="devices-table-desktop" class="table desktop-table">
       <div class="table-header col-sm-12">
         <div class="row">
-          <div @click="sortBy('devicelabel')" class="table-cell col-md-3" :class="{ active: sortKey == 'devicelabel' }">
+          <div @click="sortBy('devicelabel')" class="table-cell col-md-2 col-sm-2 col-xs-2" :class="{ active: sortKey == 'devicelabel' }">
             {{ $t("MyDevices." + "devicelabel") }}
             <span class="arrow" :class="sortOrders['devicelabel'] > 0 ? 'asc' : 'dsc'"></span>
           </div>
-          <div @click="sortBy('technology')" class="table-cell col-md-2" :class="{ active: sortKey == 'technology' }">
+          <div @click="sortBy('technology')" class="table-cell col-md-2 col-sm-2 col-xs-2" :class="{ active: sortKey == 'technology' }">
             {{ $t("MyDevices." + "technology") }}
             <span class="arrow" :class="sortOrders['technology'] > 0 ? 'asc' : 'dsc'"></span>
           </div>
-          <div @click="sortBy('category')" class="table-cell col-md-2" :class="{ active: sortKey == 'category' }">
+          <div @click="sortBy('category')" class="table-cell col-md-2 col-sm-2 col-xs-2" :class="{ active: sortKey == 'category' }">
             {{ $t("MyDevices." + "category") }}
             <span class="arrow" :class="sortOrders['category'] > 0 ? 'asc' : 'dsc'"></span>
           </div>
-          <div @click="sortBy('device_description')" class="table-cell col-md-3"
-               :class="{ active: sortKey == 'device_description' }">
+          <div @click="sortBy('comment')" class="table-cell col-md-4 col-sm-4 col-xs-4"
+               :class="{ active: sortKey == 'comment' }">
             {{ $t("MyDevices." + "device_description") }}
-            <span class="arrow" :class="sortOrders['device_description'] > 0 ? 'asc' : 'dsc'"></span>
+            <span class="arrow" :class="sortOrders['comment'] > 0 ? 'asc' : 'dsc'"></span>
           </div>
-          <div class="table-cell col-md-2">&nbsp;</div>
+          <div class="table-cell col-sm-2 col-md-2">&nbsp;</div>
         </div>
       </div>
       <div class="table-body col-sm-12">
         <transition-group name="device-list" tag="div">
-          <div v-for="device in filteredData"
-              class="row table-row device-list-item"
+          <div v-for="(device, key) in filteredData"
+              v-bind:class="[key % 2 === 0 ? 'even-tr' : 'odd-tr','row table-row device-list-item']"
               v-bind:id="'device_' + device.id"
-              v-bind:key="device.id"
-              v-on:click="toggleDetail(device.id)">
+              v-bind:key="device.id">
             <div class="col-sm-12">
               <div class="table-row-content row">
-                <div class="table-cell col-md-3 device-label">{{ device.devicelabel }}</div>
-                <div v-for="technology in technologies" v-if="technology.id==device.technology" class="table-cell col-md-2">
-                  {{ technology.name }}
+                <div class="table-cell col-md-2 col-sm-2 col-xs-2 device-label">{{ device.devicelabel }}</div>
+                <div class="table-cell col-md-2 col-sm-2 col-xs-2">
+                  {{ device.technology }}
                 </div>
-                <div v-for="category in categories" v-if="category.id==device.category_id" class="table-cell col-md-2">
+                <div v-for="category in categories" v-if="category.id==device.category_id" class="table-cell col-md-2 col-sm-2 col-xs-2">
                   {{ category.name }}
                 </div>
-                <div class="table-cell col-md-3">{{ device.comment }}</div>
-                <div class="table-cell col-md-2">
-                  <!--a @click="">
+                <div class="table-cell col-md-4 col-sm-4 col-xs-4">{{ device.comment }}</div>
+                <div class="table-cell col-md-2 col-sm-2 col-xs-2">
+                  <a v-on:click="toggleDetail(device.id)">
                     <span class="glyphicon glyphicon-eye-open action-button" aria-hidden="true"></span>
-                  </a-->
+                  </a>
                   <a v-on:click="editDevice(device)">
                     <span class="glyphicon glyphicon-edit action-button" aria-hidden="true"></span>
                   </a>
                   <delete-device :device="device"></delete-device>
                 </div>
-				
                 <div id="device-detail-view" class="row">
-						
                   <div class="col-sm-12 hide" v-bind:id="'details_' + device.id">
-                    <div class="col-xs-1 detail-view">
-									<span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
-							</div>
-					<td colspan="5">                      
-							
-								<div class="col-xs-11">
-								<b>{{ $t("DeviceRegForm.serial_number")}}:</b> {{device.serialnumber}} </br>
-								<b>{{ $t("DeviceRegForm.process_fluid")}}:</b> {{device.procmedium}} </br>
-								<b>{{ $t("DeviceRegForm.comment")}}:</b> {{device.comment}} </br>
-								<b>{{ $t("DeviceRegForm.maintenance")}}:</b><span id="emptyOne">{{device.mBeginning}}</span>, {{device.mInterval}}, {{device.maintenanceMsg}} </br>
-								<b>{{ $t("DeviceRegForm.calibration")}}:</b><span id="emptyTwo">{{device.cBeginning}}, {{device.cInterval}}, {{device.calibrationMsg}}</span>
-								</div>
+                    <td colspan="5">
+                      <div class="col-xs-11">
+                        <b>{{ $t("DeviceRegForm.serial_number")}}:</b> {{device.serialnumber}} </br>
+                        <b>{{ $t("DeviceRegForm.process_fluid")}}:</b> {{device.procmedium}} </br>
+                        <b>{{ $t("DeviceRegForm.comment")}}:</b> {{device.comment}} </br>
+                        <b>{{ $t("DeviceRegForm.maintenance")}}:</b><span id="emptyOne">{{device.mBeginning}}</span>, {{device.mInterval}}, {{device.maintenanceMsg}} </br>
+                        <b>{{ $t("DeviceRegForm.calibration")}}:</b><span id="emptyTwo">{{device.cBeginning}}, {{device.cInterval}}, {{device.calibrationMsg}}</span>
                       </div>
                     </td>
                   </div>
                 </div>
+              </div>
+            </div>
+          </div>
+        </transition-group>
+      </div>
+    </div>
+    <div id="devices-table-mobile" class="table mobile-table">
+      <div class="table-header col-sm-12 col-xs-12">
+        <div class="row">
+          <div @click="sortBy('devicelabel')" class="table-cell col-sm-6 col-xs-6" :class="{ active: sortKey == 'devicelabel' }">
+            {{ $t("MyDevices." + "devicelabel") }}
+            <span class="arrow" :class="sortOrders['devicelabel'] > 0 ? 'asc' : 'dsc'"></span>
+          </div>
+          <div class="table-cell col-sm-6 col-md-6">&nbsp;</div>
+        </div>
+      </div>
+      <div class="table-body col-sm-12 col-xs-12">
+        <transition-group name="device-list" tag="div">
+          <div v-for="(device, key) in filteredData"
+               v-bind:class="[key % 2 === 0 ? 'even-tr' : 'odd-tr','row table-row device-list-item']"
+               v-bind:id="'device_' + device.id"
+               v-bind:key="device.id">
+            <div class="col-sm-12 col-xs-12">
+              <div class="table-row-content row">
+                <div class="table-cell col-sm-6 col-xs-6 device-label">{{ device.devicelabel }}</div>
+                <div class="table-cell col-sm-6 col-xs-6">
+                  <a v-on:click="toggleDetail(device.id)">
+                    <span class="glyphicon glyphicon-eye-open action-button" aria-hidden="true"></span>
+                  </a>
+                  <a v-on:click="editDevice(device)">
+                    <span class="glyphicon glyphicon-edit action-button" aria-hidden="true"></span>
+                  </a>
+                  <delete-device :device="device"></delete-device>
+                </div>
+                <!--div id="device-detail-view" class="row">
+                  <div class="col-sm-12 hide" v-bind:id="'details_' + device.id">
+                    <td colspan="5">
+                      <div class="row">
+                        <div class="col-xs-12">
+                          <li>{{ $t("DeviceRegForm.serial_number")}}: {{device.serialnumber}}</li>
+                             <li>{{ $t("DeviceRegForm.process_fluid")}}: {{device.procmedium}}</li>
+                             <li>{{ $t("DeviceRegForm.comment")}}: {{device.comment}}</li>
+                             <li>{{ $t("DeviceRegForm.maintenance")}}:{{device.mBeginning}}, {{device.mInterval}}, {{device.maintenanceMsg}} </li>
+                          <li>{{ $t("DeviceRegForm.calibration")}}: {{device.cBeginning}}, {{device.cIntervall}}, {{device.calibrationMsg}}</li>
+                        </div>
+                      </div>
+                    </td>
+                  </div>
+                </div-->
               </div>
             </div>
           </div>
@@ -90,7 +131,7 @@
       'devices'
     ],
     data() {
-      var gridColumns = ['devicelabel', 'technology', 'category', 'device_description'];
+      var gridColumns = ['devicelabel', 'technology', 'category', 'comment'];
       var sortOrders = {}
 
       gridColumns.forEach(function (key) {
@@ -104,10 +145,6 @@
         gridData: [
           this.devices
         ],
-        technologies: [
-          {id: 1, name: 'Rotamass'},
-          {id: 2, name: 'Flowmeter'}
-        ]
       }
     },
     components: {
@@ -124,6 +161,15 @@
       removeDevice: function(device) {
         var index = this.devices.indexOf(device);
         this.devices.splice(index, 1);
+        var taostr = (this.$parent.selectedUser.id == -1) ? this.$parent.$parent.$refs.toastr : this.$parent.$parent.$parent.$refs.toastr
+        taostr.Add({
+          title: this.$t("UI.delete_device_title"),
+          msg: this.$t("UI.delete_device_msg"),
+          clickClose: true,
+          timeout: 8000,
+          position: "toast-top-right",
+          type: "success"
+        });
       },
       sortBy: function (key) {
         this.sortKey = key
@@ -170,16 +216,7 @@
       capitalize: function (str) {
         return str.charAt(0).toUpperCase() + str.slice(1)
       }
-    },
-    updated: function () {
-      $( ".table-row-content" ).removeClass( "odd");
-      $( ".table-row-content:odd" ).addClass( "odd");
-    }/*,
-	function isEmpty() {
-		if($("#device.mBeginning").is(':empty')) {
-			$("#device.mBeginning").hide();
-		}
-	}*/
+    }
   }
 </script>
 
@@ -231,8 +268,8 @@
       padding-top: 5px;
       padding-bottom: 5px;
     }
-    .odd {
-      background-color: $table-row-odd-bg-color;
+    .odd-tr {
+      background-color: $table-row-odd-bg-color !important;
     }
   }
 
@@ -292,26 +329,45 @@
     opacity: 0;
     transform: translateX(-30px);
   }
-  
+
+  .mobile-table {
+    display: none;
+  }
+
+  @media (max-width: 767px) {
+    .desktop-table {
+      display: none;
+    }
+
+    .mobile-table {
+      display: block;
+    }
+
+    .action-button {
+      font-size: 1.5em;
+    }
+  }
+
+
   div[id^=details_].col-sm-12{
 	border-bottom-style: solid;
 	border-color: #e3e3e3;
 	border-width: 2px;
 	}
-	
+
 	.detail-view {
 		text-align: center;
 		}
-		
+
 		.col-xs-11 {
 		width: 100%;
 		}
-	
+
 	span.glyphicon-info-sign {
 		font-size: 3em;
 		display: block;
 		position: inherit;
 		line-height: 105px;
 		}
-	 
+
 </style>
